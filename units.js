@@ -971,6 +971,10 @@ const units = [
 
         obtainment: "- Limited unit in lobby for $2500",
 
+        passives : [
+            "Applies TOXIC effect to any enemy hit"
+        ],
+
         stats: [
 
             {
