@@ -1089,8 +1089,8 @@ const units = [
                 level: 2,
                 cost: 4000,
                 damage: 115,
-                cooldown: 16,
-                range: 1.1,
+                cooldown: 1.1,
+                range: 16,
                 type: "Cone"
             },
 
