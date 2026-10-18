@@ -84,7 +84,7 @@ if (!unit) {
 
         Epic: "#a855f7",
 
-        Exclusive: "#ec4899",
+        Exclusive: "#FF0101",
 
         Legendary: "#eab308"
 
