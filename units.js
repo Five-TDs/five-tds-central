@@ -942,6 +942,15 @@ const units = [
             {
                 level: 3,
                 cost: 4500,
+                damage: 400,
+                cooldown: 0.5,
+                range: 15,
+                type: "Single"
+            },
+
+            {
+                level: 4,
+                cost: 9000,
                 damage: 500,
                 cooldown: 0.5,
                 range: 16,
