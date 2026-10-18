@@ -234,7 +234,7 @@ const units = [
             {
                 level: 1,
                 range: 12,
-                type: "Range Buff",
+                type: "Range Buff x1.05",
                 rangeBuff: 1.05
             },
 
@@ -242,7 +242,7 @@ const units = [
                 level: 2,
                 cost: 800,
                 range: 13,
-                type: "Range Buff",
+                type: "Range Buff x1.08",
                 rangeBuff: 1.08
             },
 
@@ -250,7 +250,7 @@ const units = [
                 level: 3,
                 cost: 1600,
                 range: 14,
-                type: "Range Buff",
+                type: "Range Buff x1.11",
                 rangeBuff: 1.11
             },
 
@@ -258,7 +258,7 @@ const units = [
                 level: 4,
                 cost: 3500,
                 range: 15,
-                type: "Range Buff",
+                type: "Range Buff x1.15",
                 rangeBuff: 1.15
             }
 
@@ -327,7 +327,7 @@ const units = [
             {
                 level: 1,
                 range: 12,
-                type: "Slower",
+                type: "Slower x0.9",
                 slow: 0.9
             },
 
@@ -335,7 +335,7 @@ const units = [
                 level: 2,
                 cost: 1000,
                 range: 13,
-                type: "slower",
+                type: "Slower x0.89",
                 slow: 0.87
             },
 
@@ -343,7 +343,7 @@ const units = [
                 level: 3,
                 cost: 2000,
                 range: 14,
-                type: "slower",
+                type: "Slower x0.84",
                 slow: 0.84
             },
 
@@ -351,7 +351,7 @@ const units = [
                 level: 4,
                 cost: 4000,
                 range: 15,
-                type: "slower",
+                type: "Slower x0.8",
                 slow: 0.8
             }
 
