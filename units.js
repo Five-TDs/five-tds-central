@@ -910,6 +910,48 @@ const units = [
 // EXCLUSIVES
 
     {
+        name: "Fastbear",
+        rarity: "Exclusive",
+        type: "Single",
+        image: "images/fastbear.png",
+        
+        placement: 900,
+        maxLimit: 2,
+
+        obtainment: "- Unobtainable (THIS UNITS STATS MAY BE INACCURATE)",
+
+        stats: [
+
+            {
+                level: 1,
+                damage: 275,
+                cooldown: 0.5,
+                range: 13,
+                type: "Single"
+            },
+
+            {
+                level: 2,
+                cost: 2250,
+                damage: 325,
+                cooldown: 0.5,
+                range: 14,
+                type: "Single"
+            },
+
+            {
+                level: 3,
+                cost: 4500,
+                damage: 500,
+                cooldown: 0.5,
+                range: 16,
+                type: "Single"
+            }
+
+        ]
+    },
+
+    {
         name: "Radioactive Foxy",
         rarity: "Exclusive",
         type: "Toxic Pierce",
