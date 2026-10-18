@@ -1,0 +1,1628 @@
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    min-height: 100%;
+
+    background: #050505;
+    color: #ffffff;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.site-nav {
+    position: relative;
+    z-index: 100;
+
+    width: 100%;
+    height: 64px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 100px;
+
+    background: rgba(5, 5, 5, 0.92);
+    border-bottom: 1px solid #181818;
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.nav-logo {
+    color: #f06b68;
+
+    text-decoration: none;
+
+    font-size: 20px;
+    font-weight: 900;
+
+    letter-spacing: 3px;
+}
+
+
+/* =========================================================
+   NAV LINKS
+========================================================= */
+
+.nav-links {
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 28px;
+}
+
+.nav-link,
+.nav-dropdown-button {
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 0;
+
+    background: none;
+    border: none;
+
+    color: #666;
+
+    text-decoration: none;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 12px;
+    font-weight: 900;
+
+    letter-spacing: 0.5px;
+
+    cursor: pointer;
+
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover,
+.nav-dropdown-button:hover {
+    color: #ffffff;
+}
+
+.nav-link.active {
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   NAV DROPDOWN
+========================================================= */
+
+.nav-dropdown {
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+
+    position: relative;
+}
+
+.nav-arrow {
+    color: #888;
+
+    font-size: 9px;
+
+    transition: transform 0.2s ease;
+}
+
+.nav-dropdown:hover .nav-arrow {
+    transform: translateY(2px);
+}
+
+
+/* =========================================================
+   NAV DROPDOWN MENU
+========================================================= */
+
+.nav-dropdown-menu {
+    position: absolute;
+
+    top: 64px;
+    right: 0;
+
+    min-width: 190px;
+
+    padding: 7px;
+
+    background: #0a0a0a;
+
+    border: 1px solid #202020;
+    border-top: 2px solid #f06b68;
+
+    border-radius: 0 0 5px 5px;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.45);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(-5px);
+
+    transition:
+        opacity 0.15s ease,
+        transform 0.15s ease,
+        visibility 0.15s ease;
+
+    z-index: 1000;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateY(0);
+}
+
+.nav-dropdown-menu a {
+    display: block;
+
+    padding: 11px 13px;
+
+    color: #666;
+
+    text-decoration: none;
+
+    font-size: 10px;
+    font-weight: 900;
+
+    letter-spacing: 0.8px;
+
+    border-radius: 3px;
+
+    transition:
+        color 0.15s ease,
+        background 0.15s ease;
+}
+
+.nav-dropdown-menu a:hover,
+.nav-dropdown-menu a.active {
+    color: #ffffff;
+    background: #151515;
+}
+
+
+/* =========================================================
+   MOBILE MENU BUTTON
+========================================================= */
+
+.mobile-menu-button {
+    display: none;
+
+    width: 42px;
+    height: 42px;
+
+    padding: 8px;
+
+    background: transparent;
+
+    border: 1px solid #292929;
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 5px;
+}
+
+.mobile-menu-button span {
+    width: 20px;
+    height: 2px;
+
+    background: #ffffff;
+
+    display: block;
+}
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+.mobile-menu {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 2000;
+
+    background: #050505;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(-10px);
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease,
+        visibility 0.2s ease;
+
+    overflow-y: auto;
+}
+
+.mobile-menu.open {
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateY(0);
+}
+
+.mobile-menu-header {
+    height: 84px;
+
+    padding: 0 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid #181818;
+}
+
+.mobile-menu-header span {
+    color: #ffffff;
+
+    font-size: clamp(16px, 5vw, 22px);
+    font-weight: 900;
+
+    letter-spacing: 3px;
+
+    white-space: nowrap;
+}
+
+#mobile-close-button {
+    width: 42px;
+    height: 42px;
+
+    background: transparent;
+
+    border: none;
+
+    color: #ffffff;
+
+    font-size: 42px;
+    font-weight: 300;
+
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+.mobile-menu-content {
+    padding: 25px 22px 40px;
+}
+
+.mobile-nav-link,
+.mobile-nav-section-button {
+    width: 100%;
+
+    min-height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 14px;
+
+    background: transparent;
+
+    border: none;
+    border-bottom: 1px solid #181818;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 18px;
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    text-align: left;
+
+    cursor: pointer;
+}
+
+.mobile-nav-section {
+    border-bottom: 1px solid #181818;
+}
+
+.mobile-nav-section-button {
+    border-bottom: none;
+}
+
+.mobile-section-arrow {
+    color: #777;
+
+    font-size: 12px;
+
+    transition: transform 0.2s ease;
+}
+
+.mobile-nav-section.open .mobile-section-arrow {
+    transform: rotate(180deg);
+}
+
+.mobile-nav-submenu {
+    max-height: 0;
+
+    overflow: hidden;
+
+    opacity: 0;
+
+    transition:
+        max-height 0.25s ease,
+        opacity 0.2s ease;
+}
+
+.mobile-nav-section.open .mobile-nav-submenu {
+    max-height: 200px;
+
+    opacity: 1;
+}
+
+.mobile-nav-submenu a {
+    display: block;
+
+    padding: 17px 30px;
+
+    color: #888;
+
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    transition:
+        color 0.15s ease,
+        background 0.15s ease,
+        padding-left 0.15s ease;
+}
+
+.mobile-nav-submenu a:hover,
+.mobile-nav-submenu a.active {
+    color: #f06b68;
+
+    background: rgba(240, 107, 104, 0.06);
+
+    padding-left: 38px;
+}
+
+
+/* =========================================================
+   MAIN PAGE
+========================================================= */
+
+.simulator-page {
+    position: relative;
+
+    z-index: 1;
+
+    width: 100%;
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding: 70px 30px 80px;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.page-header {
+    text-align: center;
+
+    margin-bottom: 55px;
+}
+
+.page-header h1 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 42px;
+    font-weight: 900;
+
+    letter-spacing: 4px;
+
+    text-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.8);
+}
+
+.page-header p {
+    margin: 15px 0 0;
+
+    color: #999;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+}
+
+
+/* =========================================================
+   SIMULATOR CONTROLS
+========================================================= */
+
+.simulator-controls {
+    width: 100%;
+
+    margin-bottom: 25px;
+
+    background: rgba(10, 10, 10, 0.88);
+
+    border: 1px solid #202020;
+
+    border-left: 4px solid #4ade80;
+
+    overflow: hidden;
+}
+
+.control-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+}
+
+.control {
+    padding: 22px 25px;
+}
+
+.control + .control {
+    border-left: 1px solid #202020;
+}
+
+.control label {
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: #888;
+
+    font-size: 11px;
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+}
+
+
+/* =========================================================
+   HELP BUTTON
+========================================================= */
+
+.label-with-help {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+}
+
+.label-with-help label {
+    margin-bottom: 10px;
+}
+
+.help-button {
+    width: 18px;
+    height: 18px;
+
+    padding: 0;
+
+    margin-top: -10px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #0a0a0a;
+
+    border: 1px solid #303030;
+
+    border-radius: 50%;
+
+    color: #777;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 11px;
+    font-weight: 900;
+
+    cursor: pointer;
+
+    transition:
+        color 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.help-button:hover {
+    color: #f06b68;
+
+    border-color: #f06b68;
+}
+
+
+/* =========================================================
+   SELECT / INPUT
+========================================================= */
+
+select,
+.search-control input {
+    width: 100%;
+
+    height: 44px;
+
+    padding: 0 13px;
+
+    background: #0a0a0a;
+
+    border: 1px solid #202020;
+
+    border-radius: 3px;
+
+    color: #ffffff;
+
+    outline: none;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    transition:
+        border-color 0.15s ease;
+}
+
+select:focus,
+.search-control input:focus {
+    border-color: #444;
+}
+
+select {
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.search-control {
+    padding: 22px 25px;
+
+    border-top: 1px solid #202020;
+}
+
+.search-control label {
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: #888;
+
+    font-size: 11px;
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+}
+
+
+/* =========================================================
+   UNIT SELECTION
+========================================================= */
+
+.unit-selection {
+    width: 100%;
+
+    padding: 25px;
+
+    margin-bottom: 25px;
+
+    background: rgba(10, 10, 10, 0.88);
+
+    border: 1px solid #202020;
+
+    border-left: 4px solid #fb923c;
+}
+
+
+.unit-grid {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(6, 1fr);
+
+    gap: 14px;
+}
+
+
+.unit-card {
+    width: 100%;
+
+    min-width: 0;
+
+    padding: 5px;
+
+    background: #0a0a0a;
+
+    border: 2px solid #202020;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.unit-card:hover {
+    transform: translateY(-4px);
+
+    background: #111;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.45);
+}
+
+
+.unit-card.selected {
+    box-shadow:
+        0 0 0 2px #ffffff,
+        0 7px 20px rgba(0, 0, 0, 0.45);
+}
+
+
+/* IMAGE */
+
+.unit-card-image {
+    width: 100%;
+
+    aspect-ratio: 1;
+
+    overflow: hidden;
+
+    border-radius: 3px;
+}
+
+
+.unit-card-image img {
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+
+/* NAME */
+
+.unit-card-name {
+    min-height: 28px;
+
+    padding: 8px 3px 4px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #ffffff;
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: 0.5px;
+
+    text-align: center;
+
+    line-height: 1.2;
+}
+
+
+/* =========================================================
+   RARITY COLORS
+========================================================= */
+
+.unit-card.common {
+    border-color: #AAAAAA;
+}
+
+
+.unit-card.uncommon {
+    border-color: #65FF01;
+}
+
+
+.unit-card.rare {
+    border-color: #0165FF;
+}
+
+
+.unit-card.epic {
+    border-color: #C801FF;
+}
+
+
+.unit-card.exclusive {
+    border-color: #FF0101;
+}
+
+
+.unit-card.legendary {
+    border-color: #FFD619;
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+/* =========================================================
+   STATS TABLE
+========================================================= */
+
+.stats-section {
+    width: 100%;
+
+    background: rgba(10, 10, 10, 0.88);
+
+    border: 1px solid #202020;
+    border-left: 4px solid #60a5fa;
+
+    overflow: hidden;
+}
+
+
+.stats-table-wrapper {
+    width: 100%;
+
+    overflow: hidden;
+}
+
+
+.stats-table {
+    width: 100%;
+
+    table-layout: fixed;
+
+    border-collapse: collapse;
+}
+
+
+.stats-table th {
+    height: 52px;
+
+    padding: 0 8px;
+
+    background: #0a0a0a;
+
+    border-bottom: 1px solid #202020;
+
+    color: #666;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 10px;
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    text-align: center;
+}
+
+
+.stats-table td {
+    height: 56px;
+
+    padding: 0 8px;
+
+    border-bottom: 1px solid #181818;
+
+    color: #aaa;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    text-align: center;
+
+    white-space: nowrap;
+}
+
+
+.stats-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+.stats-table tbody tr {
+    transition: background 0.15s ease;
+}
+
+
+.stats-table tbody tr:hover {
+    background: #101010;
+}
+
+
+.stats-table td:first-child {
+    color: #ffffff;
+
+    font-weight: 900;
+}
+
+
+.stats-table td:last-child {
+    color: #60a5fa;
+
+    font-weight: 900;
+}
+
+
+/* EVEN COLUMN WIDTHS */
+
+.stats-table th:nth-child(1),
+.stats-table td:nth-child(1) {
+    width: 16%;
+}
+
+
+.stats-table th:nth-child(2),
+.stats-table td:nth-child(2) {
+    width: 17%;
+}
+
+
+.stats-table th:nth-child(3),
+.stats-table td:nth-child(3) {
+    width: 17%;
+}
+
+
+.stats-table th:nth-child(4),
+.stats-table td:nth-child(4) {
+    width: 17%;
+}
+
+
+.stats-table th:nth-child(5),
+.stats-table td:nth-child(5) {
+    width: 16%;
+}
+
+
+.stats-table th:nth-child(6),
+.stats-table td:nth-child(6) {
+    width: 17%;
+}
+
+/* =========================================================
+   MAX STATS
+========================================================= */
+
+.max-stats {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 30px;
+
+    margin-top: 25px;
+}
+
+
+.max-stat-box {
+    min-height: 138px;
+
+    padding: 30px 25px;
+
+    background: rgba(10, 10, 10, 0.88);
+
+    border: 1px solid #202020;
+
+    border-left: 5px solid #60d99f;
+
+    border-radius: 18px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+
+.max-stat-label {
+    color: #666;
+
+    font-size: 12px;
+
+    font-weight: 900;
+
+    letter-spacing: 3px;
+}
+
+
+.max-stat-value {
+    margin-top: 15px;
+
+    color: #ffffff;
+
+    font-size: 34px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+}
+
+
+.max-stat-value.dps-value {
+    color: #60d99f;
+}
+
+
+/* =========================================================
+   ENCHANTMENT MODAL
+========================================================= */
+
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 5000;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(0, 0, 0, 0.78);
+
+    backdrop-filter: blur(5px);
+}
+
+.modal.open {
+    display: flex;
+}
+
+.enchantment-modal-content {
+    width: min(720px, 100%);
+    max-height: 90vh;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #0a0a0a;
+
+    border: 1px solid #202020;
+    border-top: 2px solid #f06b68;
+    border-radius: 0 0 5px 5px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.6);
+}
+
+
+/* =========================================================
+   MODAL HEADER
+========================================================= */
+
+.modal-header {
+    min-height: 75px;
+
+    padding: 0 25px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid #202020;
+}
+
+.modal-header h2 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 18px;
+    font-weight: 900;
+
+    letter-spacing: 2px;
+}
+
+.modal-close {
+    width: 35px;
+    height: 35px;
+
+    background: transparent;
+
+    border: 1px solid #292929;
+
+    color: #777;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 24px;
+
+    cursor: pointer;
+
+    transition:
+        color 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.modal-close:hover {
+    color: #ffffff;
+
+    border-color: #555;
+}
+
+
+/* =========================================================
+   ENCHANTMENT LIST
+========================================================= */
+
+.enchantment-list {
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: calc(90vh - 75px);
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    padding: 0 25px;
+
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+}
+
+/* Scrollbar */
+.enchantment-list::-webkit-scrollbar {
+    width: 7px;
+}
+
+.enchantment-list::-webkit-scrollbar-track {
+    background: #080808;
+}
+
+.enchantment-list::-webkit-scrollbar-thumb {
+    background: #303030;
+    border-radius: 4px;
+}
+
+.enchantment-list::-webkit-scrollbar-thumb:hover {
+    background: #444;
+}
+
+
+/* =========================================================
+   ENCHANTMENT ENTRY
+========================================================= */
+
+.enchantment-entry {
+    padding: 25px 0;
+    border-bottom: 1px solid #181818;
+    background: transparent;
+}
+
+.enchantment-entry:last-child {
+    border-bottom: none;
+}
+
+
+/* =========================================================
+   ENCHANTMENT NAME
+========================================================= */
+
+.enchantment-name {
+    display: inline-block;
+
+    margin-bottom: 6px;
+
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: 2px;
+
+    line-height: 1.1;
+}
+
+
+/* =========================================================
+   NORMAL ENCHANT COLORS
+========================================================= */
+
+.enchantment-entry:nth-child(1) .enchantment-name {
+    color: #B4FFAA;
+}
+
+.enchantment-entry:nth-child(2) .enchantment-name {
+    color: #AAAAFF;
+}
+
+.enchantment-entry:nth-child(3) .enchantment-name {
+    color: #FF8787;
+}
+
+.enchantment-entry:nth-child(4) .enchantment-name {
+    color: #FFFA96;
+}
+
+
+/* =========================================================
+   HAYWIRE
+   Purple → Mint Green
+========================================================= */
+
+.enchantment-name.enchant-haywire {
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+
+    background-image: linear-gradient(
+        90deg,
+        #8B5CF6 0%,
+        #8B5CF6 25%,
+        #98FFCC 75%,
+        #98FFCC 100%
+    );
+
+    background-size: 300% 100%;
+    background-position: 0% 50%;
+
+    background-clip: text;
+    -webkit-background-clip: text;
+
+    animation: haywireText 2.5s ease-in-out infinite alternate;
+
+    will-change: background-position;
+}
+
+
+/* =========================================================
+   SPRINGLOCK
+   Mint Green → Red
+========================================================= */
+
+.enchantment-name.enchant-springlock {
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+
+    background-image: linear-gradient(
+        90deg,
+        #98FFCC 0%,
+        #98FFCC 25%,
+        #FF3B3B 75%,
+        #FF3B3B 100%
+    );
+
+    background-size: 300% 100%;
+    background-position: 0% 50%;
+
+    background-clip: text;
+    -webkit-background-clip: text;
+
+    animation: springlockText 2.5s ease-in-out infinite alternate;
+
+    will-change: background-position;
+}
+
+
+/* =========================================================
+   SOUL
+   Teal → Pink
+========================================================= */
+
+.enchantment-name.enchant-soul {
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+
+    background-image: linear-gradient(
+        90deg,
+        #14B8A6 0%,
+        #14B8A6 25%,
+        #FF69B4 75%,
+        #FF69B4 100%
+    );
+
+    background-size: 300% 100%;
+    background-position: 0% 50%;
+
+    background-clip: text;
+    -webkit-background-clip: text;
+
+    animation: soulText 1.2s ease-in-out infinite alternate;
+
+    will-change: background-position;
+}
+
+
+/* =========================================================
+   TEXT ANIMATIONS
+========================================================= */
+
+@keyframes haywireText {
+    from {
+        background-position: 0% 50%;
+    }
+
+    to {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes springlockText {
+    from {
+        background-position: 0% 50%;
+    }
+
+    to {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes soulText {
+    from {
+        background-position: 0% 50%;
+    }
+
+    to {
+        background-position: 100% 50%;
+    }
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.enchantment-description {
+    color: #888;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   PROBABILITY
+========================================================= */
+
+.enchantment-prob {
+    display: inline-block;
+
+    margin-top: 9px;
+
+    color: #f06b68;
+
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.8px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .site-nav {
+        padding: 0 25px;
+    }
+
+    .nav-logo {
+        font-size: 16px;
+        letter-spacing: 2px;
+    }
+
+    .nav-links {
+        gap: 16px;
+    }
+
+    .nav-link,
+    .nav-dropdown-button {
+        font-size: 10px;
+    }
+
+    .simulator-page {
+        padding: 60px 20px 60px;
+    }
+
+    .page-header h1 {
+        font-size: 36px;
+    }
+
+    .unit-grid {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+
+/* =========================================================
+   TABLET / MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .site-nav {
+        height: 64px;
+        padding: 0 20px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .mobile-menu-button {
+        display: flex;
+    }
+
+    .simulator-page {
+        padding: 55px 16px 50px;
+    }
+
+    .page-header {
+        margin-bottom: 40px;
+    }
+
+    .page-header h1 {
+        font-size: clamp(30px, 9vw, 42px);
+        letter-spacing: clamp(2px, 1vw, 4px);
+    }
+
+    .page-header p {
+        font-size: 11px;
+    }
+
+
+    /* CONTROLS */
+
+    .control-row {
+        grid-template-columns: 1fr;
+    }
+
+    .control + .control {
+        border-left: none;
+        border-top: 1px solid #202020;
+    }
+
+
+    /* MAX STATS */
+
+    .max-stats {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+
+    .max-stat-box {
+        min-width: 0;
+        min-height: 105px;
+        padding: 20px;
+    }
+
+    .max-stat-label {
+        font-size: 9px;
+        letter-spacing: 1.5px;
+    }
+
+    .max-stat-value {
+        font-size: 28px;
+    }
+
+
+    /* UNIT SELECTION */
+
+    .unit-selection {
+        padding: 18px;
+    }
+
+    .unit-grid {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 10px;
+    }
+
+
+    /* STATS TABLE */
+
+    .stats-table-wrapper {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .stats-table {
+        width: 100%;
+        min-width: 0;
+        table-layout: fixed;
+    }
+
+    .stats-table th {
+        height: 45px;
+        padding: 0 3px;
+        font-size: 8px;
+        letter-spacing: 0.5px;
+    }
+
+    .stats-table td {
+        height: 52px;
+        padding: 0 3px;
+        font-size: 10px;
+    }
+
+    /* ENCHANTMENT-MODIFIED STAT */
+    .stat-modified {
+        color: #4ade80 !important;
+        font-weight: 900 !important;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 550px) {
+
+    .nav-logo {
+        display: none;
+    }
+
+    .site-nav {
+        justify-content: center;
+    }
+
+    .control {
+        padding: 18px;
+    }
+
+    .search-control {
+        padding: 18px;
+    }
+
+
+    /* MAX STATS */
+
+    .max-stat-box {
+        min-height: 95px;
+        padding: 18px;
+    }
+
+    .max-stat-label {
+        font-size: 8px;
+    }
+
+    .max-stat-value {
+        font-size: 25px;
+    }
+
+
+    /* UNIT GRID */
+
+    .unit-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 9px;
+    }
+
+
+    /* TABLE */
+
+    .stats-table th {
+        font-size: 7px;
+        padding: 0 2px;
+    }
+
+    .stats-table td {
+        font-size: 9px;
+        padding: 0 2px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .site-nav {
+        padding: 0 14px;
+    }
+
+    .mobile-nav-header {
+        padding: 0 20px;
+    }
+
+    .mobile-nav-content {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .simulator-page {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+
+    /* UNIT GRID */
+
+    .unit-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 7px;
+    }
+
+
+    /* MAX STATS */
+
+    .max-stat-box {
+        padding: 16px;
+    }
+
+    .max-stat-value {
+        font-size: 22px;
+    }
+
+
+    /* TABLE */
+
+    .stats-table th {
+        font-size: 6.5px;
+    }
+
+    .stats-table td {
+        font-size: 8px;
+    }
+}

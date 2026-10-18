@@ -1,0 +1,1442 @@
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+
+    background: #050505;
+
+    color: #ffffff;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* =========================================================
+   SITE NAVIGATION
+========================================================= */
+
+.site-nav {
+    width: 100%;
+
+    height: 64px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 100px;
+
+    background: #050505;
+
+    border-bottom: 1px solid #181818;
+
+    position: relative;
+
+    z-index: 1000;
+}
+
+
+/* =========================
+   LOGO
+========================= */
+
+.nav-logo {
+    color: #f06b68;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 3px;
+}
+
+
+/* =========================
+   NAV LINKS
+========================= */
+
+.nav-links {
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 28px;
+}
+
+
+.nav-link,
+.nav-dropdown-button {
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 0;
+
+    background: none;
+
+    border: none;
+
+    color: #666;
+
+    text-decoration: none;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 900;
+
+    letter-spacing: 0.5px;
+
+    cursor: pointer;
+
+    position: relative;
+
+    transition:
+        color 0.2s ease;
+}
+
+
+.nav-link:hover,
+.nav-dropdown:hover .nav-dropdown-button {
+    color: #ffffff;
+}
+
+
+/* =========================
+   ARROW
+========================= */
+
+.nav-arrow {
+    font-size: 9px;
+
+    color: #888;
+
+    transition:
+        transform 0.2s ease;
+}
+
+
+.nav-dropdown:hover .nav-arrow {
+    transform: translateY(2px);
+}
+
+
+/* =========================
+   DROPDOWN
+========================= */
+
+.nav-dropdown {
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    position: relative;
+}
+
+
+/* =========================
+   DROPDOWN MENU
+========================= */
+
+.nav-dropdown-menu {
+    position: absolute;
+
+    top: 64px;
+
+    right: 0;
+
+    min-width: 190px;
+
+    padding: 7px;
+
+    background: #0a0a0a;
+
+    border: 1px solid #202020;
+
+    border-top: 2px solid #f06b68;
+
+    border-radius: 0 0 5px 5px;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.45);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: translateY(-5px);
+
+    transition:
+        opacity 0.15s ease,
+        transform 0.15s ease,
+        visibility 0.15s ease;
+}
+
+
+/* =========================
+   SHOW DROPDOWN ON HOVER
+========================= */
+
+.nav-dropdown:hover .nav-dropdown-menu {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translateY(0);
+}
+
+
+/* =========================
+   DROPDOWN LINKS
+========================= */
+
+.nav-dropdown-menu a {
+    display: block;
+
+    padding: 11px 13px;
+
+    color: #666;
+
+    text-decoration: none;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 0.8px;
+
+    border-radius: 3px;
+
+    transition:
+        color 0.15s ease,
+        background 0.15s ease;
+}
+
+
+.nav-dropdown-menu a:hover {
+    color: #ffffff;
+
+    background: #151515;
+}
+
+
+/* =========================
+   TOP BAR
+========================= */
+
+.top-bar {
+    padding: 20px;
+
+    border-bottom: 1px solid #181818;
+}
+
+
+#back-button {
+    padding: 9px 14px;
+
+    background: #080808;
+
+    color: #22c55e;
+
+    border: 1px solid #292929;
+
+    border-radius: 5px;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+#back-button:hover {
+    transform: translateY(-2px);
+
+    background: #101010;
+
+    border-color: #22c55e;
+}
+
+
+/* =========================
+   MAIN PAGE
+========================= */
+
+.unit-page {
+    width: 100%;
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 20px 24px 40px;
+}
+
+
+/* =========================
+   UNIT INFORMATION
+========================= */
+
+.unit-info {
+    display: grid;
+
+    grid-template-columns: 225px 1fr;
+
+    gap: 28px;
+
+    width: 100%;
+}
+
+
+/* =========================
+   UNIT IMAGE
+========================= */
+
+.unit-image-container {
+    width: 225px;
+
+    height: 225px;
+
+    border: 2px solid #444;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    background: #0b0b0b;
+
+    transition: border-color 0.25s ease;
+}
+
+
+.unit-image-container img {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+/* =========================
+   UNIT DETAILS
+========================= */
+
+.unit-details {
+    min-width: 0;
+}
+
+
+#unit-name {
+    margin: 0 0 8px;
+
+    font-size: 42px;
+
+    line-height: 1;
+
+    font-weight: 900;
+}
+
+
+/* =========================
+   TABS
+========================= */
+
+.unit-tabs {
+    display: flex;
+
+    border-bottom: 1px solid #202020;
+
+    margin-bottom: 14px;
+}
+
+
+.unit-tab {
+    padding: 11px 18px;
+
+    background: transparent;
+
+    color: #555;
+
+    border: none;
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.unit-tab:hover {
+    color: #aaa;
+}
+
+
+.unit-tab.active {
+    background: #101010;
+
+    color: #ffffff;
+}
+
+
+/* =========================
+   TAB CONTENT
+========================= */
+
+.tab-content {
+    display: none;
+}
+
+
+.tab-content.active {
+    display: block;
+}
+
+
+/* =========================
+   INFO GRID
+========================= */
+
+.info-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 8px;
+}
+
+
+.info-box {
+    min-height: 55px;
+
+    padding: 12px 14px;
+
+    background: #101010;
+
+    border: 1px solid #202020;
+
+    border-radius: 6px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+
+.info-label {
+    font-size: 8px;
+
+    color: #666;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 5px;
+}
+
+
+.info-value {
+    font-size: 12px;
+
+    font-weight: 900;
+}
+
+
+/* =========================
+   RARITY
+========================= */
+
+.rarity-box {
+    border-color: var(--rarity-color, #202020);
+}
+
+
+/* =========================
+   PLACEMENT
+========================= */
+
+.placement-box {
+    border-left: 3px solid #22c55e;
+}
+
+
+/* =========================
+   MAX LIMIT
+========================= */
+
+.limit-box {
+    border-left: 3px solid #ef4444;
+}
+
+
+/* =========================
+   OBTAINMENT
+========================= */
+
+.obtainment-box {
+    width: fit-content;
+    min-width: 180px;
+
+    padding: 14px 20px;
+
+    background: #101010;
+
+    border: 1px solid #202020;
+    border-left: 4px solid #a855f7;
+
+    border-radius: 0 6px 6px 0;
+}
+
+
+#unit-obtainment {
+    margin: 8px 0 0;
+
+    color: #ddd;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   STATS / ABILITIES
+========================= */
+
+.stats-section {
+    width: 100%;
+    margin-top: 32px;
+}
+
+.stats-header {
+    display: flex;
+    align-items: stretch;
+
+    border-bottom: 1px solid #202020;
+    margin-bottom: 14px;
+}
+
+.stats-tab {
+    border: none;
+    border-bottom: 2px solid transparent;
+
+    background: #080808;
+    color: #666;
+
+    padding: 12px 18px;
+
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.stats-tab:hover {
+    color: #fff;
+}
+
+.stats-tab.active {
+    color: #fff;
+    background: #0c0c0c;
+    border-bottom-color: #f06b68;
+}
+
+
+/* =========================
+   ABILITIES
+========================= */
+
+.abilities-content {
+    width: 100%;
+}
+
+.abilities-container {
+    margin-top: 14px;
+
+    padding: 25px;
+
+    background: #080808;
+
+    border: 1px solid #202020;
+    border-radius: 5px;
+}
+
+#abilities-list {
+    margin: 0;
+    padding-left: 22px;
+}
+
+#abilities-list li {
+    margin-bottom: 12px;
+
+    color: #fff;
+
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.7;
+}
+
+#abilities-list li:last-child {
+    margin-bottom: 0;
+}
+
+#abilities-list li::marker {
+    color: #f06b68;
+}
+
+#abilities-list .no-abilities {
+    color: #666;
+    list-style: none;
+    padding-left: 0;
+}
+
+
+/* =========================
+   STATS CONTAINER
+========================= */
+
+.stats-container {
+    padding: 22px 16px 18px;
+
+    background: #0a0a0a;
+
+    border: 1px solid #202020;
+
+    border-radius: 8px;
+}
+
+
+.table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+
+/* =========================
+   STATS TABLE
+========================= */
+
+#stats-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    table-layout: fixed;
+}
+
+
+#stats-table th,
+#stats-table td {
+    white-space: nowrap;
+}
+
+
+#stats-table th {
+    padding: 11px;
+
+    background: #0d0d0d;
+
+    color: #555;
+
+    font-size: 8px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    text-align: center;
+}
+
+
+#stats-table td {
+    padding: 10px;
+
+    border-top: 1px solid #181818;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    text-align: center;
+}
+
+
+#stats-table tbody tr {
+    transition: background 0.15s ease;
+}
+
+
+#stats-table tbody tr:hover {
+    background: #0e0e0e;
+}
+
+
+/* =========================
+   DPS
+========================= */
+
+.dps-value {
+    color: #4ade80;
+}
+
+
+/* =========================
+   ATTACK TYPE
+========================= */
+
+.attack-type {
+    color: #60a5fa;
+}
+
+
+.type-changed {
+    color: #eab308;
+}
+
+
+/* =========================
+   TOTAL COST
+========================= */
+
+.total-cost {
+    margin-top: 12px;
+
+    text-align: right;
+
+    color: #555;
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+}
+
+
+#total-cost {
+    color: #4ade80;
+
+    font-size: 12px;
+}
+
+/* =========================================================
+   RESPONSIVE NAVIGATION
+========================================================= */
+
+.mobile-menu-button {
+    display: none;
+
+    width: 42px;
+    height: 42px;
+
+    padding: 0;
+
+    background: #080808;
+    border: 1px solid #292929;
+    border-radius: 7px;
+
+    color: #ffffff;
+
+    font-size: 20px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    flex-shrink: 0;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+.mobile-menu-button:hover {
+    background: #111111;
+    border-color: #555555;
+}
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+.mobile-menu {
+    display: none;
+
+    position: fixed;
+
+    top: 64px;
+    left: 0;
+
+    width: 100%;
+
+    max-height: calc(100vh - 64px);
+
+    overflow-y: auto;
+
+    background: #050505;
+
+    border-bottom: 1px solid #202020;
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.55);
+
+    z-index: 9999;
+}
+
+
+.mobile-menu.open {
+    display: block;
+}
+
+
+/* =========================
+   MOBILE NAV LINKS
+========================= */
+
+.mobile-nav-link,
+.mobile-nav-section-button {
+
+    width: 100%;
+
+    min-height: 60px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 24px;
+
+    background: #050505;
+
+    border: none;
+
+    border-bottom: 1px solid #181818;
+
+    color: #888888;
+
+    text-decoration: none;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        color 0.15s ease,
+        background 0.15s ease;
+}
+
+
+.mobile-nav-link:hover,
+.mobile-nav-section-button:hover {
+    color: #ffffff;
+    background: #0d0d0d;
+}
+
+
+/* =========================
+   MOBILE SUBMENUS
+========================= */
+
+.mobile-nav-submenu {
+    display: none;
+
+    background: #0a0a0a;
+}
+
+
+.mobile-nav-section.open
+.mobile-nav-submenu {
+    display: block;
+}
+
+
+.mobile-nav-submenu a {
+
+    display: block;
+
+    padding: 17px 42px;
+
+    border-bottom: 1px solid #151515;
+
+    color: #666666;
+
+    text-decoration: none;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    transition:
+        color 0.15s ease,
+        background 0.15s ease;
+}
+
+
+.mobile-nav-submenu a:hover {
+    color: #ffffff;
+    background: #111111;
+}
+
+
+/* =========================
+   MOBILE ARROWS
+========================= */
+
+.mobile-section-arrow {
+
+    font-size: 10px;
+
+    color: #666;
+
+    transition:
+        transform 0.2s ease;
+}
+
+
+.mobile-nav-section.open
+.mobile-section-arrow {
+    transform: rotate(180deg);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .site-nav {
+        padding: 0 25px;
+    }
+
+
+    .nav-logo {
+        font-size: 17px;
+
+        letter-spacing: 2px;
+
+        white-space: nowrap;
+    }
+
+
+    .nav-links {
+        gap: 18px;
+    }
+
+
+    .nav-link,
+    .nav-dropdown-button {
+        font-size: 10px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    /* NAV */
+
+    .site-nav {
+
+        height: 64px;
+
+        padding: 0 18px;
+
+        gap: 15px;
+    }
+
+
+    .nav-links {
+        display: none;
+    }
+
+
+    .nav-logo {
+
+        min-width: 0;
+
+        max-width: calc(100% - 57px);
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+
+        white-space: nowrap;
+
+        font-size: clamp(12px, 4vw, 18px);
+
+        letter-spacing:
+            clamp(1px, 0.7vw, 2.5px);
+    }
+
+
+    .mobile-menu-button {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+    }
+
+
+    html,
+    body {
+        overflow-x: hidden;
+    }
+
+
+    /* TOP BAR */
+
+    .top-bar {
+        padding: 14px;
+    }
+
+
+    #back-button {
+
+        width: 100%;
+
+        padding: 11px 14px;
+    }
+
+
+    /* MAIN PAGE */
+
+    .unit-page {
+
+        padding: 16px 14px 35px;
+    }
+
+
+    /* UNIT INFORMATION */
+
+    .unit-info {
+
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+    }
+
+
+    /* UNIT IMAGE */
+
+    .unit-image-container {
+
+        width: min(225px, 70vw);
+
+        height: min(225px, 70vw);
+
+        margin: 0 auto;
+    }
+
+
+    /* UNIT DETAILS */
+
+    .unit-details {
+        width: 100%;
+    }
+
+
+    #unit-name {
+
+        font-size: clamp(27px, 8vw, 38px);
+
+        line-height: 1.05;
+
+        text-align: center;
+
+        overflow-wrap: anywhere;
+    }
+
+
+    /* TABS */
+
+    .unit-tabs {
+
+        width: 100%;
+    }
+
+
+    .unit-tab {
+
+        flex: 1;
+
+        padding: 12px 8px;
+
+        font-size: 9px;
+    }
+
+
+    /* INFO */
+
+    .info-grid {
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 7px;
+    }
+
+
+    .info-box {
+
+        min-height: 60px;
+
+        padding: 11px;
+    }
+
+
+    .info-label {
+        font-size: 7px;
+    }
+
+
+    .info-value {
+        font-size: 11px;
+
+        overflow-wrap: anywhere;
+    }
+
+
+    /* OBTAINMENT */
+
+    .obtainment-box {
+
+        min-height: 110px;
+
+        padding: 15px;
+    }
+
+
+    #unit-obtainment {
+
+        font-size: 11px;
+
+        overflow-wrap: anywhere;
+    }
+
+
+    /* STATS */
+
+    .stats-section {
+        width: 100%;
+        margin-top: 25px;
+    }
+
+
+    .stats-container {
+        width: 100%;
+        padding: 12px 6px 15px;
+        overflow: hidden;
+    }
+
+    .table-wrapper {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+
+    #stats-table {
+        width: 100%;
+        min-width: 0;
+        table-layout: fixed;
+    }
+
+
+    #stats-table th {
+
+        padding: 9px 3px;
+        font-size: 7px;
+        letter-spacing: 0.5px;
+        white-space: normal;
+    }
+
+
+    #stats-table td {
+
+        padding: 9px 3px;
+        font-size: 9px;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+
+    .total-cost {
+
+        font-size: 8px;
+
+        margin-top: 12px;
+    }
+
+
+    #total-cost {
+        font-size: 11px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .site-nav {
+        padding: 0 14px;
+    }
+
+
+    .nav-logo {
+
+        font-size: 13px;
+
+        letter-spacing: 1.2px;
+    }
+
+
+    .mobile-menu-button {
+
+        width: 40px;
+        height: 40px;
+
+        font-size: 19px;
+    }
+
+
+    .mobile-nav-link,
+    .mobile-nav-section-button {
+
+        min-height: 56px;
+
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+
+    .mobile-nav-submenu a {
+
+        padding-left: 34px;
+
+        padding-right: 18px;
+    }
+
+
+    .unit-page {
+
+        padding-left: 10px;
+
+        padding-right: 10px;
+    }
+
+
+    .unit-image-container {
+
+        width: min(200px, 65vw);
+
+        height: min(200px, 65vw);
+    }
+
+
+    #unit-name {
+
+        font-size: clamp(24px, 8vw, 32px);
+    }
+
+
+    .info-grid {
+
+        gap: 6px;
+    }
+
+
+    .info-box {
+
+        padding: 10px 9px;
+    }
+
+
+    .info-label {
+
+        font-size: 6.5px;
+
+        letter-spacing: 0.7px;
+    }
+
+
+    .info-value {
+
+        font-size: 10px;
+    }
+
+
+    .stats-tab {
+
+        padding: 9px 14px;
+    }
+
+
+    .stats-container {
+
+        padding-left: 5px;
+
+        padding-right: 5px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .site-nav {
+        padding: 0 10px;
+    }
+
+
+    .nav-logo {
+
+        font-size: 11px;
+
+        letter-spacing: 0.8px;
+    }
+
+
+    .mobile-menu-button {
+
+        width: 38px;
+        height: 38px;
+
+        font-size: 18px;
+    }
+
+
+    .top-bar {
+
+        padding: 10px;
+    }
+
+
+    #back-button {
+
+        font-size: 9px;
+
+        padding: 10px;
+    }
+
+
+    .unit-page {
+
+        padding-left: 8px;
+
+        padding-right: 8px;
+    }
+
+
+    .unit-image-container {
+
+        width: 175px;
+
+        height: 175px;
+    }
+
+
+    .unit-tab {
+
+        font-size: 8px;
+
+        padding: 11px 5px;
+    }
+
+
+    .info-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .info-box {
+
+        min-height: 52px;
+    }
+
+
+    .stats-container {
+
+        border-radius: 6px;
+
+        padding-left: 4px;
+
+        padding-right: 4px;
+    }
+
+
+    .total-cost {
+
+        text-align: center;
+    }
+
+}

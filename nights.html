@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Nights - FIVE TD'S CENTRAL</title>
+
+    <link
+        rel="stylesheet"
+        href="nights.css"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- =====================================================
+         SITE NAVIGATION
+    ====================================================== -->
+
+    <nav class="site-nav">
+
+        <a
+            href="home.html"
+            class="nav-logo"
+        >
+            FIVE TD'S CENTRAL
+        </a>
+
+
+        <div class="nav-links">
+
+            <a
+                href="home.html"
+                class="nav-link"
+            >
+                HOME
+            </a>
+
+
+            <div class="nav-dropdown">
+
+                <button
+                    class="nav-dropdown-button"
+                    type="button"
+                >
+                    DATABASE
+
+                    <span class="nav-arrow">
+                        ▾
+                    </span>
+                </button>
+
+
+                <div class="nav-dropdown-menu">
+
+                    <a href="index.html">
+                        UNITS
+                    </a>
+
+                    <a href="nights.html">
+                        NIGHTS
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="nav-dropdown">
+
+                <button
+                    class="nav-dropdown-button"
+                    type="button"
+                >
+                    TOOLS
+
+                    <span class="nav-arrow">
+                        ▾
+                    </span>
+                </button>
+
+
+                <div class="nav-dropdown-menu">
+
+                    <a href="stats-simulator.html">
+                        STATS SIMULATOR
+                    </a>
+
+                    <a href="raw-dps.html">
+                        RAW DPS CHART
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <a
+                href="https://www.youtube.com/redirect?event=video_description&redir_token=QUZZTVljRjBMLUZ4VW81MDRhVldveGlKSDNabXxBSTVJdTV0RlBYYWlUdHY1bG8zNTl6TTFuZFdXeExZMlVmblE2YmdPcC1waUNTVVhVLXhhOXcwamtreE1ZeFNUM0ZHdEl5bW43WVNiZWp2cVBJT2QwMk1nSnF3SUdDdUJGcmgz&q=https%3A%2F%2Fdiscord.gg%2F7UPX3MT9TS&v=yXcI9x8wP_Q"
+                class="nav-link"
+            >
+                DISCORD
+            </a>
+
+        </div>
+
+
+        <!-- MOBILE BUTTON -->
+
+        <button
+            id="mobile-menu-button"
+            class="mobile-menu-button"
+            type="button"
+            aria-label="Open navigation"
+            aria-expanded="false"
+        >
+            ☰
+        </button>
+
+    </nav>
+
+
+    <!-- =====================================================
+         MOBILE NAVIGATION
+    ====================================================== -->
+
+    <div
+        id="mobile-menu"
+        class="mobile-menu"
+    >
+
+        <a
+            href="home.html"
+            class="mobile-nav-link"
+        >
+            HOME
+        </a>
+
+
+        <div class="mobile-nav-section">
+
+            <button
+                class="mobile-nav-section-button"
+                type="button"
+            >
+
+                <span>
+                    DATABASE
+                </span>
+
+                <span class="mobile-section-arrow">
+                    ▾
+                </span>
+
+            </button>
+
+
+            <div class="mobile-nav-submenu">
+
+                <a href="index.html">
+                    UNITS
+                </a>
+
+                <a href="nights.html">
+                    NIGHTS
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="mobile-nav-section">
+
+            <button
+                class="mobile-nav-section-button"
+                type="button"
+            >
+
+                <span>
+                    TOOLS
+                </span>
+
+                <span class="mobile-section-arrow">
+                    ▾
+                </span>
+
+            </button>
+
+
+            <div class="mobile-nav-submenu">
+
+                <a href="stats-simulator.html">
+                    STATS SIMULATOR
+                </a>
+
+                <a href="raw-dps.html">
+                    RAW DPS CHART
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <a
+            href="https://www.youtube.com/redirect?event=video_description&redir_token=QUZZTVljRjBMLUZ4VW81MDRhVldveGlKSDNabXxBSTVJdTV0RlBYYWlUdHY1bG8zNTl6TTFuZFdXeExZMlVmblE2YmdPcC1waUNTVVhVLXhhOXcwamtreE1ZeFNUM0ZHdEl5bW43WVNiZWp2cVBJT2QwMk1nSnF3SUdDdUJGcmgz&q=https%3A%2F%2Fdiscord.gg%2F7UPX3MT9TS&v=yXcI9x8wP_Q"
+            class="mobile-nav-link"
+        >
+            DISCORD
+        </a>
+
+    </div>
+
+
+    <!-- =====================================================
+         PAGE
+    ====================================================== -->
+
+    <main class="nights-page">
+
+        <header class="page-header">
+
+            <h1>
+                NIGHTS
+            </h1>
+
+            <p>
+                Browse all available nights
+            </p>
+
+        </header>
+
+        <!-- =========================
+             NOTICE
+        ========================== -->
+
+        <div class="notice">
+
+            <span class="notice-icon">
+                ⚠
+            </span>
+
+            <div>
+
+                <strong>NOTICE:</strong>
+
+                CLICK THE STAR ON NIGHTS TABS TO SEE MAX REWARD VARIANTS.
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             FILTER
+        ================================================== -->
+
+        <section class="filter-section">
+
+            <button
+                id="filter-button"
+                class="filter-button"
+                type="button"
+            >
+
+                FILTER
+
+                <span id="filter-arrow">
+                    ▾
+                </span>
+
+            </button>
+
+
+            <div
+                id="filter-panel"
+                class="filter-panel"
+            >
+
+                <div class="filter-group">
+
+                    <div class="filter-label">
+                        CHAPTERS
+                    </div>
+
+
+                    <div
+                        id="game-filters"
+                        class="filter-options"
+                    >
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             NIGHTS
+        ================================================== -->
+
+        <section
+            id="nights-container"
+            class="nights-container"
+        >
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         NIGHT POPUP
+    ====================================================== -->
+
+    <div
+        id="night-modal"
+        class="night-modal"
+    >
+
+        <div
+            class="night-modal-content"
+            role="dialog"
+            aria-modal="true"
+        >
+
+            <!-- MAX BUTTON -->
+
+            <button
+                id="max-mode-button"
+                class="max-mode-button"
+                type="button"
+                aria-label="Toggle MAX mode"
+            >
+                ★
+            </button>
+
+
+            <!-- CLOSE BUTTON -->
+
+            <button
+                id="close-modal"
+                class="close-modal"
+                type="button"
+                aria-label="Close"
+            >
+                ×
+            </button>
+
+
+            <div class="night-modal-header">
+
+                <div
+                    id="modal-mode"
+                    class="modal-mode"
+                >
+                    NORMAL
+                </div>
+
+
+                <h2 id="modal-title">
+                    CHAPTER 1 - NIGHT 1
+                </h2>
+
+
+                <div
+                    id="modal-alias"
+                    class="modal-alias"
+                >
+                    1A
+                </div>
+
+            </div>
+
+            <div>
+            <!-- STARTING CASH -->
+
+<div class="night-info-box starting-cash-box">
+
+    <span class="night-info-label">
+        STARTING CASH
+    </span>
+
+    <span
+        id="modal-starting-cash"
+        class="night-info-value"
+    >
+        $50
+    </span>
+
+</div>
+
+
+            <!-- WAVE COUNT -->
+
+            <div class="night-info-box wave-box">
+
+                <span class="night-info-label">
+                    WAVE COUNT
+                </span>
+
+                <span
+                    id="modal-wave-count"
+                    class="night-info-value"
+                >
+                    5
+                </span>
+
+            </div>
+
+
+            <!-- COIN REWARD -->
+
+            <div class="night-info-box coin-box">
+
+                <span class="night-info-label">
+                    COIN REWARD
+                </span>
+
+                <span
+                    id="modal-coin-reward"
+                    class="night-info-value"
+                >
+                    0
+                </span>
+
+            </div>
+
+
+            <!-- REMNANT REWARD -->
+
+            <div class="night-info-box remnant-box">
+
+                <span class="night-info-label">
+                    REMNANT REWARD
+                </span>
+
+                <span
+                    id="modal-remnant-reward"
+                    class="night-info-value"
+                >
+                    5
+                </span>
+
+            </div>
+
+
+            <!-- BOSS -->
+
+            <div class="night-info-box boss-box">
+
+                <span class="night-info-label">
+                    BOSS
+                </span>
+
+                <span
+                    id="modal-boss"
+                    class="night-info-value"
+                >
+                    Pumpkin Man
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="nights.js"></script>
+
+</body>
+
+</html>

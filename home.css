@@ -1,0 +1,1093 @@
+* {
+    box-sizing: border-box;
+}
+
+
+html,
+body {
+    margin: 0;
+
+    min-height: 100%;
+
+    background: #050505;
+
+    color: #ffffff;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.background {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0.72),
+            rgba(0, 0, 0, 0.82)
+        ),
+        url("images/home-background.png");
+
+    background-size: cover;
+
+    background-position: center;
+
+    filter: blur(5px);
+
+    transform: scale(1.05);
+
+    opacity: 0.75;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.site-nav {
+    position: relative;
+
+    z-index: 100;
+
+    width: 100%;
+
+    height: 64px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 100px;
+
+    background: rgba(5, 5, 5, 0.92);
+
+    border-bottom: 1px solid #181818;
+}
+
+
+/* =========================
+   LOGO
+========================= */
+
+.nav-logo {
+    color: #f06b68;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 3px;
+}
+
+
+/* =========================
+   NAV LINKS
+========================= */
+
+.nav-links {
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 28px;
+}
+
+
+.nav-link,
+.nav-dropdown-button {
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 0;
+
+    background: none;
+
+    border: none;
+
+    color: #666;
+
+    text-decoration: none;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 900;
+
+    letter-spacing: 0.5px;
+
+    cursor: pointer;
+
+    transition: color 0.2s ease;
+}
+
+
+.nav-link:hover,
+.nav-dropdown-button:hover {
+    color: #ffffff;
+}
+
+
+.nav-link.active {
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   NAV DROPDOWNS
+========================================================= */
+
+.nav-dropdown {
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    position: relative;
+}
+
+
+.nav-arrow {
+    color: #888;
+
+    font-size: 9px;
+
+    transition:
+        transform 0.2s ease;
+}
+
+
+.nav-dropdown:hover .nav-arrow {
+    transform: translateY(2px);
+}
+
+
+/* =========================================================
+   NAV DROPDOWN MENU
+========================================================= */
+
+.nav-dropdown-menu {
+    position: absolute;
+
+    top: 64px;
+
+    right: 0;
+
+    min-width: 190px;
+
+    padding: 7px;
+
+    background: #0a0a0a;
+
+    border: 1px solid #202020;
+
+    border-top: 2px solid #f06b68;
+
+    border-radius: 0 0 5px 5px;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.45);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: translateY(-5px);
+
+    transition:
+        opacity 0.15s ease,
+        transform 0.15s ease,
+        visibility 0.15s ease;
+
+    z-index: 1000;
+}
+
+
+/* SHOW WHEN HOVERED */
+
+.nav-dropdown:hover .nav-dropdown-menu {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   NAV DROPDOWN LINKS
+========================================================= */
+
+.nav-dropdown-menu a {
+    display: block;
+
+    padding: 11px 13px;
+
+    color: #666;
+
+    text-decoration: none;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 0.8px;
+
+    border-radius: 3px;
+
+    transition:
+        color 0.15s ease,
+        background 0.15s ease;
+}
+
+
+.nav-dropdown-menu a:hover {
+    color: #ffffff;
+
+    background: #151515;
+}
+
+
+/* =========================================================
+   MAIN PAGE
+========================================================= */
+
+.home-page {
+    position: relative;
+
+    z-index: 1;
+
+    width: 100%;
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding: 100px 30px 80px;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    text-align: center;
+
+    margin-bottom: 85px;
+}
+
+
+.hero h1 {
+    margin: 0;
+
+    font-size: 64px;
+
+    font-weight: 900;
+
+    letter-spacing: 5px;
+
+    text-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.8);
+}
+
+
+.hero p {
+    margin: 18px 0 0;
+
+    color: #999;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+/* =====================================================
+   ROBLOX GAME CARD
+===================================================== */
+
+.roblox-game-card {
+    display: block;
+    width: 100%;
+    max-width: 900px;
+    margin: 40px auto;
+    background: #0a0a0a;
+    border: 1px solid #202020;
+    border-radius: 0 0 18px 18px;
+    overflow: hidden;
+    text-decoration: none;
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.roblox-game-card:hover {
+    transform: translateY(-4px);
+    border-color: #f06b68;
+}
+
+.roblox-game-image {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+
+.roblox-game-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.roblox-game-content {
+    padding: 28px;
+}
+
+.roblox-game-content h2 {
+    margin: 0 0 25px;
+    color: #fff;
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.roblox-game-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.roblox-stat {
+    background: #000;
+    border: 1px solid #202020;
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+}
+
+.roblox-stat span {
+    display: block;
+    margin-bottom: 8px;
+    color: #666;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 3px;
+}
+
+.roblox-stat strong {
+    color: #4ade80;
+    font-size: 26px;
+    font-weight: 900;
+}
+
+.roblox-stat:last-child strong {
+    color: #a855f7;
+}
+
+/* =========================================================
+   HOME OPTIONS
+========================================================= */
+
+.home-options {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 30px;
+}
+
+
+/* =========================================================
+   HOME SECTION
+========================================================= */
+
+.home-section {
+    width: 100%;
+
+    background: rgba(10, 10, 10, 0.88);
+
+    border: 1px solid #202020;
+
+    text-decoration: none;
+
+    overflow: hidden;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+/* =========================================================
+   SECTION COLORS
+========================================================= */
+
+.database-section {
+    border-left: 4px solid #4ade80;
+}
+
+
+.tools-section {
+    border-left: 4px solid #fb923c;
+}
+
+
+.discord-section {
+    border-left: 4px solid #60a5fa;
+}
+
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
+.home-section-header {
+    width: 100%;
+
+    min-height: 130px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 28px 32px;
+
+    background: transparent;
+
+    border: none;
+
+    color: #ffffff;
+
+    text-align: left;
+
+    cursor: pointer;
+}
+
+
+.home-section-header h2 {
+    margin: 0 0 14px;
+
+    font-size: 23px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+}
+
+
+.home-section-header p {
+    margin: 0;
+
+    color: #888;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* =========================================================
+   SECTION ARROW
+========================================================= */
+
+.section-arrow,
+.discord-arrow {
+    color: #777;
+
+    font-size: 12px;
+
+    transition:
+        transform 0.2s ease;
+}
+
+
+.home-section.open .section-arrow {
+    transform: rotate(180deg);
+}
+
+
+/* =========================================================
+   DROPDOWN CONTENT
+========================================================= */
+
+.home-section-content {
+    max-height: 0;
+
+    overflow: hidden;
+
+    opacity: 0;
+
+    border-top: 0 solid #202020;
+
+    transition:
+        max-height 0.3s ease,
+        opacity 0.2s ease,
+        border-top 0.3s ease;
+}
+
+
+.home-section.open .home-section-content {
+    max-height: 300px;
+
+    opacity: 1;
+
+    border-top: 1px solid #202020;
+}
+
+
+/* =========================================================
+   DROPDOWN OPTIONS
+========================================================= */
+
+.home-section-content a {
+    display: block;
+
+    padding: 17px 38px;
+
+    color: #aaa;
+
+    text-decoration: none;
+
+    font-size: 12px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    transition:
+        color 0.15s ease,
+        background 0.15s ease,
+        padding-left 0.15s ease;
+}
+
+
+/* =========================================================
+   DATABASE HOVER
+========================================================= */
+
+.database-section
+.home-section-content
+a:hover {
+
+    color: #4ade80;
+
+    background: rgba(74, 222, 128, 0.06);
+
+    padding-left: 46px;
+}
+
+
+/* =========================================================
+   TOOLS HOVER
+========================================================= */
+
+.tools-section
+.home-section-content
+a:hover {
+
+    color: #fb923c;
+
+    background: rgba(251, 146, 60, 0.06);
+
+    padding-left: 46px;
+}
+
+
+/* =========================================================
+   DISCORD
+========================================================= */
+
+.discord-section {
+    display: block;
+
+    cursor: pointer;
+}
+
+
+.discord-section:hover {
+    background: rgba(96, 165, 250, 0.04);
+}
+
+
+.discord-section:hover .discord-arrow {
+    transform: translateX(5px);
+
+    color: #60a5fa;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .site-nav {
+        padding: 0 25px;
+    }
+
+
+    .nav-logo {
+        font-size: 16px;
+
+        letter-spacing: 2px;
+    }
+
+
+    .nav-links {
+        gap: 16px;
+    }
+
+
+    .nav-link,
+    .nav-dropdown-button {
+        font-size: 10px;
+    }
+
+
+    .home-page {
+        padding: 70px 20px;
+    }
+
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+
+    .hero p {
+        font-size: 11px;
+    }
+
+}
+
+
+@media (max-width: 550px) {
+
+    .nav-logo {
+        display: none;
+    }
+
+
+    .site-nav {
+        justify-content: center;
+    }
+
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+
+    .home-section-header {
+        padding: 22px;
+    }
+
+}
+
+/* =========================================================
+   MOBILE NAVIGATION
+========================================================= */
+
+.mobile-menu-button {
+    display: none;
+
+    width: 42px;
+    height: 42px;
+
+    padding: 8px;
+
+    background: transparent;
+
+    border: 1px solid #292929;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 5px;
+}
+
+
+.mobile-menu-button span {
+    width: 20px;
+    height: 2px;
+
+    background: #ffffff;
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+}
+
+
+/* =========================================================
+   MOBILE NAV PANEL
+========================================================= */
+
+.mobile-nav {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 2000;
+
+    background: #050505;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: translateY(-10px);
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease,
+        visibility 0.2s ease;
+
+    overflow-y: auto;
+}
+
+
+.mobile-nav.open {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   MOBILE NAV HEADER
+========================================================= */
+
+.mobile-nav-header {
+    height: 84px;
+
+    padding: 0 35px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    border-bottom: 1px solid #181818;
+}
+
+
+.mobile-nav-header span {
+    color: #ffffff;
+
+    font-size: clamp(16px, 5vw, 22px);
+
+    font-weight: 900;
+
+    letter-spacing: 3px;
+
+    white-space: nowrap;
+}
+
+
+#mobile-close-button {
+    width: 42px;
+    height: 42px;
+
+    background: transparent;
+
+    border: none;
+
+    color: #ffffff;
+
+    font-size: 42px;
+
+    font-weight: 300;
+
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   MOBILE NAV CONTENT
+========================================================= */
+
+.mobile-nav-content {
+    padding: 25px 22px 40px;
+}
+
+
+.mobile-nav-link,
+.mobile-nav-dropdown {
+    width: 100%;
+
+    min-height: 70px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 14px;
+
+    background: transparent;
+
+    border: none;
+
+    border-bottom: 1px solid #181818;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 18px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    text-align: left;
+
+    cursor: pointer;
+}
+
+
+.mobile-nav-section {
+    border-bottom: 1px solid #181818;
+}
+
+
+.mobile-nav-section .mobile-nav-dropdown {
+    border-bottom: none;
+}
+
+
+/* =========================================================
+   MOBILE ARROWS
+========================================================= */
+
+.mobile-nav-arrow {
+    color: #777;
+
+    font-size: 12px;
+
+    transition:
+        transform 0.2s ease;
+}
+
+
+.mobile-nav-section.open
+.mobile-nav-arrow {
+    transform: rotate(180deg);
+}
+
+
+/* =========================================================
+   MOBILE DROPDOWN OPTIONS
+========================================================= */
+
+.mobile-nav-options {
+    max-height: 0;
+
+    overflow: hidden;
+
+    opacity: 0;
+
+    transition:
+        max-height 0.25s ease,
+        opacity 0.2s ease;
+}
+
+
+.mobile-nav-section.open
+.mobile-nav-options {
+    max-height: 200px;
+
+    opacity: 1;
+}
+
+
+.mobile-nav-options a {
+    display: block;
+
+    padding: 17px 30px;
+
+    color: #888;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    transition:
+        color 0.15s ease,
+        background 0.15s ease,
+        padding-left 0.15s ease;
+}
+
+
+.mobile-nav-options a:hover {
+    color: #4ade80;
+
+    background: rgba(74, 222, 128, 0.06);
+
+    padding-left: 38px;
+}
+
+
+/* =========================================================
+   RESPONSIVE NAVIGATION
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .site-nav {
+        height: 64px;
+
+        padding: 0 20px;
+    }
+
+
+    .nav-logo {
+        font-size: clamp(13px, 4vw, 18px);
+
+        letter-spacing: clamp(1px, 0.5vw, 3px);
+
+        white-space: nowrap;
+    }
+
+
+    .nav-links {
+        display: none;
+    }
+
+
+    .mobile-menu-button {
+        display: flex;
+    }
+
+
+    .home-page {
+        padding: 60px 16px 50px;
+    }
+
+
+    .hero {
+        margin-bottom: 55px;
+    }
+
+
+    .hero h1 {
+        font-size: clamp(30px, 9vw, 48px);
+
+        letter-spacing: clamp(2px, 1vw, 5px);
+
+        line-height: 1.1;
+    }
+
+
+    .hero p {
+        font-size: clamp(9px, 3vw, 13px);
+
+        line-height: 1.6;
+    }
+
+
+    .home-options {
+        gap: 18px;
+    }
+
+
+    .home-section-header {
+        min-height: 110px;
+
+        padding: 22px;
+    }
+
+
+    .home-section-header h2 {
+        font-size: clamp(18px, 5vw, 23px);
+    }
+
+
+    .home-section-header p {
+        font-size: clamp(11px, 3vw, 14px);
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL SCREENS
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .site-nav {
+        padding: 0 14px;
+    }
+
+
+    .nav-logo {
+        font-size: 13px;
+
+        letter-spacing: 1px;
+    }
+
+
+    .mobile-nav-header {
+        padding: 0 20px;
+    }
+
+
+    .mobile-nav-content {
+        padding-left: 12px;
+
+        padding-right: 12px;
+    }
+
+
+    .home-page {
+        padding-left: 10px;
+
+        padding-right: 10px;
+    }
+
+
+    .home-section-header {
+        padding: 18px;
+    }
+
+}
