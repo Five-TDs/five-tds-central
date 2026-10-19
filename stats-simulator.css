@@ -1352,6 +1352,24 @@ select {
     letter-spacing: 0.8px;
 }
 
+/* =========================================================
+   ENCHANTMENT-MODIFIED STAT
+========================================================= */
+
+.stat-modified {
+    color: #4ade80 !important;
+    font-weight: 900 !important;
+}
+
+
+/* =========================================================
+   LEVEL 1 PLACEMENT COST
+========================================================= */
+
+.placement-cost {
+    color: #f06b68 !important;
+    font-weight: 900 !important;
+}
 
 /* =========================================================
    RESPONSIVE
@@ -1508,8 +1526,6 @@ select {
         font-weight: 900 !important;
     }
 
-}
-
 
 /* =========================================================
    SMALL MOBILE
@@ -1625,4 +1641,4 @@ select {
     .stats-table td {
         font-size: 8px;
     }
-}
+}}

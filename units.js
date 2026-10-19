@@ -9,12 +9,15 @@
 //        maxLimit: ,
 //
 //       obtainment: "- ",
+//       warn : [
+//            "⚠"
+//       ]
 //
 //       stats: [
 //
 //           {
 //                level: ,
-//                
+//                cost: ,
 //                damage: ,
 //                cooldown: ,
 //                range: ,
@@ -234,7 +237,7 @@ const units = [
             {
                 level: 1,
                 range: 12,
-                type: "Range Buff x1.05",
+                type: "Range Buff",
                 rangeBuff: 1.05
             },
 
@@ -242,7 +245,7 @@ const units = [
                 level: 2,
                 cost: 800,
                 range: 13,
-                type: "Range Buff x1.08",
+                type: "Range Buff",
                 rangeBuff: 1.08
             },
 
@@ -250,7 +253,7 @@ const units = [
                 level: 3,
                 cost: 1600,
                 range: 14,
-                type: "Range Buff x1.11",
+                type: "Range Buff",
                 rangeBuff: 1.11
             },
 
@@ -258,7 +261,7 @@ const units = [
                 level: 4,
                 cost: 3500,
                 range: 15,
-                type: "Range Buff x1.15",
+                type: "Range Buff",
                 rangeBuff: 1.15
             }
 
@@ -327,7 +330,7 @@ const units = [
             {
                 level: 1,
                 range: 12,
-                type: "Slower x0.9",
+                type: "Slower",
                 slow: 0.9
             },
 
@@ -335,7 +338,7 @@ const units = [
                 level: 2,
                 cost: 1000,
                 range: 13,
-                type: "Slower x0.89",
+                type: "Slower",
                 slow: 0.87
             },
 
@@ -343,7 +346,7 @@ const units = [
                 level: 3,
                 cost: 2000,
                 range: 14,
-                type: "Slower x0.84",
+                type: "Slower",
                 slow: 0.84
             },
 
@@ -351,7 +354,7 @@ const units = [
                 level: 4,
                 cost: 4000,
                 range: 15,
-                type: "Slower x0.8",
+                type: "Slower",
                 slow: 0.8
             }
 
@@ -910,6 +913,60 @@ const units = [
 // EXCLUSIVES
 
     {
+        name: "Bear5",
+        rarity: "Exclusive",
+        type: "AOE",
+        image: "images/bear5.png",
+
+        placement: 675,
+        maxLimit: 4,
+
+        obtainment: "- Unobtainable",
+        warn : [
+            "⚠ THIS UNIT'S DATA MAY BE INACCURATE"
+        ],
+
+        stats: [
+
+            {
+                level: 1,
+                damage: 17,
+                cooldown: 1.1,
+                range: 7,
+                type: "AOE"
+            },
+
+            {
+                level: 2,
+                cost: 1250,
+                damage: 19,
+                cooldown: 1.1,
+                range: 8,
+                type: "AOE"
+            },
+
+            {
+                level: 3,
+                cost: 2400,
+                damage: 21,
+                cooldown: 1.2,
+                range: 8,
+                type: "AOE"
+            },
+
+            {
+                level: 4,
+                cost: 6500,
+                damage: 23,
+                cooldown: 1.3,
+                range: 9,
+                type: "AOE"
+            }
+
+        ]
+    },
+
+    {
         name: "Fastbear",
         rarity: "Exclusive",
         type: "Single",
@@ -918,7 +975,10 @@ const units = [
         placement: 900,
         maxLimit: 2,
 
-        obtainment: "- Unobtainable (THIS UNITS STATS MAY BE INACCURATE)",
+        obtainment: "- Unobtainable",
+        warn : [
+            "⚠ THIS UNIT'S DATA MAY BE INACCURATE"
+        ],
 
         stats: [
 
@@ -942,7 +1002,7 @@ const units = [
             {
                 level: 3,
                 cost: 4500,
-                damage: 400,
+                damage: 410,
                 cooldown: 0.5,
                 range: 15,
                 type: "Single"
@@ -950,7 +1010,7 @@ const units = [
 
             {
                 level: 4,
-                cost: 9000,
+                cost: 9500,
                 damage: 500,
                 cooldown: 0.5,
                 range: 16,
@@ -1246,7 +1306,7 @@ const units = [
                 level: 2,
                 cost: 5000,
                 damage: 225,
-                cooldown: 9,
+                cooldown: 0.9,
                 range: 0.6,
                 type: "Pierce"
             },

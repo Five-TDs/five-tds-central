@@ -8,7 +8,7 @@ const enchants = {
 
     Hunt: {
         name: "HUNT",
-        attackSpeed: 10,
+        attackSpeed: -10,
         prob: 25
     },
 
@@ -27,7 +27,7 @@ const enchants = {
     Haywire: {
         name: "HAYWIRE",
         range: 20,
-        speed: 15,
+        attackSpeed: -15,
         prob: 0.5,
         colorClass: "enchant-haywire"
     },
@@ -44,7 +44,7 @@ const enchants = {
         name: "SOUL",
         damage: 15,
         rng: 20,
-        speed: 15,
+        attackSpeed: -15,
         cost: -25,
         prob: 0.2,
         colorClass: "enchant-soul"

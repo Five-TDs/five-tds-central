@@ -368,37 +368,18 @@ function getEnchantEntries() {
 
 function getSelectedEnchant() {
 
-    if (selectedEnchant === "none") {
-
+    if (
+        !selectedEnchant ||
+        selectedEnchant === "none"
+    ) {
         return null;
-
     }
-
 
     if (typeof enchants === "undefined") {
-
         return null;
-
     }
 
-
-    if (Array.isArray(enchants)) {
-
-        return (
-            enchants.find(
-                enchant =>
-                    enchant.name === selectedEnchant
-            ) || null
-        );
-
-    }
-
-
-    return (
-        enchants[selectedEnchant] ||
-        null
-    );
-
+    return enchants[selectedEnchant] || null;
 }
 
 
@@ -419,78 +400,88 @@ function applyEnchant(stats) {
     }
 
 
-    /*
-        DAMAGE
-    */
+    /* =========================
+       DAMAGE
+    ========================= */
 
-    if (
-        typeof enchant.damage === "number"
-    ) {
+    if (enchant.damage != null) {
 
-        result.damage *=
-            1 + (
-                enchant.damage / 100
-            );
+        const percent = Number(enchant.damage);
 
-    }
+        if (Number.isFinite(percent)) {
 
+            result.damage =
+                Number(result.damage) *
+                (1 + percent / 100);
 
-    /*
-        RANGE
-    */
-
-    if (
-        typeof enchant.range === "number"
-    ) {
-
-        result.range *=
-            1 + (
-                enchant.range / 100
-            );
+        }
 
     }
 
 
-    /*
-        ATTACK SPEED
+    /* =========================
+       RANGE
+       Supports range AND rng
+    ========================= */
 
-        More attack speed =
-        shorter cooldown.
-    */
+    const rangePercent =
+        enchant.range != null
+            ? Number(enchant.range)
+            : enchant.rng != null
+                ? Number(enchant.rng)
+                : null;
 
-    if (
-        typeof enchant.attackSpeed === "number"
-    ) {
+    if (Number.isFinite(rangePercent)) {
 
-        result.cooldown /=
-            1 + (
-                enchant.attackSpeed / 100
-            );
+        result.range =
+            Number(result.range) *
+            (1 + rangePercent / 100);
 
     }
 
 
-    /*
-        COST
+    /* =========================
+       ATTACK SPEED
+       Supports attackSpeed AND speed
+    ========================= */
 
-        Negative percentage means
-        cheaper cost.
-    */
+    const speedPercent =
+        enchant.attackSpeed != null
+            ? Number(enchant.attackSpeed)
+            : enchant.speed != null
+                ? Number(enchant.speed)
+                : null;
 
-    if (
-        typeof enchant.cost === "number"
-    ) {
+    if (Number.isFinite(speedPercent)) {
 
-        result.cost *=
-            1 + (
-                enchant.cost / 100
-            );
+        result.cooldown =
+            Number(result.cooldown) /
+            (1 + speedPercent / 100);
+
+    }
+
+
+    /* =========================
+       COST
+    ========================= */
+
+    if (enchant.cost != null) {
+
+        const percent =
+            Number(enchant.cost);
+
+        if (Number.isFinite(percent)) {
+
+            result.cost =
+                Number(result.cost) *
+                (1 + percent / 100);
+
+        }
 
     }
 
 
     return result;
-
 }
 
 
@@ -512,7 +503,7 @@ function calculateDPS(
 
     }
 
-    return damage * cooldown;
+    return damage / cooldown;
 }
 
 
@@ -526,11 +517,9 @@ function displayStats() {
 
     resetMaxStats();
 
-
     if (!selectedUnit) {
         return;
     }
-
 
     if (
         !Array.isArray(selectedUnit.stats) ||
@@ -548,150 +537,196 @@ function displayStats() {
         return;
     }
 
-
     let maxDamage = 0;
     let maxDPS = 0;
 
-
     selectedUnit.stats.forEach(stat => {
 
-        const modifiedStats = applyEnchant({
-
-            damage: stat.damage,
-
-            cooldown: stat.cooldown,
-
-            range: stat.range,
-
-            cost: stat.cost
-
-        });
-
-        const cooldownSeconds =
-            1 / modifiedStats.cooldown;
-
-        const dps = calculateDPS(
-            modifiedStats.damage,
-            cooldownSeconds
-        );
-
+        /*
+         * LEVEL 1 COST
+         *
+         * Level 1 uses placement instead of stat.cost.
+         */
+        const baseCost =
+            stat.level === 1
+                ? Number(selectedUnit.placement)
+                : Number(stat.cost);
 
         /*
-            Track the highest level's stats.
-        */
+         * ORIGINAL STATS
+         */
+        const originalStats = {
+            damage: Number(stat.damage),
+            cooldown: Number(stat.cooldown),
+            range: Number(stat.range),
+            cost: baseCost
+        };
 
+        /*
+         * ENCHANTED STATS
+         */
+        const modifiedStats =
+            applyEnchant(originalStats);
+
+        /*
+         * CHECK WHETHER THE ACTUAL VALUE CHANGED
+         */
+        const damageModified =
+            Number.isFinite(originalStats.damage) &&
+            Number.isFinite(modifiedStats.damage) &&
+            Math.abs(
+                modifiedStats.damage -
+                originalStats.damage
+            ) > 0.000001;
+
+        const costModified =
+            Number.isFinite(originalStats.cost) &&
+            Number.isFinite(modifiedStats.cost) &&
+            Math.abs(
+                modifiedStats.cost -
+                originalStats.cost
+            ) > 0.000001;
+
+        const rangeModified =
+            Number.isFinite(originalStats.range) &&
+            Number.isFinite(modifiedStats.range) &&
+            Math.abs(
+                modifiedStats.range -
+                originalStats.range
+            ) > 0.000001;
+
+        const cooldownModified =
+            Number.isFinite(originalStats.cooldown) &&
+            Number.isFinite(modifiedStats.cooldown) &&
+            Math.abs(
+                modifiedStats.cooldown -
+                originalStats.cooldown
+            ) > 0.000001;
+
+        /*
+         * COOLDOWN
+         *
+         * units.js stores cooldown as attacks per second,
+         * so convert it to seconds per hit for display.
+         */
+        const cooldownSeconds =
+            modifiedStats.cooldown > 0
+                ? 1 / modifiedStats.cooldown
+                : 0;
+
+        /*
+         * DPS
+         */
+        const dps =
+            calculateDPS(
+                modifiedStats.damage,
+                cooldownSeconds
+            );
+
+        /*
+         * MAX STATS
+         */
         if (modifiedStats.damage > maxDamage) {
             maxDamage = modifiedStats.damage;
         }
-
 
         if (dps > maxDPS) {
             maxDPS = dps;
         }
 
+        /*
+         * BUILD ROW
+         */
+        const row =
+            document.createElement("tr");
 
-        const row = document.createElement("tr");
+        /*
+         * LEVEL 1 PLACEMENT
+         */
+        const isPlacementCost =
+    stat.level === 1;
 
-const enchant = getSelectedEnchant();
+const costClasses = [
+    isPlacementCost ? "placement-cost" : "",
+    costModified ? "stat-modified" : ""
+]
+    .filter(Boolean)
+    .join(" ");
 
-const damageModified =
-    enchant &&
-    typeof enchant.damage === "number" &&
-    enchant.damage !== 0;
+const displayedCost =
+    Number.isFinite(modifiedStats.cost)
+        ? `$${formatNumber(modifiedStats.cost)}`
+        : "-";
 
-const costModified =
-    enchant &&
-    typeof enchant.cost === "number" &&
-    enchant.cost !== 0;
+        row.innerHTML = `
 
-const rangeModified =
-    enchant &&
-    (
-        (typeof enchant.range === "number" && enchant.range !== 0) ||
-        (typeof enchant.rng === "number" && enchant.rng !== 0)
-    );
+            <td>
+                ${stat.level}
+            </td>
 
-const speedModified =
-    enchant &&
-    (
-        (typeof enchant.attackSpeed === "number" && enchant.attackSpeed !== 0) ||
-        (typeof enchant.speed === "number" && enchant.speed !== 0)
-    );
+            <td class="${costClasses}">
+    ${displayedCost}
+</td>
 
-    row.innerHTML = `
-        <td>
-            ${stat.level}
-        </td>
+            <td
+                class="${
+                    damageModified
+                        ? "stat-modified"
+                        : ""
+                }"
+            >
+                ${formatDecimal(modifiedStats.damage)}
+            </td>
 
-        <td class="${costModified ? "stat-modified" : ""}">
-            ${
-                stat.cost === undefined ||
-                stat.cost === null ||
-                stat.cost === ""
-                    ? "-"
-                    : `$${formatNumber(stat.cost)}`
-            }
-        </td>
+            <td
+                class="${
+                    cooldownModified
+                        ? "stat-modified"
+                        : ""
+                }"
+            >
+                ${formatDecimal(cooldownSeconds)}s
+            </td>
 
-        <td class="${damageModified ? "stat-modified" : ""}">
-            ${formatDecimal(modifiedStats.damage)}
-        </td>
+            <td
+                class="${
+                    rangeModified
+                        ? "stat-modified"
+                        : ""
+                }"
+            >
+                ${formatDecimal(modifiedStats.range)}
+            </td>
 
-        <td class="${speedModified ? "stat-modified" : ""}">
-            ${formatDecimal(cooldownSeconds)}s
-        </td>
+            <td>
+                ${formatDecimal(dps)}
+            </td>
 
-        <td class="${rangeModified ? "stat-modified" : ""}">
-            ${formatDecimal(modifiedStats.range)}
-        </td>
-
-        <td>
-            ${formatDecimal(dps)}
-        </td>
-    `;
-
+        `;
 
         statsTableBody.appendChild(row);
 
     });
 
-
     /*
-        MAX PLACEMENTS
-
-        Uses maxLimit from units.js.
-
-        Example:
-
-        maxLimit: 5
-
-        Max Damage:
-        damage × 5
-
-        Max Total DPS:
-        DPS × 5
-    */
-
+     * MAX PLACEMENTS
+     */
     const maxPlacements =
         Number(selectedUnit.maxLimit) > 0
             ? Number(selectedUnit.maxLimit)
             : 1;
 
-
     const totalMaxDamage =
         maxDamage * maxPlacements;
 
-
     const totalMaxDPS =
         maxDPS * maxPlacements;
-
 
     updateMaxStats(
         totalMaxDamage,
         totalMaxDPS,
         maxPlacements
     );
-
 }
 
 /* =========================================================
@@ -906,7 +941,7 @@ function buildEnchantmentPopup() {
                 effects.push(
                     formatEffect(
                         enchant.attackSpeed,
-                        "Attack Speed"
+                        "CD"
                     )
                 );
 
@@ -1077,18 +1112,13 @@ unitSearch.addEventListener(
    ENCHANTMENT SELECT
 ========================================================= */
 
-enchantSelect.addEventListener(
-    "change",
-    () => {
+enchantSelect.addEventListener("change", () => {
 
-        selectedEnchant =
-            enchantSelect.value;
+    selectedEnchant = enchantSelect.value;
 
+    displayStats();
 
-        displayStats();
-
-    }
-);
+});
 
 
 /* =========================================================

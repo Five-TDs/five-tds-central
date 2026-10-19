@@ -119,6 +119,7 @@ if (!unit) {
 
     buildStats();
     displayAbilities(unit);
+    displayWarnings(unit);
 
 }
 
@@ -132,15 +133,24 @@ function buildStats() {
     const statsBody =
         document.getElementById("stats-body");
 
+    const statsHeader =
+        document.getElementById("stats-header-row");
 
     statsBody.innerHTML = "";
+    statsHeader.innerHTML = "";
+
 
 
     if (!unit.stats || unit.stats.length === 0) {
 
+        statsHeader.innerHTML = `
+            <th>LVL</th>
+            <th>COST</th>
+        `;
+
         statsBody.innerHTML = `
             <tr>
-                <td colspan="7">
+                <td colspan="2">
                     No stats available.
                 </td>
             </tr>
@@ -148,6 +158,77 @@ function buildStats() {
 
         return;
     }
+
+
+
+    // =========================
+    // DETERMINE STAT MODE
+    // =========================
+
+    const hasRangeBuff =
+        unit.stats.some(stat =>
+            stat.rangeBuff !== undefined
+        );
+
+    const hasDamageBuff =
+        unit.stats.some(stat =>
+            stat.damageBuff !== undefined
+        );
+
+    const hasCooldownBuff =
+        unit.stats.some(stat =>
+            stat.cooldownBuff !== undefined
+        );
+
+    const hasSlow =
+        unit.stats.some(stat =>
+            stat.slow !== undefined
+        );
+
+
+
+    let statMode = "normal";
+
+    if (hasRangeBuff) {
+        statMode = "rangeBuff";
+    } else if (hasDamageBuff) {
+        statMode = "damageBuff";
+    } else if (hasCooldownBuff) {
+        statMode = "cooldownBuff";
+    } else if (hasSlow) {
+        statMode = "slow";
+    }
+
+
+
+    // =========================
+    // BUILD HEADER
+    // =========================
+
+    if (statMode === "normal") {
+
+        statsHeader.innerHTML = `
+            <th>LVL</th>
+            <th>COST</th>
+            <th>DMG</th>
+            <th>CD</th>
+            <th>RNG</th>
+            <th>DPS</th>
+            <th>TYPE</th>
+        `;
+
+    } else {
+
+        statsHeader.innerHTML = `
+            <th>LVL</th>
+            <th>COST</th>
+            <th>RNG</th>
+            <th>SPECIAL</th>
+            <th>TYPE</th>
+        `;
+
+    }
+
 
 
     // =========================
@@ -158,70 +239,203 @@ function buildStats() {
         unit.stats[0].type;
 
 
+
     unit.stats.forEach((stat, index) => {
-
-        const dps =
-            stat.damage * stat.cooldown;
-
-
-        /*
-            Check if this is the first
-            level where the attack type
-            changed from the previous level.
-        */
 
         const typeChanged =
             index > 0 &&
             stat.type !== previousType;
 
 
+
         const row =
             document.createElement("tr");
 
 
-        row.innerHTML = `
-            <td>
-                ${stat.level}
-            </td>
 
-            <td>
-                ${formatMoney(stat.cost)}
-            </td>
+        // =========================
+        // NORMAL UNIT
+        // =========================
 
-            <td>
-                ${formatNumber(stat.damage)}
-            </td>
+        if (statMode === "normal") {
 
-            <td>
-                ${formatCooldown(stat.cooldown)}
-            </td>
+            const dps =
+                Number(stat.damage || 0) *
+                Number(stat.cooldown || 0);
 
-            <td>
-                ${formatNumber(stat.range)}
-            </td>
 
-            <td class="dps-value">
-                ${formatNumber(dps)}
-            </td>
 
-            <td class="attack-type ${typeChanged ? "type-changed" : ""}">
-                ${stat.type}
-            </td>
-        `;
+            row.innerHTML = `
+                <td>
+                    ${stat.level}
+                </td>
+
+                <td>
+                    ${formatMoney(stat.cost)}
+                </td>
+
+                <td>
+                    ${formatNumber(stat.damage)}
+                </td>
+
+                <td>
+                    ${formatCooldown(stat.cooldown)}
+                </td>
+
+                <td>
+                    ${formatNumber(stat.range)}
+                </td>
+
+                <td class="dps-value">
+                    ${formatNumber(dps)}
+                </td>
+
+                <td class="attack-type ${typeChanged ? "type-changed" : ""}">
+                    ${stat.type}
+                </td>
+            `;
+
+        }
+
+
+
+        // =========================
+        // RANGE BUFF
+        // =========================
+
+        else if (statMode === "rangeBuff") {
+
+            row.innerHTML = `
+                <td>
+                    ${stat.level}
+                </td>
+
+                <td>
+                    ${formatMoney(stat.cost)}
+                </td>
+
+                <td>
+                    ${formatNumber(stat.range)}
+                </td>
+
+                <td class="special-stat">
+                    ${formatMultiplier(stat.rangeBuff)}
+                </td>
+
+                <td class="attack-type ${typeChanged ? "type-changed" : ""}">
+                    ${stat.type}
+                </td>
+            `;
+
+        }
+
+
+
+        // =========================
+        // DAMAGE BUFF
+        // =========================
+
+        else if (statMode === "damageBuff") {
+
+            row.innerHTML = `
+                <td>
+                    ${stat.level}
+                </td>
+
+                <td>
+                    ${formatMoney(stat.cost)}
+                </td>
+
+                <td>
+                    ${formatNumber(stat.range)}
+                </td>
+
+                <td class="special-stat">
+                    ${formatMultiplier(stat.damageBuff)}
+                </td>
+
+                <td class="attack-type ${typeChanged ? "type-changed" : ""}">
+                    ${stat.type}
+                </td>
+            `;
+
+        }
+
+
+
+        // =========================
+        // COOLDOWN / SPEED BUFF
+        // =========================
+
+        else if (statMode === "cooldownBuff") {
+
+            row.innerHTML = `
+                <td>
+                    ${stat.level}
+                </td>
+
+                <td>
+                    ${formatMoney(stat.cost)}
+                </td>
+
+                <td>
+                    ${formatNumber(stat.range)}
+                </td>
+
+                <td class="special-stat">
+                    ${formatMultiplier(stat.cooldownBuff)}
+                </td>
+
+                <td class="attack-type ${typeChanged ? "type-changed" : ""}">
+                    ${stat.type}
+                </td>
+            `;
+
+        }
+
+
+
+        // =========================
+        // SLOWER
+        // =========================
+
+        else if (statMode === "slow") {
+
+            row.innerHTML = `
+                <td>
+                    ${stat.level}
+                </td>
+
+                <td>
+                    ${formatMoney(stat.cost)}
+                </td>
+
+                <td>
+                    ${formatNumber(stat.range)}
+                </td>
+
+                <td class="special-stat">
+                    ${formatMultiplier(stat.slow)}
+                </td>
+
+                <td class="attack-type ${typeChanged ? "type-changed" : ""}">
+                    ${stat.type}
+                </td>
+            `;
+
+        }
+
 
 
         statsBody.appendChild(row);
 
 
-        /*
-            Remember this level's type
-            for the next level.
-        */
 
         previousType =
             stat.type;
 
     });
+
 
 
     // =========================
@@ -234,6 +448,7 @@ function buildStats() {
                 total + Number(stat.cost || 0),
             0
         );
+
 
 
     document.getElementById("total-cost").textContent =
@@ -289,6 +504,17 @@ function formatNumber(value) {
 
 }
 
+function formatMultiplier(value) {
+
+    const number = Number(value);
+
+    if (!Number.isFinite(number)) {
+        return "—";
+    }
+
+    return "x" + number.toFixed(2);
+}
+
 
 function formatCooldown(value) {
 
@@ -337,6 +563,53 @@ function displayAbilities(unit) {
         li.textContent = passive;
 
         abilitiesList.appendChild(li);
+
+    });
+
+}
+
+// =========================
+// DISPLAY PAGE WARNINGS
+// =========================
+
+function displayWarnings(unit) {
+
+    const warningsContainer =
+        document.getElementById("unit-warnings");
+
+    if (!warningsContainer) {
+        return;
+    }
+
+    warningsContainer.innerHTML = "";
+
+    const warnings =
+        Array.isArray(unit.warn)
+            ? unit.warn
+            : [];
+
+    if (warnings.length === 0) {
+        return;
+    }
+
+    warnings.forEach(warning => {
+
+        if (!warning) {
+            return;
+        }
+
+        const warningElement =
+            document.createElement("div");
+
+        warningElement.className =
+            "page-warning";
+
+        warningElement.textContent =
+            warning;
+
+        warningsContainer.appendChild(
+            warningElement
+        );
 
     });
 
