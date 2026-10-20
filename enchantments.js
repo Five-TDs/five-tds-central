@@ -1,5 +1,15 @@
 const enchants = {
 
+//        NAME: {
+//        name: "NAME",
+//        rng: ,
+//        damage: ,
+//        cost: ,
+//        attackSpeed: ,
+//        prob: 
+//        },
+
+
     Battery: {
         name: "BATTERY",
         rng: 10,

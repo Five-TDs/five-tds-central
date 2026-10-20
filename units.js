@@ -379,7 +379,7 @@ const units = [
                 damage: 20,
                 cooldown: 0.8,
                 range: 8.5,
-                type: "Single"
+                type: "Splash"
             },
 
             {
@@ -388,7 +388,7 @@ const units = [
                 damage: 23,
                 cooldown: 0.9,
                 range: 9,
-                type: "Single"
+                type: "Splash"
             },
 
             {
@@ -397,7 +397,7 @@ const units = [
                 damage: 25,
                 cooldown: 1,
                 range: 9.5,
-                type: "Single"
+                type: "Splash"
             },
 
             {
@@ -406,7 +406,7 @@ const units = [
                 damage: 28,
                 cooldown: 1.1,
                 range: 10,
-                type: "Single"
+                type: "Splash"
             }
 
         ]
@@ -587,7 +587,7 @@ const units = [
                 damage: 14,
                 cooldown: 2,
                 range: 7,
-                type: "Pierce"
+                type: "Single"
             },
 
             {
@@ -596,7 +596,7 @@ const units = [
                 damage: 15,
                 cooldown: 2.1,
                 range: 8,
-                type: "Pierce"
+                type: "Single"
             },
 
             {
@@ -605,7 +605,7 @@ const units = [
                 damage: 17,
                 cooldown: 2.2,
                 range: 9,
-                type: "Pierce"
+                type: "Single"
             }
 
         ]
@@ -867,7 +867,7 @@ const units = [
 
             {
                 level: 4,
-                cost: 1000,
+                cost: 10000,
                 damage: 225,
                 cooldown: 1.5,
                 range: 15,
@@ -911,6 +911,60 @@ const units = [
     },
 
 // EXCLUSIVES
+
+    {
+        name: "Anim Dude",
+        rarity: "Exclusive",
+        type: "AOE",
+        image: "images/animdude.png",
+
+        placement: 1150,
+        maxLimit: 2,
+
+        obtainment: "- Unobtainable",
+        warn : [
+            "⚠ THIS UNIT'S DATA MAY BE INACCURATE"
+        ],
+
+        stats: [
+
+            {
+                level: 1,
+                damage: 25,
+                cooldown: 1,
+                range: 11,
+                type: "AOE"
+            },
+
+            {
+                level: 2,
+                cost: 2500,
+                damage: 30,
+                cooldown: 1.1,
+                range: 11,
+                type: "AOE"
+            },
+
+            {
+                level: 3,
+                cost: 5000,
+                damage: 35,
+                cooldown: 1.1,
+                range: 12,
+                type: "AOE"
+            },
+
+            {
+                level: 4,
+                cost: 12500,
+                damage: 40,
+                cooldown: 1.2,
+                range: 13,
+                type: "AOE"
+            }
+
+        ]
+    },
 
     {
         name: "Bear5",
@@ -1306,8 +1360,8 @@ const units = [
                 level: 2,
                 cost: 5000,
                 damage: 225,
-                cooldown: 0.9,
-                range: 0.6,
+                cooldown: 0.6,
+                range: 9,
                 type: "Pierce"
             },
 
@@ -1336,23 +1390,30 @@ function displayValue(value) {
 function getUnitStatMode(unit) {
     const type = (unit.type || "").toLowerCase();
 
-    if (type === "range buff") {
+    if (type === "range buff" ||
+        type === "Range Booster"
+    ) {
         return "rangeBuff";
     }
 
-    if (type === "damage buff") {
+    if (type === "damage buff" ||
+        type === "Damage Booster"
+    ) {
         return "damageBuff";
     }
 
     if (
         type === "speed buff" ||
         type === "cd buff" ||
-        type === "cooldown buff"
+        type === "cooldown buff" ||
+        type === "Cooldown Booster"
     ) {
         return "cooldownBuff";
     }
 
-    if (type === "slower") {
+    if (type === "slower" ||
+        type === "Slower"
+    ) {
         return "slow";
     }
 
