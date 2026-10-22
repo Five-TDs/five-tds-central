@@ -913,6 +913,46 @@ const units = [
 // EXCLUSIVES
 
     {
+        name: "Sparky",
+        rarity: "Exclusive",
+        type: "Single",
+        image: "images/sparky.png",
+
+        placement: 75,
+        maxLimit: 3,
+
+        obtainment: "- Unobtainable",
+        warn : [
+            "⚠ THIS UNIT'S DATA MAY BE INACCURATE OR MISSING"
+        ],
+
+        stats: [
+
+            {
+                level: 1,
+                damage: 10,
+                cooldown: 1.5,
+                range: 4.5,
+                type: "Single"
+            },
+
+            {
+                level: 2,
+                type: "Single"
+            },
+
+            {
+                level: 3,
+                damage: 60,
+                cooldown: 1.7,
+                range: 6,
+                type: "Single"
+            }
+
+        ]
+    },
+
+    {
         name: "Anim Dude",
         rarity: "Exclusive",
         type: "AOE",
