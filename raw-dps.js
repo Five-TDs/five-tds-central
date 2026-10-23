@@ -248,7 +248,7 @@ function getMaxDPS(unit) {
     }
 
 
-    return damage * cooldown;
+    return calculateDPS(damage, cooldown);
 
 }
 
@@ -443,7 +443,7 @@ function displayDPS() {
 
 
             <td>
-                ${formatCooldown(maxStats.cooldown)}
+                ${formatHPS(maxStats.cooldown)}
             </td>
 
 
@@ -520,19 +520,7 @@ function formatNumber(value) {
 
 
 function formatCooldown(value) {
-
-    const hitsPerSecond =
-        Number(value);
-
-    if (!Number.isFinite(hitsPerSecond) || hitsPerSecond <= 0) {
-        return "—";
-    }
-
-    const secondsPerHit =
-        1 / hitsPerSecond;
-
-    return formatNumber(secondsPerHit) + "s";
-
+    return formatHPS(value);
 }
 
 
@@ -543,93 +531,3 @@ function formatCooldown(value) {
 updateSortArrow();
 
 displayDPS();
-
-// =========================================================
-// MOBILE NAVIGATION
-// =========================================================
-
-const mobileMenuButton =
-    document.getElementById("mobile-menu-button");
-
-const mobileMenu =
-    document.getElementById("mobile-menu");
-
-
-// OPEN / CLOSE MOBILE MENU
-
-if (mobileMenuButton && mobileMenu) {
-
-    mobileMenuButton.addEventListener("click", () => {
-
-        const isOpen =
-            mobileMenu.classList.toggle("open");
-
-
-        mobileMenuButton.textContent =
-            isOpen ? "✕" : "☰";
-
-
-        mobileMenuButton.setAttribute(
-            "aria-expanded",
-            isOpen ? "true" : "false"
-        );
-
-    });
-
-}
-
-
-// =========================================================
-// MOBILE DROPDOWNS
-// =========================================================
-
-document
-    .querySelectorAll(".mobile-nav-section-button")
-    .forEach(button => {
-
-        button.addEventListener("click", () => {
-
-            const section =
-                button.closest(".mobile-nav-section");
-
-
-            section.classList.toggle("open");
-
-        });
-
-    });
-
-
-// =========================================================
-// CLOSE MOBILE MENU WHEN A LINK IS CLICKED
-// =========================================================
-
-document
-    .querySelectorAll(".mobile-menu a")
-    .forEach(link => {
-
-        link.addEventListener("click", () => {
-
-            if (!mobileMenu) {
-                return;
-            }
-
-
-            mobileMenu.classList.remove("open");
-
-
-            if (mobileMenuButton) {
-
-                mobileMenuButton.textContent =
-                    "☰";
-
-                mobileMenuButton.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
-            }
-
-        });
-
-    });

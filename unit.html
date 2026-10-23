@@ -1,475 +1,157 @@
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Unit</title>
-
-    <link rel="stylesheet" href="unit.css">
-
-</head>
-
-
-<body>
-
-    <!-- =========================
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Unit</title>
+<link href="unit.css" rel="stylesheet"/>
+<link href="site.css" rel="stylesheet"/></head>
+<body><script src="site.js"></script>
+<!-- =========================
      SITE NAVIGATION
 ========================= -->
 
-<nav class="site-nav">
 
-    <a href="index.html" class="nav-logo">
-        FIVE TD'S CENTRAL
-    </a>
-
-    <div class="nav-links">
-
-        <a href="index.html" class="nav-link">
-            HOME
-        </a>
-
-        <div class="nav-dropdown">
-
-            <button
-                class="nav-dropdown-button"
-                type="button"
-            >
-                DATABASE
-                <span class="nav-arrow">▾</span>
-            </button>
-
-            <div class="nav-dropdown-menu">
-
-                <a href="units.html">
-                    UNITS
-                </a>
-
-                <a href="nights.html">
-                    NIGHTS
-                </a>
-
-            </div>
-
-        </div>
-
-        <div class="nav-dropdown">
-
-            <button
-                class="nav-dropdown-button"
-                type="button"
-            >
-                TOOLS
-                <span class="nav-arrow">▾</span>
-            </button>
-
-            <div class="nav-dropdown-menu">
-
-                <a href="stats-simulator.html">
-                    STATS SIMULATOR
-                </a>
-
-                <a href="raw-dps.html">
-                    RAW DPS CHART
-                </a>
-
-            </div>
-
-        </div>
-
-        <a href="https://www.youtube.com/redirect?event=video_description&redir_token=QUZZTVljRjBMLUZ4VW81MDRhVldveGlKSDNabXxBSTVJdTV0RlBYYWlUdHY1bG8zNTl6TTFuZFdXeExZMlVmblE2YmdPcC1waUNTVVhVLXhhOXcwamtreE1ZeFNUM0ZHdEl5bW43WVNiZWp2cVBJT2QwMk1nSnF3SUdDdUJGcmgz&q=https%3A%2F%2Fdiscord.gg%2F7UPX3MT9TS&v=yXcI9x8wP_Q" class="nav-link">
-            DISCORD
-        </a>
-
-    </div>
-
-    <button
-        id="mobile-menu-button"
-        class="mobile-menu-button"
-        type="button"
-        aria-label="Open navigation"
-        aria-expanded="false"
-    >
-        ☰
-    </button>
-
-</nav>
-
-
-<div id="mobile-menu" class="mobile-menu">
-
-    <a href="index.html" class="mobile-nav-link">
-        HOME
-    </a>
-
-    <div class="mobile-nav-section">
-
-        <button
-            class="mobile-nav-section-button"
-            type="button"
-        >
-            <span>DATABASE</span>
-            <span class="mobile-section-arrow">▾</span>
-        </button>
-
-        <div class="mobile-nav-submenu">
-
-            <a href="units.html">
-                UNITS
-            </a>
-
-            <a href="nights.html">
-                NIGHTS
-            </a>
-
-        </div>
-
-    </div>
-
-
-    <div class="mobile-nav-section">
-
-        <button
-            class="mobile-nav-section-button"
-            type="button"
-        >
-            <span>TOOLS</span>
-            <span class="mobile-section-arrow">▾</span>
-        </button>
-
-        <div class="mobile-nav-submenu">
-
-            <a href="stats-simulator.html">
-                STATS SIMULATOR
-            </a>
-
-            <a href="raw-dps.html">
-                RAW DPS CHART
-            </a>
-
-        </div>
-
-    </div>
-
-
-    <a href="https://www.youtube.com/redirect?event=video_description&redir_token=QUZZTVljRjBMLUZ4VW81MDRhVldveGlKSDNabXxBSTVJdTV0RlBYYWlUdHY1bG8zNTl6TTFuZFdXeExZMlVmblE2YmdPcC1waUNTVVhVLXhhOXcwamtreE1ZeFNUM0ZHdEl5bW43WVNiZWp2cVBJT2QwMk1nSnF3SUdDdUJGcmgz&q=https%3A%2F%2Fdiscord.gg%2F7UPX3MT9TS&v=yXcI9x8wP_Q" class="mobile-nav-link">
-        DISCORD
-    </a>
-
-</div>
-
-
-    <!-- =========================
+<!-- =========================
          BACK BUTTON
     ========================== -->
-
-    <div class="top-bar">
-
-        <button id="back-button" type="button">
+<div class="top-bar">
+<button id="back-button" type="button">
             ← BACK TO UNITS
         </button>
-
-    </div>
-
-    <div id="unit-warnings" class="page-warnings"></div>
-
-
-
-    <!-- =========================
+</div>
+<div class="page-warnings" id="unit-warnings"></div>
+<!-- =========================
          UNIT PAGE
     ========================== -->
-
-    <main class="unit-page">
-
-
-        <!-- UNIT INFORMATION -->
-
-        <section class="unit-info">
-
-
-            <!-- UNIT IMAGE -->
-
-            <div class="unit-image-container">
-
-                <img
-                    id="unit-image"
-                    src=""
-                    alt="Unit"
-                >
-
-            </div>
-
-
-
-            <!-- UNIT DETAILS -->
-
-            <div class="unit-details">
-
-                <h1 id="unit-name">
+<main class="unit-page">
+<!-- UNIT INFORMATION -->
+<section class="unit-info">
+<!-- UNIT IMAGE -->
+<div class="unit-image-container">
+<img alt="Unit" id="unit-image" src=""/>
+</div>
+<!-- UNIT DETAILS -->
+<div class="unit-details">
+<h1 id="unit-name">
                     Unit Name
                 </h1>
-
-
-
-                <!-- TABS -->
-
-                <div class="unit-tabs">
-
-                    <button
-                        class="unit-tab active"
-                        data-tab="general"
-                        type="button"
-                    >
+<!-- TABS -->
+<div class="unit-tabs">
+<button class="unit-tab active" data-tab="general" type="button">
                         GENERAL
                     </button>
-
-                    <button
-                        class="unit-tab"
-                        data-tab="obtainment"
-                        type="button"
-                    >
+<button class="unit-tab" data-tab="obtainment" type="button">
                         OBTAINMENT
                     </button>
-
-                </div>
-
-
-
-                <!-- =========================
+</div>
+<!-- =========================
                      GENERAL TAB
                 ========================== -->
-
-                <div
-                    id="general-tab"
-                    class="tab-content active"
-                >
-
-                    <div class="info-grid">
-
-
-                        <!-- RARITY -->
-
-                        <div
-                            class="info-box rarity-box"
-                            id="rarity-box"
-                        >
-
-                            <span class="info-label">
+<div class="tab-content active" id="general-tab">
+<div class="info-grid">
+<!-- RARITY -->
+<div class="info-box rarity-box" id="rarity-box">
+<span class="info-label">
                                 RARITY
                             </span>
-
-                            <span
-                                id="unit-rarity"
-                                class="info-value"
-                            >
+<span class="info-value" id="unit-rarity">
                                 Common
                             </span>
-
-                        </div>
-
-
-
-                        <!-- TYPE -->
-
-                        <div class="info-box">
-
-                            <span class="info-label">
+</div>
+<!-- TYPE -->
+<div class="info-box">
+<span class="info-label">
                                 TYPE
                             </span>
-
-                            <span
-                                id="unit-type"
-                                class="info-value"
-                            >
+<span class="info-value" id="unit-type">
                                 Single
                             </span>
-
-                        </div>
-
-
-
-                        <!-- PLACEMENT -->
-
-                        <div
-                            class="info-box placement-box"
-                            id="placement-box"
-                        >
-
-                            <span class="info-label">
+</div>
+<!-- PLACEMENT -->
+<div class="info-box placement-box" id="placement-box">
+<span class="info-label">
                                 PLACEMENT
                             </span>
-
-                            <span
-                                id="unit-placement"
-                                class="info-value"
-                            >
+<span class="info-value" id="unit-placement">
                                 $0
                             </span>
-
-                        </div>
-
-
-
-                        <!-- MAX LIMIT -->
-
-                        <div
-                            class="info-box limit-box"
-                            id="limit-box"
-                        >
-
-                            <span class="info-label">
+</div>
+<!-- MAX LIMIT -->
+<div class="info-box limit-box" id="limit-box">
+<span class="info-label">
                                 MAX LIMIT
                             </span>
-
-                            <span
-                                id="unit-limit"
-                                class="info-value"
-                            >
+<span class="info-value" id="unit-limit">
                                 0
                             </span>
-
-                        </div>
-
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- =========================
+</div>
+</div>
+</div>
+<!-- =========================
                      OBTAINMENT TAB
                 ========================== -->
-
-                <div
-                    id="obtainment-tab"
-                    class="tab-content"
-                >
-
-                    <div class="obtainment-box">
-
-                        <span class="info-label">
+<div class="tab-content" id="obtainment-tab">
+<div class="obtainment-box">
+<span class="info-label">
                             OBTAINMENT
                         </span>
-
-                        <p id="unit-obtainment">
+<p id="unit-obtainment">
                             Not available.
                         </p>
-
-                    </div>
-
-                </div>
-
-
-            </div>
-
-        </section>
-
-
-
+</div>
+</div>
+</div>
+</section>
 <!-- =========================
      STATS / ABILITIES
 ========================= -->
-
 <section class="stats-section">
-
-    <div class="stats-header">
-
-        <button
-            class="stats-tab active"
-            id="stats-tab-button"
-            type="button"
-        >
+<div class="stats-header">
+<button class="stats-tab active" id="stats-tab-button" type="button">
             STATS
         </button>
-
-        <button
-            class="stats-tab"
-            id="abilities-tab-button"
-            type="button"
-        >
+<button class="stats-tab" id="abilities-tab-button" type="button">
             ABILITIES
         </button>
-
-    </div>
-
-
-    <!-- =========================
+</div>
+<!-- =========================
          STATS CONTENT
     ========================== -->
-
-    <div
-        id="stats-content"
-        class="stats-content"
-    >
-
-        <div class="stats-container">
-
-            <div class="table-wrapper">
-
-                <table id="stats-table">
-
-                    <thead>
-
-                        <tr id="stats-header-row"></tr>
-
-                    </thead>
-
-                    <tbody id="stats-body">
-                    </tbody>
-
-                </table>
-
-            </div>
-
-
-            <div class="total-cost">
+<div class="stats-content" id="stats-content">
+<div class="stats-container">
+<div class="table-wrapper">
+<table id="stats-table">
+<thead>
+<tr id="stats-header-row"></tr>
+</thead>
+<tbody id="stats-body">
+</tbody>
+</table>
+</div>
+<div class="total-cost">
 
                 TOTAL COST:
 
                 <span id="total-cost">
                     $0
                 </span>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- =========================
+</div>
+</div>
+</div>
+<!-- =========================
          ABILITIES CONTENT
     ========================== -->
-
-    <div
-        id="abilities-content"
-        class="abilities-content"
-        style="display: none;"
-    >
-
-        <div class="abilities-container">
-
-            <ul id="abilities-list">
-            </ul>
-
-        </div>
-
-    </div>
-
+<div class="abilities-content" id="abilities-content" style="display: none;">
+<div class="abilities-container">
+<ul id="abilities-list">
+</ul>
+</div>
+</div>
 </section>
-
-
-    </main>
-
-
-
-    <script src="units.js"></script>
-    <script src="unit.js"></script>
-
+</main>
+<script src="units.js"></script>
+<script src="unit.js"></script>
 </body>
-
 </html>

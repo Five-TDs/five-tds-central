@@ -74,25 +74,7 @@ if (!unit) {
     // RARITY COLORS
     // =========================
 
-    const rarityColors = {
-
-        Common: "#9ca3af",
-
-        Uncommon: "#22c55e",
-
-        Rare: "#3b82f6",
-
-        Epic: "#a855f7",
-
-        Exclusive: "#FF0101",
-
-        Legendary: "#eab308"
-
-    };
-
-
-    const rarityColor =
-        rarityColors[unit.rarity];
+    const rarityColor = getRarityColor(unit.rarity);
 
 
     if (rarityColor) {
@@ -211,7 +193,7 @@ function buildStats() {
             <th>LVL</th>
             <th>COST</th>
             <th>DMG</th>
-            <th>CD</th>
+            <th>HPS</th>
             <th>RNG</th>
             <th>DPS</th>
             <th>TYPE</th>
@@ -259,9 +241,7 @@ function buildStats() {
 
         if (statMode === "normal") {
 
-            const dps =
-                Number(stat.damage || 0) *
-                Number(stat.cooldown || 0);
+            const dps = calculateDPS(stat.damage, getHPS(stat));
 
 
 
@@ -279,7 +259,7 @@ function buildStats() {
                 </td>
 
                 <td>
-                    ${formatCooldown(stat.cooldown)}
+                    ${formatHPS(stat.cooldown)}
                 </td>
 
                 <td>
@@ -364,7 +344,7 @@ function buildStats() {
 
 
         // =========================
-        // COOLDOWN / SPEED BUFF
+        // ATTACK SPEED / HPS BUFF
         // =========================
 
         else if (statMode === "cooldownBuff") {
@@ -517,19 +497,7 @@ function formatMultiplier(value) {
 
 
 function formatCooldown(value) {
-
-    const hitsPerSecond =
-        Number(value);
-
-    if (!Number.isFinite(hitsPerSecond) || hitsPerSecond <= 0) {
-        return "—";
-    }
-
-    const secondsPerHit =
-        1 / hitsPerSecond;
-
-    return formatNumber(secondsPerHit) + "s";
-
+    return formatHPS(value);
 }
 
 function displayAbilities(unit) {
@@ -738,92 +706,3 @@ if (
     });
 
 }
-
-// =========================================================
-// MOBILE NAVIGATION
-// =========================================================
-
-const mobileMenuButton =
-    document.getElementById("mobile-menu-button");
-
-const mobileMenu =
-    document.getElementById("mobile-menu");
-
-
-if (mobileMenuButton && mobileMenu) {
-
-    mobileMenuButton.addEventListener("click", () => {
-
-        const isOpen =
-            mobileMenu.classList.toggle("open");
-
-
-        mobileMenuButton.textContent =
-            isOpen ? "✕" : "☰";
-
-
-        mobileMenuButton.setAttribute(
-            "aria-expanded",
-            isOpen ? "true" : "false"
-        );
-
-    });
-
-}
-
-
-// =========================================================
-// MOBILE DROPDOWNS
-// =========================================================
-
-document
-    .querySelectorAll(".mobile-nav-section-button")
-    .forEach(button => {
-
-        button.addEventListener("click", () => {
-
-            const section =
-                button.closest(".mobile-nav-section");
-
-
-            section.classList.toggle("open");
-
-        });
-
-    });
-
-
-// =========================================================
-// CLOSE MOBILE MENU AFTER LINK
-// =========================================================
-
-document
-    .querySelectorAll(".mobile-menu a")
-    .forEach(link => {
-
-        link.addEventListener("click", () => {
-
-            if (!mobileMenu) {
-                return;
-            }
-
-
-            mobileMenu.classList.remove("open");
-
-
-            if (mobileMenuButton) {
-
-                mobileMenuButton.textContent =
-                    "☰";
-
-
-                mobileMenuButton.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
-            }
-
-        });
-
-    });

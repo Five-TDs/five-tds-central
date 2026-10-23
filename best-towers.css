@@ -1,0 +1,487 @@
+/* =========================================
+   BEST UNITS PAGE
+========================================= */
+
+.best-units-page {
+    width: min(1180px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 55px 0 100px;
+}
+
+
+/* =========================================
+   PAGE HEADER
+========================================= */
+
+.best-units-header {
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.best-units-header h1 {
+    margin: 0;
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.best-units-header p {
+    margin: 10px 0 0;
+    color: #666;
+    font-size: 12px;
+}
+
+
+/* =========================================
+   SECTIONS
+========================================= */
+
+.best-section {
+    margin-bottom: 95px;
+}
+
+.best-section-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.best-section-header h2 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.best-section-header p {
+    margin: 8px 0 0;
+    color: #666;
+    font-size: 12px;
+}
+
+
+/* =========================================
+   TOP 3 RANKING
+========================================= */
+
+.best-ranking.top3 {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        220px
+        minmax(0, 1fr);
+
+    align-items: end;
+
+    width: min(760px, 100%);
+
+    margin: 0 auto;
+
+    column-gap: 25px;
+}
+
+
+/* =========================================
+   UNIT CARD
+========================================= */
+
+.best-unit-card {
+    position: relative;
+
+    width: 180px;
+    max-width: 100%;
+
+    text-align: center;
+
+    justify-self: center;
+}
+
+
+/* =========================================
+   #1 FEATURED
+========================================= */
+
+.best-unit-card.featured {
+    width: 220px;
+}
+
+.best-unit-card.featured .best-rank-number {
+    color: #f06b68;
+    font-size: 17px;
+}
+
+
+/* =========================================
+   RANK NUMBER
+========================================= */
+
+.best-rank-number {
+    height: 24px;
+
+    margin-bottom: 8px;
+
+    color: #777;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    line-height: 24px;
+}
+
+
+/* =========================================
+   UNIT IMAGE
+========================================= */
+
+.best-unit-image-wrap {
+    position: relative;
+
+    width: 100%;
+    aspect-ratio: 1 / 1;
+
+    overflow: hidden;
+
+    border-radius: 16px;
+    border: 2px solid #ffffff;
+
+    background: #090909;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* Normal hover */
+
+.best-unit-card:hover .best-unit-image-wrap {
+    transform: translateY(-5px);
+
+    border-color: #f06b68;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+
+/* #1 always highlighted */
+
+.best-unit-card.featured .best-unit-image-wrap {
+    border-color: #f06b68;
+
+    box-shadow:
+        0 0 30px rgba(240, 107, 104, 0.08);
+}
+
+
+/* #1 hover */
+
+.best-unit-card.featured:hover .best-unit-image-wrap {
+    box-shadow:
+        0 12px 35px rgba(240, 107, 104, 0.16);
+}
+
+
+/* =========================================
+   IMAGE
+========================================= */
+
+.best-unit-image {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: contain;
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   UNIT NAME
+========================================= */
+
+.best-unit-name {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    padding: 32px 10px 11px;
+
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.92),
+        rgba(0, 0, 0, 0)
+    );
+
+    transform: translateY(100%);
+    opacity: 0;
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.best-unit-card:hover .best-unit-name {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+
+/* =========================================
+   WARNING
+========================================= */
+
+.best-unit-warning {
+    position: absolute;
+
+    top: 8px;
+    right: 8px;
+
+    width: 25px;
+    height: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, 0.75);
+
+    color: #ffd84d;
+
+    font-size: 15px;
+
+    z-index: 5;
+}
+
+
+/* =========================================
+   WARNING TOOLTIP
+========================================= */
+
+#warning-tooltip {
+    position: fixed;
+
+    display: none;
+
+    max-width: 280px;
+
+    padding: 9px 12px;
+
+    border: 1px solid #333;
+    border-radius: 7px;
+
+    background: #111;
+
+    color: #ffffff;
+
+    font-size: 11px;
+    line-height: 1.4;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.5);
+
+    pointer-events: none;
+
+    z-index: 99999;
+}
+
+#warning-tooltip.show {
+    display: block;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+    .best-units-page {
+        width: min(100% - 28px, 700px);
+
+        padding-top: 40px;
+    }
+
+    .best-units-header {
+        margin-bottom: 55px;
+    }
+
+    .best-section {
+        margin-bottom: 80px;
+    }
+
+    .best-ranking.top3 {
+        width: min(620px, 100%);
+
+        grid-template-columns:
+            minmax(0, 1fr)
+            190px
+            minmax(0, 1fr);
+
+        column-gap: 18px;
+    }
+
+    .best-unit-card {
+        width: 155px;
+    }
+
+    .best-unit-card.featured {
+        width: 190px;
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .best-units-page {
+        width: calc(100% - 24px);
+
+        padding: 35px 0 70px;
+    }
+
+    .best-units-header {
+        margin-bottom: 50px;
+    }
+
+    .best-units-header h1 {
+        font-size: 28px;
+    }
+
+    .best-units-header p {
+        font-size: 11px;
+    }
+
+    .best-section {
+        margin-bottom: 65px;
+    }
+
+    .best-section-header {
+        margin-bottom: 25px;
+    }
+
+    .best-section-header h2 {
+        font-size: 19px;
+    }
+
+    .best-section-header p {
+        font-size: 11px;
+    }
+
+
+    /* -----------------------------
+       TOP 3
+    ----------------------------- */
+
+    .best-ranking.top3 {
+        display: grid;
+
+        grid-template-columns:
+            minmax(0, 1fr)
+            minmax(0, 1fr);
+
+        width: min(400px, 100%);
+
+        column-gap: 12px;
+        row-gap: 22px;
+    }
+
+
+    /* #1 */
+
+    .best-ranking.top3 .best-unit-card.featured {
+        grid-column: 1 / 3;
+        grid-row: 1;
+
+        width: 190px;
+        max-width: 100%;
+
+        justify-self: center;
+    }
+
+
+    /* #2 */
+
+    .best-ranking.top3 .best-unit-card:nth-child(1) {
+        grid-column: 1;
+        grid-row: 2;
+
+        width: 100%;
+        max-width: 165px;
+
+        justify-self: center;
+    }
+
+
+    /* #3 */
+
+    .best-ranking.top3 .best-unit-card:nth-child(3) {
+        grid-column: 2;
+        grid-row: 2;
+
+        width: 100%;
+        max-width: 165px;
+
+        justify-self: center;
+    }
+
+
+    /* -----------------------------
+       NAMES
+    ----------------------------- */
+
+    .best-unit-name {
+        font-size: 11px;
+    }
+}
+
+
+/* =========================================
+   SMALL PHONES
+========================================= */
+
+@media (max-width: 400px) {
+
+    .best-units-page {
+        width: calc(100% - 18px);
+    }
+
+    .best-ranking.top3 {
+        column-gap: 8px;
+        row-gap: 18px;
+    }
+
+    .best-ranking.top3 .best-unit-card.featured {
+        width: 170px;
+    }
+
+    .best-ranking.top3 .best-unit-card:nth-child(1),
+    .best-ranking.top3 .best-unit-card:nth-child(3) {
+        max-width: 140px;
+    }
+
+    .best-unit-warning {
+        width: 21px;
+        height: 21px;
+
+        top: 5px;
+        right: 5px;
+
+        font-size: 12px;
+    }
+}

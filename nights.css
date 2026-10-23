@@ -1,416 +1,10 @@
 /* =========================================================
-   GLOBAL
+   NIGHTS PAGE
+   ---------------------------------------------------------
+   Shared site styling, navigation, fonts, colors, and
+   mobile navigation are handled by site.css / site.js.
+   This file contains NIGHTS-PAGE-SPECIFIC styling only.
 ========================================================= */
-
-* {
-    box-sizing: border-box;
-}
-
-
-html,
-body {
-    margin: 0;
-    padding: 0;
-
-    min-height: 100%;
-
-    background: #050505;
-
-    color: #ffffff;
-
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-
-body {
-    overflow-x: hidden;
-}
-
-
-/* =========================================================
-   SITE NAVIGATION
-========================================================= */
-
-.site-nav {
-
-    width: 100%;
-
-    height: 64px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    padding: 0 100px;
-
-    background: #050505;
-
-    border-bottom: 1px solid #181818;
-
-    position: relative;
-
-    z-index: 1000;
-}
-
-
-.nav-logo {
-
-    color: #f06b68;
-
-    text-decoration: none;
-
-    font-size: 20px;
-
-    font-weight: 900;
-
-    letter-spacing: 3px;
-}
-
-
-/* =========================================================
-   NAV LINKS
-========================================================= */
-
-.nav-links {
-
-    height: 100%;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 28px;
-}
-
-
-.nav-link,
-.nav-dropdown-button {
-
-    height: 100%;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 7px;
-
-    padding: 0;
-
-    background: none;
-
-    border: none;
-
-    color: #666;
-
-    text-decoration: none;
-
-    font-family: Arial, Helvetica, sans-serif;
-
-    font-size: 12px;
-
-    font-weight: 900;
-
-    letter-spacing: 0.5px;
-
-    cursor: pointer;
-
-    position: relative;
-
-    transition: color 0.2s ease;
-}
-
-
-.nav-link:hover,
-.nav-dropdown:hover .nav-dropdown-button {
-    color: #ffffff;
-}
-
-
-/* =========================================================
-   NAV ARROW
-========================================================= */
-
-.nav-arrow {
-
-    font-size: 9px;
-
-    color: #888;
-
-    transition:
-        transform 0.2s ease;
-}
-
-
-.nav-dropdown:hover .nav-arrow {
-    transform: translateY(2px);
-}
-
-
-/* =========================================================
-   NAV DROPDOWNS
-========================================================= */
-
-.nav-dropdown {
-
-    height: 100%;
-
-    display: flex;
-
-    align-items: center;
-
-    position: relative;
-}
-
-
-.nav-dropdown-menu {
-
-    position: absolute;
-
-    top: 64px;
-
-    right: 0;
-
-    min-width: 190px;
-
-    padding: 7px;
-
-    background: #0a0a0a;
-
-    border: 1px solid #202020;
-
-    border-top: 2px solid #f06b68;
-
-    border-radius: 0 0 5px 5px;
-
-    box-shadow:
-        0 10px 25px rgba(0, 0, 0, 0.45);
-
-    opacity: 0;
-
-    visibility: hidden;
-
-    transform: translateY(-5px);
-
-    transition:
-        opacity 0.15s ease,
-        transform 0.15s ease,
-        visibility 0.15s ease;
-}
-
-
-.nav-dropdown:hover .nav-dropdown-menu {
-
-    opacity: 1;
-
-    visibility: visible;
-
-    transform: translateY(0);
-}
-
-
-.nav-dropdown-menu a {
-
-    display: block;
-
-    padding: 11px 13px;
-
-    color: #666;
-
-    text-decoration: none;
-
-    font-size: 10px;
-
-    font-weight: 900;
-
-    letter-spacing: 0.8px;
-
-    border-radius: 3px;
-
-    transition:
-        color 0.15s ease,
-        background 0.15s ease;
-}
-
-
-.nav-dropdown-menu a:hover {
-
-    color: #ffffff;
-
-    background: #151515;
-}
-
-
-/* =========================================================
-   MOBILE NAVIGATION
-========================================================= */
-
-.mobile-menu-button {
-
-    display: none;
-
-    width: 42px;
-
-    height: 42px;
-
-    padding: 0;
-
-    background: #080808;
-
-    border: 1px solid #292929;
-
-    border-radius: 7px;
-
-    color: #ffffff;
-
-    font-size: 20px;
-
-    line-height: 1;
-
-    cursor: pointer;
-
-    flex-shrink: 0;
-}
-
-
-.mobile-menu {
-
-    display: none;
-
-    position: fixed;
-
-    top: 64px;
-
-    left: 0;
-
-    width: 100%;
-
-    max-height: calc(100vh - 64px);
-
-    overflow-y: auto;
-
-    background: #050505;
-
-    border-bottom: 1px solid #202020;
-
-    box-shadow:
-        0 15px 35px rgba(0, 0, 0, 0.55);
-
-    z-index: 9999;
-}
-
-
-.mobile-menu.open {
-    display: block;
-}
-
-
-.mobile-nav-link,
-.mobile-nav-section-button {
-
-    width: 100%;
-
-    min-height: 60px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    padding: 0 24px;
-
-    background: #050505;
-
-    border: none;
-
-    border-bottom: 1px solid #181818;
-
-    color: #888;
-
-    text-decoration: none;
-
-    font-size: 11px;
-
-    font-weight: 900;
-
-    letter-spacing: 1.5px;
-
-    text-align: left;
-
-    cursor: pointer;
-}
-
-
-.mobile-nav-link:hover,
-.mobile-nav-section-button:hover {
-
-    color: #ffffff;
-
-    background: #0d0d0d;
-}
-
-
-.mobile-nav-submenu {
-
-    display: none;
-
-    background: #0a0a0a;
-}
-
-
-.mobile-nav-section.open
-.mobile-nav-submenu {
-
-    display: block;
-}
-
-
-.mobile-nav-submenu a {
-
-    display: block;
-
-    padding: 17px 42px;
-
-    border-bottom: 1px solid #151515;
-
-    color: #666;
-
-    text-decoration: none;
-
-    font-size: 10px;
-
-    font-weight: 900;
-
-    letter-spacing: 1px;
-}
-
-
-.mobile-nav-submenu a:hover {
-
-    color: #ffffff;
-
-    background: #111111;
-}
-
-
-.mobile-section-arrow {
-
-    color: #666;
-
-    font-size: 10px;
-
-    transition:
-        transform 0.2s ease;
-}
-
-
-.mobile-nav-section.open
-.mobile-section-arrow {
-
-    transform: rotate(180deg);
-}
 
 
 /* =========================================================
@@ -418,947 +12,36 @@ body {
 ========================================================= */
 
 .nights-page {
-
     width: 100%;
-
     max-width: 1200px;
-
     margin: 0 auto;
-
     padding: 34px 24px 50px;
 }
 
-
 .page-header {
-
+    text-align: center;
     margin-bottom: 24px;
 }
 
-
 .page-header h1 {
-
     margin: 0;
 
+    color: #ffffff;
+
     font-size: 32px;
-
     font-weight: 900;
-
     letter-spacing: 1px;
 }
 
-
 .page-header p {
-
     margin: 7px 0 0;
 
     color: #555;
 
     font-size: 11px;
-
     font-weight: 700;
 }
 
-
-/* =========================================================
-   FILTER
-========================================================= */
-
-.filter-section {
-
-    position: relative;
-
-    margin-bottom: 30px;
-}
-
-
-.filter-button {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    width: 100%;
-
-    min-height: 46px;
-
-    padding: 0 16px;
-
-    background: #0a0a0a;
-
-    border: 1px solid #242424;
-
-    border-radius: 6px;
-
-    color: #777;
-
-    font-size: 10px;
-
-    font-weight: 900;
-
-    letter-spacing: 1px;
-
-    cursor: pointer;
-
-    transition:
-        color 0.2s ease,
-        border-color 0.2s ease,
-        background 0.2s ease;
-}
-
-
-.filter-button:hover {
-
-    color: #ffffff;
-
-    border-color: #444;
-
-    background: #0e0e0e;
-}
-
-
-#filter-arrow {
-
-    font-size: 10px;
-
-    transition:
-        transform 0.2s ease;
-}
-
-
-.filter-button.open #filter-arrow {
-
-    transform: rotate(180deg);
-}
-
-
-/* =========================================================
-   FILTER PANEL
-========================================================= */
-
-.filter-panel {
-
-    display: none;
-
-    padding: 18px;
-
-    background: #0a0a0a;
-
-    border: 1px solid #242424;
-
-    border-top: none;
-
-    border-radius: 0 0 6px 6px;
-}
-
-
-.filter-panel.open {
-
-    display: block;
-}
-
-
-.filter-group + .filter-group {
-
-    margin-top: 20px;
-}
-
-
-.filter-label {
-
-    margin-bottom: 9px;
-
-    color: #555;
-
-    font-size: 8px;
-
-    font-weight: 900;
-
-    letter-spacing: 1px;
-}
-
-
-.filter-options {
-
-    display: flex;
-
-    flex-wrap: wrap;
-
-    gap: 7px;
-}
-
-
-.filter-option {
-
-    padding: 9px 13px;
-
-    background: #101010;
-
-    border: 1px solid #292929;
-
-    border-radius: 5px;
-
-    color: #666;
-
-    font-size: 9px;
-
-    font-weight: 900;
-
-    letter-spacing: 0.7px;
-
-    cursor: pointer;
-
-    transition:
-        color 0.15s ease,
-        background 0.15s ease,
-        border-color 0.15s ease;
-}
-
-
-.filter-option:hover {
-
-    color: #ffffff;
-
-    background: #151515;
-
-    border-color: #444;
-}
-
-
-.filter-option.active {
-
-    color: #ffffff;
-
-    background: #181818;
-
-    border-color: #ffffff;
-}
-
-
-/* =========================================================
-   GAME SECTIONS
-========================================================= */
-
-.game-section {
-
-    margin-top: 35px;
-}
-
-
-.game-section:first-child {
-    margin-top: 0;
-}
-
-
-.game-header {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 14px;
-
-    margin-bottom: 18px;
-}
-
-
-.game-title {
-
-    flex-shrink: 0;
-
-    color: #ffffff;
-
-    font-size: 11px;
-
-    font-weight: 900;
-
-    letter-spacing: 1.5px;
-}
-
-
-.game-line {
-
-    width: 100%;
-
-    height: 1px;
-
-    background: #202020;
-}
-
-
-/* =========================================================
-   NIGHT GRID
-========================================================= */
-
-.night-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, minmax(0, 1fr));
-
-    gap: 14px;
-}
-
-.game-number {
-    color: #9AFFB0;
-}
-
-.night-number {
-    color: #8FCBFF;
-}
-
-
-/* =========================================================
-   NIGHT CARD
-========================================================= */
-
-.night-card {
-
-    aspect-ratio: 1 / 1;
-
-    min-width: 0;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    background: #0b0b0b;
-
-    border: 1px solid #ffffff;
-
-    border-radius: 10px;
-
-    color: #ffffff;
-
-    cursor: pointer;
-
-    position: relative;
-
-    overflow: hidden;
-
-    transition:
-        transform 0.2s ease,
-        background 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-
-.night-card:hover {
-
-    transform: translateY(-4px);
-
-    background: #111111;
-
-    box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.4);
-}
-
-
-.night-card-number {
-
-    font-size: clamp(22px, 3vw, 38px);
-
-    font-weight: 900;
-
-    letter-spacing: 1px;
-}
-
-
-/* =========================================================
-   NIGHT MODAL
-========================================================= */
-
-.night-modal {
-
-    position: fixed;
-
-    inset: 0;
-
-    display: none;
-
-    align-items: center;
-
-    justify-content: center;
-
-    padding: 20px;
-
-    background: rgba(0, 0, 0, 0.78);
-
-    backdrop-filter: blur(4px);
-
-    z-index: 20000;
-}
-
-
-.night-modal.open {
-
-    display: flex;
-}
-
-
-/* =========================================================
-   MODAL CONTENT
-========================================================= */
-
-.night-modal-content {
-
-    width: min(520px, 100%);
-
-    max-height: calc(100vh - 40px);
-
-    overflow-y: auto;
-
-    padding: 34px 24px 24px;
-
-    background: #090909;
-
-    border: 1px solid #292929;
-
-    border-radius: 10px;
-
-    box-shadow:
-        0 25px 70px rgba(0, 0, 0, 0.7);
-
-    position: relative;
-}
-
-
-/* =========================================================
-   MAX BUTTON
-========================================================= */
-
-.max-mode-button,
-.close-modal {
-
-    position: absolute;
-
-    top: 14px;
-
-    width: 34px;
-
-    height: 34px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    background: #101010;
-
-    border: 1px solid #292929;
-
-    border-radius: 6px;
-
-    cursor: pointer;
-
-    transition:
-        color 0.2s ease,
-        background 0.2s ease,
-        border-color 0.2s ease,
-        transform 0.2s ease;
-}
-
-
-.max-mode-button {
-
-    left: 14px;
-
-    color: #777;
-
-    font-size: 17px;
-}
-
-
-.max-mode-button:hover {
-
-    color: #ffffff;
-
-    background: #171717;
-
-    border-color: #555;
-
-    transform: translateY(-1px);
-}
-
-
-.max-mode-button.active {
-
-    color: #ffd619;
-
-    border-color: #ffd619;
-
-    background: #171717;
-}
-
-
-.close-modal {
-
-    right: 14px;
-
-    color: #777;
-
-    font-size: 22px;
-
-    line-height: 1;
-}
-
-
-.close-modal:hover {
-
-    color: #ffffff;
-
-    background: #171717;
-
-    border-color: #555;
-
-    transform: translateY(-1px);
-}
-
-
-/* =========================================================
-   MODAL HEADER
-========================================================= */
-
-.night-modal-header {
-
-    text-align: center;
-
-    margin-bottom: 20px;
-}
-
-
-.modal-mode {
-
-    margin-bottom: 5px;
-
-    color: #666;
-
-    font-size: 8px;
-
-    font-weight: 900;
-
-    letter-spacing: 1.5px;
-}
-
-
-.night-modal-content.max-mode
-.modal-mode {
-
-    color: #ffd619;
-}
-
-
-.night-modal-header h2 {
-
-    margin: 0;
-
-    font-size: clamp(20px, 5vw, 28px);
-
-    font-weight: 900;
-
-    letter-spacing: 0.5px;
-}
-
-
-.modal-alias {
-
-    margin-top: 6px;
-
-    color: #555;
-
-    font-size: 10px;
-
-    font-weight: 900;
-
-    letter-spacing: 1px;
-}
-
-
-/* =========================================================
-   INFO BOXES
-========================================================= */
-
-.night-info-box {
-
-    min-height: 70px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-
-    gap: 6px;
-
-    margin-top: 8px;
-
-    padding: 13px 16px;
-
-    background: #101010;
-
-    border: 1px solid #202020;
-
-    border-radius: 6px;
-}
-
-
-.night-info-label {
-
-    color: #666;
-
-    font-size: 8px;
-
-    font-weight: 900;
-
-    letter-spacing: 1px;
-}
-
-
-.night-info-value {
-
-    color: #ffffff;
-
-    font-size: 13px;
-
-    font-weight: 900;
-
-    overflow-wrap: anywhere;
-}
-
-
-/* =========================================================
-   COLORED ACCENTS
-========================================================= */
-
-.wave-box {
-
-    border-left: 3px solid #60a5fa;
-}
-
-
-.coin-box {
-
-    border-left: 3px solid #ffd619;
-}
-
-
-.remnant-box {
-
-    border-left: 3px solid #c801ff;
-}
-
-.starting-cash-box {
-    border-left: 4px solid #4ade80;
-}
-
-
-.boss-box {
-
-    border-left: 3px solid #ef4444;
-}
-
-
-/* =========================================================
-   RESPONSIVE NAV
-========================================================= */
-
-@media (max-width: 900px) {
-
-    .site-nav {
-
-        padding: 0 25px;
-    }
-
-
-    .nav-logo {
-
-        font-size: 17px;
-
-        letter-spacing: 2px;
-
-        white-space: nowrap;
-    }
-
-
-    .nav-links {
-
-        gap: 18px;
-    }
-
-
-    .nav-link,
-    .nav-dropdown-button {
-
-        font-size: 10px;
-    }
-
-}
-
-
-/* =========================================================
-   TABLET
-========================================================= */
-
-@media (max-width: 850px) {
-
-    .night-grid {
-
-        grid-template-columns:
-            repeat(3, minmax(0, 1fr));
-    }
-
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 700px) {
-
-    .site-nav {
-
-        height: 64px;
-
-        padding: 0 18px;
-
-        gap: 15px;
-    }
-
-
-    .nav-links {
-
-        display: none;
-    }
-
-
-    .nav-logo {
-
-        min-width: 0;
-
-        max-width: calc(100% - 57px);
-
-        overflow: hidden;
-
-        text-overflow: ellipsis;
-
-        white-space: nowrap;
-
-        font-size:
-            clamp(12px, 4vw, 18px);
-
-        letter-spacing:
-            clamp(1px, 0.7vw, 2.5px);
-    }
-
-
-    .mobile-menu-button {
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: center;
-    }
-
-
-    .nights-page {
-
-        padding:
-            25px 14px 40px;
-    }
-
-
-    .page-header h1 {
-
-        font-size: 27px;
-    }
-
-
-    .night-grid {
-
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-
-        gap: 10px;
-    }
-
-
-    .night-card-number {
-
-        font-size:
-            clamp(20px, 8vw, 30px);
-    }
-
-
-    .night-modal-content {
-
-        padding:
-            34px 15px 18px;
-    }
-
-}
-
-
-/* =========================================================
-   SMALL PHONES
-========================================================= */
-
-@media (max-width: 480px) {
-
-    .site-nav {
-
-        padding: 0 14px;
-    }
-
-
-    .nav-logo {
-
-        font-size: 13px;
-
-        letter-spacing: 1.2px;
-    }
-
-
-    .mobile-menu-button {
-
-        width: 40px;
-
-        height: 40px;
-
-        font-size: 19px;
-    }
-
-
-    .nights-page {
-
-        padding-left: 10px;
-
-        padding-right: 10px;
-    }
-
-
-    .filter-button {
-
-        min-height: 44px;
-    }
-
-
-    .filter-panel {
-
-        padding: 13px;
-    }
-
-
-    .filter-option {
-
-        padding: 8px 11px;
-    }
-
-
-    .game-section {
-
-        margin-top: 27px;
-    }
-
-
-    .game-header {
-
-        gap: 9px;
-    }
-
-
-    .game-title {
-
-        font-size: 9px;
-
-        letter-spacing: 1px;
-    }
-
-
-    .night-modal {
-
-        padding: 10px;
-    }
-
-
-    .night-modal-content {
-
-        max-height: calc(100vh - 20px);
-
-        padding:
-            34px 12px 14px;
-    }
-
-
-    .night-info-box {
-
-        padding:
-            12px 13px;
-    }
-
-}
-
-
-/* =========================================================
-   VERY SMALL PHONES
-========================================================= */
-
-@media (max-width: 380px) {
-
-    .site-nav {
-
-        padding: 0 10px;
-    }
-
-
-    .nav-logo {
-
-        font-size: 11px;
-
-        letter-spacing: 0.8px;
-    }
-
-
-    .mobile-menu-button {
-
-        width: 38px;
-
-        height: 38px;
-
-        font-size: 18px;
-    }
-
-
-    .night-grid {
-
-        gap: 8px;
-    }
-
-
-    .night-card {
-
-        border-radius: 7px;
-    }
-
-
-    .night-card-number {
-
-        font-size: 19px;
-    }
-
-
-    .night-modal-header h2 {
-
-        font-size: 19px;
-    }
-
-}
 
 /* =========================================================
    NOTICE
@@ -1402,4 +85,722 @@ body {
     color: #f0c75e;
 
     font-size: 15px;
+}
+
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+.filter-section {
+    position: relative;
+
+    margin-bottom: 30px;
+}
+
+
+.filter-button {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    width: 100%;
+
+    min-height: 46px;
+
+    padding: 0 16px;
+
+    background: #0a0a0a;
+
+    border: 1px solid #242424;
+
+    border-radius: 6px;
+
+    color: #777;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.filter-button:hover {
+    color: #ffffff;
+
+    border-color: #444;
+
+    background: #0e0e0e;
+}
+
+
+#filter-arrow {
+    font-size: 10px;
+
+    transition:
+        transform 0.2s ease;
+}
+
+
+.filter-button.open #filter-arrow {
+    transform: rotate(180deg);
+}
+
+
+/* =========================================================
+   FILTER PANEL
+========================================================= */
+
+.filter-panel {
+    display: none;
+
+    padding: 18px;
+
+    background: #0a0a0a;
+
+    border: 1px solid #242424;
+
+    border-top: none;
+
+    border-radius: 0 0 6px 6px;
+}
+
+
+.filter-panel.open {
+    display: block;
+}
+
+
+.filter-group + .filter-group {
+    margin-top: 20px;
+}
+
+
+.filter-label {
+    margin-bottom: 9px;
+
+    color: #555;
+
+    font-size: 8px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+}
+
+
+.filter-options {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+}
+
+
+.filter-option {
+    padding: 9px 13px;
+
+    background: #101010;
+
+    border: 1px solid #292929;
+
+    border-radius: 5px;
+
+    color: #666;
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: 0.7px;
+
+    cursor: pointer;
+
+    transition:
+        color 0.15s ease,
+        background 0.15s ease,
+        border-color 0.15s ease;
+}
+
+
+.filter-option:hover {
+    color: #ffffff;
+
+    background: #151515;
+
+    border-color: #444;
+}
+
+
+.filter-option.active {
+    color: #ffffff;
+
+    background: #181818;
+
+    border-color: #ffffff;
+}
+
+
+/* =========================================================
+   GAME SECTIONS
+========================================================= */
+
+.game-section {
+    margin-top: 35px;
+}
+
+
+.game-section:first-child {
+    margin-top: 0;
+}
+
+
+.game-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 18px;
+}
+
+
+.game-title {
+    flex-shrink: 0;
+
+    color: #ffffff;
+
+    font-size: 11px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+}
+
+
+.game-line {
+    width: 100%;
+
+    height: 1px;
+
+    background: #202020;
+}
+
+
+/* =========================================================
+   GAME / NIGHT NUMBERS
+========================================================= */
+
+.game-number {
+    color: #9AFFB0;
+}
+
+
+.night-number {
+    color: #8FCBFF;
+}
+
+
+/* =========================================================
+   NIGHT GRID
+========================================================= */
+
+.night-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 14px;
+}
+
+
+/* =========================================================
+   NIGHT CARD
+========================================================= */
+
+.night-card {
+    aspect-ratio: 1 / 1;
+
+    min-width: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #0b0b0b;
+
+    border: 1px solid #ffffff;
+
+    border-radius: 10px;
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    position: relative;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.night-card:hover {
+    transform: translateY(-4px);
+
+    background: #111111;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+
+.night-card-number {
+    font-size: clamp(22px, 3vw, 38px);
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   NIGHT MODAL
+========================================================= */
+
+.night-modal {
+    position: fixed;
+
+    inset: 0;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(0, 0, 0, 0.78);
+
+    backdrop-filter: blur(4px);
+
+    z-index: 20000;
+}
+
+
+.night-modal.open {
+    display: flex;
+}
+
+
+/* =========================================================
+   MODAL CONTENT
+========================================================= */
+
+.night-modal-content {
+    width: min(520px, 100%);
+
+    max-height: calc(100vh - 40px);
+
+    overflow-y: auto;
+
+    padding: 34px 24px 24px;
+
+    background: #090909;
+
+    border: 1px solid #292929;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.7);
+
+    position: relative;
+}
+
+
+/* =========================================================
+   MODAL BUTTONS
+========================================================= */
+
+.max-mode-button,
+.close-modal {
+    position: absolute;
+
+    top: 14px;
+
+    width: 34px;
+
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #101010;
+
+    border: 1px solid #292929;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.max-mode-button {
+    left: 14px;
+
+    color: #777;
+
+    font-size: 17px;
+}
+
+
+.max-mode-button:hover {
+    color: #ffffff;
+
+    background: #171717;
+
+    border-color: #555;
+
+    transform: translateY(-1px);
+}
+
+
+.max-mode-button.active {
+    color: #ffd619;
+
+    border-color: #ffd619;
+
+    background: #171717;
+}
+
+
+.close-modal {
+    right: 14px;
+
+    color: #777;
+
+    font-size: 22px;
+
+    line-height: 1;
+}
+
+
+.close-modal:hover {
+    color: #ffffff;
+
+    background: #171717;
+
+    border-color: #555;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   MODAL HEADER
+========================================================= */
+
+.night-modal-header {
+    text-align: center;
+
+    margin-bottom: 20px;
+}
+
+
+.modal-mode {
+    margin-bottom: 5px;
+
+    color: #666;
+
+    font-size: 8px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+}
+
+
+.night-modal-content.max-mode .modal-mode {
+    color: #ffd619;
+}
+
+
+.night-modal-header h2 {
+    margin: 0;
+
+    font-size: clamp(20px, 5vw, 28px);
+
+    font-weight: 900;
+
+    letter-spacing: 0.5px;
+}
+
+
+.modal-alias {
+    margin-top: 6px;
+
+    color: #555;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   INFO BOXES
+========================================================= */
+
+.night-info-box {
+    min-height: 70px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    gap: 6px;
+
+    margin-top: 8px;
+
+    padding: 13px 16px;
+
+    background: #101010;
+
+    border: 1px solid #202020;
+
+    border-radius: 6px;
+}
+
+
+.night-info-label {
+    color: #666;
+
+    font-size: 8px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+}
+
+
+.night-info-value {
+    color: #ffffff;
+
+    font-size: 13px;
+
+    font-weight: 900;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   COLORED ACCENTS
+========================================================= */
+
+.wave-box {
+    border-left: 3px solid #60a5fa;
+}
+
+
+.coin-box {
+    border-left: 3px solid #ffd619;
+}
+
+
+.remnant-box {
+    border-left: 3px solid #c801ff;
+}
+
+
+.starting-cash-box {
+    border-left: 4px solid #4ade80;
+}
+
+
+.boss-box {
+    border-left: 3px solid #ef4444;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .night-grid {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ---------------------------------------------------------
+   Navigation responsiveness is handled entirely by
+   site.css. These rules only resize Nights content.
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .nights-page {
+        padding:
+            25px 14px 40px;
+    }
+
+
+    .page-header h1 {
+        font-size: 27px;
+    }
+
+
+    .night-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 10px;
+    }
+
+
+    .night-card-number {
+        font-size:
+            clamp(20px, 8vw, 30px);
+    }
+
+
+    .night-modal-content {
+        padding:
+            34px 15px 18px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .nights-page {
+        padding-left: 10px;
+
+        padding-right: 10px;
+    }
+
+
+    .filter-button {
+        min-height: 44px;
+    }
+
+
+    .filter-panel {
+        padding: 13px;
+    }
+
+
+    .filter-option {
+        padding: 8px 11px;
+    }
+
+
+    .game-section {
+        margin-top: 27px;
+    }
+
+
+    .game-header {
+        gap: 9px;
+    }
+
+
+    .game-title {
+        font-size: 9px;
+
+        letter-spacing: 1px;
+    }
+
+
+    .night-modal {
+        padding: 10px;
+    }
+
+
+    .night-modal-content {
+        max-height: calc(100vh - 20px);
+
+        padding:
+            34px 12px 14px;
+    }
+
+
+    .night-info-box {
+        padding:
+            12px 13px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .night-grid {
+        gap: 8px;
+    }
+
+
+    .night-card {
+        border-radius: 7px;
+    }
+
+
+    .night-card-number {
+        font-size: 19px;
+    }
+
+
+    .night-modal-header h2 {
+        font-size: 19px;
+    }
+
 }

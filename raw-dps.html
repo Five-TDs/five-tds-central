@@ -1,505 +1,177 @@
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>Raw DPS - FIVE TD'S CENTRAL</title>
-
-    <link rel="stylesheet" href="raw-dps.css">
-
-</head>
-
-
-<body>
-
-
-    <!-- =========================
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Raw DPS - FIVE TD'S CENTRAL</title>
+<link href="site.css" rel="stylesheet"/>
+<link href="raw-dps.css" rel="stylesheet"/></head>
+<body><script src="site.js"></script>
+<!-- =========================
          SITE NAVIGATION
     ========================== -->
 
-    <nav class="site-nav">
-
-    <a href="index.html" class="nav-logo">
-        FIVE TD'S CENTRAL
-    </a>
-
-
-    <!-- DESKTOP NAVIGATION -->
-
-    <div class="nav-links">
-
-        <a href="index.html" class="nav-link">
-            HOME
-        </a>
-
-
-        <div class="nav-dropdown">
-
-            <button
-                class="nav-dropdown-button"
-                type="button"
-            >
-                DATABASE
-
-                <span class="nav-arrow">▾</span>
-            </button>
-
-
-            <div class="nav-dropdown-menu">
-
-                <a href="units.html">
-                    UNITS
-                </a>
-
-                <a href="nights.html">
-                    NIGHTS
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <div class="nav-dropdown">
-
-            <button
-                class="nav-dropdown-button"
-                type="button"
-            >
-                TOOLS
-
-                <span class="nav-arrow">▾</span>
-            </button>
-
-
-            <div class="nav-dropdown-menu">
-
-                <a href="stats-simulator.html">
-                    STATS SIMULATOR
-                </a>
-
-                <a href="raw-dps.html">
-                    RAW DPS CHART
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <a href="https://www.youtube.com/redirect?event=video_description&redir_token=QUZZTVljRjBMLUZ4VW81MDRhVldveGlKSDNabXxBSTVJdTV0RlBYYWlUdHY1bG8zNTl6TTFuZFdXeExZMlVmblE2YmdPcC1waUNTVVhVLXhhOXcwamtreE1ZeFNUM0ZHdEl5bW43WVNiZWp2cVBJT2QwMk1nSnF3SUdDdUJGcmgz&q=https%3A%2F%2Fdiscord.gg%2F7UPX3MT9TS&v=yXcI9x8wP_Q" class="nav-link">
-            DISCORD
-        </a>
-
-    </div>
-
-
-    <!-- MOBILE MENU BUTTON -->
-
-    <button
-        id="mobile-menu-button"
-        class="mobile-menu-button"
-        type="button"
-        aria-label="Open navigation"
-        aria-expanded="false"
-    >
-        ☰
-    </button>
-
-</nav>
-
-
 <!-- MOBILE NAVIGATION -->
 
-<div id="mobile-menu" class="mobile-menu">
-
-    <a href="index.html" class="mobile-nav-link">
-        HOME
-    </a>
-
-
-    <div class="mobile-nav-section">
-
-        <button
-            class="mobile-nav-section-button"
-            type="button"
-        >
-            <span>DATABASE</span>
-            <span class="mobile-section-arrow">▾</span>
-        </button>
-
-
-        <div class="mobile-nav-submenu">
-
-            <a href="units.html">
-                UNITS
-            </a>
-
-            <a href="nights.html">
-                NIGHTS
-            </a>
-
-        </div>
-
-    </div>
-
-
-    <div class="mobile-nav-section">
-
-        <button
-            class="mobile-nav-section-button"
-            type="button"
-        >
-            <span>TOOLS</span>
-            <span class="mobile-section-arrow">▾</span>
-        </button>
-
-
-        <div class="mobile-nav-submenu">
-
-            <a href="stats-simulator.html">
-                STATS SIMULATOR
-            </a>
-
-            <a href="raw-dps.html">
-                RAW DPS CHART
-            </a>
-
-        </div>
-
-    </div>
-
-
-    <a href="https://www.youtube.com/redirect?event=video_description&redir_token=QUZZTVljRjBMLUZ4VW81MDRhVldveGlKSDNabXxBSTVJdTV0RlBYYWlUdHY1bG8zNTl6TTFuZFdXeExZMlVmblE2YmdPcC1waUNTVVhVLXhhOXcwamtreE1ZeFNUM0ZHdEl5bW43WVNiZWp2cVBJT2QwMk1nSnF3SUdDdUJGcmgz&q=https%3A%2F%2Fdiscord.gg%2F7UPX3MT9TS&v=yXcI9x8wP_Q" class="mobile-nav-link">
-        DISCORD
-    </a>
-
-</div>
-
-
-
-    <!-- =========================
+<!-- =========================
          PAGE
     ========================== -->
+<main class="raw-dps-page">
 
-    <main class="raw-dps-page">
-
-
-        <!-- =========================
+<header class="page-header raw-dps-header">
+    <div>
+        <h1>RAW DPS</h1>
+        <p class="page-description">
+            Compare the maximum raw DPS of every unit in the database.
+        </p>
+    </div>
+</header>
+<!-- =========================
              NOTICE
         ========================== -->
-
-        <div class="notice">
-
-            <span class="notice-icon">
+<div class="notice">
+<span class="notice-icon">
                 ⚠
             </span>
-
-            <div>
-
-                <strong>NOTICE:</strong>
+<div>
+<strong>NOTICE:</strong>
 
                 VALUES SHOW RAW DPS AT MAX IN-GAME LEVEL.
 
             </div>
-
-        </div>
-
-
-
-        <!-- =========================
+</div>
+<!-- =========================
              SEARCH + FILTERS
         ========================== -->
-
-        <div class="search-area">
-
-
-            <div class="search-row">
-
-                <input
-                    id="search-input"
-                    type="text"
-                    placeholder="SEARCH UNIT..."
-                    autocomplete="off"
-                >
-
-
-                <button
-                    id="filter-button"
-                    type="button"
-                >
+<div class="search-area">
+<div class="search-row">
+<input autocomplete="off" id="search-input" placeholder="SEARCH UNIT..." type="text"/>
+<button id="filter-button" type="button">
 
                     FILTER
 
                     <span id="filter-arrow">
                         ▾
                     </span>
-
-                </button>
-
-            </div>
-
-
-
-            <!-- =========================
+</button>
+</div>
+<!-- =========================
                  FILTER PANEL
             ========================== -->
-
-            <div
-                id="filters"
-                class="filters"
-            >
-
-
-                <!-- RARITY -->
-
-                <div class="filter-group">
-
-                    <div class="filter-title">
+<div class="filters" id="filters">
+<!-- RARITY -->
+<div class="filter-group">
+<div class="filter-title">
                         RARITY
                     </div>
-
-
-                    <div class="filter-options">
-
-                        <button
-                            class="rarity-option"
-                            data-value="Legendary"
-                            type="button"
-                        >
+<div class="filter-options">
+<button class="rarity-option" data-value="Legendary" type="button">
                             LEGENDARY
                         </button>
-
-                        <button
-                            class="rarity-option"
-                            data-value="Exclusive"
-                            type="button"
-                        >
+<button class="rarity-option" data-value="Exclusive" type="button">
                             EXCLUSIVE
                         </button>
-
-                        <button
-                            class="rarity-option"
-                            data-value="Epic"
-                            type="button"
-                        >
+<button class="rarity-option" data-value="Epic" type="button">
                             EPIC
                         </button>
-
-                        <button
-                            class="rarity-option"
-                            data-value="Rare"
-                            type="button"
-                        >
+<button class="rarity-option" data-value="Rare" type="button">
                             RARE
                         </button>
-
-                        <button
-                            class="rarity-option"
-                            data-value="Uncommon"
-                            type="button"
-                        >
+<button class="rarity-option" data-value="Uncommon" type="button">
                             UNCOMMON
                         </button>
-
-                        <button
-                            class="rarity-option"
-                            data-value="Common"
-                            type="button"
-                        >
+<button class="rarity-option" data-value="Common" type="button">
                             COMMON
                         </button>
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- ATTACK TYPE -->
-
-                <div class="filter-group">
-
-                    <div class="filter-title">
+</div>
+</div>
+<!-- ATTACK TYPE -->
+<div class="filter-group">
+<div class="filter-title">
                         ATTACK TYPE
                     </div>
-
-
-                    <div class="filter-options">
-
-                        <button
-                            class="type-option"
-                            data-value="Single"
-                            type="button"
-                        >
+<div class="filter-options">
+<button class="type-option" data-value="Single" type="button">
                             SINGLE
                         </button>
-
-                        <button
-                            class="type-option"
-                            data-value="Pierce"
-                            type="button"
-                        >
+<button class="type-option" data-value="Pierce" type="button">
                             PIERCE
                         </button>
-
-                        <button
-                            class="type-option"
-                            data-value="Splash"
-                            type="button"
-                        >
+<button class="type-option" data-value="Splash" type="button">
                             SPLASH
                         </button>
-
-                        <button
-                            class="type-option"
-                            data-value="Cone"
-                            type="button"
-                        >
+<button class="type-option" data-value="Cone" type="button">
                             CONE
                         </button>
-
-                        <button
-                            class="type-option"
-                            data-value="AOE"
-                            type="button"
-                        >
+<button class="type-option" data-value="AOE" type="button">
                             AOE
                         </button>
-
-                        <button
-                            class="type-option"
-                            data-value="Toxic Pierce"
-                            type="button"
-                        >
+<button class="type-option" data-value="Toxic Pierce" type="button">
                             TOXIC PIERCE
                         </button>
-
-                        <button
-                            class="type-option"
-                            data-value="Speed Buff"
-                            type="button"
-                        >
+<button class="type-option" data-value="Speed Buff" type="button">
                             SPEED BUFF
                         </button>
-
-                        <button
-                            class="type-option"
-                            data-value="Damage Buff"
-                            type="button"
-                        >
+<button class="type-option" data-value="Damage Buff" type="button">
                             DAMAGE BUFF
                         </button>
-
-                        <button
-                            class="type-option"
-                            data-value="Range Buff"
-                            type="button"
-                        >
+<button class="type-option" data-value="Range Buff" type="button">
                             RANGE BUFF
                         </button>
-
-                        <button
-                            class="type-option"
-                            data-value="Slower"
-                            type="button"
-                        >
+<button class="type-option" data-value="Slower" type="button">
                             SLOWER
                         </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- =========================
+</div>
+</div>
+</div>
+</div>
+<!-- =========================
              DPS TABLE
         ========================== -->
-
-        <section class="dps-table-container">
-
-            <table id="dps-table">
-
-                <thead>
-
-                    <tr>
-
-                        <th class="rank-column">
+<section class="dps-table-container">
+<table id="dps-table">
+<thead>
+<tr>
+<th class="rank-column">
                             #
                         </th>
-
-                        <th>
+<th>
                             UNIT
                         </th>
-
-                        <th>
+<th>
                             RARITY
                         </th>
-
-                        <th>
+<th>
                             TYPE
                         </th>
-
-                        <th>
+<th>
                             MAX PLACED
                         </th>
-
-                        <th>
-                            CD
+<th>
+                            HPS
                         </th>
-
-                        <th>
+<th>
                             RNG
                         </th>
-
-                        <th>
+<th>
                             DMG
                         </th>
-
-                        <th
-                            id="dps-header"
-                            class="sortable"
-                        >
+<th class="sortable" id="dps-header">
                             MAX DPS
 
                             <span id="sort-arrow">
                                 ▼
                             </span>
-
-                        </th>
-
-                    </tr>
-
-                </thead>
-
-
-                <tbody id="dps-body">
-                </tbody>
-
-            </table>
-
-        </section>
-
-
-    </main>
-
-
-
-    <script src="units.js"></script>
-    <script src="raw-dps.js"></script>
-
+</th>
+</tr>
+</thead>
+<tbody id="dps-body">
+</tbody>
+</table>
+</section>
+</main>
+<script src="units.js"></script>
+<script src="raw-dps.js"></script>
 </body>
-
 </html>

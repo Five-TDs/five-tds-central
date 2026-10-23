@@ -1,449 +1,160 @@
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Stats Simulator - FIVE TD'S CENTRAL</title>
-
-    <link rel="stylesheet" href="stats-simulator.css">
-</head>
-
-<body>
-
-    <!-- =====================================================
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Stats Simulator - FIVE TD'S CENTRAL</title>
+<link href="stats-simulator.css" rel="stylesheet"/>
+<link href="site.css" rel="stylesheet"/></head>
+<body><script src="site.js"></script>
+<!-- =====================================================
          SITE NAVIGATION
     ====================================================== -->
 
-    <nav class="site-nav">
-
-        <a href="index.html" class="nav-logo">
-            FIVE TD'S CENTRAL
-        </a>
-
-        <div class="nav-links">
-
-            <a href="index.html" class="nav-link">
-                HOME
-            </a>
-
-            <div class="nav-dropdown">
-
-                <button
-                    class="nav-dropdown-button"
-                    type="button"
-                >
-                    DATABASE
-                    <span class="nav-arrow">▾</span>
-                </button>
-
-                <div class="nav-dropdown-menu">
-
-                    <a href="units.html">
-                        UNITS
-                    </a>
-
-                    <a href="nights.html">
-                        NIGHTS
-                    </a>
-
-                </div>
-
-            </div>
-
-            <div class="nav-dropdown">
-
-                <button
-                    class="nav-dropdown-button"
-                    type="button"
-                >
-                    TOOLS
-                    <span class="nav-arrow">▾</span>
-                </button>
-
-                <div class="nav-dropdown-menu">
-
-                    <a href="stats-simulator.html" class="active">
-                        STATS SIMULATOR
-                    </a>
-
-                    <a href="raw-dps.html">
-                        RAW DPS CHART
-                    </a>
-
-                </div>
-
-            </div>
-
-            <a href="https://www.youtube.com/redirect?event=video_description&redir_token=QUZZTVljRjBMLUZ4VW81MDRhVldveGlKSDNabXxBSTVJdTV0RlBYYWlUdHY1bG8zNTl6TTFuZFdXeExZMlVmblE2YmdPcC1waUNTVVhVLXhhOXcwamtreE1ZeFNUM0ZHdEl5bW43WVNiZWp2cVBJT2QwMk1nSnF3SUdDdUJGcmgz&q=https%3A%2F%2Fdiscord.gg%2F7UPX3MT9TS&v=yXcI9x8wP_Q" class="nav-link">
-                DISCORD
-            </a>
-
-        </div>
-
-
-        <!-- MOBILE BUTTON -->
-
-        <button
-            id="mobile-menu-button"
-            class="mobile-menu-button"
-            type="button"
-            aria-label="Open navigation"
-            aria-expanded="false"
-        >
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-
-    </nav>
-
-
-    <!-- =====================================================
+<!-- =====================================================
          MOBILE NAVIGATION
     ====================================================== -->
 
-    <div id="mobile-menu" class="mobile-menu">
-
-        <div class="mobile-menu-header">
-
-            <span>FIVE TD'S CENTRAL</span>
-
-            <button
-                id="mobile-close-button"
-                type="button"
-                aria-label="Close navigation"
-            >
-                ×
-            </button>
-
-        </div>
-
-
-        <div class="mobile-menu-content">
-
-            <a href="index.html" class="mobile-nav-link">
-                HOME
-            </a>
-
-
-            <div class="mobile-nav-section">
-
-                <button
-                    class="mobile-nav-section-button"
-                    type="button"
-                >
-                    <span>DATABASE</span>
-
-                    <span class="mobile-section-arrow">
-                        ▾
-                    </span>
-                </button>
-
-                <div class="mobile-nav-submenu">
-
-                    <a href="units.html">
-                        UNITS
-                    </a>
-
-                    <a href="nights.html">
-                        NIGHTS
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <div class="mobile-nav-section">
-
-                <button
-                    class="mobile-nav-section-button"
-                    type="button"
-                >
-                    <span>TOOLS</span>
-
-                    <span class="mobile-section-arrow">
-                        ▾
-                    </span>
-                </button>
-
-                <div class="mobile-nav-submenu">
-
-                    <a href="stats-simulator.html" class="active">
-                        STATS SIMULATOR
-                    </a>
-
-                    <a href="raw-dps.html">
-                        RAW DPS CHART
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <a href="https://www.youtube.com/redirect?event=video_description&redir_token=QUZZTVljRjBMLUZ4VW81MDRhVldveGlKSDNabXxBSTVJdTV0RlBYYWlUdHY1bG8zNTl6TTFuZFdXeExZMlVmblE2YmdPcC1waUNTVVhVLXhhOXcwamtreE1ZeFNUM0ZHdEl5bW43WVNiZWp2cVBJT2QwMk1nSnF3SUdDdUJGcmgz&q=https%3A%2F%2Fdiscord.gg%2F7UPX3MT9TS&v=yXcI9x8wP_Q" class="mobile-nav-link">
-                DISCORD
-            </a>
-
-        </div>
-
-    </div>
-
-
-    <!-- =====================================================
+<!-- =====================================================
          MAIN
     ====================================================== -->
-
-    <main class="simulator-page">
-
-        <header class="page-header">
-
-            <h1>STATS SIMULATOR</h1>
-
-            <p>
+<main class="simulator-page">
+<header class="page-header">
+<h1>STATS SIMULATOR</h1>
+<p>
                 Simulate unit upgrades and enchantments
             </p>
-
-        </header>
-
-
-        <!-- =================================================
+</header>
+<!-- =================================================
              FILTERS
         ================================================== -->
-
-        <section class="simulator-controls">
-
-            <div class="control-row">
-
-                <div class="control">
-
-                    <label for="rarity-select">
+<section class="simulator-controls">
+<div class="control-row">
+<div class="control">
+<label for="rarity-select">
                         RARITY
                     </label>
-
-                    <select id="rarity-select">
-
-                        <option value="all">
+<select id="rarity-select">
+<option value="all">
                             ALL
                         </option>
-
-                        <option value="Legendary">
+<option value="Legendary">
                             LEGENDARY
                         </option>
-
-                        <option value="Exclusive">
+<option value="Exclusive">
                             EXCLUSIVE
                         </option>
-
-                        <option value="Epic">
+<option value="Epic">
                             EPIC
                         </option>
-
-                        <option value="Rare">
+<option value="Rare">
                             RARE
                         </option>
-
-                        <option value="Uncommon">
+<option value="Uncommon">
                             UNCOMMON
                         </option>
-
-                        <option value="Common">
+<option value="Common">
                             COMMON
                         </option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="control enchant-control">
-
-                    <div class="label-with-help">
-
-                        <label for="enchant-select">
+</select>
+</div>
+<div class="control enchant-control">
+<div class="label-with-help">
+<label for="enchant-select">
                             ENCHANTMENT
                         </label>
-
-                        <button
-                            id="enchantment-help"
-                            class="help-button"
-                            type="button"
-                            title="View enchantments"
-                        >
+<button class="help-button" id="enchantment-help" title="View enchantments" type="button">
                             ?
                         </button>
-
-                    </div>
-
-                    <select id="enchant-select">
-
-                        <option value="none">
+</div>
+<select id="enchant-select">
+<option value="none">
                             NONE
                         </option>
-
-                    </select>
-
-                </div>
-
-            </div>
-
-
-            <div class="control search-control">
-
-                <label for="unit-search">
+</select>
+</div>
+</div>
+<div class="control search-control">
+<label for="unit-search">
                     SEARCH
                 </label>
-
-                <input
-                    id="unit-search"
-                    type="text"
-                    placeholder="UNIT NAME..."
-                    autocomplete="off"
-                >
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
+<input autocomplete="off" id="unit-search" placeholder="UNIT NAME..." type="text"/>
+</div>
+</section>
+<!-- =================================================
              UNIT SELECTION
         ================================================== -->
-
-        <section class="unit-selection">
-
-            <div
-                id="unit-grid"
-                class="unit-grid"
-            ></div>
-
-        </section>
-
-
-        <!-- =================================================
+<section class="unit-selection">
+<div class="unit-grid" id="unit-grid"></div>
+</section>
+<!-- =================================================
              STATS TABLE
         ================================================== -->
-
-        <section class="stats-section">
-
-            <div class="stats-table-wrapper">
-
-                <table class="stats-table">
-
-                    <thead>
-                        <tr>
-                            <th>LVL</th>
-                            <th>COST</th>
-                            <th>DMG</th>
-                            <th>CD</th>
-                            <th>RNG</th>
-                            <th>DPS</th>
-                        </tr>
-                    </thead>
-
-                    <tbody id="stats-table-body"></tbody>
-
-                </table>
-
-            </div>
-
-        </section>
-
-    </main>
-
-    <!-- =========================
+<section class="stats-section">
+<div class="stats-table-wrapper">
+<table class="stats-table">
+<thead>
+<tr>
+<th>LVL</th>
+<th>COST</th>
+<th>DMG</th>
+<th>HPS</th>
+<th>RNG</th>
+<th>DPS</th>
+</tr>
+</thead>
+<tbody id="stats-table-body"></tbody>
+</table>
+</div>
+</section>
+</main>
+<!-- =========================
      MAX STATS
 ========================== -->
-
 <section class="max-stats">
-
-    <div class="max-stat-box">
-
-        <div class="max-stat-label">
+<div class="max-stat-box">
+<div class="max-stat-label">
             MAX DAMAGE
             <span id="max-damage-placements">
                 (X1 PLACEMENT)
             </span>
-        </div>
-
-        <div
-            id="max-damage"
-            class="max-stat-value"
-        >
+</div>
+<div class="max-stat-value" id="max-damage">
             0
         </div>
-
-    </div>
-
-
-    <div class="max-stat-box">
-
-        <div class="max-stat-label">
+</div>
+<div class="max-stat-box">
+<div class="max-stat-label">
             MAX TOTAL DPS
             <span id="max-dps-placements">
                 (X1 PLACEMENT)
             </span>
-        </div>
-
-        <div
-            id="max-total-dps"
-            class="max-stat-value dps-value"
-        >
+</div>
+<div class="max-stat-value dps-value" id="max-total-dps">
             0
         </div>
-
-    </div>
-
+</div>
 </section>
-
-
-    <!-- =====================================================
+<!-- =====================================================
          ENCHANTMENT POPUP
     ====================================================== -->
-
-    <div
-        id="enchantment-modal"
-        class="modal"
-    >
-
-        <div class="enchantment-modal-content">
-
-            <div class="modal-header">
-
-                <h2>ENCHANTMENTS</h2>
-
-                <button
-                    id="close-enchantment-modal"
-                    class="modal-close"
-                    type="button"
-                    aria-label="Close enchantments"
-                >
+<div class="modal" id="enchantment-modal">
+<div class="enchantment-modal-content">
+<div class="modal-header">
+<h2>ENCHANTMENTS</h2>
+<button aria-label="Close enchantments" class="modal-close" id="close-enchantment-modal" type="button">
                     ×
                 </button>
-
-            </div>
-
-            <div
-                id="enchantment-list"
-                class="enchantment-list"
-            ></div>
-
-        </div>
-
-    </div>
-
-
-    <!-- =====================================================
+</div>
+<div class="enchantment-list" id="enchantment-list"></div>
+</div>
+</div>
+<!-- =====================================================
          SCRIPTS
     ====================================================== -->
-
-    <script src="units.js"></script>
-    <script src="enchantments.js"></script>
-    <script src="stats-simulator.js"></script>
-
+<script src="units.js"></script>
+<script src="enchantments.js"></script>
+<script src="stats-simulator.js"></script>
 </body>
-
 </html>

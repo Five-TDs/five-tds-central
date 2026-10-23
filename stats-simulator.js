@@ -27,16 +27,6 @@ const closeEnchantmentModal =
 const enchantmentList =
     document.getElementById("enchantment-list");
 
-const mobileMenuButton =
-    document.getElementById("mobile-menu-button");
-
-const mobileMenu =
-    document.getElementById("mobile-menu");
-
-const mobileCloseButton =
-    document.getElementById("mobile-close-button");
-
-
 /* =========================================================
    STATE
 ========================================================= */
@@ -455,7 +445,7 @@ function applyEnchant(stats) {
     if (Number.isFinite(speedPercent)) {
 
         result.cooldown =
-            Number(result.cooldown) /
+            Number(result.cooldown) *
             (1 + speedPercent / 100);
 
     }
@@ -484,27 +474,6 @@ function applyEnchant(stats) {
     return result;
 }
 
-
-/* =========================================================
-   CALCULATE DPS
-========================================================= */
-
-function calculateDPS(
-    damage,
-    cooldown
-) {
-
-    if (
-        !cooldown ||
-        cooldown <= 0
-    ) {
-
-        return 0;
-
-    }
-
-    return damage / cooldown;
-}
 
 
 /* =========================================================
@@ -604,15 +573,12 @@ function displayStats() {
             ) > 0.000001;
 
         /*
-         * COOLDOWN
+         * HITS PER SECOND
          *
-         * units.js stores cooldown as attacks per second,
-         * so convert it to seconds per hit for display.
+         * The database keeps its historical `cooldown` key,
+         * but the stored value is HPS.
          */
-        const cooldownSeconds =
-            modifiedStats.cooldown > 0
-                ? 1 / modifiedStats.cooldown
-                : 0;
+        const hps = getHPS(modifiedStats);
 
         /*
          * DPS
@@ -620,7 +586,7 @@ function displayStats() {
         const dps =
             calculateDPS(
                 modifiedStats.damage,
-                cooldownSeconds
+                hps
             );
 
         /*
@@ -685,7 +651,7 @@ const displayedCost =
                         : ""
                 }"
             >
-                ${formatDecimal(cooldownSeconds)}s
+                ${formatDecimal(hps)}
             </td>
 
             <td
@@ -941,7 +907,7 @@ function buildEnchantmentPopup() {
                 effects.push(
                     formatEffect(
                         enchant.attackSpeed,
-                        "CD"
+                        "HPS"
                     )
                 );
 
@@ -1184,122 +1150,6 @@ document.addEventListener(
         ) {
 
             closeEnchantmentModalFunction();
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   MOBILE NAV
-========================================================= */
-
-function closeMobileMenu() {
-
-    mobileMenu.classList.remove("open");
-
-    mobileMenuButton.setAttribute(
-        "aria-expanded",
-        "false"
-    );
-
-    document.body.style.overflow = "";
-
-}
-
-
-mobileMenuButton.addEventListener(
-    "click",
-    () => {
-
-        const isOpen =
-            mobileMenu.classList.toggle("open");
-
-
-        mobileMenuButton.setAttribute(
-            "aria-expanded",
-            String(isOpen)
-        );
-
-
-        document.body.style.overflow =
-            isOpen
-                ? "hidden"
-                : "";
-
-    }
-);
-
-
-mobileCloseButton.addEventListener(
-    "click",
-    closeMobileMenu
-);
-
-
-/* ---------------------------------------------------------
-   MOBILE DROPDOWNS
---------------------------------------------------------- */
-
-document
-    .querySelectorAll(
-        ".mobile-nav-section-button"
-    )
-    .forEach(button => {
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                const section =
-                    button.closest(
-                        ".mobile-nav-section"
-                    );
-
-
-                section.classList.toggle(
-                    "open"
-                );
-
-            }
-        );
-
-    });
-
-
-/* ---------------------------------------------------------
-   CLOSE MOBILE MENU WHEN LINK IS CLICKED
---------------------------------------------------------- */
-
-document
-    .querySelectorAll(
-        ".mobile-menu a"
-    )
-    .forEach(link => {
-
-        link.addEventListener(
-            "click",
-            closeMobileMenu
-        );
-
-    });
-
-
-/* ---------------------------------------------------------
-   ESCAPE CLOSES MOBILE MENU
---------------------------------------------------------- */
-
-document.addEventListener(
-    "keydown",
-    event => {
-
-        if (
-            event.key === "Escape" &&
-            mobileMenu.classList.contains("open")
-        ) {
-
-            closeMobileMenu();
 
         }
 

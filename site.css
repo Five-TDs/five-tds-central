@@ -1,0 +1,777 @@
+/* =========================================================
+   FIVE TD'S CENTRAL — SHARED SITE SYSTEM
+   Shared navigation, typography and global site behavior.
+   Page-specific CSS controls the actual page layouts.
+========================================================= */
+
+
+/* =========================================================
+   GLOBAL VARIABLES
+========================================================= */
+
+:root {
+    --site-bg: #050505;
+    --site-panel: #0a0a0a;
+    --site-panel-2: #101010;
+
+    --site-border: #202020;
+    --site-border-soft: #181818;
+
+    --site-text: #ffffff;
+    --site-muted: #858585;
+    --site-muted-2: #5f5f5f;
+
+    --site-accent: #f06b68;
+    --site-accent-soft: rgba(240, 107, 104, 0.14);
+
+    --site-font: Arial, Helvetica, sans-serif;
+
+    --site-nav-height: 64px;
+}
+
+
+/* =========================================================
+   GLOBAL RESET
+========================================================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+
+    font-family: var(--site-font);
+
+    background: var(--site-bg);
+}
+
+body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+
+    background: var(--site-bg);
+    color: var(--site-text);
+
+    font-family: var(--site-font);
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   FORM ELEMENTS
+========================================================= */
+
+button,
+input,
+select,
+textarea {
+    font-family: var(--site-font);
+}
+
+
+/* =========================================================
+   SHARED NAVIGATION
+========================================================= */
+
+.site-nav {
+    position: sticky;
+
+    top: 0;
+    left: 0;
+
+    z-index: 5000;
+
+    width: 100%;
+    height: var(--site-nav-height);
+    min-height: var(--site-nav-height);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 24px;
+
+    margin: 0;
+    padding: 0 clamp(18px, 5vw, 80px);
+
+    background: rgba(5, 5, 5, 0.94);
+
+    border: 0;
+    border-bottom: 1px solid var(--site-border-soft);
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.16);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    isolation: isolate;
+}
+
+
+/* =========================================================
+   NAV LOGO
+========================================================= */
+
+.nav-logo {
+    flex: 0 0 auto;
+
+    display: flex;
+    align-items: center;
+
+    height: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    color: var(--site-accent) !important;
+
+    font-family: var(--site-font) !important;
+    font-size: 18px !important;
+    font-weight: 900 !important;
+
+    line-height: 1;
+
+    letter-spacing: 2.5px !important;
+
+    text-decoration: none !important;
+
+    white-space: nowrap;
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+.nav-logo:hover {
+    opacity: 0.86;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   DESKTOP NAV LINKS
+========================================================= */
+
+.nav-links {
+    flex: 1 1 auto;
+
+    height: 100%;
+
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-end;
+
+    gap: clamp(16px, 2.2vw, 30px);
+
+    min-width: 0;
+}
+
+.nav-link,
+.nav-dropdown-button {
+    position: relative;
+
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    margin: 0;
+    padding: 0;
+
+    border: 0;
+    outline: 0;
+
+    background: transparent;
+
+    color: var(--site-muted) !important;
+
+    font-family: var(--site-font) !important;
+    font-size: 12px !important;
+    font-weight: 900 !important;
+    line-height: 1 !important;
+
+    letter-spacing: 0.7px;
+
+    text-decoration: none !important;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    transition: color 0.18s ease;
+}
+
+
+/* =========================================================
+   NAV ACTIVE / HOVER LINE
+========================================================= */
+
+.nav-link::after,
+.nav-dropdown-button::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 2px;
+
+    background: var(--site-accent);
+
+    transform: scaleX(0);
+    transform-origin: center;
+
+    transition: transform 0.2s ease;
+}
+
+.nav-link:hover,
+.nav-dropdown-button:hover,
+.nav-link.active,
+.nav-dropdown.active > .nav-dropdown-button {
+    color: var(--site-text) !important;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after,
+.nav-dropdown:hover > .nav-dropdown-button::after,
+.nav-dropdown.active > .nav-dropdown-button::after {
+    transform: scaleX(1);
+}
+
+
+/* =========================================================
+   DROPDOWN CONTAINER
+========================================================= */
+
+.nav-dropdown {
+    position: relative;
+
+    flex: 0 0 auto;
+
+    height: 100%;
+
+    display: flex;
+    align-items: stretch;
+}
+
+
+/* =========================================================
+   DROPDOWN ARROW
+========================================================= */
+
+.nav-arrow {
+    display: inline-block;
+
+    color: var(--site-muted);
+
+    font-size: 9px;
+    line-height: 1;
+
+    transition: transform 0.2s ease;
+}
+
+.nav-dropdown:hover .nav-arrow,
+.nav-dropdown.active .nav-arrow {
+    transform: rotate(180deg);
+}
+
+
+/* =========================================================
+   DESKTOP DROPDOWN MENU
+========================================================= */
+
+.nav-dropdown-menu {
+    position: absolute;
+
+    top: calc(100% + 8px);
+    left: 50%;
+
+    z-index: 5100;
+
+    width: max-content;
+    min-width: 190px;
+    max-width: 260px;
+
+    display: grid;
+
+    gap: 3px;
+
+    padding: 7px;
+
+    background: rgba(9, 9, 9, 0.98);
+
+    border: 1px solid var(--site-border);
+    border-radius: 10px;
+
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translate(-50%, -5px);
+
+    transition:
+        opacity 0.18s ease,
+        transform 0.18s ease,
+        visibility 0.18s ease;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+
+    transform: translate(-50%, 0);
+}
+
+.nav-dropdown-menu a {
+    display: block;
+
+    margin: 0;
+    padding: 11px 12px;
+
+    border-radius: 7px;
+
+    color: var(--site-muted) !important;
+
+    font-family: var(--site-font);
+    font-size: 11px;
+    font-weight: 900;
+    line-height: 1.2;
+
+    letter-spacing: 0.7px;
+
+    text-decoration: none !important;
+
+    white-space: nowrap;
+
+    transition:
+        background 0.18s ease,
+        color 0.18s ease;
+}
+
+.nav-dropdown-menu a:hover,
+.nav-dropdown-menu a.active {
+    color: var(--site-text) !important;
+
+    background: var(--site-accent-soft);
+}
+
+
+/* =========================================================
+   MOBILE MENU BUTTON
+========================================================= */
+
+.mobile-menu-button {
+    display: none;
+
+    flex: 0 0 auto;
+
+    width: 42px;
+    height: 42px;
+
+    margin: 0;
+    padding: 0;
+
+    border: 1px solid var(--site-border);
+    border-radius: 9px;
+
+    background: #0b0b0b;
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease;
+}
+
+.mobile-menu-button:hover {
+    background: #101010;
+
+    border-color: #303030;
+}
+
+.mobile-menu-button span {
+    display: block;
+
+    width: 18px;
+    height: 2px;
+
+    margin: 2px 0;
+
+    background: #ffffff;
+
+    border-radius: 2px;
+}
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+.mobile-menu {
+    position: fixed;
+
+    top: var(--site-nav-height);
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    z-index: 4999;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: calc(100vh - var(--site-nav-height));
+
+    margin: 0;
+    padding: 18px;
+
+    background: rgba(5, 5, 5, 0.98);
+
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(-8px);
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease,
+        visibility 0.2s ease;
+}
+
+.mobile-menu.open {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translateY(0);
+
+    pointer-events: auto;
+}
+
+
+/* =========================================================
+   MOBILE NAV HEADER
+========================================================= */
+
+.mobile-nav-header {
+    flex: 0 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+
+    padding: 4px 4px 16px;
+
+    color: var(--site-accent);
+
+    font-size: 13px;
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+}
+
+.mobile-nav-header button {
+    width: 40px;
+    height: 40px;
+
+    margin: 0;
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #ffffff;
+
+    font-size: 30px;
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   MOBILE NAV ITEMS
+========================================================= */
+
+.mobile-nav-link,
+.mobile-nav-section-button {
+    width: 100%;
+    min-height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin: 3px 0;
+    padding: 0 13px;
+
+    border: 1px solid transparent;
+    border-radius: 9px;
+
+    background: transparent;
+
+    color: var(--site-muted) !important;
+
+    font-family: var(--site-font) !important;
+    font-size: 12px !important;
+    font-weight: 900 !important;
+    line-height: 1 !important;
+
+    letter-spacing: 0.8px;
+
+    text-decoration: none !important;
+
+    cursor: pointer;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-section-button:hover {
+    color: #ffffff !important;
+
+    background: #0d0d0d;
+
+    border-color: var(--site-border);
+}
+
+
+/* =========================================================
+   MOBILE NAV SECTIONS
+========================================================= */
+
+.mobile-nav-section {
+    width: 100%;
+
+    flex: 0 0 auto;
+}
+
+.mobile-nav-submenu {
+    display: grid;
+
+    gap: 2px;
+
+    width: 100%;
+
+    max-height: 0;
+
+    overflow: hidden;
+
+    opacity: 0;
+
+    transition:
+        max-height 0.22s ease,
+        opacity 0.18s ease;
+}
+
+.mobile-nav-section.open .mobile-nav-submenu {
+    max-height: 260px;
+
+    opacity: 1;
+}
+
+
+/* =========================================================
+   MOBILE SUBMENU LINKS
+========================================================= */
+
+.mobile-nav-submenu a {
+    display: block;
+
+    width: calc(100% - 14px);
+
+    margin: 1px 0 1px 14px;
+    padding: 10px 12px;
+
+    border-left: 2px solid var(--site-border);
+
+    color: var(--site-muted) !important;
+
+    font-family: var(--site-font);
+    font-size: 11px;
+    font-weight: 800;
+    line-height: 1.2;
+
+    letter-spacing: 0.6px;
+
+    text-decoration: none !important;
+}
+
+.mobile-nav-submenu a:hover,
+.mobile-nav-submenu a.active {
+    color: #ffffff !important;
+
+    border-left-color: var(--site-accent);
+
+    background: rgba(240, 107, 104, 0.05);
+}
+
+
+/* =========================================================
+   MOBILE ARROWS
+========================================================= */
+
+.mobile-section-arrow {
+    display: inline-block;
+
+    color: var(--site-muted);
+
+    font-size: 10px;
+
+    transition: transform 0.2s ease;
+}
+
+.mobile-nav-section.open .mobile-section-arrow {
+    transform: rotate(180deg);
+}
+
+
+/* =========================================================
+   MOBILE SCROLL LOCK
+========================================================= */
+
+body.nav-locked {
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   TABLET / SMALL DESKTOP
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .site-nav {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    .nav-links {
+        gap: 18px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE BREAKPOINT
+========================================================= */
+
+@media (max-width: 900px) {
+
+    :root {
+        --site-nav-height: 60px;
+    }
+
+    .site-nav {
+        height: var(--site-nav-height);
+        min-height: var(--site-nav-height);
+
+        padding-left: 16px;
+        padding-right: 16px;
+
+        gap: 12px;
+    }
+
+    .nav-logo {
+        font-size: 16px !important;
+
+        letter-spacing: 2px !important;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .mobile-menu-button {
+        display: flex;
+    }
+
+    .mobile-menu {
+        top: var(--site-nav-height);
+
+        height: calc(100vh - var(--site-nav-height));
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .site-nav {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .nav-logo {
+        font-size: 14px !important;
+
+        letter-spacing: 1.5px !important;
+    }
+
+    .mobile-menu {
+        padding: 14px;
+    }
+}
+
+
+/* =========================================================
+   DESKTOP — MOBILE NAV OFF
+========================================================= */
+
+@media (min-width: 901px) {
+
+    .mobile-menu {
+        display: none !important;
+    }
+}
+
+
+/* =========================================================
+   SHARED PAGE HEADINGS
+========================================================= */
+
+.page-header h1,
+.home-section h2,
+.simulator-page h1,
+.nights-page h1,
+.unit-page h1 {
+    color: #ffffff;
+}

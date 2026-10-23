@@ -1,485 +1,165 @@
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>FIVE TD'S CENTRAL</title>
-    
-
-    <link rel="stylesheet" href="home.css">
-
-</head>
-
-
-<body>
-
-
-    <!-- =========================
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FIVE TD'S CENTRAL</title>
+<link href="home.css" rel="stylesheet"/>
+<link href="site.css" rel="stylesheet"/></head>
+<body><script src="site.js"></script>
+<!-- =========================
          BACKGROUND
     ========================== -->
-
-    <div class="background"></div>
-
-
-    <!-- =========================
+<div class="background"></div>
+<!-- =========================
      NAVIGATION
 ========================== -->
-
-<nav class="site-nav">
-
-    <a href="index.html" class="nav-logo">
-        FIVE TD'S CENTRAL
-    </a>
-
-
-    <!-- DESKTOP NAVIGATION -->
-
-    <div class="nav-links">
-
-        <a
-            href="index.html"
-            class="nav-link active"
-        >
-            HOME
-        </a>
-
-
-        <div class="nav-dropdown">
-
-            <button
-                class="nav-dropdown-button"
-                type="button"
-            >
-                DATABASE
-
-                <span class="nav-arrow">
-                    ▾
-                </span>
-            </button>
-
-
-            <div class="nav-dropdown-menu">
-
-                <a href="units.html">
-                    UNITS
-                </a>
-
-                <a href="nights.html">
-                    NIGHTS
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <div class="nav-dropdown">
-
-            <button
-                class="nav-dropdown-button"
-                type="button"
-            >
-                TOOLS
-
-                <span class="nav-arrow">
-                    ▾
-                </span>
-            </button>
-
-
-            <div class="nav-dropdown-menu">
-
-                <a href="stats-simulator.html">
-                    STATS SIMULATOR
-                </a>
-
-                <a href="raw-dps.html">
-                    RAW DPS CHART
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <a
-            href="https://www.youtube.com/redirect?event=video_description&redir_token=QUZZTVljRjBMLUZ4VW81MDRhVldveGlKSDNabXxBSTVJdTV0RlBYYWlUdHY1bG8zNTl6TTFuZFdXeExZMlVmblE2YmdPcC1waUNTVVhVLXhhOXcwamtreE1ZeFNUM0ZHdEl5bW43WVNiZWp2cVBJT2QwMk1nSnF3SUdDdUJGcmgz&q=https%3A%2F%2Fdiscord.gg%2F7UPX3MT9TS&v=yXcI9x8wP_Q"
-            class="nav-link"
-        >
-            DISCORD
-        </a>
-
-    </div>
-
-
-    <!-- MOBILE MENU BUTTON -->
-
-    <button
-        class="mobile-menu-button"
-        id="mobile-menu-button"
-        type="button"
-        aria-label="Open navigation"
-    >
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
-
-</nav>
-
 
 <!-- =========================
      MOBILE NAVIGATION
 ========================== -->
 
-<div
-    class="mobile-nav"
-    id="mobile-nav"
->
-
-
-    <div class="mobile-nav-header">
-
-        <span>
-            FIVE TD'S CENTRAL
-        </span>
-
-
-        <button
-            id="mobile-close-button"
-            type="button"
-            aria-label="Close navigation"
-        >
-            ×
-        </button>
-
-    </div>
-
-
-
-    <div class="mobile-nav-content">
-
-
-        <!-- HOME -->
-
-        <a
-            href="index.html"
-            class="mobile-nav-link"
-        >
-            HOME
-        </a>
-
-
-
-        <!-- DATABASE -->
-
-        <div class="mobile-nav-section">
-
-            <button
-                class="mobile-nav-dropdown"
-                type="button"
-            >
-
-                <span>
-                    DATABASE
-                </span>
-
-                <span class="mobile-nav-arrow">
-                    ▾
-                </span>
-
-            </button>
-
-
-            <div class="mobile-nav-options">
-
-                <a href="units.html">
-                    UNITS
-                </a>
-
-                <a href="nights.html">
-                    NIGHTS
-                </a>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- TOOLS -->
-
-        <div class="mobile-nav-section">
-
-            <button
-                class="mobile-nav-dropdown"
-                type="button"
-            >
-
-                <span>
-                    TOOLS
-                </span>
-
-                <span class="mobile-nav-arrow">
-                    ▾
-                </span>
-
-            </button>
-
-
-            <div class="mobile-nav-options">
-
-                <a href="stats-simulator.html">
-                    STATS SIMULATOR
-                </a>
-
-                <a href="raw-dps.html">
-                    RAW DPS CHART
-                </a>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- DISCORD -->
-
-        <a
-            href="https://www.youtube.com/redirect?event=video_description&redir_token=QUZZTVljRjBMLUZ4VW81MDRhVldveGlKSDNabXxBSTVJdTV0RlBYYWlUdHY1bG8zNTl6TTFuZFdXeExZMlVmblE2YmdPcC1waUNTVVhVLXhhOXcwamtreE1ZeFNUM0ZHdEl5bW43WVNiZWp2cVBJT2QwMk1nSnF3SUdDdUJGcmgz&q=https%3A%2F%2Fdiscord.gg%2F7UPX3MT9TS&v=yXcI9x8wP_Q"
-            class="mobile-nav-link"
-        >
-            DISCORD
-        </a>
-
-
-    </div>
-
-</div>
-
-
-
-    <!-- =========================
+<!-- =========================
          MAIN CONTENT
     ========================== -->
-
-    <main class="home-page">
-
-
-        <!-- =========================
+<main class="home-page">
+<!-- =========================
              HERO
         ========================== -->
-
-        <section class="hero">
-
-            <h1>
+<section class="hero">
+<h1>
                 FIVE TD'S CENTRAL
             </h1>
-
-            <p>
+<p>
                 THE PLACE TO KNOW EVERYTHING ABOUT FIVE TD'S
             </p>
-
-            <p>
-                V1.2.1
+<p>
+                V2.0.0 - Site Revamp + Tierlists
             </p>
-
-        </section>
-
-        <!-- =====================================================
+</section>
+<!-- =====================================================
      ROBLOX GAME
 ====================================================== -->
-
-<a
-    href="https://www.roblox.com/games/119232593159524/Five-TDs"
-    class="roblox-game-card"
-    target="_blank"
-    rel="noopener noreferrer"
->
-
-    <div class="roblox-game-image">
-        <img
-            src="images/fntd-game.png"
-            alt="Five Nights TD"
-        >
-    </div>
-
-    <div class="roblox-game-content">
-
-        <h2>
-            FIVE NIGHTS TD
-        </h2>
-
-        <div class="roblox-game-stats">
-
-    <div class="roblox-stat">
-        <span>VISITS</span>
-        <strong>949.3K+</strong>
-    </div>
-
+<a class="roblox-game-card" href="https://www.roblox.com/games/119232593159524/Five-TDs" rel="noopener noreferrer" target="_blank">
+<div class="roblox-game-image">
+<img alt="Five Nights TD" src="images/fntd-game.png"/>
 </div>
-
-    </div>
-
+<div class="roblox-game-content">
+<h2>
+            FIVE TD's
+        </h2>
+<div class="roblox-game-stats">
+<div class="roblox-stat">
+<span>VISITS</span>
+<strong>949.3K+</strong>
+</div>
+</div>
+</div>
 </a>
-
-
-
-        <!-- =========================
+<!-- =========================
              HOME OPTIONS
         ========================== -->
-
-        <section class="home-options">
-
-
-            <!-- =========================
+<section class="home-options">
+<!-- =========================
                  DATABASE
             ========================== -->
-
-            <div
-                class="home-section database-section"
-                data-section="database"
-            >
-
-                <button
-                    class="home-section-header"
-                    type="button"
-                >
-
-                    <div>
-
-                        <h2>
+<div class="home-section database-section" data-section="database">
+<button class="home-section-header" type="button">
+<div>
+<h2>
                             DATABASE
                         </h2>
-
-                        <p>
+<p>
                             Explore different data sections of Five TD's.
                         </p>
-
-                    </div>
-
-
-                    <span class="section-arrow">
+</div>
+<span class="section-arrow">
                         ▾
                     </span>
-
-                </button>
-
-
-                <div class="home-section-content">
-
-                    <a href="units.html">
+</button>
+<div class="home-section-content">
+<a href="units.html">
                         UNITS
                     </a>
-
-                    <a href="nights.html">
+<a href="nights.html">
                         NIGHTS
                     </a>
+</div>
+</div>
+<!-- =========================
+     META
+========================== -->
+<div class="home-section meta-section" data-section="meta">
+    <button class="home-section-header" type="button">
+        <div>
+            <h2>META</h2>
+            <p>
+                Find the best towers and current tier rankings.
+            </p>
+        </div>
 
-                </div>
+        <span class="section-arrow">
+            ▾
+        </span>
+    </button>
 
-            </div>
+    <div class="home-section-content">
+        <a href="tierlist.html">
+            TIERLIST
+        </a>
 
-
-
-            <!-- =========================
+        <a href="best-towers.html">
+            BEST TOWERS
+        </a>
+    </div>
+</div>
+<!-- =========================
                  TOOLS
             ========================== -->
-
-            <div
-                class="home-section tools-section"
-                data-section="tools"
-            >
-
-                <button
-                    class="home-section-header"
-                    type="button"
-                >
-
-                    <div>
-
-                        <h2>
+<div class="home-section tools-section" data-section="tools">
+<button class="home-section-header" type="button">
+<div>
+<h2>
                             TOOLS
                         </h2>
-
-                        <p>
+<p>
                             Useful tools for Five TD's.
                         </p>
-
-                    </div>
-
-
-                    <span class="section-arrow">
+</div>
+<span class="section-arrow">
                         ▾
                     </span>
-
-                </button>
-
-
-                <div class="home-section-content">
-
-                    <a href="stats-simulator.html">
+</button>
+<div class="home-section-content">
+<a href="stats-simulator.html">
                         STATS SIMULATOR
                     </a>
-
-                    <a href="raw-dps.html">
+<a href="raw-dps.html">
                         RAW DPS CHART
                     </a>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- =========================
+</div>
+</div>
+<!-- =========================
                  DISCORD
             ========================== -->
-
-            <a
-                href="https://www.youtube.com/redirect?event=video_description&redir_token=QUZZTVljRjBMLUZ4VW81MDRhVldveGlKSDNabXxBSTVJdTV0RlBYYWlUdHY1bG8zNTl6TTFuZFdXeExZMlVmblE2YmdPcC1waUNTVVhVLXhhOXcwamtreE1ZeFNUM0ZHdEl5bW43WVNiZWp2cVBJT2QwMk1nSnF3SUdDdUJGcmgz&q=https%3A%2F%2Fdiscord.gg%2F7UPX3MT9TS&v=yXcI9x8wP_Q"
-                class="home-section discord-section"
-            >
-
-                <div class="home-section-header">
-
-                    <div>
-
-                        <h2>
+<a class="home-section discord-section" href="https://www.youtube.com/redirect?event=video_description&amp;redir_token=QUZZTVljRjBMLUZ4VW81MDRhVldveGlKSDNabXxBSTVJdTV0RlBYYWlUdHY1bG8zNTl6TTFuZFdXeExZMlVmblE2YmdPcC1waUNTVVhVLXhhOXcwamtreE1ZeFNUM0ZHdEl5bW43WVNiZWp2cVBJT2QwMk1nSnF3SUdDdUJGcmgz&amp;q=https%3A%2F%2Fdiscord.gg%2F7UPX3MT9TS&amp;v=yXcI9x8wP_Q">
+<div class="home-section-header">
+<div>
+<h2>
                             DISCORD
                         </h2>
-
-                        <p>
+<p>
                             Connect with the Five TD's community.
                         </p>
-
-                    </div>
-
-
-                    <span class="discord-arrow">
+</div>
+<span class="discord-arrow">
                         →
                     </span>
-
-                </div>
-
-            </a>
-
-
-        </section>
-
-    </main>
-
-
-
-    <script src="home.js"></script>
-
+</div>
+</a>
+</section>
+</main>
+<script src="home.js"></script>
 </body>
-
 </html>
