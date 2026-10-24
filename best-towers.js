@@ -124,6 +124,84 @@ const BEST_UNIT_RANKINGS = {
 
 
 /* =========================================
+   BEST UNIT ENCHANT RECOMMENDATIONS
+========================================= */
+
+const BEST_UNIT_ENCHANTS = {
+    "Crying Child": {
+        best: "Eco",
+        alternative: "Hunt"
+    },
+
+    "Mangle": {
+        best: "Eco",
+        alternative: "Hunt"
+    },
+
+    "Balloon Boy": {
+        best: "Eco",
+        alternative: "Hunt"
+    },
+
+    "Bonnie": {
+        best: "Soul",
+        alternative: "Hunt"
+    },
+
+    "Purple Guy": {
+        best: "Soul",
+        alternative: "Hunt"
+    },
+
+    "Freddy": {
+        best: "Soul",
+        alternative: "Hunt"
+    },
+
+    "Shadow Freddy": {
+        best: "Soul",
+        alternative: "Hunt"
+    },
+
+    "Golden Freddy": {
+        best: "Soul",
+        alternative: "Hunt"
+    },
+
+    "The Marionette": {
+        best: "Soul",
+        alternative: "Hunt"
+    },
+
+    "Shadow Bonnie": {
+        best: "Soul",
+        alternative: "Hunt"
+    },
+
+    "Chupcake": {
+        best: "Soul",
+        alternative: "Hook"
+    },
+
+    "Bear5": {
+        best: "Soul",
+        alternative: "Hunt"
+    }
+};
+
+const BEST_ENCHANT_COLORS = {
+    Battery: "#B4FFAA",
+    Hunt: "#AAAAFF",
+    Hook: "#FF8787",
+    Eco: "#FFFA96",
+    Haywire: "#8B5CF6",
+    Springlock: "#98FFCC",
+    Soul: "#14B8A6"
+};
+
+
+
+/* =========================================
    FIND UNIT
 ========================================= */
 
@@ -193,97 +271,167 @@ function moveBestWarning(event) {
    CREATE UNIT CARD
 ========================================= */
 
+
 function createBestUnitCard(unit, rank) {
 
     const card = document.createElement("div");
-
     card.className = "best-unit-card";
 
     if (rank === 1) {
         card.classList.add("featured");
     }
 
-
     /* Rank */
 
     const rankNumber = document.createElement("div");
-
     rankNumber.className = "best-rank-number";
-
     rankNumber.textContent = `#${rank}`;
 
+    /* Enchant recommendations */
+
+    const recommendations =
+        BEST_UNIT_ENCHANTS[unit.name] || null;
 
     /* Image wrapper */
 
     const imageWrap = document.createElement("div");
-
     imageWrap.className = "best-unit-image-wrap";
 
+    if (recommendations) {
+
+        const bestEnchant = recommendations.best;
+
+        const enchantColor =
+            BEST_ENCHANT_COLORS[bestEnchant];
+
+        if (enchantColor) {
+            imageWrap.classList.add("has-best-enchant");
+
+            imageWrap.classList.add(
+                "best-enchant-" + bestEnchant.toLowerCase()
+            );
+
+            imageWrap.style.setProperty(
+                "--best-enchant-color",
+                enchantColor
+            );
+        }
+    }
 
     /* Image */
 
     const image = document.createElement("img");
-
     image.className = "best-unit-image";
-
     image.src = unit.image;
-
     image.alt = unit.name;
-
     image.draggable = false;
-
+    image.loading = "lazy";
 
     /* Name */
 
     const name = document.createElement("div");
-
     name.className = "best-unit-name";
-
     name.textContent = unit.name;
-
 
     imageWrap.appendChild(image);
     imageWrap.appendChild(name);
 
-
-    /* =====================================
-       WARNING
-    ===================================== */
+    /* Warning */
 
     if (unit.warn) {
 
         const warning = document.createElement("div");
-
         warning.className = "best-unit-warning";
-
         warning.textContent = "⚠";
+        warning.tabIndex = 0;
+        warning.setAttribute(
+            "aria-label",
+            "Data warning for " + unit.name
+        );
 
         imageWrap.appendChild(warning);
-
 
         warning.addEventListener("mouseenter", event => {
             showBestWarning(event, unit.warn);
         });
 
-
-        warning.addEventListener("mouseleave", () => {
-            hideBestWarning();
-        });
-
+        warning.addEventListener("mouseleave", hideBestWarning);
 
         warning.addEventListener("mousemove", event => {
             moveBestWarning(event);
         });
 
-    }
+        warning.addEventListener("focus", () => {
+            warningTooltip.textContent = unit.warn;
+            warningTooltip.classList.add("show");
+            const rect = warning.getBoundingClientRect();
+            warningTooltip.style.left = `${rect.left}px`;
+            warningTooltip.style.top = `${rect.bottom + 8}px`;
+        });
 
+        warning.addEventListener("blur", hideBestWarning);
+    }
 
     card.appendChild(rankNumber);
     card.appendChild(imageWrap);
 
+    /* Enchant information */
+
+    if (recommendations) {
+
+        const enchantInfo = document.createElement("div");
+        enchantInfo.className = "best-unit-enchants";
+
+        function createEnchantLine(labelText, enchantName, isBest) {
+
+            const line = document.createElement("div");
+            line.className = "best-enchant-line";
+
+            const label = document.createElement("span");
+            label.className = "best-enchant-label";
+            label.textContent = labelText;
+
+            const value = document.createElement("span");
+            value.className = "best-enchant-value";
+
+            if (isBest) {
+                value.classList.add("primary");
+            }
+
+            value.classList.add(
+                "best-enchant-" + enchantName.toLowerCase()
+            );
+
+            value.textContent = enchantName.toUpperCase();
+
+            line.appendChild(label);
+            line.appendChild(value);
+
+            return line;
+        }
+
+        enchantInfo.appendChild(
+            createEnchantLine(
+                "BEST ENCHANT",
+                recommendations.best,
+                true
+            )
+        );
+
+        enchantInfo.appendChild(
+            createEnchantLine(
+                "ALTERNATIVE",
+                recommendations.alternative,
+                false
+            )
+        );
+
+        card.appendChild(enchantInfo);
+    }
 
     return card;
 }
+
 
 
 /* =========================================

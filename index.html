@@ -144,7 +144,11 @@
 <!-- =========================
                  DISCORD
             ========================== -->
-<a class="home-section discord-section" href="https://www.youtube.com/redirect?event=video_description&amp;redir_token=QUZZTVljRjBMLUZ4VW81MDRhVldveGlKSDNabXxBSTVJdTV0RlBYYWlUdHY1bG8zNTl6TTFuZFdXeExZMlVmblE2YmdPcC1waUNTVVhVLXhhOXcwamtreE1ZeFNUM0ZHdEl5bW43WVNiZWp2cVBJT2QwMk1nSnF3SUdDdUJGcmgz&amp;q=https%3A%2F%2Fdiscord.gg%2F7UPX3MT9TS&amp;v=yXcI9x8wP_Q">
+
+<a class="home-section discord-section"
+   href="https://discord.gg/7UPX3MT9TS"
+   target="_blank"
+   rel="noopener noreferrer">
 <div class="home-section-header">
 <div>
 <h2>
@@ -160,6 +164,7 @@
 </div>
 </a>
 
+
 <!-- =========================
      UPDATES
 ========================== -->
@@ -174,15 +179,35 @@
             </p>
         </div>
 
-        <span class="discord-arrow">
-            →
-        </span>
+        <span class="discord-arrow">→</span>
+    </div>
+</a>
+
+<!-- =========================
+     FAQ & SUGGESTIONS
+========================== -->
+
+<a class="home-section faq-section" href="faq.html">
+    <div class="home-section-header">
+        <div>
+            <h2>FAQ & SUGGESTIONS</h2>
+            <p>
+                Find answers to common questions,
+                report issues, and suggest new features.
+            </p>
+        </div>
+
+        <span class="discord-arrow">→</span>
     </div>
 </a>
 
 </section>
 </main>
+
 <script src="home.js"></script>
+
+
+
 
 <!-- =========================================
      HOME PAGE FOOTER
@@ -225,6 +250,7 @@
             <a href="stats-simulator.html">STATS SIMULATOR</a>
             <a href="raw-dps.html">RAW DPS CHART</a>
             <a href="updates.html">UPDATES</a>
+            <a href="faq.html">FAQ & SUGGESTIONS</a>
         </div>
 
         <!-- SOCIAL MEDIA -->
@@ -258,8 +284,68 @@
     Game created by Haystack13YT, Bonnietrap127, and the Five TD's development team.
     Unofficial fan website.
 </span>
-        <span>V2.0.5 - Tierlists + META + Updates</span>
+        <button
+    type="button"
+    class="footer-version-button"
+    id="open-version-history"
+    aria-haspopup="dialog"
+    aria-controls="version-history-modal"
+>
+    V2.2.0 - ENCHANT RECOMMENDATIONS + TEAM IMPROVEMENTS
+</button>
     </div>
 </footer>
+
+<!-- =========================================
+     WEBSITE VERSION HISTORY MODAL
+========================================= -->
+
+<div
+    class="version-history-modal"
+    id="version-history-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="version-history-title"
+    aria-hidden="true"
+>
+    <div class="version-history-window">
+
+        <div class="version-history-header">
+            <div>
+                <h2 id="version-history-title">
+                    WEBSITE VERSION HISTORY
+                </h2>
+                <p>Explore the development of Five TD's Central.</p>
+            </div>
+
+            <button
+                type="button"
+                class="version-history-close"
+                id="close-version-history"
+                aria-label="Close version history"
+            >
+                &times;
+            </button>
+        </div>
+
+        <div class="version-history-layout">
+
+            <nav
+                class="version-history-sidebar"
+                id="version-history-sidebar"
+                aria-label="Website versions"
+            ></nav>
+
+            <div
+                class="version-history-content"
+                id="version-history-content"
+                aria-live="polite"
+            ></div>
+
+        </div>
+
+    </div>
+</div>
+
 </body>
 </html>

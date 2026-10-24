@@ -190,8 +190,10 @@
    HOME SECTIONS
 ========================================================= */
 
+
 .home-section {
     width: 100%;
+    box-sizing: border-box;
 
     background: rgba(10, 10, 10, 0.88);
     border: 1px solid #202020;
@@ -203,6 +205,7 @@
         background 0.2s ease,
         border-color 0.2s ease;
 }
+
 
 
 /* =========================================================
@@ -404,6 +407,28 @@
     transform: translateX(5px);
     color: #facc15;
 }
+
+
+/* =========================================================
+   FAQ & SUGGESTIONS HOME CARD
+========================================================= */
+
+.faq-section {
+    display: block;
+    cursor: pointer;
+    border-left: 4px solid #22d3ee;
+}
+
+.faq-section:hover {
+    background: rgba(34, 211, 238, 0.04);
+}
+
+.faq-section:hover .discord-arrow {
+    transform: translateX(5px);
+    color: #22d3ee;
+}
+
+
 
 
 /* =========================================================

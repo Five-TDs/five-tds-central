@@ -756,12 +756,13 @@ body.nav-locked {
    DESKTOP — MOBILE NAV OFF
 ========================================================= */
 
-@media (min-width: 901px) {
 
+@media (min-width: 1201px) {
     .mobile-menu {
         display: none !important;
     }
 }
+
 
 
 /* =========================================================
@@ -844,4 +845,412 @@ body.nav-locked {
         font-size: 12px;
     }
 
+}
+
+
+/* =========================================================
+   NAVIGATION RESPONSIVE FIX
+   Prevent desktop links and mobile menu overlapping
+========================================================= */
+
+/* Desktop navigation */
+@media (min-width: 1201px) {
+    .site-nav .nav-links {
+        display: flex;
+    }
+
+    .site-nav .mobile-menu-button {
+        display: none;
+    }
+}
+
+/* Tablet and mobile navigation */
+@media (max-width: 1200px) {
+    .site-nav .nav-links {
+        display: none !important;
+    }
+
+    .site-nav .mobile-menu-button {
+        display: flex;
+    }
+}
+
+/* Prevent the logo from overflowing */
+.site-nav .nav-logo {
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* Prevent desktop navigation text from wrapping */
+.site-nav .nav-link,
+.site-nav .nav-dropdown-button {
+    white-space: nowrap;
+}
+
+
+
+/* =========================================
+   FOOTER VERSION BUTTON
+========================================= */
+
+.footer-version-button {
+    appearance: none;
+    background: none;
+    border: none;
+    padding: 0;
+
+    color: #888;
+    font: inherit;
+    font-size: inherit;
+
+    cursor: pointer;
+    text-align: left;
+
+    transition: color 0.2s ease;
+}
+
+.footer-version-button:hover,
+.footer-version-button:focus-visible {
+    color: #f06b68;
+}
+
+.footer-version-button:focus-visible {
+    outline: 2px solid #f06b68;
+    outline-offset: 5px;
+    border-radius: 2px;
+}
+
+
+/* =========================================
+   VERSION HISTORY MODAL
+========================================= */
+
+.version-history-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100000;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+}
+
+.version-history-modal.open {
+    display: flex;
+}
+
+.version-history-window {
+    display: flex;
+    flex-direction: column;
+
+    width: min(100%, 1000px);
+    max-height: min(85vh, 760px);
+
+    overflow: hidden;
+
+    border: 1px solid #303030;
+    border-radius: 14px;
+
+    background: #0d0d0d;
+
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.65);
+}
+
+
+/* =========================================
+   MODAL HEADER
+========================================= */
+
+.version-history-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 20px;
+    padding: 25px 30px;
+
+    border-bottom: 1px solid #292929;
+}
+
+.version-history-header h2 {
+    margin: 0;
+
+    color: #fff;
+    font-size: 23px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.version-history-header p {
+    margin: 7px 0 0;
+
+    color: #777;
+    font-size: 12px;
+}
+
+.version-history-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 34px;
+    height: 34px;
+
+    border: 1px solid #333;
+    border-radius: 7px;
+
+    background: #171717;
+    color: #aaa;
+
+    font-size: 25px;
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.version-history-close:hover {
+    background: #f06b68;
+    border-color: #f06b68;
+    color: #fff;
+}
+
+
+/* =========================================
+   MODAL LAYOUT
+========================================= */
+
+.version-history-layout {
+    display: grid;
+    grid-template-columns: 290px minmax(0, 1fr);
+
+    min-height: 0;
+    flex: 1;
+}
+
+
+/* =========================================
+   LEFT SIDEBAR
+========================================= */
+
+.version-history-sidebar {
+    display: flex;
+    flex-direction: column;
+
+    gap: 7px;
+    padding: 20px 14px;
+
+    overflow-y: auto;
+
+    border-right: 1px solid #292929;
+
+    background: #101010;
+}
+
+.version-history-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 5px;
+
+    width: 100%;
+    padding: 13px 15px;
+
+    border: 1px solid transparent;
+    border-radius: 8px;
+
+    background: transparent;
+    color: #aaa;
+
+    text-align: left;
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.version-history-tab:hover {
+    background: #1b1b1b;
+    color: #fff;
+}
+
+.version-history-tab.active {
+    background: rgba(240, 107, 104, 0.09);
+    border-color: rgba(240, 107, 104, 0.45);
+    color: #fff;
+}
+
+.version-history-tab-number {
+    color: #f06b68;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.version-history-tab-title {
+    color: inherit;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+
+/* =========================================
+   RIGHT CONTENT
+========================================= */
+
+.version-history-content {
+    min-width: 0;
+    padding: 30px 35px;
+
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+.version-history-version {
+    display: inline-block;
+
+    margin-bottom: 12px;
+
+    color: #f06b68;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.version-history-content h3 {
+    margin: 0 0 12px;
+
+    color: #fff;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.version-history-description {
+    margin: 0 0 25px;
+
+    color: #999;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.version-history-group {
+    margin-bottom: 26px;
+}
+
+.version-history-group h4 {
+    margin: 0 0 12px;
+    padding-bottom: 9px;
+
+    border-bottom: 1px solid #292929;
+
+    color: #f06b68;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.version-history-group ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.version-history-group li {
+    margin-bottom: 10px;
+
+    color: #bbb;
+    font-size: 12px;
+    line-height: 1.65;
+}
+
+.version-history-group li::marker {
+    color: #f06b68;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .version-history-modal {
+        padding: 12px;
+    }
+
+    .version-history-window {
+        max-height: 90dvh;
+    }
+
+    .version-history-header {
+        padding: 18px;
+    }
+
+    .version-history-header h2 {
+        font-size: 17px;
+    }
+
+    .version-history-header p {
+        font-size: 11px;
+    }
+
+    .version-history-layout {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto minmax(0, 1fr);
+    }
+
+    .version-history-sidebar {
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        padding: 12px;
+
+        border-right: none;
+        border-bottom: 1px solid #292929;
+    }
+
+    .version-history-tab {
+        flex: 0 0 155px;
+        min-height: 65px;
+
+        padding: 10px;
+    }
+
+    .version-history-content {
+        padding: 22px 18px;
+    }
+
+    .version-history-content h3 {
+        font-size: 21px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .version-history-tab,
+    .version-history-close,
+    .footer-version-button {
+        transition: none;
+    }
+}
+
+/* =========================================
+   VERSION HISTORY RELEASE DATES
+========================================= */
+
+.version-history-date {
+    margin: -4px 0 18px;
+
+    color: #777;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
 }

@@ -485,3 +485,349 @@
         font-size: 12px;
     }
 }
+
+
+
+/* =========================================
+   BEST UNITS — ENCHANT COLORS
+========================================= */
+
+.best-enchant-battery {
+    --best-enchant-color: #B4FFAA;
+}
+
+.best-enchant-hunt {
+    --best-enchant-color: #AAAAFF;
+}
+
+.best-enchant-hook {
+    --best-enchant-color: #FF8787;
+}
+
+.best-enchant-eco {
+    --best-enchant-color: #FFFA96;
+}
+
+.best-enchant-haywire {
+    --best-enchant-color: #8B5CF6;
+
+    --best-enchant-gradient: linear-gradient(
+        90deg,
+        #8B5CF6 0%,
+        #8B5CF6 25%,
+        #98FFCC 75%,
+        #98FFCC 100%
+    );
+}
+
+.best-enchant-springlock {
+    --best-enchant-color: #98FFCC;
+
+    --best-enchant-gradient: linear-gradient(
+        90deg,
+        #98FFCC 0%,
+        #98FFCC 25%,
+        #FF3B3B 75%,
+        #FF3B3B 100%
+    );
+}
+
+.best-enchant-soul {
+    --best-enchant-color: #14B8A6;
+
+    --best-enchant-gradient: linear-gradient(
+        90deg,
+        #14B8A6 0%,
+        #14B8A6 25%,
+        #FF69B4 75%,
+        #FF69B4 100%
+    );
+}
+
+
+/* =========================================
+   SHARED ANIMATED GRADIENT POSITION
+========================================= */
+
+/*
+   Register one animatable CSS variable.
+
+   The card animates this variable.
+   Both the image border and enchant text
+   use the same inherited value.
+
+   This keeps them perfectly synchronized.
+*/
+
+@property --best-gradient-position {
+    syntax: "<percentage>";
+    inherits: true;
+    initial-value: 0%;
+}
+
+
+/* =========================================
+   ENCHANT ANIMATION — CARD LEVEL
+========================================= */
+
+/* Haywire + Springlock */
+
+.best-unit-card:has(
+    .best-unit-image-wrap.best-enchant-haywire,
+    .best-unit-image-wrap.best-enchant-springlock
+) {
+    animation:
+        bestEnchantGradientSync
+        2.5s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+/* Soul */
+
+.best-unit-card:has(
+    .best-unit-image-wrap.best-enchant-soul
+) {
+    animation:
+        bestEnchantGradientSync
+        1.2s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+
+/* =========================================
+   SHARED GRADIENT ANIMATION
+========================================= */
+
+@keyframes bestEnchantGradientSync {
+
+    from {
+        --best-gradient-position: 0%;
+    }
+
+    to {
+        --best-gradient-position: 100%;
+    }
+
+}
+
+
+/* =========================================
+   SOLID ENCHANT IMAGE BORDERS
+========================================= */
+
+.best-unit-card .best-unit-image-wrap.has-best-enchant,
+.best-unit-card:hover .best-unit-image-wrap.has-best-enchant,
+.best-unit-card.featured .best-unit-image-wrap.has-best-enchant,
+.best-unit-card.featured:hover .best-unit-image-wrap.has-best-enchant {
+    border: 2px solid var(--best-enchant-color);
+}
+
+
+/* =========================================
+   ANIMATED SPECIAL ENCHANT BORDERS
+========================================= */
+
+/*
+   Applies to:
+   - Haywire
+   - Springlock
+   - Soul
+
+   Works on:
+   - Normal cards
+   - Featured cards
+   - Hovered cards
+   - Mobile cards
+*/
+
+.best-unit-card .best-unit-image-wrap.has-best-enchant:is(
+    .best-enchant-haywire,
+    .best-enchant-springlock,
+    .best-enchant-soul
+),
+.best-unit-card:hover .best-unit-image-wrap.has-best-enchant:is(
+    .best-enchant-haywire,
+    .best-enchant-springlock,
+    .best-enchant-soul
+),
+.best-unit-card.featured .best-unit-image-wrap.has-best-enchant:is(
+    .best-enchant-haywire,
+    .best-enchant-springlock,
+    .best-enchant-soul
+),
+.best-unit-card.featured:hover .best-unit-image-wrap.has-best-enchant:is(
+    .best-enchant-haywire,
+    .best-enchant-springlock,
+    .best-enchant-soul
+) {
+    border: 2px solid transparent;
+
+    background:
+        linear-gradient(
+            #090909,
+            #090909
+        ) padding-box,
+
+        var(--best-enchant-gradient) border-box;
+
+    background-size:
+        100% 100%,
+        300% 100%;
+
+    background-position:
+        center,
+        var(--best-gradient-position) 50%;
+
+    /* Animation is controlled by the parent card */
+    animation: none;
+}
+
+
+/* =========================================
+   ENCHANT RECOMMENDATIONS
+========================================= */
+
+.best-unit-enchants {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 7px;
+
+    margin-top: 13px;
+}
+
+.best-enchant-line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 3px;
+}
+
+.best-enchant-label {
+    color: #777777;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+.best-enchant-value {
+    color: var(--best-enchant-color);
+
+    font-size: 12px;
+    font-weight: 900;
+
+    letter-spacing: 0.5px;
+}
+
+.best-enchant-value.primary {
+    font-size: 13px;
+}
+
+
+/* =========================================
+   SPECIAL ENCHANT TEXT GRADIENTS
+========================================= */
+
+/*
+   Uses the exact same animated position
+   as the border.
+
+   No separate animation is applied.
+*/
+
+.best-enchant-value:is(
+    .best-enchant-haywire,
+    .best-enchant-springlock,
+    .best-enchant-soul
+) {
+    color: transparent;
+
+    -webkit-text-fill-color: transparent;
+
+    background-image:
+        var(--best-enchant-gradient);
+
+    background-size:
+        300% 100%;
+
+    background-position:
+        var(--best-gradient-position) 50%;
+
+    background-clip: text;
+    -webkit-background-clip: text;
+
+    animation: none;
+}
+
+
+/* =========================================
+   HOVER BEHAVIOR
+========================================= */
+
+/*
+   Preserve existing hover movement,
+   shadows, and enchant borders.
+
+   The gradient animation stays active.
+*/
+
+.best-unit-card:hover .best-unit-image-wrap.has-best-enchant {
+    transform: translateY(-5px);
+}
+
+.best-unit-card.featured:hover .best-unit-image-wrap.has-best-enchant {
+    box-shadow:
+        0 12px 35px rgba(240, 107, 104, 0.16);
+}
+
+
+/* =========================================
+   MOBILE ENCHANT LABELS
+========================================= */
+
+@media (max-width: 600px) {
+
+    .best-unit-enchants {
+        margin-top: 10px;
+        gap: 6px;
+    }
+
+    .best-enchant-label {
+        font-size: 8px;
+        letter-spacing: 0.5px;
+    }
+
+    .best-enchant-value {
+        font-size: 11px;
+    }
+
+    .best-enchant-value.primary {
+        font-size: 12px;
+    }
+
+}
+
+
+/* =========================================
+   REDUCED MOTION ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .best-unit-card:has(
+        .best-unit-image-wrap.best-enchant-haywire,
+        .best-unit-image-wrap.best-enchant-springlock,
+        .best-unit-image-wrap.best-enchant-soul
+    ) {
+        animation: none;
+    }
+
+}

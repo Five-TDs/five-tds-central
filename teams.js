@@ -1,8 +1,23 @@
 /* =========================================
+   TEAM ENCHANT COLORS
+========================================= */
+
+const TEAM_ENCHANT_COLORS = {
+    Battery: "#65c7ff",
+    Hunt: "#79d66d",
+    Hook: "#ff9860",
+    Eco: "#f5ce55",
+    Haywire: "#f06b68",
+    Springlock: "#b18cff",
+    Soul: "#e879f9"
+};
+
+/* =========================================
    TEAMS PAGE
 ========================================= */
 
 const TEAM_COMPOSITIONS = [
+
 
     {
         title: "BEST SOLO TEAM",
@@ -18,12 +33,28 @@ const TEAM_COMPOSITIONS = [
             "Chupcake"
         ],
 
+        enchants: [
+            "Eco",
+            "Soul",
+            "Soul",
+            "Soul",
+            "Soul"
+        ],
+
         substitutes: [
             "Mangle",
             "Bear5",
             "Shadow Freddy",
             "Freddy",
             "Purple Guy"
+        ],
+
+        substituteEnchants: [
+            "Eco",
+            "Eco",
+            "Soul",
+            "Soul",
+            "Soul"
         ],
 
         explanation:
@@ -47,12 +78,28 @@ const TEAM_COMPOSITIONS = [
             "Bear5"
         ],
 
+        enchants: [
+            "Soul",
+            "Soul",
+            "Soul",
+            "Soul",
+            "Soul"
+        ],
+
         substitutes: [
             "Shadow Freddy",
             "Old Man Consequences",
             "Freddy",
             "Purple Guy",
             "Withered Freddy"
+        ],
+
+        substituteEnchants: [
+            "Soul",
+            "Soul",
+            "Soul",
+            "Soul",
+            "Soul"
         ],
 
         explanation:
@@ -74,12 +121,28 @@ const TEAM_COMPOSITIONS = [
             "Endo 02"
         ],
 
+        enchants: [
+            "Soul",
+            "Soul",
+            "Soul",
+            "Soul",
+            "Battery"
+        ],
+
         substitutes: [
             "Bear5",
             "Old Man Consequences",
             "Withered Foxy",
             "Purple Guy",
             "Withered Chica"
+        ],
+
+        substituteEnchants: [
+            "Soul",
+            "Soul",
+            "Soul",
+            "Soul",
+            "Battery"
         ],
 
         explanation:
@@ -101,12 +164,28 @@ const TEAM_COMPOSITIONS = [
             "The Marionette"
         ],
 
+        enchants: [
+            "Soul",
+            "Soul",
+            "Soul",
+            "Soul",
+            "Soul"
+        ],
+
         substitutes: [
             "Shadow Freddy",
             "Purple Guy",
             "Foxy",
             "Old Man Consequences",
             "Golden Freddy"
+        ],
+
+        substituteEnchants: [
+            "Soul",
+            "Soul",
+            "Soul",
+            "Soul",
+            "Soul"
         ],
 
         explanation:
@@ -129,12 +208,28 @@ const TEAM_COMPOSITIONS = [
             "Golden Freddy"
         ],
 
+        enchants: [
+            "Eco",
+            "Eco",
+            "Soul",
+            "Soul",
+            "Soul"
+        ],
+
         substitutes: [
             "Balloon Boy",
             "Chica",
             "Withered Foxy",
             "Bear5",
             "The Marionette"
+        ],
+
+        substituteEnchants: [
+            "Eco",
+            "Eco",
+            "Soul",
+            "Eco",
+            "Soul"
         ],
 
         explanation:
@@ -184,7 +279,7 @@ function hideTeamWarning() {
    CREATE UNIT CARD
 ========================================= */
 
-function createTeamUnitCard(unit, isSubstitute = false) {
+function createTeamUnitCard(unit, isSubstitute = false, enchant = null) {
 
     const card = document.createElement("div");
     card.className = "team-unit-card";
@@ -195,6 +290,31 @@ function createTeamUnitCard(unit, isSubstitute = false) {
 
     const imageWrap = document.createElement("div");
     imageWrap.className = "team-unit-image-wrap";
+
+    
+    /* RECOMMENDED ENCHANT */
+
+    const enchantColor = TEAM_ENCHANT_COLORS[enchant];
+
+    if (enchantColor) {
+        imageWrap.style.setProperty(
+            "--team-enchant-color",
+            enchantColor
+        );
+
+        imageWrap.classList.add("has-enchant");
+
+        imageWrap.classList.add(
+    "team-enchant-" + enchant.toLowerCase()
+);
+
+        const enchantLabel = document.createElement("div");
+        enchantLabel.className = "team-unit-enchant";
+        enchantLabel.textContent = enchant.toUpperCase();
+
+        imageWrap.appendChild(enchantLabel);
+    }
+
 
     const image = document.createElement("img");
     image.className = "team-unit-image";
@@ -248,7 +368,7 @@ function createTeamUnitCard(unit, isSubstitute = false) {
    CREATE UNIT ROW
 ========================================= */
 
-function createTeamUnitRow(unitNames, isSubstitute = false) {
+function createTeamUnitRow(unitNames, isSubstitute = false, enchantNames = []) {
 
     const row = document.createElement("div");
 
@@ -256,7 +376,7 @@ function createTeamUnitRow(unitNames, isSubstitute = false) {
         ? "team-units team-substitute-units"
         : "team-units";
 
-    unitNames.forEach(unitName => {
+    unitNames.forEach((unitName, index) => {
 
         const unit = getTeamUnitByName(unitName);
 
@@ -265,9 +385,15 @@ function createTeamUnitRow(unitNames, isSubstitute = false) {
             return;
         }
 
-        row.appendChild(
-            createTeamUnitCard(unit, isSubstitute)
-        );
+        
+row.appendChild(
+    createTeamUnitCard(
+        unit,
+        isSubstitute,
+        enchantNames[index] || null
+    )
+);
+
 
     });
 
@@ -301,7 +427,11 @@ function createTeamSection(team) {
 
     /* MAIN TEAM */
 
-    const mainRow = createTeamUnitRow(team.units);
+    const mainRow = createTeamUnitRow(
+    team.units,
+    false,
+    team.enchants || []
+);
 
     /* SUBSTITUTES */
 
@@ -317,9 +447,10 @@ function createTeamSection(team) {
         "Each substitute corresponds to the main unit directly above it.";
 
     const substituteRow = createTeamUnitRow(
-        team.substitutes,
-        true
-    );
+    team.substitutes,
+    true,
+    team.substituteEnchants || []
+);
 
     substituteSection.appendChild(substituteTitle);
     substituteSection.appendChild(substituteDescription);
