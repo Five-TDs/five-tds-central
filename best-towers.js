@@ -39,8 +39,8 @@ const BEST_UNIT_RANKINGS = {
         description: "Units that can carry you through the early waves",
 
         units: [
-            "Crying Child",
             "Mangle",
+            "Crying Child",
             "Bonnie"
         ]
     },
@@ -54,9 +54,9 @@ const BEST_UNIT_RANKINGS = {
         description: "Strong units for building into the middle of a run",
 
         units: [
-            "Golden Freddy",
-            "Shadow Bonnie",
-            "Purple Guy"
+            "Purple Guy",
+            "Freddy",
+            "Shadow Freddy"
         ]
     },
 
@@ -69,7 +69,7 @@ const BEST_UNIT_RANKINGS = {
         description: "Powerful units for pushing deeper into a run",
 
         units: [
-            "Chupcake",
+            "Golden Freddy",
             "The Marionette",
             "Shadow Bonnie"
         ]

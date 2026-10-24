@@ -24,6 +24,7 @@
                 <div class="nav-dropdown-menu">
                     <a href="tierlist.html" data-nav="tierlist">TIERLIST</a>
                     <a href="best-towers.html" data-nav="best-towers">BEST TOWERS</a>
+                    <a href="teams.html" data-nav="teams">TEAMS</a>
                 </div>
             </div>
 
@@ -36,7 +37,8 @@
             </div>
 
             <a href="${DISCORD_URL}" class="nav-link" target="_blank" rel="noopener" data-nav="discord">DISCORD</a>
-        </div>
+<a href="updates.html" class="nav-link" data-nav="updates">UPDATES</a>
+            </div>
         <button id="mobile-menu-button" class="mobile-menu-button" type="button" aria-label="Open navigation" aria-expanded="false">
             <span></span><span></span><span></span>
         </button>
@@ -69,6 +71,7 @@
             <div class="mobile-nav-submenu">
                 <a href="tierlist.html" data-nav="tierlist">TIERLIST</a>
                 <a href="best-towers.html" data-nav="best-towers">BEST TOWERS</a>
+                <a href="teams.html" data-nav="teams">TEAMS</a>
             </div>
         </div>
 
@@ -83,13 +86,18 @@
         </div>
 
         <a href="${DISCORD_URL}" class="mobile-nav-link" target="_blank" rel="noopener" data-nav="discord">DISCORD</a>
+<a href="updates.html" class="mobile-nav-link" data-nav="updates">UPDATES</a>
     `;
 
     document.body.prepend(mobile);
     document.body.prepend(nav);
 
     const path = location.pathname.split("/").pop().toLowerCase() || "index.html";
-    const active = path.replace(/\.html$/, "").replace(/^unit$/, "units");
+
+const active = path
+    .replace(/\.html$/, "")
+    .replace(/^index$/, "home")
+    .replace(/^unit$/, "units");
     document.querySelectorAll(`[data-nav="${active}"]`).forEach(el => el.classList.add("active"));
     const activeEl = document.querySelector(`[data-nav="${active}"]`);
     if (activeEl) {

@@ -10,12 +10,12 @@
 
 const TIER_DESCRIPTIONS = {
 
-    S: "Amazing",
-    A: "Great",
-    B: "Good",
-    C: "Average",
-    D: "Weak",
-    F: "Terrible"
+    S: "Meta-Defining",
+    A: "Excellent",
+    B: "Strong",
+    C: "Decent",
+    D: "Underwhelming",
+    F: "Outclassed"
 
 };
 
@@ -44,13 +44,11 @@ const TIER_ASSIGNMENTS = {
     ----------------------------------------------------- */
 
     S: [
-        "Shadow Bonnie",
-        "Freddy",
+        "Golden Freddy",
         "The Marionette",
-        "Fastbear",
+        "Shadow Bonnie",
         "Chupcake",
-        "Shadow Freddy",
-        "Golden Freddy"
+        "Crying Child"
     ],
 
 
@@ -59,15 +57,11 @@ const TIER_ASSIGNMENTS = {
     ----------------------------------------------------- */
 
     A: [
-        "Old Man Consequences",
+        "Shadow Freddy",
+        "Freddy",
+        "Fastbear",
         "Purple Guy",
-        "Radioactive Foxy",
-        "Withered Foxy",
-        "Withered Bonnie",
-        "Anim Dude",
-        "Withered Freddy",
-        "Withered Chica",
-        "Endo 02"
+        "Mangle"
     ],
 
 
@@ -76,13 +70,12 @@ const TIER_ASSIGNMENTS = {
     ----------------------------------------------------- */
 
     B: [
-        "Mangle",
-        "Bonnie",
-        "Toy Chica",
-        "Toy Freddy",
         "Bear5",
-        "Crying Child",
-        "Sparky"
+        "Old Man Consequences",
+        "Radioactive Foxy",
+        "Withered Foxy",
+        "Endo 02",
+        "Withered Chica"
     ],
 
 
@@ -91,9 +84,11 @@ const TIER_ASSIGNMENTS = {
     ----------------------------------------------------- */
 
     C: [
-        "Chica",
-        "Balloon Boy",
-        "Toy Bonnie"
+        "Bonnie",
+        "Withered Bonnie",
+        "Withered Freddy",
+        "Anim Dude",
+        "Balloon Boy"
     ],
 
 
@@ -102,8 +97,11 @@ const TIER_ASSIGNMENTS = {
     ----------------------------------------------------- */
 
     D: [
+        "Toy Chica",
         "Foxy",
-        "Endo 01"
+        "Toy Bonnie",
+        "Chica",
+        "Sparky"
     ],
 
 
@@ -112,6 +110,8 @@ const TIER_ASSIGNMENTS = {
     ----------------------------------------------------- */
 
     F: [
+        "Toy Freddy",
+        "Endo 01"
     ]
 
 };

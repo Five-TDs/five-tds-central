@@ -775,3 +775,73 @@ body.nav-locked {
 .unit-page h1 {
     color: #ffffff;
 }
+
+/* =========================================
+   META PAGE NOTICE
+========================================= */
+
+.meta-notice {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+
+    width: 100%;
+    margin: 0 0 35px;
+    padding: 35px 40px;
+
+    background: #0d0d06;
+    border: 2px solid #38370c;
+    border-radius: 20px;
+
+    box-sizing: border-box;
+}
+
+.meta-notice-icon {
+    flex-shrink: 0;
+
+    color: #ffcc33;
+    font-size: 28px;
+    font-weight: 900;
+}
+
+.meta-notice-text {
+    color: #a69e38;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    line-height: 1.8;
+}
+
+.meta-notice-text strong {
+    color: #f0e44a;
+    font-size: 12px;
+    font-weight: 900;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .meta-notice {
+        gap: 15px;
+        padding: 22px 20px;
+        border-radius: 14px;
+    }
+
+    .meta-notice-icon {
+        font-size: 23px;
+    }
+
+    .meta-notice-text {
+        font-size: 11px;
+        letter-spacing: 0.7px;
+        line-height: 1.7;
+    }
+
+    .meta-notice-text strong {
+        font-size: 12px;
+    }
+
+}
