@@ -1,0 +1,687 @@
+/* =========================================================
+   FIVE TD'S CENTRAL — TIERLIST
+   Page-specific styling only.
+========================================================= */
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.tierlist-page {
+    width: min(1400px, calc(100% - 40px));
+
+    margin: 0 auto;
+
+    padding: 46px 0 70px;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.tierlist-header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.tierlist-header h1 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: clamp(30px, 4vw, 52px);
+    font-weight: 900;
+
+    line-height: 1;
+    letter-spacing: 2px;
+}
+
+.tierlist-header .page-description {
+    max-width: 650px;
+
+    margin: 13px auto 0;
+
+    color: #858585;
+
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   TIER BOARD
+========================================================= */
+
+.tierlist-board {
+    display: grid;
+
+    gap: 12px;
+}
+
+
+/* =========================================================
+   TIER ROW
+========================================================= */
+
+.tier-row {
+    display: grid;
+
+    grid-template-columns: 82px minmax(0, 1fr);
+
+    min-height: 145px;
+
+    overflow: hidden;
+
+    background: #080808;
+
+    border: 1px solid #202020;
+    border-radius: 12px;
+}
+
+
+/* =========================================================
+   TIER LABEL
+========================================================= */
+
+.tier-label {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 145px;
+
+    color: #ffffff;
+
+    font-size: 29px;
+    font-weight: 900;
+
+    line-height: 1;
+
+    border-right: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.tier-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.tier-label-letter {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.tier-label-description {
+    font-size: 9px;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: 0;
+    text-align: center;
+
+    width: 100%;
+    max-width: 100%;
+    padding: 0 5px;
+    box-sizing: border-box;
+
+    overflow-wrap: anywhere;
+    white-space: normal;
+    color: #111111;
+}
+
+
+/* =========================================================
+   UNIT AREA
+========================================================= */
+
+.tier-units {
+    display: grid;
+
+    grid-template-columns: repeat(
+        auto-fill,
+        minmax(105px, 1fr)
+    );
+
+    align-content: start;
+
+    gap: 12px;
+
+    padding: 14px;
+}
+
+
+/* =========================================================
+   TIER COLORS
+========================================================= */
+
+.tier-s .tier-label {
+    background: #ff5c5c;
+}
+
+.tier-a .tier-label {
+    background: #ff9d4d;
+}
+
+.tier-b .tier-label {
+    background: #ffd34d;
+}
+
+.tier-c .tier-label {
+    background: #66c96b;
+}
+
+.tier-d .tier-label {
+    background: #4d9de0;
+}
+
+.tier-f .tier-label {
+    background: #8b5fc7;
+}
+
+
+/* =========================================================
+   UNIT CARD
+========================================================= */
+
+.tier-unit {
+    position: relative;
+
+    aspect-ratio: 1 / 1;
+
+    min-width: 0;
+
+    overflow: hidden;
+
+    background: #111111;
+
+    border: 2px solid #ffffff;
+
+    border-radius: 11px;
+
+    cursor: default;
+
+    isolation: isolate;
+}
+
+
+/* =========================================================
+   IMAGE DARKENING
+========================================================= */
+
+.tier-unit::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 1;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.88) 0%,
+            rgba(0, 0, 0, 0.45) 22%,
+            rgba(0, 0, 0, 0) 55%
+        );
+
+    opacity: 0.9;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   UNIT IMAGE
+========================================================= */
+
+.tier-unit-image {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition: transform 0.22s ease;
+}
+
+.tier-unit:hover .tier-unit-image {
+    transform: scale(1.06);
+}
+
+
+/* =========================================================
+   UNIT NAME
+========================================================= */
+
+.tier-unit-name {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    z-index: 2;
+
+    padding: 28px 7px 8px;
+
+    color: #ffffff;
+
+    font-size: 11px;
+    font-weight: 900;
+
+    line-height: 1.15;
+
+    text-align: center;
+
+    letter-spacing: 0.3px;
+
+    transform: translateY(100%);
+
+    opacity: 0;
+
+    transition:
+        transform 0.22s ease,
+        opacity 0.22s ease;
+}
+
+
+/* NAME RISES UP */
+
+.tier-unit:hover .tier-unit-name,
+.tier-unit:focus-visible .tier-unit-name {
+    transform: translateY(0);
+
+    opacity: 1;
+}
+
+
+/* =========================================================
+   WARNING BADGE
+========================================================= */
+
+.tier-unit-warning {
+    position: absolute;
+
+    top: 7px;
+    right: 7px;
+
+    z-index: 4;
+
+    width: 25px;
+    height: 25px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #111111;
+
+    background: #ffd447;
+
+    border: 2px solid #ffffff;
+
+    border-radius: 50%;
+
+    font-size: 14px;
+    font-weight: 900;
+
+    line-height: 1;
+
+    box-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.45);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   WARNING TOOLTIP
+========================================================= */
+
+.warning-tooltip {
+    position: fixed;
+
+    z-index: 10000;
+
+    max-width: min(
+        330px,
+        calc(100vw - 24px)
+    );
+
+    padding: 9px 11px;
+
+    color: #ffffff;
+
+    background: rgba(8, 8, 8, 0.96);
+
+    border: 1px solid #ffd447;
+
+    border-radius: 7px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.45);
+
+    font-size: 11px;
+    font-weight: 800;
+
+    line-height: 1.4;
+
+    pointer-events: none;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translate(12px, 12px);
+
+    transition: opacity 0.12s ease;
+}
+
+.warning-tooltip.visible {
+    opacity: 1;
+
+    visibility: visible;
+}
+
+
+/* =========================================================
+   EMPTY TIER
+========================================================= */
+
+.tier-empty {
+    display: flex;
+
+    align-items: center;
+
+    min-height: 110px;
+
+    padding: 10px;
+
+    color: #555555;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .tierlist-page {
+        width: min(
+            calc(100% - 28px),
+            700px
+        );
+
+        padding-top: 32px;
+    }
+
+    .tier-row {
+        grid-template-columns:
+            62px
+            minmax(0, 1fr);
+    }
+
+    .tier-label {
+        min-height: 125px;
+
+        font-size: 24px;
+    }
+
+    .tier-units {
+        grid-template-columns:
+            repeat(
+                auto-fill,
+                minmax(82px, 1fr)
+            );
+
+        gap: 9px;
+
+        padding: 10px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 550px) {
+
+    .tierlist-page {
+        width: calc(100% - 18px);
+
+        padding-top: 24px;
+        padding-bottom: 45px;
+    }
+
+    .tierlist-header {
+        margin-bottom: 20px;
+    }
+
+    .tierlist-header h1 {
+        font-size: 30px;
+    }
+
+    .tierlist-header .page-description {
+        font-size: 12px;
+    }
+
+    .tier-row {
+        grid-template-columns:
+            50px
+            minmax(0, 1fr);
+
+        border-radius: 9px;
+    }
+
+    .tier-label {
+        min-height: 105px;
+
+        font-size: 21px;
+    }
+
+    .tier-units {
+        grid-template-columns:
+            repeat(
+                auto-fill,
+                minmax(66px, 1fr)
+            );
+
+        gap: 7px;
+
+        padding: 8px;
+    }
+
+    .tier-unit {
+        border-width: 1px;
+
+        border-radius: 8px;
+    }
+
+    .tier-unit-warning {
+        top: 4px;
+        right: 4px;
+
+        width: 20px;
+        height: 20px;
+
+        font-size: 11px;
+    }
+
+    .tier-unit-name {
+        padding: 24px 4px 5px;
+
+        font-size: 9px;
+    }
+}
+
+/* =========================================================
+   V2.3.1 — TIERLIST MOBILE IMPROVEMENTS
+========================================================= */
+
+@media (max-width: 700px) {
+
+    /* =========================
+       PAGE HEADER
+    ========================= */
+
+    .tierlist-header h1 {
+        overflow-wrap: anywhere;
+    }
+
+    .tierlist-header .page-description {
+        line-height: 1.7;
+    }
+
+
+    /* =========================
+       TIER ROWS
+    ========================= */
+
+    .tier-row {
+        min-width: 0;
+    }
+
+    .tier-label {
+        min-width: 0;
+    }
+
+    .tier-label-letter {
+        font-size: 27px;
+    }
+
+    .tier-label-description {
+        font-size: 8px;
+        line-height: 1.4;
+        overflow-wrap: anywhere;
+    }
+
+
+    /* =========================
+       UNIT GRID
+    ========================= */
+
+    .tier-units {
+        min-width: 0;
+    }
+
+    .tier-unit {
+        min-width: 0;
+    }
+
+
+    /* =========================
+       WARNING BADGES
+    ========================= */
+
+    .tier-unit-warning {
+        flex-shrink: 0;
+    }
+
+    .warning-tooltip {
+        max-width: calc(100vw - 24px);
+        overflow-wrap: anywhere;
+    }
+
+}
+
+
+/* =========================================================
+   V2.3.1 — TOUCHSCREEN UNIT NAMES
+========================================================= */
+
+@media (hover: none), (pointer: coarse) {
+
+    .tier-unit-name {
+        transform: translateY(0);
+        opacity: 1;
+
+        padding: 24px 4px 5px;
+
+        font-size: 9px;
+
+        overflow-wrap: anywhere;
+    }
+
+    .tier-unit-image {
+        transform: none;
+    }
+
+    .tier-unit:hover .tier-unit-image {
+        transform: none;
+    }
+
+}
+
+
+/* =========================================================
+   V2.3.1 — VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .tier-row {
+        grid-template-columns:
+            44px
+            minmax(0, 1fr);
+    }
+
+    .tier-label-letter {
+        font-size: 23px;
+    }
+
+    .tier-label-description {
+        font-size: 7px;
+        padding: 0 3px;
+    }
+
+    .tier-units {
+        grid-template-columns:
+            repeat(
+                auto-fill,
+                minmax(62px, 1fr)
+            );
+
+        gap: 6px;
+        padding: 6px;
+    }
+
+    .tier-unit-warning {
+        width: 18px;
+        height: 18px;
+
+        font-size: 10px;
+    }
+
+}
+
+
+/* =========================================================
+   V2.3.1 — REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .tier-unit-image,
+    .tier-unit-name,
+    .warning-tooltip {
+        transition: none !important;
+    }
+
+}

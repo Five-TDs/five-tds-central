@@ -5,9 +5,9 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Unit Database</title>
-<link href="style.css" rel="stylesheet"/>
-<link href="site.css" rel="stylesheet"/></head>
-<body><script src="site.js"></script>
+<link href="css/pages/units.css" rel="stylesheet"/>
+<link href="css/site.css" rel="stylesheet"/></head>
+<body><script src="js/site.js"></script>
 <!-- =========================
      SITE NAVIGATION
 ========================= -->
@@ -101,11 +101,33 @@
 </div>
 </div>
 </div>
+
+<!-- =========================
+         DATABASE RESULTS
+    ========================== -->
+<div class="unit-results-bar">
+
+    <span id="unit-results-count" role="status" aria-live="polite">
+        Showing units...
+    </span>
+
+    <button
+        id="clear-unit-filters"
+        class="clear-unit-filters"
+        type="button"
+        hidden
+    >
+        ✕ CLEAR ALL FILTERS
+    </button>
+
+</div>
+
 <!-- =========================
          UNIT DATABASE
     ========================== -->
 <main id="unit-grid"></main>
-<script src="units.js"></script>
-<script src="script.js"></script>
+<script src="js/data/units.js"></script>
+<script src="js/shared/stat-utils.js"></script>
+<script src="js/pages/units.js"></script>
 </body>
 </html>

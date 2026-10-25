@@ -1,0 +1,1580 @@
+/* =========================================================
+   GLOBAL VARIABLES
+========================================================= */
+
+:root {
+    --site-bg: #050505;
+    --site-panel: #0a0a0a;
+    --site-panel-2: #101010;
+
+    --site-border: #202020;
+    --site-border-soft: #181818;
+
+    --site-text: #ffffff;
+    --site-muted: #858585;
+    --site-muted-2: #5f5f5f;
+
+    --site-accent: #f06b68;
+    --site-accent-soft: rgba(240, 107, 104, 0.14);
+
+    --site-font: Arial, Helvetica, sans-serif;
+
+    --site-nav-height: 64px;
+}
+
+
+/* =========================================================
+   GLOBAL RESET
+========================================================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+
+    font-family: var(--site-font);
+
+    background: var(--site-bg);
+}
+
+body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+
+    background: var(--site-bg);
+    color: var(--site-text);
+
+    font-family: var(--site-font);
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   FORM ELEMENTS
+========================================================= */
+
+button,
+input,
+select,
+textarea {
+    font-family: var(--site-font);
+}
+
+
+/* =========================================================
+   SHARED NAVIGATION
+========================================================= */
+
+.site-nav {
+    position: sticky;
+
+    top: 0;
+    left: 0;
+
+    z-index: 5000;
+
+    width: 100%;
+    height: var(--site-nav-height);
+    min-height: var(--site-nav-height);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 24px;
+
+    margin: 0;
+    padding: 0 clamp(18px, 5vw, 80px);
+
+    background: rgba(5, 5, 5, 0.94);
+
+    border: 0;
+    border-bottom: 1px solid var(--site-border-soft);
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.16);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    isolation: isolate;
+}
+
+
+/* =========================================================
+   NAV LOGO
+========================================================= */
+
+.nav-logo {
+    flex: 0 0 auto;
+
+    display: flex;
+    align-items: center;
+
+    height: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    color: var(--site-accent) !important;
+
+    font-family: var(--site-font) !important;
+    font-size: 18px !important;
+    font-weight: 900 !important;
+
+    line-height: 1;
+
+    letter-spacing: 2.5px !important;
+
+    text-decoration: none !important;
+
+    white-space: nowrap;
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+.nav-logo:hover {
+    opacity: 0.86;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   DESKTOP NAV LINKS
+========================================================= */
+
+.nav-links {
+    flex: 1 1 auto;
+
+    height: 100%;
+
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-end;
+
+    gap: clamp(16px, 2.2vw, 30px);
+
+    min-width: 0;
+}
+
+.nav-link,
+.nav-dropdown-button {
+    position: relative;
+
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    margin: 0;
+    padding: 0;
+
+    border: 0;
+    outline: 0;
+
+    background: transparent;
+
+    color: var(--site-muted) !important;
+
+    font-family: var(--site-font) !important;
+    font-size: 12px !important;
+    font-weight: 900 !important;
+    line-height: 1 !important;
+
+    letter-spacing: 0.7px;
+
+    text-decoration: none !important;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    transition: color 0.18s ease;
+}
+
+
+/* =========================================================
+   NAV ACTIVE / HOVER LINE
+========================================================= */
+
+.nav-link::after,
+.nav-dropdown-button::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 2px;
+
+    background: var(--site-accent);
+
+    transform: scaleX(0);
+    transform-origin: center;
+
+    transition: transform 0.2s ease;
+}
+
+.nav-link:hover,
+.nav-dropdown-button:hover,
+.nav-link.active,
+.nav-dropdown.active > .nav-dropdown-button {
+    color: var(--site-text) !important;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after,
+.nav-dropdown:hover > .nav-dropdown-button::after,
+.nav-dropdown.active > .nav-dropdown-button::after {
+    transform: scaleX(1);
+}
+
+
+/* =========================================================
+   DROPDOWN CONTAINER
+========================================================= */
+
+.nav-dropdown {
+    position: relative;
+
+    flex: 0 0 auto;
+
+    height: 100%;
+
+    display: flex;
+    align-items: stretch;
+}
+
+
+/* =========================================================
+   DROPDOWN ARROW
+========================================================= */
+
+.nav-arrow {
+    display: inline-block;
+
+    color: var(--site-muted);
+
+    font-size: 9px;
+    line-height: 1;
+
+    transition: transform 0.2s ease;
+}
+
+.nav-dropdown:hover .nav-arrow,
+.nav-dropdown.active .nav-arrow {
+    transform: rotate(180deg);
+}
+
+
+/* =========================================================
+   DESKTOP DROPDOWN MENU
+========================================================= */
+
+.nav-dropdown-menu {
+    position: absolute;
+
+    top: calc(100% + 8px);
+    left: 50%;
+
+    z-index: 5100;
+
+    width: max-content;
+    min-width: 190px;
+    max-width: 260px;
+
+    display: grid;
+
+    gap: 3px;
+
+    padding: 7px;
+
+    background: rgba(9, 9, 9, 0.98);
+
+    border: 1px solid var(--site-border);
+    border-radius: 10px;
+
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translate(-50%, -5px);
+
+    transition:
+        opacity 0.18s ease,
+        transform 0.18s ease,
+        visibility 0.18s ease;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+
+    transform: translate(-50%, 0);
+}
+
+.nav-dropdown-menu a {
+    display: block;
+
+    margin: 0;
+    padding: 11px 12px;
+
+    border-radius: 7px;
+
+    color: var(--site-muted) !important;
+
+    font-family: var(--site-font);
+    font-size: 11px;
+    font-weight: 900;
+    line-height: 1.2;
+
+    letter-spacing: 0.7px;
+
+    text-decoration: none !important;
+
+    white-space: nowrap;
+
+    transition:
+        background 0.18s ease,
+        color 0.18s ease;
+}
+
+.nav-dropdown-menu a:hover,
+.nav-dropdown-menu a.active {
+    color: var(--site-text) !important;
+
+    background: var(--site-accent-soft);
+}
+
+
+/* =========================================================
+   MOBILE MENU BUTTON
+========================================================= */
+
+.mobile-menu-button {
+    display: none;
+
+    flex: 0 0 auto;
+
+    width: 42px;
+    height: 42px;
+
+    margin: 0;
+    padding: 0;
+
+    border: 1px solid var(--site-border);
+    border-radius: 9px;
+
+    background: #0b0b0b;
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease;
+}
+
+.mobile-menu-button:hover {
+    background: #101010;
+
+    border-color: #303030;
+}
+
+.mobile-menu-button span {
+    display: block;
+
+    width: 18px;
+    height: 2px;
+
+    margin: 2px 0;
+
+    background: #ffffff;
+
+    border-radius: 2px;
+}
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+.mobile-menu {
+    position: fixed;
+
+    top: var(--site-nav-height);
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    z-index: 4999;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: calc(100vh - var(--site-nav-height));
+
+    margin: 0;
+    padding: 18px;
+
+    background: rgba(5, 5, 5, 0.98);
+
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(-8px);
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease,
+        visibility 0.2s ease;
+}
+
+.mobile-menu.open {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translateY(0);
+
+    pointer-events: auto;
+}
+
+
+/* =========================================================
+   MOBILE NAV HEADER
+========================================================= */
+
+.mobile-nav-header {
+    flex: 0 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+
+    padding: 4px 4px 16px;
+
+    color: var(--site-accent);
+
+    font-size: 13px;
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+}
+
+.mobile-nav-header button {
+    width: 40px;
+    height: 40px;
+
+    margin: 0;
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #ffffff;
+
+    font-size: 30px;
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   MOBILE NAV ITEMS
+========================================================= */
+
+.mobile-nav-link,
+.mobile-nav-section-button {
+    width: 100%;
+    min-height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin: 3px 0;
+    padding: 0 13px;
+
+    border: 1px solid transparent;
+    border-radius: 9px;
+
+    background: transparent;
+
+    color: var(--site-muted) !important;
+
+    font-family: var(--site-font) !important;
+    font-size: 12px !important;
+    font-weight: 900 !important;
+    line-height: 1 !important;
+
+    letter-spacing: 0.8px;
+
+    text-decoration: none !important;
+
+    cursor: pointer;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-section-button:hover {
+    color: #ffffff !important;
+
+    background: #0d0d0d;
+
+    border-color: var(--site-border);
+}
+
+
+/* =========================================================
+   MOBILE NAV SECTIONS
+========================================================= */
+
+.mobile-nav-section {
+    width: 100%;
+
+    flex: 0 0 auto;
+}
+
+.mobile-nav-submenu {
+    display: grid;
+
+    gap: 2px;
+
+    width: 100%;
+
+    max-height: 0;
+
+    overflow: hidden;
+
+    opacity: 0;
+
+    transition:
+        max-height 0.22s ease,
+        opacity 0.18s ease;
+}
+
+.mobile-nav-section.open .mobile-nav-submenu {
+    max-height: 260px;
+
+    opacity: 1;
+}
+
+
+/* =========================================================
+   MOBILE SUBMENU LINKS
+========================================================= */
+
+.mobile-nav-submenu a {
+    display: block;
+
+    width: calc(100% - 14px);
+
+    margin: 1px 0 1px 14px;
+    padding: 10px 12px;
+
+    border-left: 2px solid var(--site-border);
+
+    color: var(--site-muted) !important;
+
+    font-family: var(--site-font);
+    font-size: 11px;
+    font-weight: 800;
+    line-height: 1.2;
+
+    letter-spacing: 0.6px;
+
+    text-decoration: none !important;
+}
+
+.mobile-nav-submenu a:hover,
+.mobile-nav-submenu a.active {
+    color: #ffffff !important;
+
+    border-left-color: var(--site-accent);
+
+    background: rgba(240, 107, 104, 0.05);
+}
+
+
+/* =========================================================
+   MOBILE ARROWS
+========================================================= */
+
+.mobile-section-arrow {
+    display: inline-block;
+
+    color: var(--site-muted);
+
+    font-size: 10px;
+
+    transition: transform 0.2s ease;
+}
+
+.mobile-nav-section.open .mobile-section-arrow {
+    transform: rotate(180deg);
+}
+
+
+/* =========================================================
+   MOBILE SCROLL LOCK
+========================================================= */
+
+body.nav-locked {
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   TABLET / SMALL DESKTOP
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .site-nav {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    .nav-links {
+        gap: 18px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE BREAKPOINT
+========================================================= */
+
+@media (max-width: 900px) {
+
+    :root {
+        --site-nav-height: 60px;
+    }
+
+    .site-nav {
+        height: var(--site-nav-height);
+        min-height: var(--site-nav-height);
+
+        padding-left: 16px;
+        padding-right: 16px;
+
+        gap: 12px;
+    }
+
+    .nav-logo {
+        font-size: 16px !important;
+
+        letter-spacing: 2px !important;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .mobile-menu-button {
+        display: flex;
+    }
+
+    .mobile-menu {
+        top: var(--site-nav-height);
+
+        height: calc(100vh - var(--site-nav-height));
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .site-nav {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .nav-logo {
+        font-size: 14px !important;
+
+        letter-spacing: 1.5px !important;
+    }
+
+    .mobile-menu {
+        padding: 14px;
+    }
+}
+
+
+/* =========================================================
+   DESKTOP — MOBILE NAV OFF
+========================================================= */
+
+
+@media (min-width: 1201px) {
+    .mobile-menu {
+        display: none !important;
+    }
+}
+
+
+
+/* =========================================================
+   SHARED PAGE HEADINGS
+========================================================= */
+
+.page-header h1,
+.home-section h2,
+.simulator-page h1,
+.nights-page h1,
+.unit-page h1 {
+    color: #ffffff;
+}
+
+/* =========================================
+   META PAGE NOTICE
+========================================= */
+
+.meta-notice {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+
+    width: 100%;
+    margin: 0 0 35px;
+    padding: 35px 40px;
+
+    background: #0d0d06;
+    border: 2px solid #38370c;
+    border-radius: 20px;
+
+    box-sizing: border-box;
+}
+
+.meta-notice-icon {
+    flex-shrink: 0;
+
+    color: #ffcc33;
+    font-size: 28px;
+    font-weight: 900;
+}
+
+.meta-notice-text {
+    color: #a69e38;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    line-height: 1.8;
+}
+
+.meta-notice-text strong {
+    color: #f0e44a;
+    font-size: 12px;
+    font-weight: 900;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .meta-notice {
+        gap: 15px;
+        padding: 22px 20px;
+        border-radius: 14px;
+    }
+
+    .meta-notice-icon {
+        font-size: 23px;
+    }
+
+    .meta-notice-text {
+        font-size: 11px;
+        letter-spacing: 0.7px;
+        line-height: 1.7;
+    }
+
+    .meta-notice-text strong {
+        font-size: 12px;
+    }
+
+}
+
+
+/* =========================================================
+   NAVIGATION RESPONSIVE FIX
+   Prevent desktop links and mobile menu overlapping
+========================================================= */
+
+/* Desktop navigation */
+@media (min-width: 1201px) {
+    .site-nav .nav-links {
+        display: flex;
+    }
+
+    .site-nav .mobile-menu-button {
+        display: none;
+    }
+}
+
+/* Tablet and mobile navigation */
+@media (max-width: 1200px) {
+    .site-nav .nav-links {
+        display: none !important;
+    }
+
+    .site-nav .mobile-menu-button {
+        display: flex;
+    }
+}
+
+/* Prevent the logo from overflowing */
+.site-nav .nav-logo {
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* Prevent desktop navigation text from wrapping */
+.site-nav .nav-link,
+.site-nav .nav-dropdown-button {
+    white-space: nowrap;
+}
+
+
+
+/* =========================================
+   FOOTER VERSION BUTTON
+========================================= */
+
+.footer-version-button {
+    appearance: none;
+    background: none;
+    border: none;
+    padding: 0;
+
+    color: #888;
+    font: inherit;
+    font-size: inherit;
+
+    cursor: pointer;
+    text-align: left;
+
+    transition: color 0.2s ease;
+}
+
+.footer-version-button:hover,
+.footer-version-button:focus-visible {
+    color: #f06b68;
+}
+
+.footer-version-button:focus-visible {
+    outline: 2px solid #f06b68;
+    outline-offset: 5px;
+    border-radius: 2px;
+}
+
+
+/* =========================================
+   VERSION HISTORY MODAL
+========================================= */
+
+.version-history-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100000;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+}
+
+.version-history-modal.open {
+    display: flex;
+}
+
+.version-history-window {
+    display: flex;
+    flex-direction: column;
+
+    width: min(100%, 1000px);
+    max-height: min(85vh, 760px);
+
+    overflow: hidden;
+
+    border: 1px solid #303030;
+    border-radius: 14px;
+
+    background: #0d0d0d;
+
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.65);
+}
+
+
+/* =========================================
+   MODAL HEADER
+========================================= */
+
+.version-history-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 20px;
+    padding: 25px 30px;
+
+    border-bottom: 1px solid #292929;
+}
+
+.version-history-header h2 {
+    margin: 0;
+
+    color: #fff;
+    font-size: 23px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.version-history-header p {
+    margin: 7px 0 0;
+
+    color: #777;
+    font-size: 12px;
+}
+
+.version-history-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 34px;
+    height: 34px;
+
+    border: 1px solid #333;
+    border-radius: 7px;
+
+    background: #171717;
+    color: #aaa;
+
+    font-size: 25px;
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.version-history-close:hover {
+    background: #f06b68;
+    border-color: #f06b68;
+    color: #fff;
+}
+
+
+/* =========================================
+   MODAL LAYOUT
+========================================= */
+
+.version-history-layout {
+    display: grid;
+    grid-template-columns: 290px minmax(0, 1fr);
+
+    min-height: 0;
+    flex: 1;
+}
+
+
+/* =========================================
+   LEFT SIDEBAR
+========================================= */
+
+.version-history-sidebar {
+    display: flex;
+    flex-direction: column;
+
+    gap: 7px;
+    padding: 20px 14px;
+
+    overflow-y: auto;
+
+    border-right: 1px solid #292929;
+
+    background: #101010;
+}
+
+.version-history-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 5px;
+
+    width: 100%;
+    padding: 13px 15px;
+
+    border: 1px solid transparent;
+    border-radius: 8px;
+
+    background: transparent;
+    color: #aaa;
+
+    text-align: left;
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.version-history-tab:hover {
+    background: #1b1b1b;
+    color: #fff;
+}
+
+.version-history-tab.active {
+    background: rgba(240, 107, 104, 0.09);
+    border-color: rgba(240, 107, 104, 0.45);
+    color: #fff;
+}
+
+.version-history-tab-number {
+    color: #f06b68;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.version-history-tab-title {
+    color: inherit;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+
+/* =========================================
+   RIGHT CONTENT
+========================================= */
+
+.version-history-content {
+    min-width: 0;
+    padding: 30px 35px;
+
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+.version-history-version {
+    display: inline-block;
+
+    margin-bottom: 12px;
+
+    color: #f06b68;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.version-history-content h3 {
+    margin: 0 0 12px;
+
+    color: #fff;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.version-history-description {
+    margin: 0 0 25px;
+
+    color: #999;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.version-history-group {
+    margin-bottom: 26px;
+}
+
+.version-history-group h4 {
+    margin: 0 0 12px;
+    padding-bottom: 9px;
+
+    border-bottom: 1px solid #292929;
+
+    color: #f06b68;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.version-history-group ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.version-history-group li {
+    margin-bottom: 10px;
+
+    color: #bbb;
+    font-size: 12px;
+    line-height: 1.65;
+}
+
+.version-history-group li::marker {
+    color: #f06b68;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .version-history-modal {
+        padding: 12px;
+    }
+
+    .version-history-window {
+        max-height: 90dvh;
+    }
+
+    .version-history-header {
+        padding: 18px;
+    }
+
+    .version-history-header h2 {
+        font-size: 17px;
+    }
+
+    .version-history-header p {
+        font-size: 11px;
+    }
+
+    .version-history-layout {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto minmax(0, 1fr);
+    }
+
+    .version-history-sidebar {
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        padding: 12px;
+
+        border-right: none;
+        border-bottom: 1px solid #292929;
+    }
+
+    .version-history-tab {
+        flex: 0 0 155px;
+        min-height: 65px;
+
+        padding: 10px;
+    }
+
+    .version-history-content {
+        padding: 22px 18px;
+    }
+
+    .version-history-content h3 {
+        font-size: 21px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .version-history-tab,
+    .version-history-close,
+    .footer-version-button {
+        transition: none;
+    }
+}
+
+/* =========================================
+   VERSION HISTORY RELEASE DATES
+========================================= */
+
+.version-history-date {
+    margin: -4px 0 18px;
+
+    color: #777;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+/* =========================================================
+   V2.3.1 — MOBILE NAVIGATION ENHANCEMENTS
+========================================================= */
+
+@media (max-width: 1200px) {
+
+    /* =========================
+       MOBILE MENU
+    ========================= */
+
+    .mobile-menu {
+
+        height: auto;
+
+        max-height: none;
+
+        bottom: 0;
+
+        padding-bottom: calc(
+            24px + env(safe-area-inset-bottom, 0px)
+        );
+
+        overscroll-behavior: contain;
+
+        -webkit-overflow-scrolling: touch;
+
+        transform: translateY(-12px);
+
+        transition:
+            opacity 0.25s ease,
+            transform 0.25s ease,
+            visibility 0.25s ease;
+
+    }
+
+    .mobile-menu.open {
+
+        transform: translateY(0);
+
+    }
+
+
+    /* =========================
+       MOBILE MENU ITEMS
+    ========================= */
+
+    .mobile-nav-link,
+    .mobile-nav-section-button {
+
+        min-height: 50px;
+
+        margin: 3px 0;
+
+        border-radius: 10px;
+
+        transition:
+            background 0.2s ease,
+            color 0.2s ease,
+            border-color 0.2s ease;
+
+    }
+
+
+    /* =========================
+       ACTIVE PAGE
+    ========================= */
+
+    .mobile-nav-link.active {
+
+        color: #ffffff !important;
+
+        background: var(--site-accent-soft);
+
+        border-color: rgba(240, 107, 104, 0.3);
+
+    }
+
+    .mobile-nav-section:has(
+        .mobile-nav-submenu a.active
+    ) > .mobile-nav-section-button {
+
+        color: #ffffff !important;
+
+    }
+
+
+    /* =========================
+       SUBMENU ANIMATIONS
+    ========================= */
+
+    .mobile-nav-submenu {
+
+        max-height: 0;
+
+        opacity: 0;
+
+        transform: translateY(-5px);
+
+        transition:
+            max-height 0.3s ease,
+            opacity 0.22s ease,
+            transform 0.22s ease;
+
+    }
+
+    .mobile-nav-section.open .mobile-nav-submenu {
+
+        max-height: 320px;
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+
+    /* =========================
+       SUBMENU LINKS
+    ========================= */
+
+    .mobile-nav-submenu a {
+
+        min-height: 42px;
+
+        display: flex;
+
+        align-items: center;
+
+        border-radius: 0 7px 7px 0;
+
+        transition:
+            background 0.2s ease,
+            color 0.2s ease,
+            border-color 0.2s ease;
+
+    }
+
+    .mobile-nav-submenu a.active {
+
+        color: #ffffff !important;
+
+        background: rgba(240, 107, 104, 0.1);
+
+        border-left-color: var(--site-accent);
+
+    }
+
+
+    /* =========================
+       KEYBOARD FOCUS
+    ========================= */
+
+    .mobile-menu button:focus-visible,
+    .mobile-menu a:focus-visible,
+    .mobile-menu-button:focus-visible {
+
+        outline: 2px solid var(--site-accent);
+
+        outline-offset: 3px;
+
+    }
+
+}
+
+
+/* =========================================================
+   V2.3.1 — SMALL PHONE ADJUSTMENTS
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .mobile-nav-header {
+
+        padding-bottom: 12px;
+
+    }
+
+    .mobile-nav-link,
+    .mobile-nav-section-button {
+
+        min-height: 48px;
+
+    }
+
+    .mobile-nav-submenu a {
+
+        min-height: 44px;
+
+    }
+
+}
+
+
+/* =========================================================
+   V2.3.1 — REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .mobile-menu,
+    .mobile-nav-submenu,
+    .mobile-nav-link,
+    .mobile-nav-section-button,
+    .mobile-nav-submenu a,
+    .mobile-section-arrow {
+
+        transition: none !important;
+
+    }
+
+}
+
+/* =========================================================
+   V2.3.1 — BACK TO TOP BUTTON
+========================================================= */
+
+.back-to-top {
+
+    position: fixed;
+
+    right: 24px;
+    bottom: 24px;
+
+    z-index: 4900;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 48px;
+    height: 48px;
+
+    padding: 0;
+
+    border: 1px solid rgba(240, 107, 104, 0.4);
+    border-radius: 12px;
+
+    background: #111111;
+    color: var(--site-accent);
+
+    font-size: 25px;
+    font-weight: 900;
+
+    cursor: pointer;
+
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(12px);
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        visibility 0.25s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+
+}
+
+.back-to-top.visible {
+
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateY(0);
+
+    pointer-events: auto;
+
+}
+
+.back-to-top:hover {
+
+    background: var(--site-accent);
+    border-color: var(--site-accent);
+
+    color: #ffffff;
+
+    transform: translateY(-3px);
+
+}
+
+.back-to-top:focus-visible {
+
+    outline: 2px solid var(--site-accent);
+    outline-offset: 4px;
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    .back-to-top {
+
+        right: 16px;
+
+        bottom: calc(
+            16px + env(safe-area-inset-bottom, 0px)
+        );
+
+        width: 44px;
+        height: 44px;
+
+        font-size: 23px;
+
+    }
+
+}
+
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .back-to-top {
+
+        transition: none;
+
+    }
+
+}

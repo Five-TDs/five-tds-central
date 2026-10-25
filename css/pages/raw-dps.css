@@ -1,0 +1,915 @@
+/* =========================================================
+   RAW DPS PAGE
+   Page-specific styling only.
+========================================================= */
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.raw-dps-page {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 24px 40px;
+}
+
+/* =========================
+   PAGE HEADER
+========================= */
+
+.raw-dps-header {
+    margin-bottom: 28px;
+    text-align: center;
+}
+
+.raw-dps-header > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.raw-dps-header h1 {
+    margin: 0;
+    color: #ffffff;
+    font-size: clamp(30px, 4vw, 52px);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: 2px;
+}
+
+.raw-dps-header .page-description {
+    max-width: 650px;
+    margin: 13px auto 0;
+    color: #858585;
+    font-size: 13px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+
+/* =========================================================
+   NOTICE
+========================================================= */
+
+.notice {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    padding: 17px 22px;
+    margin-bottom: 28px;
+
+    background: rgba(30, 30, 0, 0.35);
+    border: 1px solid #3d3b12;
+    border-radius: 10px;
+
+    color: #9c963d;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    line-height: 1.7;
+}
+
+.notice strong {
+    color: #d0c52d;
+}
+
+.notice-icon {
+    color: #f0c75e;
+    font-size: 15px;
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.search-area {
+    margin-bottom: 28px;
+
+    border: 1px solid #202020;
+    border-radius: 12px;
+
+    background: #050505;
+
+    overflow: hidden;
+}
+
+.search-row {
+    min-height: 70px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 10px 14px 10px 24px;
+}
+
+#search-input {
+    flex: 1;
+
+    height: 48px;
+
+    min-width: 0;
+
+    padding: 0;
+
+    background: transparent;
+    border: none;
+    outline: none;
+
+    color: #ffffff;
+
+    font-family: monospace;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+#search-input::placeholder {
+    color: #667080;
+}
+
+
+/* =========================================================
+   FILTER BUTTON
+========================================================= */
+
+#filter-button {
+    height: 40px;
+
+    padding: 0 15px;
+
+    background: #080808;
+
+    border: 1px solid #292929;
+    border-radius: 8px;
+
+    color: #777;
+
+    font-family: monospace;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+#filter-button:hover,
+#filter-button.open {
+    color: #ffffff;
+
+    border-color: #4ade80;
+
+    background: #101010;
+}
+
+#filter-arrow {
+    display: inline-block;
+
+    margin-left: 7px;
+
+    transition: transform 0.2s ease;
+}
+
+#filter-button.open #filter-arrow {
+    transform: rotate(180deg);
+}
+
+
+/* =========================================================
+   FILTER PANEL
+========================================================= */
+
+.filters {
+    max-height: 0;
+
+    overflow: hidden;
+
+    opacity: 0;
+
+    border-top: 0 solid #202020;
+
+    transition:
+        max-height 0.3s ease,
+        opacity 0.2s ease,
+        border-top 0.3s ease;
+}
+
+.filters.open {
+    max-height: 500px;
+
+    opacity: 1;
+
+    border-top: 1px solid #202020;
+
+    padding: 18px 24px 22px;
+}
+
+.filter-group {
+    margin-bottom: 18px;
+}
+
+.filter-group:last-child {
+    margin-bottom: 0;
+}
+
+.filter-title {
+    margin-bottom: 9px;
+
+    color: #555;
+
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+}
+
+.filter-options {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 7px;
+}
+
+.filter-options button {
+    padding: 8px 11px;
+
+    background: #090909;
+
+    border: 1px solid #252525;
+    border-radius: 5px;
+
+    color: #666;
+
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 0.8px;
+
+    cursor: pointer;
+
+    transition:
+        color 0.15s ease,
+        background 0.15s ease,
+        border-color 0.15s ease,
+        transform 0.15s ease;
+}
+
+.filter-options button:hover {
+    transform: translateY(-2px);
+
+    color: #ffffff;
+
+    background: #111111;
+}
+
+.filter-options button.active {
+    color: #ffffff;
+
+    background: #12351f;
+
+    border-color: #22c55e;
+}
+
+
+/* =========================================================
+   TABLE CONTAINER
+========================================================= */
+
+.dps-table-container {
+    width: 100%;
+
+    overflow: hidden;
+
+    background: #0a0a0a;
+
+    border: 1px solid #202020;
+    border-radius: 8px;
+}
+
+
+/* =========================================================
+   DPS TABLE
+========================================================= */
+
+#dps-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    table-layout: fixed;
+}
+
+#dps-table th {
+    height: 48px;
+
+    padding: 0 14px;
+
+    background: #0c0c0c;
+
+    color: #555;
+
+    font-family: monospace;
+    font-size: 8px;
+    font-weight: 900;
+    letter-spacing: 1.3px;
+
+    text-align: left;
+}
+
+#dps-table td {
+    height: 50px;
+
+    padding: 0 14px;
+
+    border-top: 1px solid #171717;
+
+    color: #d7d7d7;
+
+    font-family: monospace;
+    font-size: 10px;
+    font-weight: 800;
+
+    text-align: left;
+}
+
+#dps-table tbody tr {
+    transition: background 0.15s ease;
+}
+
+#dps-table tbody tr:hover {
+    background: #0d0d0d;
+}
+
+
+/* =========================================================
+   COLUMNS
+========================================================= */
+
+.rank-column {
+    width: 5%;
+}
+
+#dps-table th:nth-child(2) {
+    width: 22%;
+}
+
+#dps-table th:nth-child(3) {
+    width: 14%;
+}
+
+#dps-table th:nth-child(4) {
+    width: 14%;
+}
+
+#dps-table th:nth-child(5) {
+    width: 12%;
+}
+
+#dps-table th:nth-child(6) {
+    width: 9%;
+}
+
+#dps-table th:nth-child(7) {
+    width: 8%;
+}
+
+#dps-table th:nth-child(8) {
+    width: 8%;
+}
+
+#dps-table th:nth-child(9) {
+    width: 8%;
+}
+
+
+/* =========================================================
+   RANK
+========================================================= */
+
+.rank {
+    color: #ddd;
+}
+
+
+/* =========================================================
+   UNIT
+========================================================= */
+
+.unit-name {
+    cursor: pointer;
+
+    font-weight: 900;
+
+    transition: color 0.15s ease;
+}
+
+.unit-name:hover {
+    color: #ffffff !important;
+}
+
+.unit-name-common {
+    color: #9ca3af;
+}
+
+.unit-name-uncommon {
+    color: #22c55e;
+}
+
+.unit-name-rare {
+    color: #3b82f6;
+}
+
+.unit-name-epic {
+    color: #a855f7;
+}
+
+.unit-name-exclusive {
+    color: #FF0101;
+}
+
+.unit-name-legendary {
+    color: #eab308;
+}
+
+
+/* =========================================================
+   RARITY
+========================================================= */
+
+.rarity {
+    font-weight: 900;
+}
+
+.rarity-common {
+    color: #9ca3af;
+}
+
+.rarity-uncommon {
+    color: #22c55e;
+}
+
+.rarity-rare {
+    color: #3b82f6;
+}
+
+.rarity-epic {
+    color: #a855f7;
+}
+
+.rarity-exclusive {
+    color: #FF0101;
+}
+
+.rarity-legendary {
+    color: #eab308;
+}
+
+
+/* =========================================================
+   ATTACK TYPE
+========================================================= */
+
+.attack-type {
+    color: #60a5fa;
+}
+
+
+/* =========================================================
+   DPS
+========================================================= */
+
+.max-dps {
+    color: #4ade80;
+    font-weight: 900;
+}
+
+
+/* =========================================================
+   SORTING
+========================================================= */
+
+.sortable {
+    color: #4ade80 !important;
+
+    cursor: pointer;
+
+    user-select: none;
+
+    transition: color 0.15s ease;
+}
+
+.sortable:hover {
+    color: #ffffff !important;
+}
+
+#sort-arrow {
+    font-size: 8px;
+
+    margin-left: 4px;
+}
+
+
+/* =========================================================
+   EMPTY RESULTS
+========================================================= */
+
+.no-results {
+    padding: 60px 20px;
+
+    text-align: center;
+
+    color: #555;
+
+    font-family: monospace;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .raw-dps-page {
+        padding: 20px 24px 40px;
+    }
+
+    #dps-table {
+        width: 100%;
+        min-width: 0;
+
+        table-layout: fixed;
+    }
+
+    #dps-table th,
+    #dps-table td {
+        padding: 10px 6px;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+
+        white-space: nowrap;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .raw-dps-page {
+        padding: 18px 14px 30px;
+    }
+
+    .notice {
+        padding: 15px 17px;
+
+        gap: 10px;
+
+        font-size: 9px;
+    }
+
+    .search-row {
+        min-height: 62px;
+
+        padding: 8px 10px 8px 16px;
+    }
+
+    #search-input {
+        height: 42px;
+
+        min-width: 0;
+
+        font-size: 11px;
+    }
+
+    #filter-button {
+        height: 38px;
+
+        padding: 0 11px;
+
+        font-size: 9px;
+
+        flex-shrink: 0;
+    }
+
+    .filters.open {
+        padding: 16px 16px 19px;
+    }
+
+    .filter-options {
+        gap: 6px;
+    }
+
+    .filter-options button {
+        padding: 8px 9px;
+
+        font-size: 8px;
+    }
+
+    .dps-table-container {
+        overflow-x: auto;
+
+        -webkit-overflow-scrolling: touch;
+    }
+
+    #dps-table {
+        min-width: 760px;
+
+        table-layout: fixed;
+    }
+
+    #dps-table th,
+    #dps-table td {
+        padding: 9px 7px;
+    }
+
+    #dps-table th {
+        height: 44px;
+
+        font-size: 7px;
+    }
+
+    #dps-table td {
+        height: 46px;
+
+        font-size: 9px;
+    }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .raw-dps-page {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .notice {
+        align-items: flex-start;
+
+        padding: 13px 14px;
+
+        font-size: 8px;
+
+        letter-spacing: 0.8px;
+    }
+
+    .notice-icon {
+        font-size: 13px;
+
+        flex-shrink: 0;
+    }
+
+    .search-row {
+        gap: 7px;
+
+        padding: 7px 8px 7px 12px;
+    }
+
+    #search-input {
+        font-size: 10px;
+    }
+
+    #filter-button {
+        padding: 0 9px;
+
+        font-size: 8px;
+    }
+
+    .filters.open {
+        padding: 14px 12px 17px;
+    }
+
+    .filter-title {
+        font-size: 8px;
+    }
+
+    #dps-table {
+        min-width: 720px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .raw-dps-page {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .search-area {
+        border-radius: 9px;
+    }
+
+    .search-row {
+        min-height: 58px;
+    }
+
+    #filter-button {
+        padding: 0 8px;
+    }
+
+    #dps-table {
+        min-width: 700px;
+    }
+}
+
+
+/* =========================================================
+   V2.3.1 — RAW DPS MOBILE IMPROVEMENTS
+========================================================= */
+
+@media (max-width: 700px) {
+
+    /* PAGE HEADER */
+
+    .raw-dps-header h1 {
+        line-height: 1.15;
+        overflow-wrap: anywhere;
+    }
+
+    .raw-dps-header .page-description {
+        line-height: 1.7;
+    }
+
+
+    /* NOTICE */
+
+    .notice {
+        line-height: 1.7;
+        overflow-wrap: anywhere;
+    }
+
+
+    /* SEARCH */
+
+    .search-area {
+        min-width: 0;
+    }
+
+    .search-row {
+        min-width: 0;
+    }
+
+    #search-input {
+        min-width: 0;
+        font-size: 16px;
+    }
+
+
+    /* FILTER BUTTON */
+
+    #filter-button {
+        min-height: 44px;
+        font-size: 10px;
+    }
+
+
+    /* FILTER OPTIONS */
+
+    .filter-options {
+        min-width: 0;
+    }
+
+    .filter-options button {
+        min-height: 40px;
+        padding: 9px 12px;
+        line-height: 1.3;
+    }
+
+
+    /* FILTER PANEL */
+
+    .filters.open {
+        max-height: 1000px;
+    }
+
+
+    /* DPS TABLE */
+
+    .dps-table-container {
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        overscroll-behavior-x: contain;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    #dps-table {
+        width: 100%;
+        min-width: 820px;
+    }
+
+    #dps-table th,
+    #dps-table td {
+        white-space: nowrap;
+        text-overflow: clip;
+    }
+
+    #dps-table th:nth-child(2) {
+        width: 24%;
+    }
+
+
+    /* EMPTY RESULTS */
+
+    .no-results {
+        padding: 40px 15px;
+        line-height: 1.6;
+        overflow-wrap: anywhere;
+    }
+
+}
+
+
+/* =========================================================
+   V2.3.1 — SMALL PHONE ADJUSTMENTS
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .raw-dps-header h1 {
+        font-size: 28px;
+    }
+
+    .raw-dps-header .page-description {
+        font-size: 12px;
+    }
+
+    .notice {
+        letter-spacing: 0.4px;
+    }
+
+    .search-row {
+        gap: 8px;
+    }
+
+    #filter-button {
+        padding: 0 10px;
+    }
+
+    .filters.open {
+        padding: 15px 12px 18px;
+    }
+
+    #dps-table {
+        min-width: 820px;
+    }
+
+}
+
+
+/* =========================================================
+   V2.3.1 — KEYBOARD ACCESSIBILITY
+========================================================= */
+
+#search-input:focus-visible,
+#filter-button:focus-visible,
+.filter-options button:focus-visible,
+.sortable:focus-visible {
+    outline: 2px solid #4ade80;
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   V2.3.1 — REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    #filter-button,
+    #filter-arrow,
+    .filters,
+    .filter-options button,
+    #dps-table tbody tr,
+    .unit-name,
+    .sortable {
+        transition: none !important;
+    }
+
+}

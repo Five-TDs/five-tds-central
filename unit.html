@@ -5,9 +5,9 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Unit</title>
-<link href="unit.css" rel="stylesheet"/>
-<link href="site.css" rel="stylesheet"/></head>
-<body><script src="site.js"></script>
+<link href="css/pages/unit.css" rel="stylesheet"/>
+<link href="css/site.css" rel="stylesheet"/></head>
+<body>
 <!-- =========================
      SITE NAVIGATION
 ========================= -->
@@ -37,6 +37,63 @@
 <h1 id="unit-name">
                     Unit Name
                 </h1>
+<div class="unit-last-updated" id="unit-last-updated" hidden>
+    <button
+        class="last-updated-label unit-info-tooltip-trigger"
+        type="button"
+        aria-describedby="last-updated-tooltip"
+        aria-label="Last updated information"
+        aria-expanded="false"
+    >
+        LAST UPDATED:
+        <span class="tooltip-info-icon" aria-hidden="true">ⓘ</span>
+    </button>
+        <span
+            id="last-updated-tooltip"
+            class="unit-info-tooltip"
+            role="tooltip"
+            hidden
+        >
+            The date this unit's information was last reviewed
+            on Five TD's Central.
+        </span>
+        <span id="unit-last-updated-date"></span>
+        <div class="confidence-tooltip-wrapper">
+            <button
+                id="unit-data-confidence"
+                class="unit-data-confidence"
+                type="button"
+                aria-describedby="data-confidence-tooltip"
+                aria-expanded="false"
+                hidden
+            ></button>
+
+            <span
+                id="data-confidence-tooltip"
+                class="unit-info-tooltip"
+                role="tooltip"
+                hidden
+            ></span>
+        </div>
+
+    <span
+        id="data-confidence-tooltip"
+        class="unit-info-tooltip"
+        role="tooltip"
+        hidden
+    ></span>
+
+    <button
+        id="copy-unit-link"
+        class="copy-unit-link"
+        type="button"
+        aria-label="Copy link to this unit"
+        title="Copy a direct link to this unit"
+    >
+        <span aria-hidden="true">🔗</span>
+        <span id="copy-unit-link-text">COPY UNIT LINK</span>
+    </button>
+</div>
 <!-- TABS -->
 <div class="unit-tabs">
 <button class="unit-tab active" data-tab="general" type="button">
@@ -151,7 +208,11 @@
 </div>
 </section>
 </main>
-<script src="units.js"></script>
-<script src="unit.js"></script>
+<script src="js/data/units.js"></script>
+<script src="js/shared/stat-utils.js"></script>
+<script src="js/shared/unit-utils.js"></script>
+<script src="js/shared/format-utils.js"></script>
+<script src="js/site.js"></script>
+<script src="js/pages/unit.js"></script>
 </body>
 </html>
