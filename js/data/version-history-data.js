@@ -3,57 +3,75 @@
 const WEBSITE_VERSION_HISTORY = [
 
     
+    
     {
-        version: "2.5.0",
-        date: "2026-10-26",
+        version: "V2.5.0",
+        date: "October 26, 2026",
         title: "Code & Visual Overhaul",
-        changes: [
-            {
-                type: "major",
-                text: "Redesigned the website with a retro arcade-inspired visual style."
-            },
-            {
-                type: "visual",
-                text: "Introduced pixel-style fonts across the website, including headings, navigation, buttons, and statistics."
-            },
-            {
-                type: "visual",
-                text: "Refined panels, borders, cards, and interface elements while preserving the original color scheme."
-            },
-            {
-                type: "visual",
-                text: "Improved unit rarity frames, card hover effects, and unit detail layouts."
-            },
-            {
-                type: "visual",
-                text: "Enhanced statistics tables with clearer level indicators, alternating rows, and improved readability."
-            },
-            {
-                type: "feature",
-                text: "Added dynamic unit counts to rarity categories in the Unit Database."
-            },
-            {
-                type: "improvement",
-                text: "Reorganized website code to make files easier to navigate and future updates easier to implement."
-            },
-            {
-                type: "improvement",
-                text: "Centralized navigation configuration and standardized shared styling across all pages."
-            },
-            {
-                type: "improvement",
-                text: "Cleaned up duplicate imports and improved code consistency."
-            },
-            {
-                type: "improvement",
-                text: "Added automated checks for JavaScript syntax, asset references, and common website issues."
-            },
-            {
-                type: "fix",
-                text: "Fixed duplicate HTML element IDs and other minor structural issues."
-            }
-        ]
+        description:
+            "A major website-wide overhaul introducing a retro arcade-inspired " +
+            "design, pixel-style typography, improved code organization, and " +
+            "a more consistent interface across Five TD's Central. " +
+            "This update focuses on making the website easier to use, " +
+            "maintain, and expand while preserving existing functionality.",
+    
+        changes: {
+            "RETRO ARCADE REDESIGN": [
+                "Introduced a new retro arcade-inspired visual style across the website.",
+                "Added pixel-style typography for headings, navigation, buttons, and other interface elements.",
+                "Preserved the original black, coral, cyan, and unit rarity color schemes.",
+                "Refined website panels, borders, cards, and interactive elements.",
+                "Improved visual consistency across all website pages.",
+                "Standardized shared styling for easier future design updates."
+            ],
+    
+            "UNIT DATABASE": [
+                "Enhanced unit portraits with rarity-colored frames and highlights.",
+                "Added dynamic unit counts beside rarity category headings.",
+                "Improved unit card hover effects and animations.",
+                "Refined card spacing, borders, and visual presentation.",
+                "Improved keyboard focus indicators and reduced-motion support."
+            ],
+    
+            "UNIT DETAILS": [
+                "Redesigned unit portrait frames with improved rarity styling.",
+                "Refined information cards, spacing, and section layouts.",
+                "Improved General and Obtainment tab styling.",
+                "Enhanced statistics tables with alternating row backgrounds.",
+                "Added clearer upgrade-level indicators and final-level highlighting.",
+                "Improved statistics readability while preserving existing calculations."
+            ],
+    
+            "CODE ORGANIZATION": [
+                "Reorganized shared website code for easier navigation and maintenance.",
+                "Centralized navigation configuration into a dedicated file.",
+                "Improved the organization of shared styles and page-specific code.",
+                "Made common website settings easier to locate and update.",
+                "Improved code consistency to simplify future development.",
+                "Cleaned up unnecessary code comments and duplicate references."
+            ],
+    
+            "WEBSITE IMPROVEMENTS": [
+                "Standardized retro typography across all website pages.",
+                "Improved shared navigation and stylesheet consistency.",
+                "Refined responsive styling for desktop and mobile devices.",
+                "Preserved existing unit data, calculations, and interactive features.",
+                "Maintained compatibility with existing saved teams and share links.",
+                "Improved the overall website structure for future updates."
+            ],
+    
+            "BUG FIXES & OPTIMIZATION": [
+                "Removed duplicate navigation script imports.",
+                "Fixed duplicate HTML element IDs.",
+                "Standardized shared stylesheet loading order.",
+                "Improved consistency between page-specific and global styling.",
+                "Added automated checks for JavaScript syntax and missing assets.",
+                "Added validation checks for duplicate scripts and HTML IDs.",
+                "Improved overall code reliability and maintainability."
+            ]
+        }
     },
+
 
 
     {
