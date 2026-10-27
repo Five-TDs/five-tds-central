@@ -6,8 +6,8 @@ const WEBSITE_VERSION_HISTORY = [
     
     {
         version: "V2.5.0",
-        date: "October 26, 2026",
         title: "Code & Visual Overhaul",
+        date: "October 26, 2026",
         description:
             "A major website-wide overhaul introducing a retro arcade-inspired " +
             "design, pixel-style typography, improved code organization, and " +
