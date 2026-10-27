@@ -1,13 +1,6 @@
-/* =========================================
-   SHARED ENCHANT PRESENTATION
-========================================= */
 
-/*
-    These are display colors, not enchant
-    gameplay effects.
 
-    Both existing page palettes are preserved.
-*/
+
 
 const ENCHANT_DISPLAY_COLORS = {
     bestTowers: {
@@ -31,9 +24,7 @@ const ENCHANT_DISPLAY_COLORS = {
     }
 };
 
-/* =========================================
-   SHARED ENCHANT HELPERS
-========================================= */
+
 
 function getEnchantColor(enchantName, palette = "bestTowers") {
     if (!enchantName) return null;

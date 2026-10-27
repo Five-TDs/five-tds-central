@@ -1,23 +1,9 @@
-/* =========================================================
-   RAW DPS PAGE
-   Page-specific styling only.
-========================================================= */
-
-
-/* =========================================================
-   PAGE
-========================================================= */
-
 .raw-dps-page {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px 24px 40px;
 }
-
-/* =========================
-   PAGE HEADER
-========================= */
 
 .raw-dps-header {
     margin-bottom: 28px;
@@ -48,11 +34,6 @@
     text-align: center;
 }
 
-
-/* =========================================================
-   NOTICE
-========================================================= */
-
 .notice {
     display: flex;
     align-items: center;
@@ -81,11 +62,6 @@
     font-size: 15px;
     flex-shrink: 0;
 }
-
-
-/* =========================================================
-   SEARCH
-========================================================= */
 
 .search-area {
     margin-bottom: 28px;
@@ -124,7 +100,7 @@
 
     color: #ffffff;
 
-    font-family: monospace;
+    font-family: var(--arcade-body);
     font-size: 12px;
     letter-spacing: 1px;
 }
@@ -132,11 +108,6 @@
 #search-input::placeholder {
     color: #667080;
 }
-
-
-/* =========================================================
-   FILTER BUTTON
-========================================================= */
 
 #filter-button {
     height: 40px;
@@ -150,7 +121,7 @@
 
     color: #777;
 
-    font-family: monospace;
+    font-family: var(--arcade-body);
     font-size: 10px;
     font-weight: 900;
     letter-spacing: 1px;
@@ -183,11 +154,6 @@
 #filter-button.open #filter-arrow {
     transform: rotate(180deg);
 }
-
-
-/* =========================================================
-   FILTER PANEL
-========================================================= */
 
 .filters {
     max-height: 0;
@@ -278,11 +244,6 @@
     border-color: #22c55e;
 }
 
-
-/* =========================================================
-   TABLE CONTAINER
-========================================================= */
-
 .dps-table-container {
     width: 100%;
 
@@ -293,11 +254,6 @@
     border: 1px solid #202020;
     border-radius: 8px;
 }
-
-
-/* =========================================================
-   DPS TABLE
-========================================================= */
 
 #dps-table {
     width: 100%;
@@ -316,7 +272,7 @@
 
     color: #555;
 
-    font-family: monospace;
+    font-family: var(--arcade-body);
     font-size: 8px;
     font-weight: 900;
     letter-spacing: 1.3px;
@@ -333,7 +289,7 @@
 
     color: #d7d7d7;
 
-    font-family: monospace;
+    font-family: var(--arcade-body);
     font-size: 10px;
     font-weight: 800;
 
@@ -347,11 +303,6 @@
 #dps-table tbody tr:hover {
     background: #0d0d0d;
 }
-
-
-/* =========================================================
-   COLUMNS
-========================================================= */
 
 .rank-column {
     width: 5%;
@@ -389,19 +340,9 @@
     width: 8%;
 }
 
-
-/* =========================================================
-   RANK
-========================================================= */
-
 .rank {
     color: #ddd;
 }
-
-
-/* =========================================================
-   UNIT
-========================================================= */
 
 .unit-name {
     cursor: pointer;
@@ -439,11 +380,6 @@
     color: #eab308;
 }
 
-
-/* =========================================================
-   RARITY
-========================================================= */
-
 .rarity {
     font-weight: 900;
 }
@@ -472,29 +408,14 @@
     color: #eab308;
 }
 
-
-/* =========================================================
-   ATTACK TYPE
-========================================================= */
-
 .attack-type {
     color: #60a5fa;
 }
-
-
-/* =========================================================
-   DPS
-========================================================= */
 
 .max-dps {
     color: #4ade80;
     font-weight: 900;
 }
-
-
-/* =========================================================
-   SORTING
-========================================================= */
 
 .sortable {
     color: #4ade80 !important;
@@ -516,11 +437,6 @@
     margin-left: 4px;
 }
 
-
-/* =========================================================
-   EMPTY RESULTS
-========================================================= */
-
 .no-results {
     padding: 60px 20px;
 
@@ -528,16 +444,11 @@
 
     color: #555;
 
-    font-family: monospace;
+    font-family: var(--arcade-body);
     font-size: 12px;
     font-weight: 900;
     letter-spacing: 1px;
 }
-
-
-/* =========================================================
-   TABLET
-========================================================= */
 
 @media (max-width: 900px) {
 
@@ -563,11 +474,6 @@
         white-space: nowrap;
     }
 }
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
 
 @media (max-width: 700px) {
 
@@ -651,11 +557,6 @@
     }
 }
 
-
-/* =========================================================
-   SMALL PHONES
-========================================================= */
-
 @media (max-width: 480px) {
 
     .raw-dps-page {
@@ -708,11 +609,6 @@
     }
 }
 
-
-/* =========================================================
-   VERY SMALL PHONES
-========================================================= */
-
 @media (max-width: 380px) {
 
     .raw-dps-page {
@@ -737,14 +633,7 @@
     }
 }
 
-
-/* =========================================================
-   V2.3.1 — RAW DPS MOBILE IMPROVEMENTS
-========================================================= */
-
 @media (max-width: 700px) {
-
-    /* PAGE HEADER */
 
     .raw-dps-header h1 {
         line-height: 1.15;
@@ -755,16 +644,10 @@
         line-height: 1.7;
     }
 
-
-    /* NOTICE */
-
     .notice {
         line-height: 1.7;
         overflow-wrap: anywhere;
     }
-
-
-    /* SEARCH */
 
     .search-area {
         min-width: 0;
@@ -779,16 +662,10 @@
         font-size: 16px;
     }
 
-
-    /* FILTER BUTTON */
-
     #filter-button {
         min-height: 44px;
         font-size: 10px;
     }
-
-
-    /* FILTER OPTIONS */
 
     .filter-options {
         min-width: 0;
@@ -800,15 +677,9 @@
         line-height: 1.3;
     }
 
-
-    /* FILTER PANEL */
-
     .filters.open {
         max-height: 1000px;
     }
-
-
-    /* DPS TABLE */
 
     .dps-table-container {
         max-width: 100%;
@@ -834,9 +705,6 @@
         width: 24%;
     }
 
-
-    /* EMPTY RESULTS */
-
     .no-results {
         padding: 40px 15px;
         line-height: 1.6;
@@ -844,11 +712,6 @@
     }
 
 }
-
-
-/* =========================================================
-   V2.3.1 — SMALL PHONE ADJUSTMENTS
-========================================================= */
 
 @media (max-width: 480px) {
 
@@ -882,11 +745,6 @@
 
 }
 
-
-/* =========================================================
-   V2.3.1 — KEYBOARD ACCESSIBILITY
-========================================================= */
-
 #search-input:focus-visible,
 #filter-button:focus-visible,
 .filter-options button:focus-visible,
@@ -894,11 +752,6 @@
     outline: 2px solid #4ade80;
     outline-offset: 2px;
 }
-
-
-/* =========================================================
-   V2.3.1 — REDUCED MOTION
-========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
 

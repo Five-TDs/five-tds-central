@@ -8,16 +8,21 @@
     <title>Teams - FIVE TD'S CENTRAL</title>
 
     <link rel="stylesheet" href="css/site.css">
-    <link rel="stylesheet" href="css/pages/teams.css">
+<link rel="stylesheet" href="css/pages/teams.css">
+<link href="css/arcade-theme.css" rel="stylesheet"/>
+    
+
 </head>
 
 <body>
 
-    <script src="js/site.js"></script>
+    <script src="js/config/navigation.js"></script>
+
+<script src="js/site.js"></script>
 
     <main class="teams-page">
 
-        <!-- PAGE HEADER -->
+        
         <header class="page-header teams-header">
             <div>
                 <h1>TEAMS</h1>
@@ -29,9 +34,7 @@
             </div>
         </header>
 
-        <!-- =========================
-            TEAM PAGE TABS
-        ========================= -->
+        
         <div class="teams-tabs" role="tablist" aria-label="Team page sections">
 
             <button
@@ -61,9 +64,7 @@
         </div>
 
 
-        <!-- =========================
-            TEAM BUILDER PANEL
-        ========================= -->
+        
         <section
             id="team-builder-panel"
             class="teams-tab-panel"
@@ -71,14 +72,10 @@
             aria-labelledby="team-builder-tab"
             tabindex="0"
         >
-            <!-- =========================
-                CUSTOM TEAM BUILDER
-            ========================= -->
+            
             <div class="custom-team-builder">
 
-                <!-- =========================================
-                    V2.4.0 — SAVED TEAM MANAGEMENT
-                ========================================= -->
+                
                 <div class="builder-team-manager">
 
                     <div class="builder-team-manager-heading">
@@ -141,7 +138,7 @@
 
                 </div>
 
-                <!-- V2.4.0 — SAVED TEAM ACTION MODAL -->
+                
                     <div
                         id="builder-team-action-modal"
                         class="builder-modal"
@@ -199,9 +196,7 @@
                             </div>
                             </div>
                         </div>
-                        <!-- =========================================
-                                V2.4.0 — SHARED TEAM IMPORT MODAL
-                            ========================================= -->
+                        
                             <div
                                 id="builder-share-modal"
                                 class="builder-modal"
@@ -256,7 +251,7 @@
                     </span>
                 </div>
 
-                <!-- FIVE TEAM SLOTS -->
+                
                 <div class="builder-slots" id="builder-slots">
 
                     <button class="builder-slot" type="button" data-slot="0">
@@ -294,9 +289,7 @@
                     </span>
                 </div>
 
-                <!-- =========================
-                    CUSTOMIZABLE TEAM STATISTICS
-                ========================= -->
+                
                 <div class="builder-stat-settings">
                     <div class="builder-stat-settings-heading">
                         <h3>TEAM STATISTICS</h3>
@@ -359,9 +352,7 @@
                 </div>
 
             </div>
-            <!-- =========================
-                UNIT PICKER MODAL
-            ========================= -->
+            
             <div
                 id="builder-unit-modal"
                 class="builder-modal"
@@ -405,9 +396,7 @@
 
                 </div>
             </div>
-            <!-- =========================
-                UNIT CONFIGURATION MODAL
-            ========================= -->
+            
             <div
                 id="builder-config-modal"
                 class="builder-modal"
@@ -492,9 +481,7 @@
                 </div>
             </div>
 
-            <!-- =========================
-                MOVE / SWAP MODAL
-            ========================= -->
+            
             <div
                 id="builder-move-modal"
                 class="builder-modal"
@@ -528,9 +515,7 @@
         </section>
 
 
-        <!-- =========================
-            RECOMMENDED TEAMS PANEL
-        ========================= -->
+        
         <section
             id="recommended-teams-panel"
             class="teams-tab-panel"
@@ -549,14 +534,14 @@
                 </div>
             </div>
 
-            <!-- EXISTING RECOMMENDED TEAMS -->
+            
             <div id="teams-container"></div>
 
         </section>
 
     </main>
 
-    <!-- WARNING TOOLTIP -->
+    
     <div id="warning-tooltip" role="tooltip"></div>
 
     <script src="js/data/units.js"></script>

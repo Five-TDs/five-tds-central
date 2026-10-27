@@ -1,7 +1,3 @@
-/* =========================================================
-   GENERAL
-========================================================= */
-
 * {
     box-sizing: border-box;
 }
@@ -14,18 +10,10 @@ body {
 
     color: white;
 
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+    font-family: var(--arcade-body);
 
     min-height: 100vh;
 }
-
-
-/* =========================================================
-   PAGE HEADER
-========================================================= */
 
 .page-header {
     text-align: center;
@@ -54,22 +42,12 @@ body {
     letter-spacing: 1px;
 }
 
-
-/* =========================================================
-   SEARCH AREA
-========================================================= */
-
 .search-area {
     width: calc(100% - 40px);
     max-width: 1100px;
 
     margin: 0 auto 50px;
 }
-
-
-/* =========================================================
-   SEARCH BAR
-========================================================= */
 
 .search-container {
     display: flex;
@@ -119,11 +97,6 @@ body {
     letter-spacing: 1px;
 }
 
-
-/* =========================================================
-   SEARCH / FILTER OPEN STATE
-========================================================= */
-
 .search-area:has(#filters.open) .search-container {
     border-bottom-left-radius: 0;
 
@@ -135,11 +108,6 @@ body {
 
     border-top-right-radius: 0;
 }
-
-
-/* =========================================================
-   FILTER BUTTON
-========================================================= */
 
 #filter-button {
     width: 65px;
@@ -177,11 +145,6 @@ body {
 #filter-button.open span {
     transform: rotate(180deg);
 }
-
-
-/* =========================================================
-   FILTER PANEL
-========================================================= */
 
 #filters {
     max-height: 0;
@@ -229,11 +192,6 @@ body {
     border-color: #242424;
 }
 
-
-/* =========================================================
-   FILTER GROUP
-========================================================= */
-
 .filter-group {
     display: flex;
 
@@ -251,11 +209,6 @@ body {
 
     letter-spacing: 3px;
 }
-
-
-/* =========================================================
-   FILTER BUTTONS
-========================================================= */
 
 .filter-buttons {
     display: flex;
@@ -326,11 +279,6 @@ body {
     color: #7affab;
 }
 
-
-/* =========================================================
-   DATABASE
-========================================================= */
-
 #unit-grid {
     width: calc(100% - 40px);
     max-width: 1500px;
@@ -338,11 +286,6 @@ body {
     margin: 0 auto;
     padding-bottom: 80px;
 }
-
-
-/* =========================================================
-   RARITY SECTION
-========================================================= */
 
 .rarity-section {
     margin-bottom: 60px;
@@ -380,11 +323,6 @@ body {
     background: #222;
 }
 
-
-/* =========================================================
-   UNIT GRID
-========================================================= */
-
 .unit-grid {
     display: grid;
 
@@ -394,28 +332,20 @@ body {
     gap: 20px;
 }
 
-
-/* =========================================================
-   UNIT CARD
-========================================================= */
-
 .unit-card {
     min-width: 0;
 
     cursor: pointer;
 
     transition:
-        transform 0.18s ease;
+        transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.unit-card:hover {
-    transform: translateY(-7px);
+@media (hover: hover) and (pointer: fine) {
+    .unit-card:hover {
+        transform: translateY(-5px);
+    }
 }
-
-
-/* =========================================================
-   UNIT IMAGE
-========================================================= */
 
 .unit-image {
     position: relative;
@@ -437,12 +367,24 @@ body {
         filter 0.18s ease;
 }
 
-.unit-card:hover .unit-image {
-    filter: brightness(1.15);
 
-    box-shadow:
-        0 8px 25px rgba(255, 255, 255, 0.12);
+@media (hover: hover) and (pointer: fine) {
+    .unit-card:hover .unit-image {
+        filter: brightness(1.08);
+
+        box-shadow:
+            inset 0 0 0 2px rgba(0, 0, 0, 0.85),
+            inset 0 0 0 4px var(--rarity-color),
+            0 0 0 1px var(--rarity-color),
+            0 8px 26px rgba(0, 0, 0, 0.5),
+            0 0 18px color-mix(
+                in srgb,
+                var(--rarity-color) 28%,
+                transparent
+            );
+    }
 }
+
 
 .unit-image img {
     width: 100%;
@@ -474,11 +416,6 @@ body {
     letter-spacing: 2px;
 }
 
-
-/* =========================================================
-   UNIT NAME
-========================================================= */
-
 .unit-name {
     margin-top: 10px;
 
@@ -504,39 +441,81 @@ body {
     color: white;
 }
 
-
-/* =========================================================
-   RARITY COLORS
-========================================================= */
-
-.common .unit-image {
-    border-color: #AAAAAA;
+.common {
+    --rarity-color: #AAAAAA;
 }
 
-.uncommon .unit-image {
-    border-color: #65FF01;
+.uncommon {
+    --rarity-color: #65FF01;
 }
 
-.rare .unit-image {
-    border-color: #0165FF;
+.rare {
+    --rarity-color: #0165FF;
 }
 
-.epic .unit-image {
-    border-color: #C801FF;
+.epic {
+    --rarity-color: #C801FF;
 }
 
-.exclusive .unit-image {
-    border-color: #FF0101;
+.exclusive {
+    --rarity-color: #FF0101;
 }
 
-.legendary .unit-image {
-    border-color: #FFD619;
+.legendary {
+    --rarity-color: #FFD619;
 }
 
+.unit-card .unit-image {
+    position: relative;
+    isolation: isolate;
 
-/* =========================================================
-   NO RESULTS
-========================================================= */
+    border: 2px solid var(--rarity-color);
+    border-radius: 14px;
+
+    background: #0d0d0d;
+
+    box-shadow:
+        inset 0 0 0 2px rgba(0, 0, 0, 0.85),
+        inset 0 0 0 4px var(--rarity-color),
+        0 0 0 1px rgba(255, 255, 255, 0.05),
+        0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+.unit-card .unit-image::after {
+    content: "";
+
+    position: absolute;
+    inset: 5px;
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 7px;
+
+    pointer-events: none;
+
+    box-shadow:
+        inset 0 0 12px rgba(0, 0, 0, 0.25);
+}
+
+.unit-card:hover .unit-image {
+    filter: brightness(1.1);
+
+    box-shadow:
+        inset 0 0 0 2px rgba(0, 0, 0, 0.85),
+        inset 0 0 0 4px var(--rarity-color),
+        0 0 0 1px var(--rarity-color),
+        0 8px 25px rgba(0, 0, 0, 0.45);
+}
+
+@media (max-width: 600px) {
+    .unit-card .unit-image {
+        border-radius: 11px;
+    }
+
+    .unit-card .unit-image::after {
+        inset: 4px;
+        border-radius: 5px;
+    }
+}
 
 .no-results {
     padding: 80px 20px;
@@ -552,11 +531,6 @@ body {
     text-transform: uppercase;
 }
 
-
-/* =========================================================
-   RESPONSIVE — 1200PX
-========================================================= */
-
 @media (max-width: 1200px) {
 
     .unit-grid {
@@ -564,11 +538,6 @@ body {
             repeat(6, minmax(0, 1fr));
     }
 }
-
-
-/* =========================================================
-   RESPONSIVE — 1000PX
-========================================================= */
 
 @media (max-width: 1000px) {
 
@@ -578,11 +547,6 @@ body {
     }
 }
 
-
-/* =========================================================
-   RESPONSIVE — 800PX
-========================================================= */
-
 @media (max-width: 800px) {
 
     .unit-grid {
@@ -590,11 +554,6 @@ body {
             repeat(4, minmax(0, 1fr));
     }
 }
-
-
-/* =========================================================
-   RESPONSIVE — 600PX
-========================================================= */
 
 @media (max-width: 600px) {
 
@@ -619,11 +578,6 @@ body {
 
 }
 
-
-/* =========================================================
-   RESPONSIVE — 420PX
-========================================================= */
-
 @media (max-width: 420px) {
 
     .unit-grid {
@@ -632,15 +586,7 @@ body {
     }
 }
 
-/* =========================================================
-   V2.3.1 — UNIT DATABASE MOBILE IMPROVEMENTS
-========================================================= */
-
 @media (max-width: 600px) {
-
-    /* =========================
-       PAGE HEADER
-    ========================= */
 
     .page-header {
 
@@ -667,11 +613,6 @@ body {
         line-height: 1.6;
 
     }
-
-
-    /* =========================
-       SEARCH AREA
-    ========================= */
 
     .search-area {
 
@@ -704,11 +645,6 @@ body {
         flex-shrink: 0;
 
     }
-
-
-    /* =========================
-       FILTER PANEL
-    ========================= */
 
     #filters.open {
 
@@ -744,11 +680,6 @@ body {
 
     }
 
-
-    /* =========================
-       UNIT DATABASE
-    ========================= */
-
     #unit-grid {
 
         width: calc(100% - 28px);
@@ -779,11 +710,6 @@ body {
 
     }
 
-
-    /* =========================
-       UNIT CARDS
-    ========================= */
-
     .unit-image {
 
         border-radius: 11px;
@@ -803,11 +729,6 @@ body {
     }
 
 }
-
-
-/* =========================================================
-   V2.3.1 — VERY SMALL PHONES
-========================================================= */
 
 @media (max-width: 420px) {
 
@@ -833,11 +754,6 @@ body {
 
 }
 
-
-/* =========================================================
-   V2.3.1 — REDUCED MOTION
-========================================================= */
-
 @media (prefers-reduced-motion: reduce) {
 
     .unit-card,
@@ -854,11 +770,6 @@ body {
     }
 
 }
-
-
-/* =========================
-   UNIT CARD COPY LINK
-========================= */
 
 .unit-card-copy-link {
     display: inline-flex;
@@ -930,10 +841,6 @@ body {
     }
 }
 
-/* =========================
-   UNIT DATABASE RESULT COUNTER
-========================= */
-
 .unit-results-bar {
     width: 100%;
     max-width: 1200px;
@@ -964,10 +871,6 @@ body {
     }
 
 }
-
-/* =========================
-   CLEAR ALL FILTERS BUTTON
-========================= */
 
 .unit-results-bar {
     display: flex;
@@ -1023,5 +926,57 @@ body {
 @media (prefers-reduced-motion: reduce) {
     .clear-unit-filters {
         transition: none;
+    }
+}
+
+.rarity-count {
+    flex-shrink: 0;
+
+    color: #777;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 0.5px;
+
+    font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 600px) {
+    .rarity-count {
+        font-size: 10px;
+    }
+}
+
+.unit-card .unit-image {
+    transition:
+        box-shadow 0.25s ease,
+        filter 0.25s ease;
+}
+
+.unit-card .unit-name {
+    transition: color 0.25s ease;
+}
+
+.unit-card:focus-within .unit-image {
+    outline: 2px solid #b4fcff;
+    outline-offset: 4px;
+}
+
+@media (hover: none) {
+    .unit-card {
+        transform: none !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .unit-card,
+    .unit-card .unit-image,
+    .unit-card .unit-name {
+        transition: none !important;
+    }
+
+    .unit-card:hover {
+        transform: none !important;
     }
 }

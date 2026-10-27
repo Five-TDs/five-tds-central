@@ -1,6 +1,6 @@
-// =========================================================
-// NIGHTS DATABASE
-// =========================================================
+
+
+
 
 const nights = [
 
@@ -250,9 +250,9 @@ const nights = [
 
 
 
-// =========================================================
-// ELEMENTS
-// =========================================================
+
+
+
 
 const nightsContainer =
     document.getElementById("nights-container");
@@ -270,25 +270,25 @@ const filterArrow =
     document.getElementById("filter-arrow");
 
 
-// =========================================================
-// ACTIVE FILTERS
-// =========================================================
+
+
+
 
 let activeGames = [];
 
 
-// =========================================================
-// POPUP STATE
-// =========================================================
+
+
+
 
 let selectedNight = null;
 
 let maxMode = false;
 
 
-// =========================================================
-// BUILD GAME FILTERS
-// =========================================================
+
+
+
 
 function buildGameFilters() {
 
@@ -329,9 +329,9 @@ function buildGameFilters() {
 }
 
 
-// =========================================================
-// TOGGLE GAME FILTER
-// =========================================================
+
+
+
 
 function toggleGameFilter(
     gameNumber,
@@ -361,9 +361,9 @@ function toggleGameFilter(
 }
 
 
-// =========================================================
-// FILTER BUTTON
-// =========================================================
+
+
+
 
 filterButton.addEventListener(
     "click",
@@ -383,9 +383,9 @@ filterButton.addEventListener(
 );
 
 
-// =========================================================
-// DISPLAY NIGHTS
-// =========================================================
+
+
+
 
 function displayNights() {
 
@@ -394,8 +394,8 @@ function displayNights() {
 
     nights.forEach(game => {
 
-        // If filters are active,
-        // only show selected games.
+        
+        
 
         if (
             activeGames.length > 0 &&
@@ -412,9 +412,9 @@ function displayNights() {
             "game-section";
 
 
-        // =========================
-        // GAME HEADER
-        // =========================
+        
+        
+        
 
         const header =
             document.createElement("div");
@@ -445,9 +445,9 @@ function displayNights() {
         header.appendChild(line);
 
 
-        // =========================
-        // NIGHT GRID
-        // =========================
+        
+        
+        
 
         const grid =
             document.createElement("div");

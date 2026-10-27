@@ -1,6 +1,4 @@
-/* =========================================
-   WARNING TOOLTIP
-========================================= */
+
 
 const warningTooltip = document.getElementById("warning-tooltip");
 

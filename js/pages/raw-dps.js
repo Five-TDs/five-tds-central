@@ -1,25 +1,25 @@
-// =========================================================
-// ACTIVE FILTERS
-// =========================================================
+
+
+
 
 let activeRarities = [];
 
 let activeTypes = [];
 
 
-// =========================================================
-// SORT
-// =========================================================
 
-// true = highest to lowest
-// false = lowest to highest
+
+
+
+
+
 
 let highestFirst = true;
 
 
-// =========================================================
-// PAGE ELEMENTS
-// =========================================================
+
+
+
 
 const searchInput =
     document.getElementById("search-input");
@@ -45,9 +45,9 @@ const sortArrow =
     document.getElementById("sort-arrow");
 
 
-// =========================================================
-// FILTER MENU
-// =========================================================
+
+
+
 
 filterButton.addEventListener("click", () => {
 
@@ -58,9 +58,9 @@ filterButton.addEventListener("click", () => {
 });
 
 
-// =========================================================
-// RARITY FILTERS
-// =========================================================
+
+
+
 
 document
     .querySelectorAll(".rarity-option")
@@ -97,9 +97,9 @@ document
     });
 
 
-// =========================================================
-// TYPE FILTERS
-// =========================================================
+
+
+
 
 document
     .querySelectorAll(".type-option")
@@ -136,9 +136,9 @@ document
     });
 
 
-// =========================================================
-// SEARCH
-// =========================================================
+
+
+
 
 searchInput.addEventListener(
     "input",
@@ -150,9 +150,9 @@ searchInput.addEventListener(
 );
 
 
-// =========================================================
-// SORT BUTTON
-// =========================================================
+
+
+
 
 dpsHeader.addEventListener("click", () => {
 
@@ -167,9 +167,9 @@ dpsHeader.addEventListener("click", () => {
 });
 
 
-// =========================================================
-// SORT ARROW
-// =========================================================
+
+
+
 
 function updateSortArrow() {
 
@@ -186,9 +186,9 @@ function updateSortArrow() {
 }
 
 
-// =========================================================
-// GET MAX LEVEL STATS
-// =========================================================
+
+
+
 
 function getMaxStats(unit) {
 
@@ -202,10 +202,7 @@ function getMaxStats(unit) {
     }
 
 
-    /*
-        The last entry in the stats array
-        is treated as the max-level stat.
-    */
+    
 
     return unit.stats[
         unit.stats.length - 1
@@ -214,9 +211,7 @@ function getMaxStats(unit) {
 }
 
 
-/* =========================================================
-   GET MAX DPS
-========================================================= */
+
 
 function getMaxDPS(unit) {
 
@@ -240,9 +235,9 @@ function getMaxDPS(unit) {
 }
 
 
-// =========================================================
-// DISPLAY DPS
-// =========================================================
+
+
+
 
 function displayDPS() {
 
@@ -255,10 +250,7 @@ function displayDPS() {
             .trim();
 
 
-    /*
-        Start with units that actually
-        have max-level stats.
-    */
+    
 
     let filteredUnits =
         units.filter(unit => {
@@ -272,9 +264,9 @@ function displayDPS() {
             }
 
 
-            // =========================
-            // SEARCH
-            // =========================
+            
+            
+            
 
             const matchesSearch =
                 unit.name
@@ -282,9 +274,9 @@ function displayDPS() {
                     .includes(searchText);
 
 
-            // =========================
-            // RARITY
-            // =========================
+            
+            
+            
 
             const matchesRarity =
                 activeRarities.length === 0 ||
@@ -294,9 +286,9 @@ function displayDPS() {
                 );
 
 
-            // =========================
-            // TYPE
-            // =========================
+            
+            
+            
 
             const maxStats =
                 getMaxStats(unit);
@@ -319,9 +311,9 @@ function displayDPS() {
         });
 
 
-    // =====================================================
-    // SORT
-    // =====================================================
+    
+    
+    
 
     filteredUnits.sort((a, b) => {
 
@@ -345,9 +337,9 @@ function displayDPS() {
     });
 
 
-    // =====================================================
-    // NO RESULTS
-    // =====================================================
+    
+    
+    
 
     if (filteredUnits.length === 0) {
 
@@ -371,9 +363,9 @@ function displayDPS() {
     }
 
 
-    // =====================================================
-    // CREATE ROWS
-    // =====================================================
+    
+    
+    
 
     filteredUnits.forEach((unit, index) => {
 

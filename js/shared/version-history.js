@@ -1,6 +1,4 @@
-/* =========================================
-   VERSION HISTORY MODAL
-========================================= */
+
 
 function initializeVersionHistory() {
 
@@ -37,9 +35,7 @@ function initializeVersionHistory() {
     let previousFocus = null;
     let selectedVersion = 0;
 
-    /* =====================================
-       DISPLAY SELECTED VERSION
-    ===================================== */
+    
 
     function displayVersion(index) {
 
@@ -116,9 +112,7 @@ content.appendChild(description);
     }
 
 
-    /* =====================================
-       CREATE VERSION BUTTONS
-    ===================================== */
+    
 
     WEBSITE_VERSION_HISTORY.forEach((version, index) => {
 
@@ -146,9 +140,7 @@ content.appendChild(description);
     });
 
 
-    /* =====================================
-       OPEN MODAL
-    ===================================== */
+    
 
     function openModal() {
 
@@ -165,9 +157,7 @@ content.appendChild(description);
     }
 
 
-    /* =====================================
-       CLOSE MODAL
-    ===================================== */
+    
 
     function closeModal() {
 
@@ -182,9 +172,7 @@ content.appendChild(description);
     }
 
 
-    /* =====================================
-       EVENTS
-    ===================================== */
+    
 
     openButton.addEventListener("click", openModal);
 
@@ -239,9 +227,7 @@ content.appendChild(description);
 }
 
 
-/* =========================================
-   INITIALIZE
-========================================= */
+
 
 if (document.readyState === "loading") {
 

@@ -1,6 +1,6 @@
-// =========================
-// FIND THE UNIT
-// =========================
+
+
+
 
 const params = new URLSearchParams(window.location.search);
 
@@ -9,9 +9,9 @@ const unitName = params.get("unit");
 const unit = findUnitByName(unitName);
 
 
-// =========================
-// CHECK IF UNIT EXISTS
-// =========================
+
+
+
 
 if (!unit) {
 
@@ -24,17 +24,17 @@ if (!unit) {
 
 } else {
 
-    // =========================
-    // PAGE TITLE
-    // =========================
+    
+    
+    
 
     document.title =
         unit.name + " - Unit Database";
 
 
-    // =========================
-    // BASIC INFORMATION
-    // =========================
+    
+    
+    
 
     document.getElementById("unit-name").textContent =
         unit.name;
@@ -67,9 +67,9 @@ if (!unit) {
     document.getElementById("unit-obtainment").textContent =
         unit.obtainment || "Not available.";
 
-    // =========================
-    // LAST UPDATED
-    // =========================
+    
+    
+    
 
     const lastUpdatedContainer =
         document.getElementById("unit-last-updated");
@@ -115,9 +115,9 @@ if (!unit) {
     }
 
 
-    // =========================
-    // DATA CONFIDENCE
-    // =========================
+    
+    
+    
 
     const confidenceIndicator =
         document.getElementById("unit-data-confidence");
@@ -146,9 +146,9 @@ if (!unit) {
     }
 
 
-    // =========================
-    // RARITY COLORS
-    // =========================
+    
+    
+    
 
     const rarityColor = getRarityColor(unit.rarity);
 
@@ -171,9 +171,9 @@ if (!unit) {
     }
 
 
-    // =========================
-    // BUILD STATS
-    // =========================
+    
+    
+    
 
     buildStats();
     displayAbilities(unit);
@@ -182,9 +182,9 @@ if (!unit) {
 }
 
 
-// =========================
-// BUILD STATS TABLE
-// =========================
+
+
+
 
 function buildStats() {
 
@@ -219,9 +219,9 @@ function buildStats() {
 
 
 
-    // =========================
-    // DETERMINE STAT MODE
-    // =========================
+    
+    
+    
 
     const hasRangeBuff =
         unit.stats.some(stat =>
@@ -259,9 +259,9 @@ function buildStats() {
 
 
 
-    // =========================
-    // BUILD HEADER
-    // =========================
+    
+    
+    
 
     if (statMode === "normal") {
 
@@ -289,9 +289,9 @@ function buildStats() {
 
 
 
-    // =========================
-    // LEVEL ROWS
-    // =========================
+    
+    
+    
 
     let previousType =
         unit.stats[0].type;
@@ -311,9 +311,9 @@ function buildStats() {
 
 
 
-        // =========================
-        // NORMAL UNIT
-        // =========================
+        
+        
+        
 
         if (statMode === "normal") {
 

@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&family=Press+Start+2P&display=swap');
+
+:root {
+  --site-bg: #050505;
+  --site-panel: #0d0d11;
+  --site-panel-2: #14141a;
+  --site-border: #33313c;
+  --site-border-soft: #27262e;
+  --site-text: #f7f7fa;
+  --site-muted: #a4a1b0;
+  --site-muted-2: #777382;
+  --site-accent: #f06b68;
+  --site-accent-soft: rgba(240,107,104,.13);
+  --arcade-cyan: #b4fcff;
+  --arcade-gold: #ffd619;
+  --arcade-surface: #101015;
+  --arcade-surface-raised: #181820;
+  --arcade-edge: #37333f;
+  --arcade-pixel: 'Press Start 2P', 'Courier New', monospace;
+  --arcade-body: 'Pixelify Sans', 'Trebuchet MS', Arial, sans-serif;
+  --site-font: var(--arcade-body);
+  --arcade-shadow: 4px 4px 0 rgba(0,0,0,.75);
+  --arcade-focus: 0 0 0 2px #050505, 0 0 0 4px var(--arcade-cyan);
+  color-scheme: dark;
+}
+html { scroll-behavior: smooth; }
+html, body { background: var(--site-bg); color: var(--site-text); font-family: var(--arcade-body); }
+body { font-size: 16px; line-height: 1.5; }
+button, input, select, textarea { font-family: var(--arcade-body); }
+button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+:where(a,button,input,select,textarea,[tabindex]):focus-visible { outline: 2px solid var(--arcade-cyan); outline-offset: 3px; }
+::selection { color: #050505; background: var(--arcade-cyan); }
+:where(.hero h1,.page-header h1,.teams-header h1,.faq-hero h1,.nights-page h1,.stats-page h1,.tierlist-page h1,.updates-page h1,.unit-page h1,#unit-name) {
+  font-family: var(--arcade-pixel) !important;
+  font-size: clamp(19px,2.5vw,34px) !important;
+  line-height: 1.65 !important;
+  letter-spacing: .01em !important;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+  text-shadow: 3px 3px 0 rgba(240,107,104,.12);
+}
+:where(.hero h1) { font-size: clamp(24px,3.5vw,46px) !important; }
+:where(.rarity-title h2,.team-section-header h2,.home-section h2,.stats-header h2,.faq-panel h2) {
+  font-family: var(--arcade-pixel);
+  font-size: clamp(10px,1.2vw,15px);
+  line-height: 1.8;
+  letter-spacing: .01em;
+}
+:where(.page-header p,.hero p,.page-description,.teams-header .page-description,.team-section-description) {
+  color: var(--site-muted);
+  font-size: clamp(13px,1.4vw,17px);
+  line-height: 1.6;
+}
+.site-nav {
+  background: rgba(8,8,12,.97);
+  border-bottom: 2px solid var(--site-accent);
+  box-shadow: 0 4px 0 rgba(240,107,104,.08),0 16px 32px rgba(0,0,0,.45);
+}
+.nav-logo {
+  font-family: var(--arcade-pixel) !important;
+  font-size: clamp(10px,1.05vw,13px) !important;
+  letter-spacing: 0 !important;
+  line-height: 1.65 !important;
+}
+.nav-link,.nav-dropdown-button { font-family: var(--arcade-body) !important; font-size: 15px !important; letter-spacing: .045em; }
+.nav-dropdown-menu,.mobile-menu { background: #101015; border: 1px solid var(--arcade-edge); box-shadow: var(--arcade-shadow); }
+.mobile-nav-header { color: var(--site-accent); }
+:where(.home-section,.roblox-game-card,.stats-container,.abilities-container,.info-box,.obtainment-box,.faq-panel,.night-modal-content,.team-modal-content,.stats-panel,.filter-panel,.search-container,.suggestion-panel) {
+  background-color: var(--arcade-surface);
+  box-shadow: 4px 4px 0 rgba(0,0,0,.5);
+}
+:where(.home-section,.roblox-game-card,.stats-container,.abilities-container,.faq-panel,.stats-panel,.suggestion-panel) {
+  border-radius: 3px;
+  border-style: solid;
+}
+:where(.home-section,.roblox-game-card,.stats-container,.abilities-container,.faq-panel,.stats-panel,.suggestion-panel) {
+  border-color: var(--arcade-edge);
+}
+:where(.home-section,.roblox-game-card,.faq-panel,.stats-container,.abilities-container) { position: relative; }
+:where(.home-section,.roblox-game-card,.faq-panel,.stats-container,.abilities-container)::before {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  width: 13px; height: 13px;
+  top: -2px; left: -2px;
+  border-top: 3px solid var(--site-accent);
+  border-left: 3px solid var(--site-accent);
+}
+:where(.home-section,.roblox-game-card,.faq-panel,.stats-container,.abilities-container)::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  width: 13px; height: 13px;
+  bottom: -2px; right: -2px;
+  border-bottom: 3px solid var(--arcade-cyan);
+  border-right: 3px solid var(--arcade-cyan);
+}
+:where(button,.unit-tab,.stats-tab,.filter-option,.clear-unit-filters,.copy-unit-link,.unit-card-copy-link) { border-radius: 3px; }
+:where(button):not(:disabled) { touch-action: manipulation; }
+:where(input,select,textarea) { accent-color: var(--site-accent); }
+:where(input,select,textarea)::placeholder { color: #8a8592; }
+:where(.unit-tab.active,.stats-tab.active) { box-shadow: inset 0 -3px 0 var(--site-accent); }
+:where(.unit-tab,.stats-tab,.filter-option,.copy-unit-link,.unit-card-copy-link) { font-size: max(11px, .85em); }
+.unit-card .unit-image { border-radius: 4px; }
+.unit-card .unit-image::after { border-radius: 2px; }
+.unit-card .unit-name { font-size: clamp(12px,1vw,15px); line-height: 1.45; }
+.unit-card-copy-link { font-size: 11px; padding: 5px 8px; }
+.rarity-title h2 { font-size: clamp(10px,1vw,13px); }
+.rarity-count { color: var(--arcade-cyan); font-family: var(--arcade-body); font-size: 14px; }
+.unit-image-container { border-radius: 4px; }
+.unit-image-container::after { border-radius: 2px; }
+.info-box { border-radius: 3px; }
+.info-label { color: var(--site-muted); font-size: 11px; letter-spacing: .08em; }
+.info-value { font-size: 17px; }
+#stats-table { font-variant-numeric: tabular-nums; }
+#stats-table th { color: var(--arcade-cyan); background: #17151d; font-size: 11px; }
+#stats-table td { font-size: 13px; }
+#stats-table tbody tr:nth-child(even) { background: rgba(180,252,255,.025); }
+#stats-table tbody tr:last-child { background: rgba(240,107,104,.09); }
+#stats-table tbody tr:last-child td:first-child { color: var(--site-accent); }
+#stats-table td.dps-value { color: #4ade80; }
+#stats-table td.attack-type { color: #60a5fa; }
+#stats-table td.type-changed { color: #eab308; }
+.hero h1 { color: #fff; text-shadow: 4px 4px 0 #6d2f36,8px 8px 0 #070707; }
+.home-section { border-radius: 3px; }
+.home-section-header h2 { font-family: var(--arcade-pixel); font-size: clamp(11px,1.5vw,16px); line-height: 1.8; }
+.roblox-game-card { border-radius: 3px; }
+:where([class*="modal-content"],[class*="modal-panel"]) {
+  border-radius: 4px;
+  box-shadow: 7px 7px 0 rgba(0,0,0,.72),0 22px 70px rgba(0,0,0,.55);
+}
+@media (max-width: 900px) {
+  .nav-logo { font-size: 10px !important; }
+}
+@media (max-width: 700px) {
+  :where(.hero h1,.page-header h1,.teams-header h1,#unit-name) { font-size: clamp(17px,5vw,25px) !important; }
+  .hero h1 { font-size: clamp(19px,5vw,29px) !important; }
+  .unit-card .unit-name { font-size: 12px; }
+  .unit-card-copy-link { font-size: 10px; }
+  #stats-table th { font-size: 10px; }
+  #stats-table td { font-size: 11px; }
+  .info-label { font-size: 10px; }
+  .info-value { font-size: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+html, body, button, input, select, textarea, table, th, td,
+[role="button"], [role="tab"], option {
+  font-family: var(--arcade-body) !important;
+}
+:where(h1,h2,h3,h4,h5,h6) {
+  font-family: var(--arcade-pixel) !important;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+:where(h2) { letter-spacing: .015em; }
+:where(h3,h4,h5,h6) { letter-spacing: 0; }
+:where(.dps-table,.raw-dps-table,.stats-table,.simulator-table,
+       .team-stats,#stats-table) :where(th,td) {
+  font-family: var(--arcade-body) !important;
+  font-variant-numeric: tabular-nums;
+}
+:where(.nav-link,.nav-dropdown-button,.mobile-nav-link,.mobile-nav-section-button,
+       .unit-tab,.stats-tab,.filter-option) {
+  font-family: var(--arcade-body) !important;
+}
+@media (max-width: 700px) {
+  :where(h2) { font-size: clamp(11px,2.8vw,17px); }
+  :where(h3,h4) { font-size: clamp(10px,2.5vw,14px); }
+}

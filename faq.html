@@ -9,17 +9,21 @@
     <title>FAQ & Suggestions | FIVE TD'S CENTRAL</title>
 
     <link rel="stylesheet" href="css/site.css">
-    <link rel="stylesheet" href="css/pages/faq.css">
+<link rel="stylesheet" href="css/pages/faq.css">
+<link href="css/arcade-theme.css" rel="stylesheet"/>
+    
 
+    <script src="js/config/navigation.js" defer></script>
     <script src="js/site.js" defer></script>
     <script src="js/pages/faq.js" defer></script>
+
 </head>
 
 <body>
 
 <main class="faq-page">
 
-    <!-- PAGE HEADER -->
+    
     <header class="faq-hero">
         <p class="faq-eyebrow">COMMUNITY SUPPORT</p>
 
@@ -31,21 +35,128 @@
         </p>
     </header>
 
-
-    <!-- FREQUENTLY ASKED QUESTIONS -->
-    <section class="faq-panel" aria-labelledby="faq-heading">
+    
+    <section class="faq-panel suggestion-panel" aria-labelledby="suggestion-heading">
 
         <div class="faq-section-heading">
-            <h2 id="faq-heading">FREQUENTLY ASKED QUESTIONS</h2>
-            <p>Click any question to see its answer.</p>
+            <h2 id="suggestion-heading">SUBMIT A SUGGESTION</h2>
+
+            <p>
+                Found a site bug? Spotted incorrect stats? Have
+                an idea? Tell us about it!
+            </p>
         </div>
+
+        <form
+            id="suggestion-form"
+            action="https://formspree.io/f/xjyygbdn"
+            method="POST"
+        >
+
+            <label for="suggestion-type">SUGGESTION TYPE</label>
+
+            <select id="suggestion-type" name="suggestion_type" required>
+                <option value="Feature Request">Feature Request</option>
+                <option value="Website Bug">Website Bug</option>
+                <option value="Incorrect/Missing Information">Incorrect/Missing Information</option>
+                <option value="Other Feedback">Other Feedback</option>
+            </select>
+
+
+            <label for="suggestion-name">
+                USERNAME <span>(OPTIONAL)</span>
+            </label>
+
+            <input
+                id="suggestion-name"
+                name="username"
+                type="text"
+                maxlength="60"
+                autocomplete="nickname"
+                placeholder="Your Roblox or Discord username (optional)"
+            >
+
+
+            <label for="suggestion-message">YOUR MESSAGE</label>
+
+            <textarea
+                id="suggestion-message"
+                name="message"
+                rows="6"
+                minlength="10"
+                maxlength="3000"
+                required
+                placeholder="Describe your suggestion or the issue you found..."
+            ></textarea>
+
+
+            
+            <input
+                type="text"
+                name="_gotcha"
+                tabindex="-1"
+                autocomplete="off"
+                class="faq-honeypot"
+                aria-hidden="true"
+            >
+
+            <input
+                type="hidden"
+                name="_subject"
+                value="New FIVE TD'S CENTRAL suggestion"
+            >
+
+
+            <p class="faq-form-note">
+                Please do not include passwords, email addresses, or any other private information.
+            </p>
+
+
+            <button class="faq-submit" type="submit">
+                SEND SUGGESTION
+                <span aria-hidden="true">→</span>
+            </button>
+
+            <p
+                id="suggestion-status"
+                class="faq-status"
+                role="status"
+                aria-live="polite"
+            ></p>
+
+        </form>
+    </section>
+
+
+    
+    <section class="faq-panel" aria-labelledby="faq-heading">
+
+        
+    <div class="faq-section-heading">
+        <h2 id="faq-heading">FREQUENTLY ASKED QUESTIONS</h2>
+        <p>Click any question to see its answer.</p>
+    </div>
+
+    <div class="external-faq-link">
+        <p>
+            Looking for more answers? Check out
+            InJoy's official Five TD's FAQ!
+        </p>
+
+        <a
+            href="https://discord.com/channels/1136923204309499964/1555010173649821706"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            VIEW INJOY'S FAQ ↗
+        </a>
+    </div>
+
 
         
 <div class="faq-questions">
 
-    <!-- =========================================
-         GENERAL INFORMATION
-    ========================================= -->
+    
 
     <div class="faq-category">
         <h3>GENERAL INFORMATION</h3>
@@ -115,9 +226,7 @@
     </details>
 
 
-    <!-- =========================================
-         UNITS & STATISTICS
-    ========================================= -->
+    
 
     <div class="faq-category">
         <h3>UNITS & STATISTICS</h3>
@@ -204,9 +313,7 @@
     </details>
 
 
-    <!-- =========================================
-         TIERLISTS & META
-    ========================================= -->
+    
 
     <div class="faq-category">
         <h3>TIERLISTS & META</h3>
@@ -304,9 +411,7 @@
     </details>
 
 
-    <!-- =========================================
-         WEBSITE FEATURES & TOOLS
-    ========================================= -->
+    
 
     <div class="faq-category">
         <h3>WEBSITE FEATURES & TOOLS</h3>
@@ -361,9 +466,7 @@
     </details>
 
 
-    <!-- =========================================
-         SUGGESTIONS & COMMUNITY
-    ========================================= -->
+    
 
     <div class="faq-category">
         <h3>SUGGESTIONS & COMMUNITY</h3>
@@ -457,99 +560,6 @@
 
 </div>
 
-    </section>
-
-
-    <!-- SUGGESTION FORM -->
-    <section class="faq-panel suggestion-panel" aria-labelledby="suggestion-heading">
-
-        <div class="faq-section-heading">
-            <h2 id="suggestion-heading">SUBMIT A SUGGESTION</h2>
-
-            <p>
-                Found a site bug? Spotted incorrect stats? Have
-                an idea? Tell us about it!
-            </p>
-        </div>
-
-        <form
-            id="suggestion-form"
-            action="https://formspree.io/f/xjyygbdn"
-            method="POST"
-        >
-
-            <label for="suggestion-type">SUGGESTION TYPE</label>
-
-            <select id="suggestion-type" name="suggestion_type" required>
-                <option value="Feature Request">Feature Request</option>
-                <option value="Website Bug">Website Bug</option>
-                <option value="Incorrect/Missing Information">Incorrect/Missing Information</option>
-                <option value="Other Feedback">Other Feedback</option>
-            </select>
-
-
-            <label for="suggestion-name">
-                USERNAME <span>(OPTIONAL)</span>
-            </label>
-
-            <input
-                id="suggestion-name"
-                name="username"
-                type="text"
-                maxlength="60"
-                autocomplete="nickname"
-                placeholder="Your Roblox or Discord username (optional)"
-            >
-
-
-            <label for="suggestion-message">YOUR MESSAGE</label>
-
-            <textarea
-                id="suggestion-message"
-                name="message"
-                rows="6"
-                minlength="10"
-                maxlength="3000"
-                required
-                placeholder="Describe your suggestion or the issue you found..."
-            ></textarea>
-
-
-            <!-- SPAM PROTECTION -->
-            <input
-                type="text"
-                name="_gotcha"
-                tabindex="-1"
-                autocomplete="off"
-                class="faq-honeypot"
-                aria-hidden="true"
-            >
-
-            <input
-                type="hidden"
-                name="_subject"
-                value="New FIVE TD'S CENTRAL suggestion"
-            >
-
-
-            <p class="faq-form-note">
-                Please do not include passwords, email addresses, or any other private information.
-            </p>
-
-
-            <button class="faq-submit" type="submit">
-                SEND SUGGESTION
-                <span aria-hidden="true">→</span>
-            </button>
-
-            <p
-                id="suggestion-status"
-                class="faq-status"
-                role="status"
-                aria-live="polite"
-            ></p>
-
-        </form>
     </section>
 
 </main>

@@ -1,11 +1,6 @@
-/* =========================================
-   FIVE TD'S CENTRAL
-   SHARED UNIT UTILITIES
-========================================= */
 
-/* =========================================
-   FIND UNIT BY NAME
-========================================= */
+
+
 
 function findUnitByName(name) {
     if (!name || typeof units === "undefined") {
@@ -16,9 +11,7 @@ function findUnitByName(name) {
 }
 
 
-/* =========================================
-   NORMALIZE UNIT WARNINGS
-========================================= */
+
 
 function getUnitWarnings(unit) {
     if (!unit || !unit.warn) {
@@ -37,18 +30,14 @@ function getUnitWarnings(unit) {
 }
 
 
-/* =========================================
-   COMBINE WARNING TEXT
-========================================= */
+
 
 function getUnitWarningText(unit) {
     return getUnitWarnings(unit).join(" ");
 }
 
 
-/* =========================================
-   CHECK FOR WARNINGS
-========================================= */
+
 
 function unitHasWarnings(unit) {
     return getUnitWarnings(unit).length > 0;

@@ -1,7 +1,3 @@
-/* =========================================================
-   RESET
-========================================================= */
-
 * {
     box-sizing: border-box;
 }
@@ -14,13 +10,8 @@ body {
     background: #050505;
     color: #ffffff;
 
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--arcade-body);
 }
-
-
-/* =========================================================
-   MAIN PAGE
-========================================================= */
 
 .simulator-page {
     position: relative;
@@ -35,11 +26,6 @@ body {
 
     padding: 70px 30px 80px;
 }
-
-
-/* =========================================================
-   PAGE HEADER
-========================================================= */
 
 .page-header {
     text-align: center;
@@ -71,11 +57,6 @@ body {
 
     letter-spacing: 1.5px;
 }
-
-
-/* =========================================================
-   SIMULATOR CONTROLS
-========================================================= */
 
 .simulator-controls {
     width: 100%;
@@ -118,11 +99,6 @@ body {
     letter-spacing: 1.5px;
 }
 
-
-/* =========================================================
-   HELP BUTTON
-========================================================= */
-
 .label-with-help {
     display: flex;
 
@@ -156,7 +132,7 @@ body {
 
     color: #777;
 
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--arcade-body);
 
     font-size: 11px;
     font-weight: 900;
@@ -173,11 +149,6 @@ body {
 
     border-color: #f06b68;
 }
-
-
-/* =========================================================
-   SELECT / INPUT
-========================================================= */
 
 select,
 .search-control input {
@@ -197,7 +168,7 @@ select,
 
     outline: none;
 
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--arcade-body);
 
     font-size: 12px;
     font-weight: 700;
@@ -214,11 +185,6 @@ select:focus,
 select {
     cursor: pointer;
 }
-
-
-/* =========================================================
-   SEARCH
-========================================================= */
 
 .search-control {
     padding: 22px 25px;
@@ -238,11 +204,6 @@ select {
 
     letter-spacing: 1.5px;
 }
-
-
-/* =========================================================
-   UNIT SELECTION
-========================================================= */
 
 .unit-selection {
     width: 100%;
@@ -304,11 +265,6 @@ select {
         0 7px 20px rgba(0, 0, 0, 0.45);
 }
 
-
-/* =========================================================
-   UNIT IMAGE
-========================================================= */
-
 .unit-card-image {
     width: 100%;
 
@@ -328,11 +284,6 @@ select {
 
     object-fit: cover;
 }
-
-
-/* =========================================================
-   UNIT NAME
-========================================================= */
 
 .unit-card-name {
     min-height: 28px;
@@ -358,11 +309,6 @@ select {
     line-height: 1.2;
 }
 
-
-/* =========================================================
-   RARITY COLORS
-========================================================= */
-
 .unit-card.common {
     border-color: #AAAAAA;
 }
@@ -386,11 +332,6 @@ select {
 .unit-card.legendary {
     border-color: #FFD619;
 }
-
-
-/* =========================================================
-   STATS TABLE
-========================================================= */
 
 .stats-section {
     width: 100%;
@@ -429,7 +370,7 @@ select {
 
     color: #666;
 
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--arcade-body);
 
     font-size: 10px;
     font-weight: 900;
@@ -448,7 +389,7 @@ select {
 
     color: #aaa;
 
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--arcade-body);
 
     font-size: 12px;
     font-weight: 700;
@@ -482,11 +423,6 @@ select {
     font-weight: 900;
 }
 
-
-/* =========================================================
-   TABLE COLUMN WIDTHS
-========================================================= */
-
 .stats-table th:nth-child(1),
 .stats-table td:nth-child(1) {
     width: 16%;
@@ -516,11 +452,6 @@ select {
 .stats-table td:nth-child(6) {
     width: 17%;
 }
-
-
-/* =========================================================
-   MAX STATS
-========================================================= */
 
 .max-stats {
     width: 100%;
@@ -580,11 +511,6 @@ select {
     color: #60d99f;
 }
 
-
-/* =========================================================
-   ENCHANTMENT MODAL
-========================================================= */
-
 .modal {
     position: fixed;
 
@@ -631,11 +557,6 @@ select {
         0 10px 35px rgba(0, 0, 0, 0.6);
 }
 
-
-/* =========================================================
-   MODAL HEADER
-========================================================= */
-
 .modal-header {
     min-height: 75px;
 
@@ -671,7 +592,7 @@ select {
 
     color: #777;
 
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--arcade-body);
 
     font-size: 24px;
 
@@ -687,11 +608,6 @@ select {
 
     border-color: #555;
 }
-
-
-/* =========================================================
-   ENCHANTMENT LIST
-========================================================= */
 
 .enchantment-list {
     flex: 1 1 auto;
@@ -709,9 +625,6 @@ select {
 
     overscroll-behavior: contain;
 }
-
-
-/* Scrollbar */
 
 .enchantment-list::-webkit-scrollbar {
     width: 7px;
@@ -731,11 +644,6 @@ select {
     background: #444;
 }
 
-
-/* =========================================================
-   ENCHANTMENT ENTRY
-========================================================= */
-
 .enchantment-entry {
     padding: 25px 0;
 
@@ -747,11 +655,6 @@ select {
 .enchantment-entry:last-child {
     border-bottom: none;
 }
-
-
-/* =========================================================
-   ENCHANTMENT NAME
-========================================================= */
 
 .enchantment-name {
     display: inline-block;
@@ -766,11 +669,6 @@ select {
 
     line-height: 1.1;
 }
-
-
-/* =========================================================
-   NORMAL ENCHANT COLORS
-========================================================= */
 
 .enchantment-entry:nth-child(1) .enchantment-name {
     color: #B4FFAA;
@@ -787,11 +685,6 @@ select {
 .enchantment-entry:nth-child(4) .enchantment-name {
     color: #FFFA96;
 }
-
-
-/* =========================================================
-   HAYWIRE
-========================================================= */
 
 .enchantment-name.enchant-haywire {
     color: transparent !important;
@@ -820,11 +713,6 @@ select {
     will-change: background-position;
 }
 
-
-/* =========================================================
-   SPRINGLOCK
-========================================================= */
-
 .enchantment-name.enchant-springlock {
     color: transparent !important;
 
@@ -852,11 +740,6 @@ select {
     will-change: background-position;
 }
 
-
-/* =========================================================
-   SOUL
-========================================================= */
-
 .enchantment-name.enchant-soul {
     color: transparent !important;
 
@@ -883,11 +766,6 @@ select {
 
     will-change: background-position;
 }
-
-
-/* =========================================================
-   TEXT ANIMATIONS
-========================================================= */
 
 @keyframes haywireText {
     from {
@@ -919,11 +797,6 @@ select {
     }
 }
 
-
-/* =========================================================
-   ENCHANTMENT DESCRIPTION
-========================================================= */
-
 .enchantment-description {
     color: #888;
 
@@ -931,11 +804,6 @@ select {
 
     line-height: 1.5;
 }
-
-
-/* =========================================================
-   PROBABILITY
-========================================================= */
 
 .enchantment-prob {
     display: inline-block;
@@ -951,32 +819,17 @@ select {
     letter-spacing: 0.8px;
 }
 
-
-/* =========================================================
-   MODIFIED STAT
-========================================================= */
-
 .stat-modified {
     color: #4ade80 !important;
 
     font-weight: 900 !important;
 }
 
-
-/* =========================================================
-   LEVEL 1 PLACEMENT COST
-========================================================= */
-
 .placement-cost {
     color: #f06b68 !important;
 
     font-weight: 900 !important;
 }
-
-
-/* =========================================================
-   RESPONSIVE — 800PX
-========================================================= */
 
 @media (max-width: 800px) {
 
@@ -992,11 +845,6 @@ select {
         grid-template-columns: repeat(6, 1fr);
     }
 }
-
-
-/* =========================================================
-   RESPONSIVE — 700PX
-========================================================= */
 
 @media (max-width: 700px) {
 
@@ -1019,9 +867,6 @@ select {
         font-size: 11px;
     }
 
-
-    /* CONTROLS */
-
     .control-row {
         grid-template-columns: 1fr;
     }
@@ -1031,9 +876,6 @@ select {
 
         border-top: 1px solid #202020;
     }
-
-
-    /* MAX STATS */
 
     .max-stats {
         grid-template-columns: 1fr;
@@ -1061,9 +903,6 @@ select {
         font-size: 28px;
     }
 
-
-    /* UNIT SELECTION */
-
     .unit-selection {
         padding: 18px;
     }
@@ -1073,9 +912,6 @@ select {
 
         gap: 10px;
     }
-
-
-    /* STATS TABLE */
 
     .stats-table-wrapper {
         width: 100%;
@@ -1113,11 +949,6 @@ select {
     }
 }
 
-
-/* =========================================================
-   RESPONSIVE — 550PX
-========================================================= */
-
 @media (max-width: 550px) {
 
     .control {
@@ -1127,9 +958,6 @@ select {
     .search-control {
         padding: 18px;
     }
-
-
-    /* MAX STATS */
 
     .max-stat-box {
         min-height: 95px;
@@ -1145,17 +973,11 @@ select {
         font-size: 25px;
     }
 
-
-    /* UNIT GRID */
-
     .unit-grid {
         grid-template-columns: repeat(4, 1fr);
 
         gap: 9px;
     }
-
-
-    /* TABLE */
 
     .stats-table th {
         font-size: 7px;
@@ -1170,11 +992,6 @@ select {
     }
 }
 
-
-/* =========================================================
-   RESPONSIVE — 380PX
-========================================================= */
-
 @media (max-width: 380px) {
 
     .simulator-page {
@@ -1183,17 +1000,11 @@ select {
         padding-right: 10px;
     }
 
-
-    /* UNIT GRID */
-
     .unit-grid {
         grid-template-columns: repeat(4, 1fr);
 
         gap: 7px;
     }
-
-
-    /* MAX STATS */
 
     .max-stat-box {
         padding: 16px;
@@ -1202,9 +1013,6 @@ select {
     .max-stat-value {
         font-size: 22px;
     }
-
-
-    /* TABLE */
 
     .stats-table th {
         font-size: 6.5px;
@@ -1215,16 +1023,7 @@ select {
     }
 }
 
-
-/* =========================================================
-   V2.3.1 — STATS SIMULATOR MOBILE IMPROVEMENTS
-========================================================= */
-
 @media (max-width: 700px) {
-
-    /* =========================
-       PAGE HEADER
-    ========================= */
 
     .page-header h1 {
         overflow-wrap: anywhere;
@@ -1235,11 +1034,6 @@ select {
         line-height: 1.7;
         letter-spacing: 0.8px;
     }
-
-
-    /* =========================
-       CONTROLS
-    ========================= */
 
     .simulator-controls,
     .unit-selection,
@@ -1262,11 +1056,6 @@ select {
         font-size: 16px;
     }
 
-
-    /* =========================
-       HELP BUTTON
-    ========================= */
-
     .help-button {
         width: 32px;
         height: 32px;
@@ -1274,11 +1063,6 @@ select {
         flex-shrink: 0;
         font-size: 13px;
     }
-
-
-    /* =========================
-       UNIT GRID
-    ========================= */
 
     .unit-grid {
         min-width: 0;
@@ -1293,20 +1077,10 @@ select {
         line-height: 1.4;
     }
 
-
-    /* =========================
-       STATS TABLE
-    ========================= */
-
     .stats-table th,
     .stats-table td {
         white-space: nowrap;
     }
-
-
-    /* =========================
-       MAX STATS
-    ========================= */
 
     .max-stat-box {
         min-width: 0;
@@ -1316,11 +1090,6 @@ select {
         overflow-wrap: anywhere;
         line-height: 1.25;
     }
-
-
-    /* =========================
-       ENCHANTMENT MODAL
-    ========================= */
 
     .modal {
         padding: 12px;
@@ -1375,11 +1144,6 @@ select {
 
 }
 
-
-/* =========================================================
-   V2.3.1 — SMALL PHONE ADJUSTMENTS
-========================================================= */
-
 @media (max-width: 380px) {
 
     .simulator-page {
@@ -1424,11 +1188,6 @@ select {
     }
 
 }
-
-
-/* =========================================================
-   V2.3.1 — REDUCED MOTION
-========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
 

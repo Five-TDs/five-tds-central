@@ -5,20 +5,17 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Stats Simulator - FIVE TD'S CENTRAL</title>
+<link href="css/site.css" rel="stylesheet"/>
 <link href="css/pages/stats-simulator.css" rel="stylesheet"/>
-<link href="css/site.css" rel="stylesheet"/></head>
+<link href="css/arcade-theme.css" rel="stylesheet"/>
+
+</head>
 <body>
-<!-- =====================================================
-         SITE NAVIGATION
-    ====================================================== -->
 
-<!-- =====================================================
-         MOBILE NAVIGATION
-    ====================================================== -->
 
-<!-- =====================================================
-         MAIN
-    ====================================================== -->
+
+
+
 <main class="simulator-page">
 <header class="page-header">
 <h1>STATS SIMULATOR</h1>
@@ -26,9 +23,7 @@
                 Simulate unit upgrades and enchantments
             </p>
 </header>
-<!-- =================================================
-             FILTERS
-        ================================================== -->
+
 <section class="simulator-controls">
 <div class="control-row">
 <div class="control">
@@ -82,15 +77,11 @@
 <input autocomplete="off" id="unit-search" placeholder="UNIT NAME..." type="text"/>
 </div>
 </section>
-<!-- =================================================
-             UNIT SELECTION
-        ================================================== -->
+
 <section class="unit-selection">
 <div class="unit-grid" id="unit-grid"></div>
 </section>
-<!-- =================================================
-             STATS TABLE
-        ================================================== -->
+
 <section class="stats-section">
 <div class="stats-table-wrapper">
 <table class="stats-table">
@@ -109,9 +100,7 @@
 </div>
 </section>
 </main>
-<!-- =========================
-     MAX STATS
-========================== -->
+
 <section class="max-stats">
 <div class="max-stat-box">
 <div class="max-stat-label">
@@ -136,9 +125,7 @@
         </div>
 </div>
 </section>
-<!-- =====================================================
-         ENCHANTMENT POPUP
-    ====================================================== -->
+
 <div class="modal" id="enchantment-modal">
 <div class="enchantment-modal-content">
 <div class="modal-header">
@@ -150,13 +137,13 @@
 <div class="enchantment-list" id="enchantment-list"></div>
 </div>
 </div>
-<!-- =====================================================
-         SCRIPTS
-    ====================================================== -->
+
 <script src="js/data/units.js"></script>
 <script src="js/data/enchantments.js"></script>
 <script src="js/shared/stat-utils.js"></script>
 <script src="js/shared/format-utils.js"></script>
+<script src="js/config/navigation.js"></script>
+
 <script src="js/site.js"></script>
 <script src="js/pages/stats-simulator.js"></script>
 </body>

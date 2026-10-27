@@ -1,11 +1,7 @@
-/* =========================================================
-   STATS SIMULATOR
-========================================================= */
 
 
-/* =========================================================
-   DOM
-========================================================= */
+
+
 
 const unitGrid = document.getElementById("unit-grid");
 
@@ -27,18 +23,14 @@ const closeEnchantmentModal =
 const enchantmentList =
     document.getElementById("enchantment-list");
 
-/* =========================================================
-   STATE
-========================================================= */
+
 
 let selectedUnit = null;
 
 let selectedEnchant = "none";
 
 
-/* =========================================================
-   GET FILTERED UNITS
-========================================================= */
+
 
 function getFilteredUnits() {
 
@@ -72,9 +64,7 @@ function getFilteredUnits() {
 }
 
 
-/* =========================================================
-   DISPLAY UNITS
-========================================================= */
+
 
 function displayUnits() {
 
@@ -84,9 +74,7 @@ function displayUnits() {
         getFilteredUnits();
 
 
-    /* -----------------------------------------------------
-       NO RESULTS
-    ----------------------------------------------------- */
+    
 
     if (filteredUnits.length === 0) {
 
@@ -105,9 +93,7 @@ function displayUnits() {
     }
 
 
-    /* -----------------------------------------------------
-       MAKE SURE SELECTED UNIT IS STILL VISIBLE
-    ----------------------------------------------------- */
+    
 
     const selectedStillVisible =
         selectedUnit &&
@@ -123,9 +109,7 @@ function displayUnits() {
     }
 
 
-    /* -----------------------------------------------------
-       BUILD CARDS
-    ----------------------------------------------------- */
+    
 
     filteredUnits.forEach(unit => {
 

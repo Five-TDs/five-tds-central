@@ -1,14 +1,6 @@
-/* =========================================================
-   SHARED NUMBER FORMATTING
-========================================================= */
 
-/*
-    Used by Unit Database details and Raw DPS.
 
-    Whole numbers receive commas.
-    Decimal numbers display up to 2 places.
-    Invalid values display "—".
-*/
+
 
 function formatNumber(value) {
 
@@ -29,9 +21,7 @@ function formatNumber(value) {
 }
 
 
-/*
-    Used by the individual unit page.
-*/
+
 
 function formatMoney(value) {
 
@@ -67,12 +57,7 @@ function formatMultiplier(value) {
 }
 
 
-/*
-    Used by the Stats Simulator.
 
-    Keeps its existing decimal formatting
-    and invalid-value fallback.
-*/
 
 function formatDecimal(value) {
 
@@ -90,12 +75,7 @@ function formatDecimal(value) {
 }
 
 
-/*
-    Stats Simulator cost formatting.
 
-    This deliberately retains the simulator's
-    existing behavior, including its "-" fallback.
-*/
 
 function formatSimulatorNumber(value) {
 

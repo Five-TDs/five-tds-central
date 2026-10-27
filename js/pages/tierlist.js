@@ -1,17 +1,7 @@
-/* =========================================================
-   FIVE TD'S CENTRAL — TIERLIST
-
-   ROUGH DRAFT / FIRST STAT-BASED RANKING
-
-   ALL 28 UNITS ARE INCLUDED.
-   Units with incomplete/questionable data are still placed
-   provisionally so no unit is missing from the tierlist.
-========================================================= */
 
 
-/* =========================================================
-   ELEMENTS
-========================================================= */
+
+
 
 const board =
     document.getElementById(
@@ -24,9 +14,7 @@ const warningTooltip =
     );
 
 
-/* =========================================================
-   CREATE UNIT CARD
-========================================================= */
+
 
 function createUnitCard(unit) {
 
@@ -37,16 +25,12 @@ function createUnitCard(unit) {
         "tier-unit";
 
 
-    /* =====================================================
-   KEYBOARD ACCESSIBILITY
-===================================================== */
+    
 
 card.tabIndex = unitHasWarnings(unit) ? 0 : -1;
 
 
-    /* =====================================================
-       UNIT IMAGE
-    ===================================================== */
+    
 
     const image =
         document.createElement("img");
@@ -69,9 +53,7 @@ card.tabIndex = unitHasWarnings(unit) ? 0 : -1;
     );
 
 
-    /* =========================================
-   WARNING
-========================================= */
+    
 
 if (unitHasWarnings(unit)) {
 
@@ -111,9 +93,7 @@ if (unitHasWarnings(unit)) {
 }
 
 
-    /* =====================================================
-       UNIT NAME
-    ===================================================== */
+    
 
     const name =
         document.createElement("div");
@@ -134,9 +114,7 @@ if (unitHasWarnings(unit)) {
 }
 
 
-/* =========================================================
-   CREATE TIER ROW
-========================================================= */
+
 
 function renderTier(tier) {
 

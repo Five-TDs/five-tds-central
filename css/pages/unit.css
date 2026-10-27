@@ -10,13 +10,8 @@ body {
 
     color: #ffffff;
 
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--arcade-body);
 }
-
-
-/* =========================
-   TOP BAR
-========================= */
 
 .top-bar {
     padding: 20px;
@@ -59,11 +54,6 @@ body {
     border-color: #22c55e;
 }
 
-
-/* =========================
-   MAIN PAGE
-========================= */
-
 .unit-page {
     width: 100%;
 
@@ -73,11 +63,6 @@ body {
 
     padding: 20px 24px 40px;
 }
-
-
-/* =========================
-   UNIT INFORMATION
-========================= */
 
 .unit-info {
     display: grid;
@@ -90,25 +75,44 @@ body {
 }
 
 
-/* =========================
-   UNIT IMAGE
-========================= */
-
 .unit-image-container {
-    width: 225px;
+    position: relative;
+    isolation: isolate;
 
+    width: 225px;
     height: 225px;
 
     border: 2px solid #444;
-
     border-radius: 14px;
 
     overflow: hidden;
-
     background: #0b0b0b;
 
-    transition: border-color 0.25s ease;
+    box-shadow:
+        inset 0 0 0 2px rgba(0, 0, 0, 0.85),
+        0 0 0 1px rgba(255, 255, 255, 0.06),
+        0 12px 32px rgba(0, 0, 0, 0.4);
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
 }
+
+.unit-image-container::after {
+    content: "";
+
+    position: absolute;
+    inset: 5px;
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 7px;
+
+    pointer-events: none;
+
+    box-shadow:
+        inset 0 0 14px rgba(0, 0, 0, 0.3);
+}
+
 
 
 .unit-image-container img {
@@ -120,11 +124,6 @@ body {
 
     display: block;
 }
-
-
-/* =========================
-   UNIT DETAILS
-========================= */
 
 .unit-details {
     min-width: 0;
@@ -140,11 +139,6 @@ body {
 
     font-weight: 900;
 }
-
-
-/* =========================
-   LAST UPDATED LABEL
-========================= */
 
 .unit-last-updated {
     display: flex;
@@ -171,11 +165,6 @@ body {
     font-weight: 700;
     color: #b4fcff;
 }
-
-
-/* =========================
-   DATA CONFIDENCE INDICATOR
-========================= */
 
 .unit-data-confidence {
     display: inline-flex;
@@ -207,11 +196,6 @@ body {
     background: rgba(255, 202, 104, 0.1);
     border: 1px solid rgba(255, 202, 104, 0.3);
 }
-
-
-/* =========================
-   COPY UNIT LINK BUTTON
-========================= */
 
 .copy-unit-link {
     display: inline-flex;
@@ -257,11 +241,6 @@ body {
     }
 }
 
-
-/* =========================
-   TABS
-========================= */
-
 .unit-tabs {
     display: flex;
 
@@ -299,16 +278,15 @@ body {
 }
 
 
+
 .unit-tab.active {
     background: #101010;
 
     color: #ffffff;
+
+    box-shadow:
+        inset 0 -2px 0 #f06b68;
 }
-
-
-/* =========================
-   TAB CONTENT
-========================= */
 
 .tab-content {
     display: none;
@@ -319,11 +297,6 @@ body {
     display: block;
 }
 
-
-/* =========================
-   INFO GRID
-========================= */
-
 .info-grid {
     display: grid;
 
@@ -333,23 +306,33 @@ body {
 }
 
 
+
 .info-box {
     min-height: 55px;
 
     padding: 12px 14px;
 
-    background: #101010;
-
-    border: 1px solid #202020;
-
-    border-radius: 6px;
-
     display: flex;
-
     flex-direction: column;
-
     justify-content: center;
+
+    background: linear-gradient(
+        145deg,
+        #121212,
+        #0c0c0c
+    );
+
+    border: 1px solid #242424;
+    border-radius: 8px;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.025);
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease;
 }
+
 
 
 .info-label {
@@ -371,37 +354,17 @@ body {
     font-weight: 900;
 }
 
-
-/* =========================
-   RARITY
-========================= */
-
 .rarity-box {
     border-color: var(--rarity-color, #202020);
 }
-
-
-/* =========================
-   PLACEMENT
-========================= */
 
 .placement-box {
     border-left: 3px solid #22c55e;
 }
 
-
-/* =========================
-   MAX LIMIT
-========================= */
-
 .limit-box {
     border-left: 3px solid #ef4444;
 }
-
-
-/* =========================
-   OBTAINMENT
-========================= */
 
 .obtainment-box {
     width: fit-content;
@@ -429,11 +392,6 @@ body {
 
     line-height: 1.5;
 }
-
-
-/* =========================
-   STATS / ABILITIES
-========================= */
 
 .stats-section {
     width: 100%;
@@ -494,11 +452,6 @@ body {
     border-bottom-color: #f06b68;
 }
 
-
-/* =========================
-   ABILITIES
-========================= */
-
 .abilities-content {
     width: 100%;
 }
@@ -555,11 +508,6 @@ body {
     padding-left: 0;
 }
 
-
-/* =========================
-   STATS CONTAINER
-========================= */
-
 .stats-container {
     padding: 22px 16px 18px;
 
@@ -576,11 +524,6 @@ body {
 
     overflow-x: auto;
 }
-
-
-/* =========================
-   PAGE WARNINGS
-========================= */
 
 .page-warnings {
     width: 100%;
@@ -616,11 +559,6 @@ body {
 
     line-height: 1.5;
 }
-
-
-/* =========================
-   STATS TABLE
-========================= */
 
 #stats-table {
     width: 100%;
@@ -676,19 +614,9 @@ body {
     background: #0e0e0e;
 }
 
-
-/* =========================
-   DPS
-========================= */
-
 .dps-value {
     color: #4ade80;
 }
-
-
-/* =========================
-   ATTACK TYPE
-========================= */
 
 .attack-type {
     color: #60a5fa;
@@ -698,11 +626,6 @@ body {
 .type-changed {
     color: #eab308;
 }
-
-
-/* =========================
-   TOTAL COST
-========================= */
 
 .total-cost {
     margin-top: 12px;
@@ -725,11 +648,6 @@ body {
     font-size: 12px;
 }
 
-
-/* =========================================================
-   TABLET
-========================================================= */
-
 @media (max-width: 900px) {
 
     .unit-page {
@@ -740,20 +658,12 @@ body {
 
 }
 
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
 @media (max-width: 700px) {
 
     html,
     body {
         overflow-x: hidden;
     }
-
-
-    /* TOP BAR */
 
     .top-bar {
         padding: 14px;
@@ -766,24 +676,15 @@ body {
         padding: 11px 14px;
     }
 
-
-    /* MAIN PAGE */
-
     .unit-page {
         padding: 16px 14px 35px;
     }
-
-
-    /* UNIT INFORMATION */
 
     .unit-info {
         grid-template-columns: 1fr;
 
         gap: 20px;
     }
-
-
-    /* UNIT IMAGE */
 
     .unit-image-container {
         width: min(225px, 70vw);
@@ -792,9 +693,6 @@ body {
 
         margin: 0 auto;
     }
-
-
-    /* UNIT DETAILS */
 
     .unit-details {
         width: 100%;
@@ -811,9 +709,6 @@ body {
         overflow-wrap: anywhere;
     }
 
-
-    /* TABS */
-
     .unit-tabs {
         width: 100%;
     }
@@ -826,9 +721,6 @@ body {
 
         font-size: 9px;
     }
-
-
-    /* INFO */
 
     .info-grid {
         grid-template-columns: 1fr 1fr;
@@ -855,9 +747,6 @@ body {
         overflow-wrap: anywhere;
     }
 
-
-    /* OBTAINMENT */
-
     .obtainment-box {
         min-height: 110px;
 
@@ -870,9 +759,6 @@ body {
 
         overflow-wrap: anywhere;
     }
-
-
-    /* STATS */
 
     .stats-section {
         width: 100%;
@@ -951,11 +837,6 @@ body {
 
 }
 
-
-/* =========================================================
-   SMALL PHONES
-========================================================= */
-
 @media (max-width: 480px) {
 
     .unit-page {
@@ -1011,11 +892,6 @@ body {
     }
 
 }
-
-
-/* =========================================================
-   VERY SMALL PHONES
-========================================================= */
 
 @media (max-width: 380px) {
 
@@ -1077,15 +953,7 @@ body {
 
 }
 
-/* =========================================================
-   V2.3.1 — INDIVIDUAL UNIT PAGE MOBILE IMPROVEMENTS
-========================================================= */
-
 @media (max-width: 700px) {
-
-    /* =========================
-       UNIT DETAILS
-    ========================= */
 
     .unit-details {
         min-width: 0;
@@ -1096,11 +964,6 @@ body {
         overflow-wrap: anywhere;
     }
 
-
-    /* =========================
-       UNIT TABS
-    ========================= */
-
     .unit-tabs {
         gap: 4px;
     }
@@ -1110,11 +973,6 @@ body {
 
         border-radius: 6px 6px 0 0;
     }
-
-
-    /* =========================
-       INFORMATION CARDS
-    ========================= */
 
     .info-grid {
         width: 100%;
@@ -1129,19 +987,9 @@ body {
         overflow-wrap: anywhere;
     }
 
-
-    /* =========================
-       OBTAINMENT
-    ========================= */
-
     .obtainment-box {
         max-width: 100%;
     }
-
-
-    /* =========================
-       STATS TABS
-    ========================= */
 
     .stats-header {
         gap: 4px;
@@ -1151,11 +999,6 @@ body {
         min-height: 44px;
     }
 
-
-    /* =========================
-       STATS TABLE
-    ========================= */
-
     .stats-container {
         min-width: 0;
     }
@@ -1164,11 +1007,6 @@ body {
     #stats-table td {
         white-space: nowrap;
     }
-
-
-    /* =========================
-       ABILITIES
-    ========================= */
 
     .abilities-container {
         padding: 18px 15px;
@@ -1183,11 +1021,6 @@ body {
     }
 
 }
-
-
-/* =========================================================
-   V2.3.1 — VERY SMALL PHONE ADJUSTMENTS
-========================================================= */
 
 @media (max-width: 380px) {
 
@@ -1209,11 +1042,6 @@ body {
 
 }
 
-
-/* =========================================================
-   V2.3.1 — REDUCED MOTION
-========================================================= */
-
 @media (prefers-reduced-motion: reduce) {
 
     #back-button,
@@ -1225,10 +1053,6 @@ body {
     }
 
 }
-
-/* =========================
-   UNIT INFORMATION TOOLTIPS
-========================= */
 
 .unit-last-updated {
     position: relative;
@@ -1297,10 +1121,6 @@ body {
     display: none;
 }
 
-/* =========================
-   DATA CONFIDENCE TOOLTIP
-========================= */
-
 button.unit-data-confidence {
     font-family: inherit;
     cursor: help;
@@ -1324,4 +1144,113 @@ button.unit-data-confidence:hover {
     position: relative;
     display: inline-flex;
     align-items: center;
+}
+
+@media (min-width: 701px) {
+    .unit-info {
+        gap: 32px;
+    }
+
+    .unit-details {
+        padding-top: 3px;
+    }
+
+    .info-grid {
+        gap: 10px;
+    }
+}
+
+#unit-name {
+    letter-spacing: -1px;
+    line-height: 1.1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .info-box:hover {
+        border-color: #383838;
+    }
+
+    .rarity-box:hover {
+        border-color: var(--rarity-color, #383838);
+    }
+}
+
+@media (max-width: 700px) {
+    .unit-image-container::after {
+        inset: 4px;
+        border-radius: 6px;
+    }
+
+    .unit-last-updated {
+        justify-content: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .unit-image-container,
+    .info-box {
+        transition: none !important;
+    }
+}
+
+#stats-table {
+    font-variant-numeric: tabular-nums;
+}
+
+#stats-table th {
+    color: #999;
+    background: #111;
+
+    border-bottom: 1px solid #303030;
+}
+
+#stats-table td {
+    color: #d5d5d5;
+    line-height: 1.5;
+}
+
+#stats-table tbody tr:nth-child(even) {
+    background: #0d0d0d;
+}
+
+#stats-table tbody td:first-child {
+    color: #b4fcff;
+    font-weight: 900;
+}
+
+#stats-table td.dps-value {
+    color: #4ade80;
+}
+
+#stats-table td.attack-type {
+    color: #60a5fa;
+}
+
+#stats-table td.type-changed {
+    color: #eab308;
+}
+
+#stats-table tbody tr:last-child {
+    background: rgba(240, 107, 104, 0.055);
+}
+
+#stats-table tbody tr:last-child td:first-child {
+    color: #f06b68;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    #stats-table tbody tr:hover {
+        background: #181818;
+    }
+}
+
+.table-wrapper {
+    scrollbar-width: thin;
+    scrollbar-color: #444 #0a0a0a;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #stats-table tbody tr {
+        transition: none !important;
+    }
 }

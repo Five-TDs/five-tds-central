@@ -1,42 +1,42 @@
-// EXAMPLE UNIT PLACEHOLDER
-//    {
-//        name: "",
-//        rarity: "",
-//        type: "",
-//        image: "images/.png",
-//        
-//        placement: ,
-//        maxLimit: ,
-//
-//       obtainment: "- ",
-//       warn : [
-//            "⚠"
-//       ]
-//
-//       stats: [
-//
-//           {
-//                level: ,
-//                cost: ,
-//                damage: ,
-//                cooldown: , // HITS PER SECOND (HPS)
-//                range: ,
-//                type: "",
-//                rangeBuff: ,
-//                damageBuff: ,
-//                cooldownBuff: ,
-//                slow: ,
-//                passives: [
-//                  ""
-//                ]
-//           },
-//
-//       ]
-//    },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const units = [
 
-// COMMONS
+
 
     {
         name: "Toy Freddy",
@@ -223,7 +223,7 @@ const units = [
         ]
     },
 
-// UNCOMMONS
+
 
     {
         name: "Withered Chica",
@@ -428,7 +428,7 @@ const units = [
         ]
     },
 
-// RARES
+
 
     {
         name: "Withered Freddy",
@@ -635,7 +635,7 @@ const units = [
         ]
     },
 
-// EPICS
+
 
     {
         name: "Withered Foxy",
@@ -946,7 +946,7 @@ const units = [
         ]
     },
 
-// EXCLUSIVES
+
 
     {
         name: "Sparky",
@@ -976,12 +976,35 @@ const units = [
 
             {
                 level: 2,
+                cost: 300,
+                damage: 15,
+                cooldown: 1.5,
+                range: 5,
                 type: "Single"
             },
 
             {
                 level: 3,
-                damage: 60,
+                cost: 900,
+                damage: 20,
+                cooldown: 1.6,
+                range: 5,
+                type: "Single"
+            },
+
+            {
+                level: 4,
+                cost: 1500,
+                damage: 25,
+                cooldown: 1.6,
+                range: 5.5,
+                type: "Single"
+            },
+
+            {
+                level: 5,
+                cost: 2500,
+                damage: 30,
                 cooldown: 1.7,
                 range: 6,
                 type: "Single"
@@ -1066,15 +1089,6 @@ const units = [
 
             {
                 level: 1,
-                damage: 17,
-                cooldown: 1.1,
-                range: 7,
-                type: "AOE"
-            },
-
-            {
-                level: 2,
-                cost: 1250,
                 damage: 19,
                 cooldown: 1.1,
                 range: 8,
@@ -1082,20 +1096,29 @@ const units = [
             },
 
             {
+                level: 2,
+                cost: 1250,
+                damage: 20,
+                cooldown: 1.1,
+                range: 9,
+                type: "AOE"
+            },
+
+            {
                 level: 3,
                 cost: 2400,
-                damage: 21,
+                damage: 22,
                 cooldown: 1.2,
-                range: 8,
+                range: 9,
                 type: "AOE"
             },
 
             {
                 level: 4,
                 cost: 6500,
-                damage: 23,
+                damage: 24,
                 cooldown: 1.3,
-                range: 9,
+                range: 10,
                 type: "AOE"
             }
 
@@ -1206,7 +1229,7 @@ const units = [
         ]
     },
 
-// LEGENDARIES
+
 
     {
         name: "The Marionette",
@@ -1334,7 +1357,7 @@ const units = [
         placement: 2500,
         maxLimit: 2,
 
-        obtainment: "- Limited unit, 1% chance from daily rolls",
+        obtainment: "- Limited unit, 1% chance from Daily Case",
 
         stats: [
 

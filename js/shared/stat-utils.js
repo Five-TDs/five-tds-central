@@ -1,11 +1,6 @@
-/* =========================================
-   SHARED STAT UTILITIES
-========================================= */
 
-/*
-    The database field "cooldown" stores
-    Hits Per Second (HPS), not seconds.
-*/
+
+
 
 const RARITY_COLORS = Object.freeze({
     Common: "#AAAAAA",

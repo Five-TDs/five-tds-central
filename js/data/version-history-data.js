@@ -1,8 +1,60 @@
-/* =========================================
-   WEBSITE VERSION HISTORY DATA
-========================================= */
+
 
 const WEBSITE_VERSION_HISTORY = [
+
+    
+    {
+        version: "2.5.0",
+        date: "2026-10-26",
+        title: "Code & Visual Overhaul",
+        changes: [
+            {
+                type: "major",
+                text: "Redesigned the website with a retro arcade-inspired visual style."
+            },
+            {
+                type: "visual",
+                text: "Introduced pixel-style fonts across the website, including headings, navigation, buttons, and statistics."
+            },
+            {
+                type: "visual",
+                text: "Refined panels, borders, cards, and interface elements while preserving the original color scheme."
+            },
+            {
+                type: "visual",
+                text: "Improved unit rarity frames, card hover effects, and unit detail layouts."
+            },
+            {
+                type: "visual",
+                text: "Enhanced statistics tables with clearer level indicators, alternating rows, and improved readability."
+            },
+            {
+                type: "feature",
+                text: "Added dynamic unit counts to rarity categories in the Unit Database."
+            },
+            {
+                type: "improvement",
+                text: "Reorganized website code to make files easier to navigate and future updates easier to implement."
+            },
+            {
+                type: "improvement",
+                text: "Centralized navigation configuration and standardized shared styling across all pages."
+            },
+            {
+                type: "improvement",
+                text: "Cleaned up duplicate imports and improved code consistency."
+            },
+            {
+                type: "improvement",
+                text: "Added automated checks for JavaScript syntax, asset references, and common website issues."
+            },
+            {
+                type: "fix",
+                text: "Fixed duplicate HTML element IDs and other minor structural issues."
+            }
+        ]
+    },
+
 
     {
         version: "V2.4.0",

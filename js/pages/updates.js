@@ -1,7 +1,5 @@
 
-/* =========================================
-   UPDATES PAGE RENDERER
-========================================= */
+
 
 const updatesContent = document.getElementById("updates-content");
 const updatesHeader = document.getElementById("updates-header");
@@ -35,9 +33,7 @@ function formatUpdateDate(value) {
     });
 }
 
-/* =========================================
-   UPDATES LIST
-========================================= */
+
 
 function renderUpdatesList() {
     updatesContent.replaceChildren();
@@ -377,9 +373,7 @@ function renderSingleUpdate(update) {
     document.title = `${update.name} | FIVE TD'S CENTRAL`;
 }
 
-/* =========================================
-   IMAGE LIGHTBOX
-========================================= */
+
 
 const imageModal = document.getElementById("update-image-modal");
 const modalImage = document.getElementById("update-modal-image");
@@ -408,9 +402,7 @@ document.addEventListener("keydown", event => {
     if (event.key === "Escape") closeUpdateImage();
 });
 
-/* =========================================
-   INITIALIZE
-========================================= */
+
 
 function initializeUpdates() {
     const params = new URLSearchParams(window.location.search);

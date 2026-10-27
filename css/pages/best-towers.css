@@ -1,17 +1,8 @@
-/* =========================================
-   BEST UNITS PAGE
-========================================= */
-
 .best-units-page {
     width: min(1180px, calc(100% - 40px));
     margin: 0 auto;
     padding: 55px 0 100px;
 }
-
-
-/* =========================================
-   PAGE HEADER
-========================================= */
 
 .best-units-header {
     text-align: center;
@@ -30,11 +21,6 @@
     color: #666;
     font-size: 12px;
 }
-
-
-/* =========================================
-   SECTIONS
-========================================= */
 
 .best-section {
     margin-bottom: 95px;
@@ -58,11 +44,6 @@
     font-size: 12px;
 }
 
-
-/* =========================================
-   TOP 3 RANKING
-========================================= */
-
 .best-ranking.top3 {
     display: grid;
 
@@ -80,11 +61,6 @@
     column-gap: 25px;
 }
 
-
-/* =========================================
-   UNIT CARD
-========================================= */
-
 .best-unit-card {
     position: relative;
 
@@ -96,11 +72,6 @@
     justify-self: center;
 }
 
-
-/* =========================================
-   #1 FEATURED
-========================================= */
-
 .best-unit-card.featured {
     width: 220px;
 }
@@ -109,11 +80,6 @@
     color: #f06b68;
     font-size: 17px;
 }
-
-
-/* =========================================
-   RANK NUMBER
-========================================= */
 
 .best-rank-number {
     height: 24px;
@@ -127,11 +93,6 @@
 
     line-height: 24px;
 }
-
-
-/* =========================================
-   UNIT IMAGE
-========================================= */
 
 .best-unit-image-wrap {
     position: relative;
@@ -152,9 +113,6 @@
         box-shadow 0.2s ease;
 }
 
-
-/* Normal hover */
-
 .best-unit-card:hover .best-unit-image-wrap {
     transform: translateY(-5px);
 
@@ -164,9 +122,6 @@
         0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
-
-/* #1 always highlighted */
-
 .best-unit-card.featured .best-unit-image-wrap {
     border-color: #f06b68;
 
@@ -174,18 +129,10 @@
         0 0 30px rgba(240, 107, 104, 0.08);
 }
 
-
-/* #1 hover */
-
 .best-unit-card.featured:hover .best-unit-image-wrap {
     box-shadow:
         0 12px 35px rgba(240, 107, 104, 0.16);
 }
-
-
-/* =========================================
-   IMAGE
-========================================= */
 
 .best-unit-image {
     width: 100%;
@@ -197,11 +144,6 @@
 
     pointer-events: none;
 }
-
-
-/* =========================================
-   UNIT NAME
-========================================= */
 
 .best-unit-name {
     position: absolute;
@@ -236,11 +178,6 @@
     opacity: 1;
 }
 
-
-/* =========================================
-   WARNING
-========================================= */
-
 .best-unit-warning {
     position: absolute;
 
@@ -264,11 +201,6 @@
 
     z-index: 5;
 }
-
-
-/* =========================================
-   WARNING TOOLTIP
-========================================= */
 
 #warning-tooltip {
     position: fixed;
@@ -300,11 +232,6 @@
 #warning-tooltip.show {
     display: block;
 }
-
-
-/* =========================================
-   TABLET
-========================================= */
 
 @media (max-width: 900px) {
 
@@ -342,11 +269,6 @@
     }
 }
 
-
-/* =========================================
-   MOBILE
-========================================= */
-
 @media (max-width: 600px) {
 
     .best-units-page {
@@ -383,11 +305,6 @@
         font-size: 11px;
     }
 
-
-    /* -----------------------------
-       TOP 3
-    ----------------------------- */
-
     .best-ranking.top3 {
         display: grid;
 
@@ -401,9 +318,6 @@
         row-gap: 22px;
     }
 
-
-    /* #1 */
-
     .best-ranking.top3 .best-unit-card.featured {
         grid-column: 1 / 3;
         grid-row: 1;
@@ -413,9 +327,6 @@
 
         justify-self: center;
     }
-
-
-    /* #2 */
 
     .best-ranking.top3 .best-unit-card:nth-child(1) {
         grid-column: 1;
@@ -427,9 +338,6 @@
         justify-self: center;
     }
 
-
-    /* #3 */
-
     .best-ranking.top3 .best-unit-card:nth-child(3) {
         grid-column: 2;
         grid-row: 2;
@@ -440,20 +348,10 @@
         justify-self: center;
     }
 
-
-    /* -----------------------------
-       NAMES
-    ----------------------------- */
-
     .best-unit-name {
         font-size: 11px;
     }
 }
-
-
-/* =========================================
-   SMALL PHONES
-========================================= */
 
 @media (max-width: 400px) {
 
@@ -485,12 +383,6 @@
         font-size: 12px;
     }
 }
-
-
-
-/* =========================================
-   BEST UNITS — ENCHANT COLORS
-========================================= */
 
 .best-enchant-battery {
     --best-enchant-color: #B4FFAA;
@@ -544,33 +436,11 @@
     );
 }
 
-
-/* =========================================
-   SHARED ANIMATED GRADIENT POSITION
-========================================= */
-
-/*
-   Register one animatable CSS variable.
-
-   The card animates this variable.
-   Both the image border and enchant text
-   use the same inherited value.
-
-   This keeps them perfectly synchronized.
-*/
-
 @property --best-gradient-position {
     syntax: "<percentage>";
     inherits: true;
     initial-value: 0%;
 }
-
-
-/* =========================================
-   ENCHANT ANIMATION — CARD LEVEL
-========================================= */
-
-/* Haywire + Springlock */
 
 .best-unit-card:has(
     .best-unit-image-wrap.best-enchant-haywire,
@@ -584,8 +454,6 @@
         alternate;
 }
 
-/* Soul */
-
 .best-unit-card:has(
     .best-unit-image-wrap.best-enchant-soul
 ) {
@@ -596,11 +464,6 @@
         infinite
         alternate;
 }
-
-
-/* =========================================
-   SHARED GRADIENT ANIMATION
-========================================= */
 
 @keyframes bestEnchantGradientSync {
 
@@ -614,35 +477,12 @@
 
 }
 
-
-/* =========================================
-   SOLID ENCHANT IMAGE BORDERS
-========================================= */
-
 .best-unit-card .best-unit-image-wrap.has-best-enchant,
 .best-unit-card:hover .best-unit-image-wrap.has-best-enchant,
 .best-unit-card.featured .best-unit-image-wrap.has-best-enchant,
 .best-unit-card.featured:hover .best-unit-image-wrap.has-best-enchant {
     border: 2px solid var(--best-enchant-color);
 }
-
-
-/* =========================================
-   ANIMATED SPECIAL ENCHANT BORDERS
-========================================= */
-
-/*
-   Applies to:
-   - Haywire
-   - Springlock
-   - Soul
-
-   Works on:
-   - Normal cards
-   - Featured cards
-   - Hovered cards
-   - Mobile cards
-*/
 
 .best-unit-card .best-unit-image-wrap.has-best-enchant:is(
     .best-enchant-haywire,
@@ -681,15 +521,8 @@
     background-position:
         center,
         var(--best-gradient-position) 50%;
-
-    /* Animation is controlled by the parent card */
     animation: none;
 }
-
-
-/* =========================================
-   ENCHANT RECOMMENDATIONS
-========================================= */
 
 .best-unit-enchants {
     display: flex;
@@ -731,18 +564,6 @@
     font-size: 13px;
 }
 
-
-/* =========================================
-   SPECIAL ENCHANT TEXT GRADIENTS
-========================================= */
-
-/*
-   Uses the exact same animated position
-   as the border.
-
-   No separate animation is applied.
-*/
-
 .best-enchant-value:is(
     .best-enchant-haywire,
     .best-enchant-springlock,
@@ -767,18 +588,6 @@
     animation: none;
 }
 
-
-/* =========================================
-   HOVER BEHAVIOR
-========================================= */
-
-/*
-   Preserve existing hover movement,
-   shadows, and enchant borders.
-
-   The gradient animation stays active.
-*/
-
 .best-unit-card:hover .best-unit-image-wrap.has-best-enchant {
     transform: translateY(-5px);
 }
@@ -787,11 +596,6 @@
     box-shadow:
         0 12px 35px rgba(240, 107, 104, 0.16);
 }
-
-
-/* =========================================
-   MOBILE ENCHANT LABELS
-========================================= */
 
 @media (max-width: 600px) {
 
@@ -815,11 +619,6 @@
 
 }
 
-
-/* =========================================
-   REDUCED MOTION ACCESSIBILITY
-========================================= */
-
 @media (prefers-reduced-motion: reduce) {
 
     .best-unit-card:has(
@@ -832,15 +631,7 @@
 
 }
 
-/* =========================================================
-   V2.3.1 — BEST TOWERS MOBILE IMPROVEMENTS
-========================================================= */
-
 @media (max-width: 700px) {
-
-    /* =========================
-       PAGE HEADER
-    ========================= */
 
     .best-units-header h1 {
         overflow-wrap: anywhere;
@@ -849,11 +640,6 @@
     .best-units-header p {
         line-height: 1.6;
     }
-
-
-    /* =========================
-       SECTION HEADERS
-    ========================= */
 
     .best-section-header h2 {
         overflow-wrap: anywhere;
@@ -864,11 +650,6 @@
         line-height: 1.6;
     }
 
-
-    /* =========================
-       RANKING GRID
-    ========================= */
-
     .best-ranking.top3 {
         min-width: 0;
     }
@@ -877,29 +658,14 @@
         min-width: 0;
     }
 
-
-    /* =========================
-       UNIT IMAGES
-    ========================= */
-
     .best-unit-image-wrap {
         border-radius: 12px;
     }
-
-
-    /* =========================
-       WARNING TOOLTIPS
-    ========================= */
 
     #warning-tooltip {
         max-width: calc(100vw - 24px);
         overflow-wrap: anywhere;
     }
-
-
-    /* =========================
-       ENCHANTMENT LABELS
-    ========================= */
 
     .best-unit-enchants {
         max-width: 100%;
@@ -919,11 +685,6 @@
 
 }
 
-
-/* =========================================================
-   V2.3.1 — TOUCHSCREEN UNIT NAMES
-========================================================= */
-
 @media (hover: none), (pointer: coarse) {
 
     .best-unit-name {
@@ -939,11 +700,6 @@
     }
 
 }
-
-
-/* =========================================================
-   V2.3.1 — SMALL PHONE ADJUSTMENTS
-========================================================= */
 
 @media (max-width: 400px) {
 
@@ -973,11 +729,6 @@
     }
 
 }
-
-
-/* =========================================================
-   V2.3.1 — REDUCED MOTION
-========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
 

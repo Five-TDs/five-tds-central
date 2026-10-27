@@ -1,6 +1,4 @@
-/* =========================================
-   WARNING TOOLTIP
-========================================= */
+
 
 const teamWarningTooltip =
     document.getElementById("warning-tooltip");
@@ -21,9 +19,7 @@ function hideTeamWarning() {
 }
 
 
-/* =========================================
-   CREATE UNIT CARD
-========================================= */
+
 
 function createTeamUnitCard(unit, isSubstitute = false, enchant = null) {
 
@@ -38,7 +34,7 @@ function createTeamUnitCard(unit, isSubstitute = false, enchant = null) {
     imageWrap.className = "team-unit-image-wrap";
 
     
-    /* RECOMMENDED ENCHANT */
+    
 
     const enchantColor =
     getEnchantColor(enchant, "teams");
@@ -71,7 +67,7 @@ function createTeamUnitCard(unit, isSubstitute = false, enchant = null) {
 
     imageWrap.appendChild(image);
 
-    /* WARNING ICON */
+    
 
     if (unitHasWarnings(unit)) {
 
@@ -111,9 +107,7 @@ function createTeamUnitCard(unit, isSubstitute = false, enchant = null) {
 }
 
 
-/* =========================================
-   CREATE UNIT ROW
-========================================= */
+
 
 function createTeamUnitRow(unitNames, isSubstitute = false, enchantNames = []) {
 
@@ -148,16 +142,14 @@ row.appendChild(
 }
 
 
-/* =========================================
-   CREATE TEAM SECTION
-========================================= */
+
 
 function createTeamSection(team) {
 
     const section = document.createElement("section");
     section.className = "team-section";
 
-    /* HEADER */
+    
 
     const header = document.createElement("div");
     header.className = "team-section-header";
@@ -172,7 +164,7 @@ function createTeamSection(team) {
     header.appendChild(heading);
     header.appendChild(description);
 
-    /* MAIN TEAM */
+    
 
     const mainRow = createTeamUnitRow(
     team.units,
@@ -180,7 +172,7 @@ function createTeamSection(team) {
     team.enchants || []
 );
 
-    /* SUBSTITUTES */
+    
 
     const substituteSection = document.createElement("div");
     substituteSection.className = "team-substitutes";
@@ -203,7 +195,7 @@ function createTeamSection(team) {
     substituteSection.appendChild(substituteDescription);
     substituteSection.appendChild(substituteRow);
 
-    /* EXPLANATION */
+    
 
     const explanation = document.createElement("div");
     explanation.className = "team-explanation";
@@ -216,7 +208,7 @@ function createTeamSection(team) {
         document.createTextNode(team.explanation)
     );
 
-    /* ASSEMBLE */
+    
 
     section.appendChild(header);
     section.appendChild(mainRow);
@@ -227,9 +219,7 @@ function createTeamSection(team) {
 }
 
 
-/* =========================================
-   RENDER TEAMS
-========================================= */
+
 
 function renderTeams() {
 
@@ -247,9 +237,7 @@ function renderTeams() {
 }
 
 
-/* =========================================
-   TOOLTIP POSITION
-========================================= */
+
 
 document.addEventListener("mousemove", event => {
 

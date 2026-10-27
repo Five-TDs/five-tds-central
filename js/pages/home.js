@@ -1,6 +1,6 @@
-// =========================================================
-// HOME PAGE ACCORDIONS
-// =========================================================
+
+
+
 
 const sections =
     document.querySelectorAll(
@@ -22,7 +22,7 @@ sections.forEach(section => {
             section.classList.contains("open");
 
 
-        // Close every section
+        
 
         sections.forEach(currentSection => {
 
@@ -33,8 +33,8 @@ sections.forEach(section => {
         });
 
 
-        // Re-open the clicked section
-        // if it wasn't already open
+        
+        
 
         if (!wasOpen) {
 

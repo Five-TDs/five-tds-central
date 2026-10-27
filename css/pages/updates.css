@@ -1,13 +1,9 @@
-/* =========================================
-   UPDATES PAGE
-========================================= */
-
 .updates-page {
     width: min(1100px, calc(100% - 40px));
     margin: 0 auto;
     padding: 55px 0 100px;
     color: #ffffff;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--arcade-body);
 }
 
 .updates-page *,
@@ -15,10 +11,6 @@
 .updates-page *::after {
     box-sizing: border-box;
 }
-
-/* =========================================
-   PAGE HEADER
-========================================= */
 
 .updates-header {
     text-align: center;
@@ -41,10 +33,6 @@
 .updates-header[hidden] {
     display: none;
 }
-
-/* =========================================
-   UPDATE LISTING — 2 COLUMN GRID
-========================================= */
 
 .updates-list {
     display: grid;
@@ -81,8 +69,6 @@
     transform: translateY(-3px);
 }
 
-/* Game logo */
-
 .update-list-banner {
     width: 115px;
     height: 85px;
@@ -90,8 +76,6 @@
     object-fit: contain;
     border-radius: 8px;
 }
-
-/* Update information */
 
 .update-list-details {
     flex: 1;
@@ -123,10 +107,6 @@
     color: #f06b68;
     font-size: 22px;
 }
-
-/* =========================================
-   RESPONSIVE
-========================================= */
 
 @media (max-width: 800px) {
     .updates-list {
@@ -167,10 +147,6 @@
         font-size: 18px;
     }
 }
-
-/* =========================================
-   INDIVIDUAL UPDATE
-========================================= */
 
 .update-article {
     display: flex;
@@ -240,10 +216,6 @@
     );
 }
 
-/* =========================================
-   UPDATE CONTENT SECTIONS
-========================================= */
-
 .update-section {
     padding: 30px 32px 36px;
 
@@ -265,10 +237,6 @@
     line-height: 1.4;
     text-transform: uppercase;
 }
-
-/* =========================================
-   FEATURES
-========================================= */
 
 .update-features {
     display: flex;
@@ -307,10 +275,6 @@
     font-size: 12px;
     line-height: 1.8;
 }
-
-/* =========================================
-   IMAGE GALLERY
-========================================= */
 
 .update-gallery {
     display: grid;
@@ -353,10 +317,6 @@
     line-height: 1.5;
 }
 
-/* =========================================
-   SPLIT IMAGE AND TEXT
-========================================= */
-
 .update-split {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
@@ -376,10 +336,6 @@
 .update-text p:last-child {
     margin-bottom: 0;
 }
-
-/* =========================================
-   BALANCING, BUG FIXES, QOL
-========================================= */
 
 .update-change-list {
     display: flex;
@@ -403,10 +359,6 @@
     font-size: 13px;
     font-weight: 900;
 }
-
-/* =========================================
-   CODES
-========================================= */
 
 .update-codes {
     display: flex;
@@ -436,10 +388,6 @@
 .update-code-requirement {
     color: #888888;
 }
-
-/* =========================================
-   IMAGE LIGHTBOX
-========================================= */
 
 .update-image-modal {
     position: fixed;
@@ -481,10 +429,6 @@
     color: #999999;
     text-align: center;
 }
-
-/* =========================================
-   RESPONSIVE
-========================================= */
 
 @media (max-width: 700px) {
 
@@ -547,16 +491,7 @@
 
 }
 
-
-/* =========================================================
-   V2.3.1 — UPDATES PAGE MOBILE IMPROVEMENTS
-========================================================= */
-
 @media (max-width: 700px) {
-
-    /* =========================
-       PAGE HEADER
-    ========================= */
 
     .updates-header h1 {
         line-height: 1.15;
@@ -566,11 +501,6 @@
     .updates-header p {
         line-height: 1.7;
     }
-
-
-    /* =========================
-       UPDATE LIST
-    ========================= */
 
     .updates-list {
         min-width: 0;
@@ -597,11 +527,6 @@
         object-fit: contain;
     }
 
-
-    /* =========================
-       UPDATE ARTICLES
-    ========================= */
-
     .update-article {
         min-width: 0;
     }
@@ -622,11 +547,6 @@
         line-height: 1.6;
         overflow-wrap: anywhere;
     }
-
-
-    /* =========================
-       CONTENT SECTIONS
-    ========================= */
 
     .update-section {
         min-width: 0;
@@ -659,11 +579,6 @@
         overflow-wrap: anywhere;
     }
 
-
-    /* =========================
-       IMAGE GALLERY
-    ========================= */
-
     .update-gallery {
         min-width: 0;
     }
@@ -677,11 +592,6 @@
         overflow-wrap: anywhere;
         line-height: 1.6;
     }
-
-
-    /* =========================
-       IMAGE LIGHTBOX
-    ========================= */
 
     .update-image-modal {
         padding: 65px 12px 20px;
@@ -708,11 +618,6 @@
     }
 
 }
-
-
-/* =========================================================
-   V2.3.1 — SMALL PHONE ADJUSTMENTS
-========================================================= */
 
 @media (max-width: 400px) {
 
@@ -769,22 +674,12 @@
 
 }
 
-
-/* =========================================================
-   V2.3.1 — KEYBOARD ACCESSIBILITY
-========================================================= */
-
 .update-list-card:focus-visible,
 .update-back-link:focus-visible,
 .update-image-close:focus-visible {
     outline: 2px solid #f06b68;
     outline-offset: 3px;
 }
-
-
-/* =========================================================
-   V2.3.1 — REDUCED MOTION
-========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
 

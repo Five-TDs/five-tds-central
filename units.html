@@ -5,27 +5,24 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Unit Database</title>
+<link href="css/site.css" rel="stylesheet"/>
 <link href="css/pages/units.css" rel="stylesheet"/>
-<link href="css/site.css" rel="stylesheet"/></head>
-<body><script src="js/site.js"></script>
-<!-- =========================
-     SITE NAVIGATION
-========================= -->
+<link href="css/arcade-theme.css" rel="stylesheet"/>
 
-<!-- =========================
-     MOBILE NAVIGATION
-========================= -->
+</head>
+<body><script src="js/config/navigation.js"></script>
 
-<!-- =========================
-         PAGE HEADER
-    ========================== -->
+<script src="js/site.js"></script>
+
+
+
+
+
 <header class="page-header">
 <h1>UNIT DATABASE</h1>
 <p>Browse all available units</p>
 </header>
-<!-- =========================
-         SEARCH + FILTERS
-    ========================== -->
+
 <div class="search-area">
 <div class="search-container">
 <input autocomplete="off" id="search-input" placeholder="Search units..." type="text"/>
@@ -33,9 +30,9 @@
 <span>⮟</span>
 </button>
 </div>
-<!-- FILTER PANEL -->
+
 <div id="filters">
-<!-- RARITY -->
+
 <div class="filter-group">
 <div class="filter-title">
                     RARITY
@@ -61,7 +58,7 @@
                     </button>
 </div>
 </div>
-<!-- ATTACK TYPE -->
+
 <div class="filter-group">
 <div class="filter-title">
                     ATTACK TYPE
@@ -102,9 +99,7 @@
 </div>
 </div>
 
-<!-- =========================
-         DATABASE RESULTS
-    ========================== -->
+
 <div class="unit-results-bar">
 
     <span id="unit-results-count" role="status" aria-live="polite">
@@ -122,9 +117,7 @@
 
 </div>
 
-<!-- =========================
-         UNIT DATABASE
-    ========================== -->
+
 <main id="unit-grid"></main>
 <script src="js/data/units.js"></script>
 <script src="js/shared/stat-utils.js"></script>

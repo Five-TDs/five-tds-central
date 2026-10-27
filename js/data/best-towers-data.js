@@ -1,24 +1,11 @@
-/* =========================================
-   BEST UNITS
-========================================= */
 
-/*
-    Rankings are written in actual rank order:
 
-    [ #1, #2, #3 ]
 
-    The page automatically displays them as:
-
-             #1
-        #2         #3
-*/
 
 
 const BEST_UNIT_RANKINGS = {
 
-    /* =====================================
-       BEST STARTER
-    ===================================== */
+    
 
     "BEST STARTER": {
         description: "Strong choices for the beginning of a run",
@@ -31,9 +18,7 @@ const BEST_UNIT_RANKINGS = {
     },
 
 
-    /* =====================================
-       BEST EARLY GAME
-    ===================================== */
+    
 
     "BEST EARLY GAME": {
         description: "Units that can carry you through the early waves",
@@ -46,9 +31,7 @@ const BEST_UNIT_RANKINGS = {
     },
 
 
-    /* =====================================
-       BEST MID GAME
-    ===================================== */
+    
 
     "BEST MID GAME": {
         description: "Strong units for building into the middle of a run",
@@ -61,9 +44,7 @@ const BEST_UNIT_RANKINGS = {
     },
 
 
-    /* =====================================
-       BEST LATE GAME
-    ===================================== */
+    
 
     "BEST LATE GAME": {
         description: "Powerful units for pushing deeper into a run",
@@ -76,9 +57,7 @@ const BEST_UNIT_RANKINGS = {
     },
 
 
-    /* =====================================
-       BEST 5TH UNIT
-    ===================================== */
+    
 
     "BEST 5TH UNIT": {
         description: "Strong choices for your fifth unit slot",
@@ -91,9 +70,7 @@ const BEST_UNIT_RANKINGS = {
     },
 
 
-    /* =====================================
-       BEST DAMAGE
-    ===================================== */
+    
 
     "BEST DAMAGE": {
         description: "Top units for raw damage potential",
@@ -106,9 +83,7 @@ const BEST_UNIT_RANKINGS = {
     },
 
 
-    /* =====================================
-       BEST OVERALL
-    ===================================== */
+    
 
     "BEST OVERALL": {
         description: "The strongest overall units",
@@ -123,9 +98,7 @@ const BEST_UNIT_RANKINGS = {
 };
 
 
-/* =========================================
-   BEST UNIT ENCHANT RECOMMENDATIONS
-========================================= */
+
 
 const BEST_UNIT_ENCHANTS = {
     "Crying Child": {

@@ -1,6 +1,4 @@
-/* =========================================================
-   RARITIES
-========================================================= */
+
 
 const rarities = [
     "Legendary",
@@ -13,9 +11,7 @@ const rarities = [
 
 
 
-/* =========================================================
-   PAGE ELEMENTS
-========================================================= */
+
 
 const grid =
     document.getElementById("unit-grid");
@@ -42,9 +38,7 @@ const filters =
 
 
 
-/* =========================================================
-   ACTIVE FILTERS
-========================================================= */
+
 
 let activeRarities = [];
 
@@ -52,9 +46,7 @@ let activeTypes = [];
 
 
 
-/* =========================================================
-   OPEN / CLOSE FILTER MENU
-========================================================= */
+
 
 filterButton.addEventListener("click", () => {
     filters.classList.toggle("open");
@@ -63,9 +55,7 @@ filterButton.addEventListener("click", () => {
 
 
 
-/* =========================================================
-   RARITY FILTER BUTTONS
-========================================================= */
+
 
 document
     .querySelectorAll(".rarity-option")
@@ -77,10 +67,7 @@ document
                 button.dataset.value;
 
 
-            /*
-                If already selected,
-                remove it.
-            */
+            
 
             if (activeRarities.includes(value)) {
 
@@ -94,9 +81,7 @@ document
             }
 
 
-            /*
-                Otherwise select it.
-            */
+            
 
             else {
 
@@ -115,9 +100,7 @@ document
 
 
 
-/* =========================================================
-   ATTACK TYPE FILTER BUTTONS
-========================================================= */
+
 
 document
     .querySelectorAll(".type-option")
@@ -129,9 +112,7 @@ document
                 button.dataset.value;
 
 
-            /*
-                Remove if already selected.
-            */
+            
 
             if (activeTypes.includes(value)) {
 
@@ -145,9 +126,7 @@ document
             }
 
 
-            /*
-                Otherwise select it.
-            */
+            
 
             else {
 
@@ -166,9 +145,7 @@ document
 
 
 
-/* =========================================================
-   SEARCH
-========================================================= */
+
 
 searchInput.addEventListener(
     "input",
@@ -180,50 +157,42 @@ searchInput.addEventListener(
 );
 
 
-/* =========================================================
-   CLEAR ALL FILTERS
-========================================================= */
+
 
 clearFiltersButton.addEventListener("click", () => {
 
-    // Clear the search input.
+    
     searchInput.value = "";
 
-    // Reset selected filters.
+    
     activeRarities = [];
     activeTypes = [];
 
-    // Remove the selected appearance from filter buttons.
+    
     document
         .querySelectorAll(".rarity-option.active, .type-option.active")
         .forEach(button => {
             button.classList.remove("active");
         });
 
-    // Refresh the database and result counter.
+    
     displayUnits();
 
 });
 
 
-/* =========================================================
-   DISPLAY UNITS
-========================================================= */
+
 
 function displayUnits() {
 
 
-    /*
-        Clear the current database.
-    */
+    
 
     grid.innerHTML = "";
 
 
 
-    /*
-        Get search text.
-    */
+    
 
     const searchText =
         searchInput.value
@@ -232,17 +201,13 @@ function displayUnits() {
 
 
 
-    /*
-        Filter units.
-    */
+    
 
     const filteredUnits =
         units.filter(unit => {
 
 
-            /* =========================
-               SEARCH
-            ========================== */
+            
 
             const matchesSearch =
                 unit.name
@@ -251,9 +216,7 @@ function displayUnits() {
 
 
 
-            /* =========================
-               RARITY
-            ========================== */
+            
 
             const matchesRarity =
                 activeRarities.length === 0 ||
@@ -264,9 +227,7 @@ function displayUnits() {
 
 
 
-            /* =========================
-               ATTACK TYPE
-            ========================== */
+            
 
             const matchesType =
                 activeTypes.length === 0 ||
@@ -286,9 +247,7 @@ function displayUnits() {
         });
 
 
-        /* =========================
-        UPDATE RESULTS COUNTER
-        ========================= */
+        
 
         if (resultsCount) {
 
@@ -375,12 +334,28 @@ function displayUnits() {
             document.createElement("h2");
 
 
+        
         title.textContent =
             rarity;
 
 
+        /* =========================
+        RARITY UNIT COUNT
+        ========================= */
+
+        const rarityCount =
+            document.createElement("span");
+
+        rarityCount.className =
+            "rarity-count";
+
+        rarityCount.textContent =
+            rarityUnits.length;
+
+
         const line =
             document.createElement("div");
+
 
 
         line.className =
@@ -388,6 +363,8 @@ function displayUnits() {
 
 
         titleContainer.appendChild(title);
+
+        titleContainer.appendChild(rarityCount);
 
         titleContainer.appendChild(line);
 

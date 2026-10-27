@@ -5,34 +5,31 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Unit</title>
+<link href="css/site.css" rel="stylesheet"/>
 <link href="css/pages/unit.css" rel="stylesheet"/>
-<link href="css/site.css" rel="stylesheet"/></head>
+<link href="css/arcade-theme.css" rel="stylesheet"/>
+
+</head>
 <body>
-<!-- =========================
-     SITE NAVIGATION
-========================= -->
 
 
-<!-- =========================
-         BACK BUTTON
-    ========================== -->
+
+
 <div class="top-bar">
 <button id="back-button" type="button">
             ← BACK TO UNITS
         </button>
 </div>
 <div class="page-warnings" id="unit-warnings"></div>
-<!-- =========================
-         UNIT PAGE
-    ========================== -->
+
 <main class="unit-page">
-<!-- UNIT INFORMATION -->
+
 <section class="unit-info">
-<!-- UNIT IMAGE -->
+
 <div class="unit-image-container">
 <img alt="Unit" id="unit-image" src=""/>
 </div>
-<!-- UNIT DETAILS -->
+
 <div class="unit-details">
 <h1 id="unit-name">
                     Unit Name
@@ -76,13 +73,6 @@
             ></span>
         </div>
 
-    <span
-        id="data-confidence-tooltip"
-        class="unit-info-tooltip"
-        role="tooltip"
-        hidden
-    ></span>
-
     <button
         id="copy-unit-link"
         class="copy-unit-link"
@@ -94,7 +84,7 @@
         <span id="copy-unit-link-text">COPY UNIT LINK</span>
     </button>
 </div>
-<!-- TABS -->
+
 <div class="unit-tabs">
 <button class="unit-tab active" data-tab="general" type="button">
                         GENERAL
@@ -103,12 +93,10 @@
                         OBTAINMENT
                     </button>
 </div>
-<!-- =========================
-                     GENERAL TAB
-                ========================== -->
+
 <div class="tab-content active" id="general-tab">
 <div class="info-grid">
-<!-- RARITY -->
+
 <div class="info-box rarity-box" id="rarity-box">
 <span class="info-label">
                                 RARITY
@@ -117,7 +105,7 @@
                                 Common
                             </span>
 </div>
-<!-- TYPE -->
+
 <div class="info-box">
 <span class="info-label">
                                 TYPE
@@ -126,7 +114,7 @@
                                 Single
                             </span>
 </div>
-<!-- PLACEMENT -->
+
 <div class="info-box placement-box" id="placement-box">
 <span class="info-label">
                                 PLACEMENT
@@ -135,7 +123,7 @@
                                 $0
                             </span>
 </div>
-<!-- MAX LIMIT -->
+
 <div class="info-box limit-box" id="limit-box">
 <span class="info-label">
                                 MAX LIMIT
@@ -146,9 +134,7 @@
 </div>
 </div>
 </div>
-<!-- =========================
-                     OBTAINMENT TAB
-                ========================== -->
+
 <div class="tab-content" id="obtainment-tab">
 <div class="obtainment-box">
 <span class="info-label">
@@ -161,9 +147,7 @@
 </div>
 </div>
 </section>
-<!-- =========================
-     STATS / ABILITIES
-========================= -->
+
 <section class="stats-section">
 <div class="stats-header">
 <button class="stats-tab active" id="stats-tab-button" type="button">
@@ -173,9 +157,7 @@
             ABILITIES
         </button>
 </div>
-<!-- =========================
-         STATS CONTENT
-    ========================== -->
+
 <div class="stats-content" id="stats-content">
 <div class="stats-container">
 <div class="table-wrapper">
@@ -197,9 +179,7 @@
 </div>
 </div>
 </div>
-<!-- =========================
-         ABILITIES CONTENT
-    ========================== -->
+
 <div class="abilities-content" id="abilities-content" style="display: none;">
 <div class="abilities-container">
 <ul id="abilities-list">
@@ -212,6 +192,8 @@
 <script src="js/shared/stat-utils.js"></script>
 <script src="js/shared/unit-utils.js"></script>
 <script src="js/shared/format-utils.js"></script>
+<script src="js/config/navigation.js"></script>
+
 <script src="js/site.js"></script>
 <script src="js/pages/unit.js"></script>
 </body>
