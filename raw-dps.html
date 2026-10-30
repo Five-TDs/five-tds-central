@@ -4,9 +4,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Raw DPS - FIVE TD'S CENTRAL</title>
+<title>Unit Stat List - FIVE TD'S CENTRAL</title>
 <link href="css/site.css" rel="stylesheet"/>
 <link href="css/pages/raw-dps.css" rel="stylesheet"/>
+<link href="css/ftc-roadmap-features.css" rel="stylesheet"/>
 <link href="css/arcade-theme.css" rel="stylesheet"/>
 
 </head>
@@ -20,9 +21,9 @@
 
 <header class="page-header raw-dps-header">
     <div>
-        <h1>RAW DPS</h1>
+        <h1>UNIT STAT LIST</h1>
         <p class="page-description">
-            Compare the maximum raw DPS of every unit in the database.
+            Explore every unit and sort by any recorded statistic. Only one sort is active at a time.
         </p>
     </div>
 </header>
@@ -34,7 +35,7 @@
 <div>
 <strong>NOTICE:</strong>
 
-                VALUES SHOW RAW DPS AT MAX IN-GAME LEVEL.
+                STATISTICS ARE TAKEN FROM EACH UNIT'S HIGHEST LISTED LEVEL. SUPPORT UNITS WITH UNLISTED DAMAGE SHOW — INSTEAD OF INVENTED VALUES.
 
             </div>
 </div>
@@ -120,46 +121,12 @@
 </div>
 </div>
 
-<section class="dps-table-container">
+<section class="dps-table-container" aria-label="Sortable unit statistics"><div class="stat-list-toolbar"><span id="stat-list-count" aria-live="polite"></span><span>Choose a column to sort · select it again to reverse</span></div>
 <table id="dps-table">
-<thead>
-<tr>
-<th class="rank-column">
-                            #
-                        </th>
-<th>
-                            UNIT
-                        </th>
-<th>
-                            RARITY
-                        </th>
-<th>
-                            TYPE
-                        </th>
-<th>
-                            MAX PLACED
-                        </th>
-<th>
-                            HPS
-                        </th>
-<th>
-                            RNG
-                        </th>
-<th>
-                            DMG
-                        </th>
-<th class="sortable" id="dps-header">
-                            MAX DPS
-
-                            <span id="sort-arrow">
-                                ▼
-                            </span>
-</th>
-</tr>
-</thead>
+<thead><tr id="stat-list-head"><th scope="col" class="rank-column">#</th></tr></thead>
 <tbody id="dps-body">
 </tbody>
-</table>
+</table><div class="stat-list-scroll-hint">Scroll horizontally to see every statistic on smaller screens.</div>
 </section>
 </main>
 <script src="js/data/units.js"></script>
@@ -169,5 +136,6 @@
 <script src="js/site.js"></script>
 <script src="js/shared/format-utils.js"></script>
 <script src="js/pages/raw-dps.js"></script>
+<script src="js/shared/interactive-tools.js"></script>
 </body>
 </html>

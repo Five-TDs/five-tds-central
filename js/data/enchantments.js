@@ -4,25 +4,21 @@ const enchants = {
         range: 10,
         prob: 25
     },
-
     Hunt: {
         name: "HUNT",
         attackSpeed: -10,
         prob: 25
     },
-
     Hook: {
         name: "HOOK",
         damage: 10,
         prob: 25
     },
-
     Eco: {
         name: "ECO",
         cost: -50,
         prob: 15
     },
-
     Haywire: {
         name: "HAYWIRE",
         range: 20,
@@ -30,7 +26,6 @@ const enchants = {
         prob: 0.5,
         colorClass: "enchant-haywire"
     },
-
     Springlock: {
         name: "SPRINGLOCK",
         damage: 20,
@@ -38,7 +33,6 @@ const enchants = {
         prob: 0.5,
         colorClass: "enchant-springlock"
     },
-
     Soul: {
         name: "SOUL",
         damage: 15,

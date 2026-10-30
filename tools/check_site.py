@@ -56,6 +56,24 @@ def validate():
                 errors.append(f'{page.name}: missing navigation configuration')
             elif parser.scripts.index('js/config/navigation.js') > parser.scripts.index('js/site.js'):
                 errors.append(f'{page.name}: navigation configuration loads after site.js')
+        if page.name == 'teams.html':
+            builder_order = [
+                'js/pages/teams.js',
+                'js/pages/team-builder/unit-picker.js',
+                'js/pages/team-builder/slots-and-stats.js',
+                'js/pages/team-builder/slot-actions.js',
+                'js/pages/team-builder/saved-teams.js',
+                'js/pages/team-builder/capture.js',
+                'js/pages/team-builder/sharing.js',
+                'js/pages/team-builder/accessibility.js',
+            ]
+            positions = [parser.scripts.index(script) if script in parser.scripts else -1 for script in builder_order]
+            if -1 in positions or positions != list(range(positions[0], positions[0] + len(positions))):
+                errors.append('teams.html: Team Builder scripts must load in the documented order')
+        if 'js/meta/ranking-engine.js' in parser.scripts:
+            required = ['js/data/units.js', 'js/config/meta-settings.js']
+            if any(script not in parser.scripts or parser.scripts.index(script) > parser.scripts.index('js/meta/ranking-engine.js') for script in required):
+                errors.append(f'{page.name}: units and META settings must load before the ranking engine')
         if 'css/arcade-theme.css' not in parser.styles:
             errors.append(f'{page.name}: missing arcade theme')
         elif parser.styles[-1] != 'css/arcade-theme.css':

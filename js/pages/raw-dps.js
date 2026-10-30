@@ -1,477 +1,188 @@
+const searchInput = document.getElementById("search-input");
+const filterButton = document.getElementById("filter-button");
+const filters = document.getElementById("filters");
+const statBody = document.getElementById("dps-body");
+const statHead = document.getElementById("stat-list-head");
+const resultCount = document.getElementById("stat-list-count");
+const rarityFilters = new Set();
+const typeFilters = new Set();
+let sortColumn = "maxDps";
+let sortDirection = "desc";
 
+const columns = [
+    { key: "name", label: "UNIT", type: "text" },
+    { key: "rarity", label: "RARITY", type: "text" },
+    { key: "type", label: "TYPE", type: "text" },
+    { key: "placement", label: "PLACEMENT COST", type: "number", money: true },
+    { key: "maxLimit", label: "MAX PLACED", type: "number" },
+    { key: "level", label: "MAX LEVEL", type: "number" },
+    { key: "hps", label: "HPS", type: "number" },
+    { key: "range", label: "RANGE", type: "number" },
+    { key: "damage", label: "DAMAGE", type: "number" },
+    { key: "maxDps", label: "MAX DPS", type: "number" },
+    { key: "investment", label: "TOTAL COST", type: "number", money: true },
+    { key: "deployedDps", label: "DEPLOYED DPS*", type: "number" },
+    { key: "efficiency", label: "DPS / $1K", type: "number" }
+];
 
+const finite = value => value !== "" && value !== null && value !== undefined && Number.isFinite(Number(value));
+const numberOrNull = value => finite(value) ? Number(value) : null;
+const displayValue = (value, column) => {
+    if (value === null || value === undefined || (typeof value === "number" && !Number.isFinite(value))) return "—";
+    if (column.type === "text") return String(value);
+    const rendered = Number(value).toLocaleString("en-US", { maximumFractionDigits: 2 });
+    return column.money ? `$${rendered}` : rendered;
+};
 
+function summarizeUnit(unit) {
+    const levels = [...(unit.stats || [])].sort((a, b) => Number(a.level) - Number(b.level));
+    const last = levels[levels.length - 1] || {};
+    const damage = numberOrNull(last.damage);
+    const hps = numberOrNull(last.cooldown);
+    const range = numberOrNull(last.range);
+    const maxDps = damage !== null && hps !== null ? damage * hps : null;
+    const placement = numberOrNull(unit.placement);
+    const maxLimit = numberOrNull(unit.maxLimit);
+    let investment = placement;
+    for (const level of levels.slice(1)) {
+        const cost = numberOrNull(level.cost);
+        if (investment !== null) investment += cost || 0;
+    }
+    return {
+        unit,
+        name: unit.name,
+        rarity: unit.rarity,
+        type: last.type || unit.type || "—",
+        placement,
+        maxLimit,
+        level: numberOrNull(last.level),
+        hps,
+        range,
+        damage,
+        maxDps,
+        investment,
+        deployedDps: maxDps === null || maxLimit === null ? null : maxDps * maxLimit,
+        efficiency: maxDps === null || investment === null || investment <= 0 ? null : maxDps * 1000 / investment
+    };
+}
 
-let activeRarities = [];
+const records = units.map(summarizeUnit);
 
-let activeTypes = [];
+function sortRecords(a, b) {
+    const left = a[sortColumn];
+    const right = b[sortColumn];
+    const leftMissing = left === null || left === undefined || left === "";
+    const rightMissing = right === null || right === undefined || right === "";
+    if (leftMissing !== rightMissing) return leftMissing ? 1 : -1;
+    if (leftMissing && rightMissing) return a.name.localeCompare(b.name);
+    const column = columns.find(item => item.key === sortColumn);
+    const result = column.type === "text"
+        ? String(left).localeCompare(String(right), undefined, { numeric: true })
+        : Number(left) - Number(right);
+    return (sortDirection === "asc" ? result : -result) || a.name.localeCompare(b.name);
+}
 
-
-
-
-
-
-
-
-
-let highestFirst = true;
-
-
-
-
-
-
-const searchInput =
-    document.getElementById("search-input");
-
-
-const filterButton =
-    document.getElementById("filter-button");
-
-
-const filters =
-    document.getElementById("filters");
-
-
-const dpsBody =
-    document.getElementById("dps-body");
-
-
-const dpsHeader =
-    document.getElementById("dps-header");
-
-
-const sortArrow =
-    document.getElementById("sort-arrow");
-
-
-
-
-
-
-filterButton.addEventListener("click", () => {
-
-    filters.classList.toggle("open");
-
-    filterButton.classList.toggle("open");
-
-});
-
-
-
-
-
-
-document
-    .querySelectorAll(".rarity-option")
-    .forEach(button => {
-
+function renderHeaders() {
+    statHead.replaceChildren();
+    const index = document.createElement("th");
+    index.scope = "col";
+    index.textContent = "#";
+    index.className = "rank-column";
+    statHead.appendChild(index);
+    for (const column of columns) {
+        const th = document.createElement("th");
+        th.scope = "col";
+        const active = column.key === sortColumn;
+        th.setAttribute("aria-sort", active ? (sortDirection === "asc" ? "ascending" : "descending") : "none");
+        th.className = `stat-sort-header${active ? " active" : ""}`;
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "stat-sort-button";
+        button.dataset.sort = column.key;
+        button.setAttribute("aria-label", `Sort ${column.label}, ${active ? (sortDirection === "asc" ? "ascending" : "descending") : "choose column"}`);
+        const label = document.createElement("span");
+        label.textContent = column.label;
+        const arrow = document.createElement("span");
+        arrow.className = "stat-sort-arrow";
+        arrow.textContent = active ? (sortDirection === "desc" ? "▼" : "▲") : "↕";
+        button.append(label, arrow);
         button.addEventListener("click", () => {
-
-            const value =
-                button.dataset.value;
-
-
-            if (activeRarities.includes(value)) {
-
-                activeRarities =
-                    activeRarities.filter(
-                        rarity => rarity !== value
-                    );
-
-                button.classList.remove("active");
-
-            } else {
-
-                activeRarities.push(value);
-
-                button.classList.add("active");
-
+            if (sortColumn === column.key) sortDirection = sortDirection === "desc" ? "asc" : "desc";
+            else {
+                sortColumn = column.key;
+                sortDirection = column.type === "text" ? "asc" : "desc";
             }
-
-
-            displayDPS();
-
+            renderHeaders();
+            renderRows();
         });
-
-    });
-
-
-
-
-
-
-document
-    .querySelectorAll(".type-option")
-    .forEach(button => {
-
-        button.addEventListener("click", () => {
-
-            const value =
-                button.dataset.value;
-
-
-            if (activeTypes.includes(value)) {
-
-                activeTypes =
-                    activeTypes.filter(
-                        type => type !== value
-                    );
-
-                button.classList.remove("active");
-
-            } else {
-
-                activeTypes.push(value);
-
-                button.classList.add("active");
-
-            }
-
-
-            displayDPS();
-
-        });
-
-    });
-
-
-
-
-
-
-searchInput.addEventListener(
-    "input",
-    () => {
-
-        displayDPS();
-
+        th.appendChild(button);
+        statHead.appendChild(th);
     }
-);
-
-
-
-
-
-
-dpsHeader.addEventListener("click", () => {
-
-    highestFirst =
-        !highestFirst;
-
-
-    updateSortArrow();
-
-    displayDPS();
-
-});
-
-
-
-
-
-
-function updateSortArrow() {
-
-    if (highestFirst) {
-
-        sortArrow.textContent = "▼";
-
-    } else {
-
-        sortArrow.textContent = "▲";
-
-    }
-
 }
 
-
-
-
-
-
-function getMaxStats(unit) {
-
-    if (
-        !unit.stats ||
-        unit.stats.length === 0
-    ) {
-
-        return null;
-
-    }
-
-
-    
-
-    return unit.stats[
-        unit.stats.length - 1
-    ];
-
-}
-
-
-
-
-function getMaxDPS(unit) {
-
-    const stats = getMaxStats(unit);
-
-    if (!stats) {
-        return null;
-    }
-
-    const damage = Number(stats.damage);
-    const hps = getHPS(stats);
-
-    if (
-        !Number.isFinite(damage) ||
-        hps <= 0
-    ) {
-        return null;
-    }
-
-    return calculateDPS(damage, hps);
-}
-
-
-
-
-
-
-function displayDPS() {
-
-    dpsBody.innerHTML = "";
-
-
-    const searchText =
-        searchInput.value
-            .toLowerCase()
-            .trim();
-
-
-    
-
-    let filteredUnits =
-        units.filter(unit => {
-
-            const maxDPS =
-                getMaxDPS(unit);
-
-
-            if (maxDPS === null) {
-                return false;
-            }
-
-
-            
-            
-            
-
-            const matchesSearch =
-                unit.name
-                    .toLowerCase()
-                    .includes(searchText);
-
-
-            
-            
-            
-
-            const matchesRarity =
-                activeRarities.length === 0 ||
-
-                activeRarities.includes(
-                    unit.rarity
-                );
-
-
-            
-            
-            
-
-            const maxStats =
-                getMaxStats(unit);
-
-
-            const matchesType =
-                activeTypes.length === 0 ||
-
-                activeTypes.includes(
-                    maxStats.type || unit.type
-                );
-
-
-            return (
-                matchesSearch &&
-                matchesRarity &&
-                matchesType
-            );
-
-        });
-
-
-    
-    
-    
-
-    filteredUnits.sort((a, b) => {
-
-        const aDPS =
-            getMaxDPS(a);
-
-
-        const bDPS =
-            getMaxDPS(b);
-
-
-        if (highestFirst) {
-
-            return bDPS - aDPS;
-
-        }
-
-
-        return aDPS - bDPS;
-
-    });
-
-
-    
-    
-    
-
-    if (filteredUnits.length === 0) {
-
-        dpsBody.innerHTML = `
-
-            <tr>
-
-                <td
-                    colspan="9"
-                    class="no-results"
-                >
-                    NO UNITS FOUND.
-                </td>
-
-            </tr>
-
-        `;
-
+function renderRows() {
+    const text = searchInput.value.trim().toLowerCase();
+    const filtered = records.filter(record => {
+        if (!record.name.toLowerCase().includes(text)) return false;
+        if (rarityFilters.size && !rarityFilters.has(record.rarity)) return false;
+        if (typeFilters.size && !typeFilters.has(record.type) && !typeFilters.has(record.unit.type)) return false;
+        return true;
+    }).sort(sortRecords);
+    statBody.replaceChildren();
+    resultCount.textContent = `Showing ${filtered.length} of ${records.length} units`;
+    if (!filtered.length) {
+        const row = document.createElement("tr");
+        const cell = document.createElement("td");
+        cell.colSpan = columns.length + 1;
+        cell.className = "no-results";
+        cell.textContent = "No units match these filters.";
+        row.appendChild(cell);
+        statBody.appendChild(row);
         return;
-
     }
-
-
-    
-    
-    
-
-    filteredUnits.forEach((unit, index) => {
-
-        const maxStats =
-            getMaxStats(unit);
-
-
-        const maxDPS =
-            getMaxDPS(unit);
-
-
-        const row =
-            document.createElement("tr");
-
-
-        row.innerHTML = `
-
-            <td class="rank">
-                ${index + 1}
-            </td>
-
-
-            <td>
-
-                <span
-                    class="unit-name unit-name-${unit.rarity.toLowerCase()}"
-                    data-unit="${unit.name}"
-                >
-                    ${unit.name}
-                </span>
-
-            </td>
-
-
-            <td>
-
-                <span
-                    class="rarity rarity-${unit.rarity.toLowerCase()}"
-                >
-                    ${unit.rarity}
-                </span>
-
-            </td>
-
-
-            <td class="attack-type">
-                ${maxStats.type || unit.type}
-            </td>
-
-
-            <td>
-                ${unit.maxLimit ?? "—"}
-            </td>
-
-
-            <td>
-                ${formatHPS(maxStats.cooldown)}
-            </td>
-
-
-            <td>
-                ${formatNumber(maxStats.range)}
-            </td>
-
-
-            <td>
-                ${formatNumber(maxStats.damage)}
-            </td>
-
-
-            <td class="max-dps">
-                ${formatNumber(maxDPS)}
-            </td>
-
-        `;
-
-
-        dpsBody.appendChild(row);
-
-
-        // =================================================
-        // UNIT CLICK
-        // =================================================
-
-        const unitLink =
-            row.querySelector(".unit-name");
-
-
-        unitLink.addEventListener(
-            "click",
-            () => {
-
-                window.location.href =
-                    `unit.html?unit=${encodeURIComponent(unit.name)}`;
-
+    filtered.forEach((record, index) => {
+        const row = document.createElement("tr");
+        const rank = document.createElement("td");
+        rank.className = "rank";
+        rank.textContent = index + 1;
+        row.appendChild(rank);
+        columns.forEach(column => {
+            const cell = document.createElement("td");
+            if (column.key === "name") {
+                const link = document.createElement("a");
+                link.className = `unit-name unit-name-${String(record.rarity).toLowerCase()}`;
+                link.href = `unit.html?unit=${encodeURIComponent(record.name)}`;
+                link.textContent = record.name;
+                cell.appendChild(link);
+            } else {
+                cell.textContent = displayValue(record[column.key], column);
+                if (column.key === "rarity") cell.classList.add(`unit-name-${String(record.rarity).toLowerCase()}`);
             }
-        );
-
+            if (column.key === sortColumn) cell.classList.add("stat-sorted-value");
+            if (record[column.key] === null) cell.classList.add("stat-unlisted");
+            row.appendChild(cell);
+        });
+        statBody.appendChild(row);
     });
-
 }
 
-// =========================================================
-// INITIAL DISPLAY
-// =========================================================
-
-updateSortArrow();
-
-displayDPS();
+filterButton?.addEventListener("click", () => {
+    const open = filters.classList.toggle("open");
+    filterButton.classList.toggle("open", open);
+    filterButton.setAttribute("aria-expanded", String(open));
+});
+for (const kind of ["rarity", "type"]) {
+    const active = kind === "rarity" ? rarityFilters : typeFilters;
+    document.querySelectorAll(`.${kind}-option`).forEach(button => {
+        button.addEventListener("click", () => {
+            if (active.has(button.dataset.value)) active.delete(button.dataset.value);
+            else active.add(button.dataset.value);
+            button.classList.toggle("active", active.has(button.dataset.value));
+            button.setAttribute("aria-pressed", String(active.has(button.dataset.value)));
+            renderRows();
+        });
+    });
+}
+searchInput?.addEventListener("input", renderRows);
+renderHeaders();
+renderRows();

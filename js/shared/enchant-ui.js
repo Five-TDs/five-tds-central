@@ -1,7 +1,3 @@
-
-
-
-
 const ENCHANT_DISPLAY_COLORS = {
     bestTowers: {
         Battery: "#B4FFAA",
@@ -12,7 +8,6 @@ const ENCHANT_DISPLAY_COLORS = {
         Springlock: "#98FFCC",
         Soul: "#14B8A6"
     },
-
     teams: {
         Battery: "#65c7ff",
         Hunt: "#79d66d",
@@ -23,25 +18,19 @@ const ENCHANT_DISPLAY_COLORS = {
         Soul: "#e879f9"
     }
 };
-
-
-
 function getEnchantColor(enchantName, palette = "bestTowers") {
-    if (!enchantName) return null;
-
+    if (!enchantName)
+        return null;
     const colors = ENCHANT_DISPLAY_COLORS[palette];
-
-    if (!colors) return null;
-
+    if (!colors)
+        return null;
     return colors[enchantName] || null;
 }
-
 function getEnchantClass(enchantName, prefix) {
-    if (!enchantName || !prefix) return "";
-
+    if (!enchantName || !prefix)
+        return "";
     return prefix + enchantName.toLowerCase();
 }
-
 function getEnchantLabel(enchantName) {
     return enchantName
         ? String(enchantName).toUpperCase()

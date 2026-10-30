@@ -1,49 +1,13 @@
-
-
-
-
-const sections =
-    document.querySelectorAll(
-        ".home-section[data-section]"
-    );
-
-
+const sections = document.querySelectorAll(".home-section[data-section]");
 sections.forEach(section => {
-
-    const button =
-        section.querySelector(
-            ".home-section-header"
-        );
-
-
+    const button = section.querySelector(".home-section-header");
     button.addEventListener("click", () => {
-
-        const wasOpen =
-            section.classList.contains("open");
-
-
-        
-
+        const wasOpen = section.classList.contains("open");
         sections.forEach(currentSection => {
-
-            currentSection.classList.remove(
-                "open"
-            );
-
+            currentSection.classList.remove("open");
         });
-
-
-        
-        
-
         if (!wasOpen) {
-
-            section.classList.add(
-                "open"
-            );
-
+            section.classList.add("open");
         }
-
     });
-
 });

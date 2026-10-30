@@ -1,58 +1,14 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const units = [
-
-
-
     {
         name: "Toy Freddy",
         rarity: "Common",
         type: "Single",
         image: "images/toyfreddy.png",
-
         lastUpd: "10-25-2026",
-        
         placement: 350,
         maxLimit: 2,
-
         obtainment: "- 50% Chance from summons",
-
         stats: [
-
             {
                 level: 1,
                 damage: 20,
@@ -60,16 +16,14 @@ const units = [
                 range: 7,
                 type: "Single"
             },
-
             {
-                level:  2,
+                level: 2,
                 cost: 500,
                 damage: 22,
                 cooldown: 1.1,
                 range: 8,
                 type: "Single"
             },
-
             {
                 level: 3,
                 cost: 800,
@@ -78,25 +32,18 @@ const units = [
                 range: 9,
                 type: "Single"
             }
-
         ]
     },
-
     {
         name: "Endo 01",
         rarity: "Common",
         type: "Single",
         image: "images/endo01.png",
-
         lastUpd: "10-25-2026",
-        
         placement: 50,
         maxLimit: 4,
-
         obtainment: "- 50% Chance from summons",
-
         stats: [
-
             {
                 level: 1,
                 damage: 6,
@@ -104,7 +51,6 @@ const units = [
                 range: 5,
                 type: "Single"
             },
-
             {
                 level: 2,
                 cost: 75,
@@ -113,7 +59,6 @@ const units = [
                 range: 6,
                 type: "Single"
             },
-
             {
                 level: 3,
                 cost: 175,
@@ -122,7 +67,6 @@ const units = [
                 range: 8,
                 type: "Single"
             },
-
             {
                 level: 4,
                 cost: 450,
@@ -131,25 +75,18 @@ const units = [
                 range: 8,
                 type: "Single"
             }
-
         ]
     },
-
     {
         name: "Chica",
         rarity: "Common",
         type: "Pierce",
         image: "images/chica.png",
-
         lastUpd: "10-25-2026",
-        
         placement: 200,
         maxLimit: 2,
-
         obtainment: "- 50% Chance from summons",
-
         stats: [
-
             {
                 level: 1,
                 damage: 20,
@@ -157,7 +94,6 @@ const units = [
                 range: 7,
                 type: "Pierce"
             },
-
             {
                 level: 2,
                 cost: 300,
@@ -166,7 +102,6 @@ const units = [
                 range: 8,
                 type: "Pierce"
             },
-
             {
                 level: 3,
                 cost: 600,
@@ -175,25 +110,18 @@ const units = [
                 range: 9,
                 type: "Pierce"
             }
-
         ]
     },
-
     {
         name: "Balloon Boy",
         rarity: "Common",
         type: "Pierce",
         image: "images/balloonboy.png",
-
         lastUpd: "10-25-2026",
-        
-        placement: 100, 
+        placement: 100,
         maxLimit: 3,
-
         obtainment: "- 50% Chance from summons",
-
         stats: [
-
             {
                 level: 1,
                 damage: 14,
@@ -201,7 +129,6 @@ const units = [
                 range: 6,
                 type: "Pierce"
             },
-
             {
                 level: 2,
                 cost: 200,
@@ -210,7 +137,6 @@ const units = [
                 range: 7,
                 type: "Pierce"
             },
-
             {
                 level: 3,
                 cost: 400,
@@ -219,38 +145,27 @@ const units = [
                 range: 8,
                 type: "Pierce"
             }
-
         ]
     },
-
-
-
     {
         name: "Withered Chica",
         rarity: "Uncommon",
         type: "Range Buff",
         image: "images/witheredchica.png",
-
         lastUpd: "10-25-2026",
-        
         placement: 400,
         maxLimit: 2,
-
         obtainment: "- 30% Chance from summons",
-
         passives: [
-                    "Buffs the range of all units within this unit's range by the listed multiplier"
+            "Buffs the range of all units within this unit's range by the listed multiplier"
         ],
-
         stats: [
-
             {
                 level: 1,
                 range: 12,
                 type: "Range Buff",
                 rangeBuff: 1.05
             },
-
             {
                 level: 2,
                 cost: 800,
@@ -258,7 +173,6 @@ const units = [
                 type: "Range Buff",
                 rangeBuff: 1.08
             },
-
             {
                 level: 3,
                 cost: 1600,
@@ -266,7 +180,6 @@ const units = [
                 type: "Range Buff",
                 rangeBuff: 1.11
             },
-
             {
                 level: 4,
                 cost: 3500,
@@ -274,25 +187,18 @@ const units = [
                 type: "Range Buff",
                 rangeBuff: 1.15
             }
-
         ]
     },
-
     {
         name: "Toy Bonnie",
         rarity: "Uncommon",
         type: "Single",
         image: "images/toybonnie.png",
-
         lastUpd: "10-25-2026",
-        
         placement: 600,
         maxLimit: 4,
-
         obtainment: "- 30% Chance from summons",
-
         stats: [
-
             {
                 level: 1,
                 damage: 13,
@@ -300,7 +206,6 @@ const units = [
                 range: 9,
                 type: "Single"
             },
-
             {
                 level: 2,
                 cost: 900,
@@ -309,7 +214,6 @@ const units = [
                 range: 10,
                 type: "Single"
             },
-
             {
                 level: 3,
                 cost: 1600,
@@ -318,36 +222,27 @@ const units = [
                 range: 12,
                 type: "Single"
             }
-
         ]
     },
-
     {
         name: "Endo 02",
         rarity: "Uncommon",
         type: "Slower",
         image: "images/endo02.png",
-
         lastUpd: "10-25-2026",
-        
         placement: 500,
         maxLimit: 2,
-
         obtainment: "- 30% Chance from summons",
-
         passives: [
-                    "Slows all enemies within this unit's range by the listed multiplier"
+            "Slows all enemies within this unit's range by the listed multiplier"
         ],
-
         stats: [
-
             {
                 level: 1,
                 range: 12,
                 type: "Slower",
                 slow: 0.9
             },
-
             {
                 level: 2,
                 cost: 1000,
@@ -355,7 +250,6 @@ const units = [
                 type: "Slower",
                 slow: 0.87
             },
-
             {
                 level: 3,
                 cost: 2000,
@@ -363,7 +257,6 @@ const units = [
                 type: "Slower",
                 slow: 0.84
             },
-
             {
                 level: 4,
                 cost: 4000,
@@ -371,25 +264,18 @@ const units = [
                 type: "Slower",
                 slow: 0.8
             }
-
         ]
     },
-
     {
         name: "Bonnie",
         rarity: "Uncommon",
         type: "Splash",
         image: "images/bonnie.png",
-
         lastUpd: "10-25-2026",
-        
         placement: 450,
         maxLimit: 3,
-
         obtainment: "- 30% Chance from summons",
-
         stats: [
-
             {
                 level: 1,
                 damage: 20,
@@ -397,7 +283,6 @@ const units = [
                 range: 8.5,
                 type: "Splash"
             },
-
             {
                 level: 2,
                 cost: 800,
@@ -406,7 +291,6 @@ const units = [
                 range: 9,
                 type: "Splash"
             },
-
             {
                 level: 3,
                 cost: 1350,
@@ -415,7 +299,6 @@ const units = [
                 range: 9.5,
                 type: "Splash"
             },
-
             {
                 level: 4,
                 cost: 2000,
@@ -424,27 +307,18 @@ const units = [
                 range: 10,
                 type: "Splash"
             }
-
         ]
     },
-
-
-
     {
         name: "Withered Freddy",
         rarity: "Rare",
         type: "AOE",
         image: "images/witheredfreddy.png",
-
         lastUpd: "10-25-2026",
-        
         placement: 800,
         maxLimit: 2,
-
         obtainment: "- 15% Chance from summons",
-
         stats: [
-
             {
                 level: 1,
                 damage: 20,
@@ -452,7 +326,6 @@ const units = [
                 range: 12,
                 type: "AOE"
             },
-
             {
                 level: 2,
                 cost: 1600,
@@ -461,7 +334,6 @@ const units = [
                 range: 13,
                 type: "AOE"
             },
-
             {
                 level: 3,
                 cost: 2400,
@@ -470,7 +342,6 @@ const units = [
                 range: 14,
                 type: "AOE"
             },
-
             {
                 level: 4,
                 cost: 4000,
@@ -479,25 +350,18 @@ const units = [
                 range: 15,
                 type: "AOE"
             }
-
         ]
     },
-
     {
         name: "Withered Bonnie",
         rarity: "Rare",
         type: "Splash",
         image: "images/witheredbonnie.png",
-
         lastUpd: "10-25-2026",
-        
         placement: 1250,
         maxLimit: 2,
-
         obtainment: "- 15% Chance from summons",
-
         stats: [
-
             {
                 level: 1,
                 damage: 30,
@@ -505,7 +369,6 @@ const units = [
                 range: 12,
                 type: "Splash"
             },
-
             {
                 level: 2,
                 cost: 2500,
@@ -514,7 +377,6 @@ const units = [
                 range: 13,
                 type: "Splash"
             },
-
             {
                 level: 3,
                 cost: 5000,
@@ -523,7 +385,6 @@ const units = [
                 range: 14,
                 type: "Splash"
             },
-
             {
                 level: 4,
                 cost: 10000,
@@ -532,25 +393,18 @@ const units = [
                 range: 15,
                 type: "Splash"
             }
-
         ]
     },
-
     {
         name: "Toy Chica",
         rarity: "Rare",
         type: "Cone",
         image: "images/toychica.png",
-
         lastUpd: "10-25-2026",
-        
         placement: 750,
         maxLimit: 2,
-
         obtainment: "- 15% Chance from summons",
-
         stats: [
-
             {
                 level: 1,
                 damage: 25,
@@ -558,7 +412,6 @@ const units = [
                 range: 9,
                 type: "Cone"
             },
-
             {
                 level: 2,
                 cost: 1500,
@@ -567,7 +420,6 @@ const units = [
                 range: 9,
                 type: "Cone"
             },
-
             {
                 level: 3,
                 cost: 2250,
@@ -576,7 +428,6 @@ const units = [
                 range: 9,
                 type: "Cone"
             },
-
             {
                 level: 4,
                 cost: 4500,
@@ -585,27 +436,18 @@ const units = [
                 range: 11,
                 type: "Cone"
             }
-
-
-
         ]
     },
-
     {
         name: "Foxy",
         rarity: "Rare",
         type: "Single",
         image: "images/foxy.png",
-
         lastUpd: "10-25-2026",
-        
         placement: 500,
         maxLimit: 4,
-
         obtainment: "- 15% Chance from summons",
-
         stats: [
-
             {
                 level: 1,
                 damage: 14,
@@ -613,7 +455,6 @@ const units = [
                 range: 7,
                 type: "Single"
             },
-
             {
                 level: 2,
                 cost: 1000,
@@ -622,7 +463,6 @@ const units = [
                 range: 8,
                 type: "Single"
             },
-
             {
                 level: 3,
                 cost: 2500,
@@ -631,27 +471,18 @@ const units = [
                 range: 9,
                 type: "Single"
             }
-
         ]
     },
-
-
-
     {
         name: "Withered Foxy",
         rarity: "Epic",
         type: "Cone",
         image: "images/witheredfoxy.png",
-
         lastUpd: "10-25-2026",
-        
         placement: 900,
         maxLimit: 4,
-
         obtainment: "- 5% Chance from summons",
-
         stats: [
-
             {
                 level: 1,
                 damage: 25,
@@ -659,7 +490,6 @@ const units = [
                 range: 7,
                 type: "Cone"
             },
-
             {
                 level: 2,
                 cost: 1800,
@@ -668,7 +498,6 @@ const units = [
                 range: 8,
                 type: "Cone"
             },
-
             {
                 level: 3,
                 cost: 4000,
@@ -677,7 +506,6 @@ const units = [
                 range: 9,
                 type: "Cone"
             },
-
             {
                 level: 4,
                 cost: 9000,
@@ -686,25 +514,18 @@ const units = [
                 range: 10,
                 type: "Cone"
             }
-
         ]
     },
-
     {
         name: "Purple Guy",
         rarity: "Epic",
         type: "Pierce",
         image: "images/purpleguy.png",
-
         lastUpd: "10-25-2026",
-        
         placement: 1000,
         maxLimit: 4,
-
         obtainment: "- Unit Quests: 'Don't Leave Me Here'. Complete Game 1",
-
         stats: [
-
             {
                 level: 1,
                 damage: 80,
@@ -712,7 +533,6 @@ const units = [
                 range: 12,
                 type: "Pierce"
             },
-
             {
                 level: 2,
                 cost: 2500,
@@ -721,7 +541,6 @@ const units = [
                 range: 13,
                 type: "Pierce"
             },
-
             {
                 level: 3,
                 cost: 5000,
@@ -730,7 +549,6 @@ const units = [
                 range: 14,
                 type: "Pierce"
             },
-
             {
                 level: 4,
                 cost: 12500,
@@ -739,25 +557,18 @@ const units = [
                 range: 15,
                 type: "Pierce"
             }
-
         ]
     },
-
     {
         name: "Old Man Consequences",
         rarity: "Epic",
         type: "Splash",
         image: "images/oldmanconsequences.png",
-
         lastUpd: "10-25-2026",
-        
         placement: 2500,
         maxLimit: 1,
-
         obtainment: "- Unit Quests: 'Tier 1 - Fazbear Employee'. Reach 2000 total waves",
-
         stats: [
-
             {
                 level: 1,
                 damage: 80,
@@ -765,7 +576,6 @@ const units = [
                 range: 14,
                 type: "Splash"
             },
-
             {
                 level: 2,
                 cost: 5000,
@@ -774,7 +584,6 @@ const units = [
                 range: 15,
                 type: "Splash"
             },
-
             {
                 level: 3,
                 cost: 10000,
@@ -783,7 +592,6 @@ const units = [
                 range: 16,
                 type: "Splash"
             },
-
             {
                 level: 4,
                 cost: 25000,
@@ -792,25 +600,18 @@ const units = [
                 range: 17,
                 type: "Splash"
             }
-
         ]
     },
-
     {
         name: "Mangle",
         rarity: "Epic",
         type: "Pierce",
         image: "images/mangle.png",
-
         lastUpd: "10-25-2026",
-        
         placement: 75,
         maxLimit: 4,
-
         obtainment: "- 5% Chance from summons",
-
         stats: [
-
             {
                 level: 1,
                 damage: 10,
@@ -818,7 +619,6 @@ const units = [
                 range: 6,
                 type: "Pierce"
             },
-
             {
                 level: 2,
                 cost: 250,
@@ -827,7 +627,6 @@ const units = [
                 range: 6,
                 type: "Pierce"
             },
-
             {
                 level: 3,
                 cost: 400,
@@ -836,7 +635,6 @@ const units = [
                 range: 7,
                 type: "Pierce"
             },
-
             {
                 level: 4,
                 cost: 1000,
@@ -845,7 +643,6 @@ const units = [
                 range: 7,
                 type: "Pierce"
             },
-
             {
                 level: 5,
                 cost: 1650,
@@ -854,25 +651,18 @@ const units = [
                 range: 8,
                 type: "Pierce"
             }
-
         ]
     },
-
     {
         name: "Freddy",
         rarity: "Epic",
         type: "Single",
         image: "images/freddy.png",
-
         lastUpd: "10-25-2026",
-        
         placement: 1500,
         maxLimit: 2,
-
         obtainment: "- 5% Chance from summons",
-
         stats: [
-
             {
                 level: 1,
                 damage: 120,
@@ -880,7 +670,6 @@ const units = [
                 range: 12,
                 type: "Single"
             },
-
             {
                 level: 2,
                 cost: 2500,
@@ -889,7 +678,6 @@ const units = [
                 range: 13,
                 type: "Single"
             },
-
             {
                 level: 3,
                 cost: 5000,
@@ -898,7 +686,6 @@ const units = [
                 range: 14,
                 type: "Single"
             },
-
             {
                 level: 4,
                 cost: 10000,
@@ -907,25 +694,18 @@ const units = [
                 range: 15,
                 type: "Single"
             }
-
         ]
     },
-
     {
         name: "Crying Child",
         rarity: "Epic",
         type: "Pierce",
         image: "images/cryingchild.png",
-
         lastUpd: "10-25-2026",
-        
         placement: 150,
         maxLimit: 5,
-
         obtainment: "- Unit Quests: 'Was That The..'.   Beat wave 87 in Game 1 Endless (Normal)",
-
         stats: [
-
             {
                 level: 1,
                 damage: 14,
@@ -933,7 +713,6 @@ const units = [
                 range: 7,
                 type: "Pierce"
             },
-
             {
                 level: 2,
                 cost: 1500,
@@ -942,30 +721,21 @@ const units = [
                 range: 8,
                 type: "Pierce"
             }
-
         ]
     },
-
-
-
     {
         name: "Sparky",
         rarity: "Exclusive",
         type: "Single",
         image: "images/sparky.png",
-
         lastUpd: "10-25-2026",
-
         placement: 75,
         maxLimit: 3,
-
         obtainment: "- Unobtainable",
-        warn : [
+        warn: [
             "⚠ THIS UNIT'S DATA MAY BE INACCURATE OR MISSING"
         ],
-
         stats: [
-
             {
                 level: 1,
                 damage: 10,
@@ -973,7 +743,6 @@ const units = [
                 range: 4.5,
                 type: "Single"
             },
-
             {
                 level: 2,
                 cost: 300,
@@ -982,7 +751,6 @@ const units = [
                 range: 5,
                 type: "Single"
             },
-
             {
                 level: 3,
                 cost: 900,
@@ -991,7 +759,6 @@ const units = [
                 range: 5,
                 type: "Single"
             },
-
             {
                 level: 4,
                 cost: 1500,
@@ -1000,7 +767,6 @@ const units = [
                 range: 5.5,
                 type: "Single"
             },
-
             {
                 level: 5,
                 cost: 2500,
@@ -1009,28 +775,21 @@ const units = [
                 range: 6,
                 type: "Single"
             }
-
         ]
     },
-
     {
         name: "Anim Dude",
         rarity: "Exclusive",
         type: "AOE",
         image: "images/animdude.png",
-
         lastUpd: "10-25-2026",
-
         placement: 1150,
         maxLimit: 2,
-
         obtainment: "- Unobtainable",
-        warn : [
+        warn: [
             "⚠ THIS UNIT'S DATA MAY BE INACCURATE OR MISSING"
         ],
-
         stats: [
-
             {
                 level: 1,
                 damage: 25,
@@ -1038,7 +797,6 @@ const units = [
                 range: 11,
                 type: "AOE"
             },
-
             {
                 level: 2,
                 cost: 2500,
@@ -1047,7 +805,6 @@ const units = [
                 range: 11,
                 type: "AOE"
             },
-
             {
                 level: 3,
                 cost: 5000,
@@ -1056,7 +813,6 @@ const units = [
                 range: 12,
                 type: "AOE"
             },
-
             {
                 level: 4,
                 cost: 12500,
@@ -1065,28 +821,21 @@ const units = [
                 range: 13,
                 type: "AOE"
             }
-
         ]
     },
-
     {
         name: "Bear5",
         rarity: "Exclusive",
         type: "AOE",
         image: "images/bear5.png",
-
         lastUpd: "10-25-2026",
-
         placement: 675,
         maxLimit: 4,
-
         obtainment: "- Unobtainable",
-        warn : [
+        warn: [
             "⚠ THIS UNIT'S DATA MAY BE INACCURATE OR MISSING"
         ],
-
         stats: [
-
             {
                 level: 1,
                 damage: 19,
@@ -1094,7 +843,6 @@ const units = [
                 range: 8,
                 type: "AOE"
             },
-
             {
                 level: 2,
                 cost: 1250,
@@ -1103,7 +851,6 @@ const units = [
                 range: 9,
                 type: "AOE"
             },
-
             {
                 level: 3,
                 cost: 2400,
@@ -1112,7 +859,6 @@ const units = [
                 range: 9,
                 type: "AOE"
             },
-
             {
                 level: 4,
                 cost: 6500,
@@ -1121,28 +867,21 @@ const units = [
                 range: 10,
                 type: "AOE"
             }
-
         ]
     },
-
     {
         name: "Fastbear",
         rarity: "Exclusive",
         type: "Single",
         image: "images/fastbear.png",
-
         lastUpd: "10-25-2026",
-        
         placement: 900,
         maxLimit: 2,
-
         obtainment: "- Unobtainable",
-        warn : [
+        warn: [
             "⚠ THIS UNIT'S DATA MAY BE INACCURATE OR MISSING"
         ],
-
         stats: [
-
             {
                 level: 1,
                 damage: 275,
@@ -1150,7 +889,6 @@ const units = [
                 range: 13,
                 type: "Single"
             },
-
             {
                 level: 2,
                 cost: 2250,
@@ -1159,7 +897,6 @@ const units = [
                 range: 14,
                 type: "Single"
             },
-
             {
                 level: 3,
                 cost: 4500,
@@ -1168,7 +905,6 @@ const units = [
                 range: 15,
                 type: "Single"
             },
-
             {
                 level: 4,
                 cost: 9500,
@@ -1177,29 +913,21 @@ const units = [
                 range: 16,
                 type: "Single"
             }
-
         ]
     },
-
     {
         name: "Radioactive Foxy",
         rarity: "Exclusive",
         type: "Toxic Pierce",
         image: "images/radioactivefoxy.png",
-
         lastUpd: "10-25-2026",
-        
         placement: 1000,
         maxLimit: 4,
-
         obtainment: "- Limited unit in lobby for $2500",
-
-        passives : [
+        passives: [
             "Applies TOXIC effect to any enemy hit"
         ],
-
         stats: [
-
             {
                 level: 1,
                 damage: 18,
@@ -1207,7 +935,6 @@ const units = [
                 range: 7,
                 type: "Toxic Pierce"
             },
-
             {
                 level: 2,
                 cost: 2000,
@@ -1216,7 +943,6 @@ const units = [
                 range: 8,
                 type: "Toxic Pierce"
             },
-
             {
                 level: 3,
                 cost: 5000,
@@ -1225,27 +951,18 @@ const units = [
                 range: 9,
                 type: "Toxic Pierce"
             }
-
         ]
     },
-
-
-
     {
         name: "The Marionette",
         rarity: "Legendary",
         type: "Splash",
         image: "images/marionette.png",
-
         lastUpd: "10-25-2026",
-        
         placement: 5000,
         maxLimit: 1,
-
         obtainment: "- 1% Chance from summons",
-
         stats: [
-
             {
                 level: 1,
                 damage: 200,
@@ -1253,7 +970,6 @@ const units = [
                 range: 23,
                 type: "Splash"
             },
-
             {
                 level: 2,
                 cost: 10000,
@@ -1262,7 +978,6 @@ const units = [
                 range: 23,
                 type: "Splash"
             },
-
             {
                 level: 3,
                 cost: 20000,
@@ -1271,7 +986,6 @@ const units = [
                 range: 24,
                 type: "Splash"
             },
-
             {
                 level: 4,
                 cost: 30000,
@@ -1280,7 +994,6 @@ const units = [
                 range: 24,
                 type: "Splash"
             },
-
             {
                 level: 5,
                 cost: 65000,
@@ -1289,25 +1002,18 @@ const units = [
                 range: 25,
                 type: "Splash"
             }
-
         ]
     },
-
     {
         name: "Shadow Freddy",
         rarity: "Legendary",
         type: "Cone",
         image: "images/shadowfreddy.png",
-
         lastUpd: "10-25-2026",
-        
         placement: 2000,
         maxLimit: 3,
-
         obtainment: "- 1% Chance from summons",
-
         stats: [
-
             {
                 level: 1,
                 damage: 100,
@@ -1315,7 +1021,6 @@ const units = [
                 range: 14,
                 type: "Cone"
             },
-
             {
                 level: 2,
                 cost: 4000,
@@ -1324,7 +1029,6 @@ const units = [
                 range: 16,
                 type: "Cone"
             },
-
             {
                 level: 3,
                 cost: 8500,
@@ -1333,7 +1037,6 @@ const units = [
                 range: 18,
                 type: "Cone"
             },
-
             {
                 level: 4,
                 cost: 18000,
@@ -1342,25 +1045,18 @@ const units = [
                 range: 20,
                 type: "Cone"
             }
-
         ]
     },
-
     {
         name: "Shadow Bonnie",
         rarity: "Legendary",
         type: "Single",
         image: "images/shadowbonnie.png",
-
         lastUpd: "10-25-2026",
-        
         placement: 2500,
         maxLimit: 2,
-
         obtainment: "- Limited unit, 1% chance from Daily Case",
-
         stats: [
-
             {
                 level: 1,
                 damage: 105,
@@ -1368,7 +1064,6 @@ const units = [
                 range: 9,
                 type: "Single"
             },
-
             {
                 level: 2,
                 cost: 6000,
@@ -1377,7 +1072,6 @@ const units = [
                 range: 10,
                 type: "Single"
             },
-
             {
                 level: 3,
                 cost: 13500,
@@ -1386,7 +1080,6 @@ const units = [
                 range: 11,
                 type: "Single"
             },
-
             {
                 level: 4,
                 cost: 35000,
@@ -1395,25 +1088,18 @@ const units = [
                 range: 12,
                 type: "Single"
             }
-
         ]
     },
-
     {
         name: "Golden Freddy",
         rarity: "Legendary",
         type: "AOE",
         image: "images/goldenfreddy.png",
-
         lastUpd: "10-25-2026",
-        
         placement: 5000,
         maxLimit: 1,
-
         obtainment: "- 1% Chance from summons",
-
         stats: [
-
             {
                 level: 1,
                 damage: 70,
@@ -1421,7 +1107,6 @@ const units = [
                 range: 20,
                 type: "AOE"
             },
-
             {
                 level: 2,
                 cost: 10000,
@@ -1430,7 +1115,6 @@ const units = [
                 range: 21,
                 type: "AOE"
             },
-
             {
                 level: 3,
                 cost: 25000,
@@ -1439,7 +1123,6 @@ const units = [
                 range: 22,
                 type: "AOE"
             },
-
             {
                 level: 4,
                 cost: 50000,
@@ -1448,25 +1131,18 @@ const units = [
                 range: 22,
                 type: "AOE"
             }
-
         ]
     },
-
     {
         name: "Chupcake",
         rarity: "Legendary",
         type: "Pierce",
         image: "images/chupcake.png",
-
         lastUpd: "10-25-2026",
-        
         placement: 2000,
         maxLimit: 2,
-
         obtainment: "- Chance drop from Game 1 Endless",
-
         stats: [
-
             {
                 level: 1,
                 damage: 185,
@@ -1474,7 +1150,6 @@ const units = [
                 range: 8,
                 type: "Pierce"
             },
-
             {
                 level: 2,
                 cost: 5000,
@@ -1483,7 +1158,6 @@ const units = [
                 range: 9,
                 type: "Pierce"
             },
-
             {
                 level: 3,
                 cost: 12500,
@@ -1492,8 +1166,6 @@ const units = [
                 range: 10,
                 type: "Pierce"
             }
-
         ]
     }
-
 ];

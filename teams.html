@@ -9,12 +9,15 @@
 
     <link rel="stylesheet" href="css/site.css">
 <link rel="stylesheet" href="css/pages/teams.css">
+
+<link href="css/ftc-roadmap-features.css" rel="stylesheet"/>
 <link href="css/arcade-theme.css" rel="stylesheet"/>
     
 
 </head>
 
 <body>
+
 
     <script src="js/config/navigation.js"></script>
 
@@ -28,8 +31,7 @@
                 <h1>TEAMS</h1>
 
                 <p class="page-description">
-                    The best five-unit team compositions for different
-                    strategies and playstyles.
+                    Role-balanced five-unit suggestions based on opening budget, upgrade investment, wave clearing and boss damage.
                 </p>
             </div>
         </header>
@@ -524,15 +526,7 @@
             tabindex="0"
             hidden
         >
-            <div class="meta-notice">
-                <span class="meta-notice-icon">⚠</span>
-
-                <div class="meta-notice-text">
-                    <strong>NOTICE:</strong>
-                    THESE RANKINGS AND RECOMMENDATIONS ARE FOR REFERENCE ONLY
-                    AND MAY CONTAIN ERRORS. YOU ARE NOT REQUIRED TO FOLLOW THEM.
-                </div>
-            </div>
+            
 
             
             <div id="teams-container"></div>
@@ -546,13 +540,26 @@
 
     <script src="js/data/units.js"></script>
     <script src="js/data/enchantments.js"></script>
-    <script src="js/data/teams-data.js"></script>
+    <script src="js/config/meta-settings.js"></script>
+<script src="js/data/teams-data.js"></script>
     <script src="js/shared/stat-utils.js"></script>
 
     <script src="js/shared/unit-utils.js"></script>
     <script src="js/shared/enchant-ui.js"></script>
 
-    <script src="js/pages/teams.js"></script>
+    <script src="js/data/nights-data.js"></script>
+<script src="js/meta/ranking-engine.js"></script>
+<script src="js/pages/teams.js"></script>
+<script src="js/pages/team-builder/unit-picker.js"></script>
+<script src="js/pages/team-builder/slots-and-stats.js"></script>
+<script src="js/pages/team-builder/slot-actions.js"></script>
+<script src="js/pages/team-builder/saved-teams.js"></script>
+<script src="js/pages/team-builder/capture.js"></script>
+<script src="js/pages/team-builder/sharing.js"></script>
+<script src="js/pages/team-builder/accessibility.js"></script>
 
+<script src="js/shared/team-synergy.js"></script>
+<script src="js/shared/interactive-tools.js"></script>
+<script src="js/shared/meta-night-controls.js"></script>
 </body>
 </html>

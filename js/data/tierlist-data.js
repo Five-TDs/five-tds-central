@@ -1,91 +1,19 @@
 const TIER_DESCRIPTIONS = {
-
-    S: "Meta-Defining",
-    A: "Excellent",
-    B: "Strong",
-    C: "Decent",
-    D: "Underwhelming",
-    F: "Outclassed"
-
+    "S": "Excellent performance across levels and roles",
+    "A": "Strong progression and team value",
+    "B": "Useful with complementary roles",
+    "C": "Effective in the right circumstances",
+    "D": "Narrower cost or coverage value",
+    "F": "Limited relative efficiency",
+    "U": "Utility: slows and range buffs"
 };
-
-
-
 const TIER_ORDER = [
     "S",
     "A",
     "B",
+    "U",
     "C",
     "D",
     "F"
 ];
-
-
-
-
-const TIER_ASSIGNMENTS = {
-
-    
-
-    S: [
-        "Golden Freddy",
-        "The Marionette",
-        "Shadow Bonnie",
-        "Chupcake",
-        "Crying Child"
-    ],
-
-
-    
-
-    A: [
-        "Shadow Freddy",
-        "Freddy",
-        "Fastbear",
-        "Purple Guy",
-        "Mangle"
-    ],
-
-
-    
-
-    B: [
-        "Bear5",
-        "Old Man Consequences",
-        "Radioactive Foxy",
-        "Withered Foxy",
-        "Endo 02",
-        "Withered Chica"
-    ],
-
-
-    
-
-    C: [
-        "Bonnie",
-        "Withered Bonnie",
-        "Withered Freddy",
-        "Anim Dude",
-        "Balloon Boy"
-    ],
-
-
-    
-
-    D: [
-        "Toy Chica",
-        "Foxy",
-        "Toy Bonnie",
-        "Chica",
-        "Sparky"
-    ],
-
-
-    
-
-    F: [
-        "Toy Freddy",
-        "Endo 01"
-    ]
-
-};
+const TIER_ASSIGNMENTS = Object.fromEntries(TIER_ORDER.map(tier => [tier, []]));

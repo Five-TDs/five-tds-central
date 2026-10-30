@@ -7,6 +7,8 @@
 <title>Unit Database</title>
 <link href="css/site.css" rel="stylesheet"/>
 <link href="css/pages/units.css" rel="stylesheet"/>
+
+<link href="css/ftc-roadmap-features.css" rel="stylesheet"/>
 <link href="css/arcade-theme.css" rel="stylesheet"/>
 
 </head>
@@ -100,6 +102,22 @@
 </div>
 
 
+<div class="unit-tools-bar" aria-label="Unit database tools">
+    <label class="unit-sort-label" for="unit-sort">SORT BY
+        <select id="unit-sort">
+            <option value="default">Rarity (default)</option>
+            <option value="dps">DPS</option>
+            <option value="rarity">Rarity</option>
+            <option value="placement">Placement Cost</option>
+            <option value="hps">HPS</option>
+            <option value="range">Range</option>
+            <option value="name">Name</option>
+        </select>
+    </label>
+    <button id="favorites-filter" class="database-tool-button" type="button" aria-pressed="false">☆ FAVORITES</button>
+    <button id="compare-selected" class="database-tool-button" type="button" disabled>COMPARE (<span id="compare-count">0</span>)</button>
+</div>
+
 <div class="unit-results-bar">
 
     <span id="unit-results-count" role="status" aria-live="polite">
@@ -120,7 +138,10 @@
 
 <main id="unit-grid"></main>
 <script src="js/data/units.js"></script>
+<script src="js/data/enchantments.js"></script>
 <script src="js/shared/stat-utils.js"></script>
 <script src="js/pages/units.js"></script>
+<script src="js/shared/performance-graphs.js"></script>
+<script src="js/shared/interactive-tools.js"></script>
 </body>
 </html>
