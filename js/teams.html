@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Teams - FIVE TD'S CENTRAL</title>
+
+    <link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/pages/teams.css">
+
+<link href="css/ftc-roadmap-features.css" rel="stylesheet"/>
+<link href="css/arcade-theme.css" rel="stylesheet"/>
+    
+
+</head>
+
+<body>
+
+
+    <script src="js/config/navigation.js"></script>
+
+<script src="js/site.js"></script>
+
+    <main class="teams-page">
+
+        
+        <header class="page-header teams-header">
+            <div>
+                <h1>TEAMS</h1>
+
+                <p class="page-description">
+                    Role-balanced five-unit suggestions based on opening budget, upgrade investment, wave clearing and boss damage.
+                </p>
+            </div>
+        </header>
+
+        
+        <div class="teams-tabs" role="tablist" aria-label="Team page sections">
+
+            <button
+                id="team-builder-tab"
+                class="teams-tab active"
+                type="button"
+                role="tab"
+                aria-selected="true"
+                aria-controls="team-builder-panel"
+                tabindex="0"
+            >
+                TEAM BUILDER
+            </button>
+
+            <button
+                id="recommended-teams-tab"
+                class="teams-tab"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="recommended-teams-panel"
+                tabindex="-1"
+            >
+                RECOMMENDED TEAMS
+            </button>
+
+        </div>
+
+
+        
+        <section
+            id="team-builder-panel"
+            class="teams-tab-panel"
+            role="tabpanel"
+            aria-labelledby="team-builder-tab"
+            tabindex="0"
+        >
+            
+            <div class="custom-team-builder">
+
+                
+                <div class="builder-team-manager">
+
+                    <div class="builder-team-manager-heading">
+                        <div>
+                            <h3>MY TEAMS</h3>
+                            <p>Create, save, and switch between your custom teams.</p>
+                        </div>
+
+                        <span
+                            id="builder-save-status"
+                            class="builder-autosave-label"
+                            role="status"
+                            aria-live="polite"
+                        >
+                            <span class="builder-autosave-dot"></span>
+                            <span id="builder-save-status-text">AUTO-SAVE ON</span>
+                        </span>
+                    </div>
+
+                    <div class="builder-team-selector">
+                        <label for="builder-saved-team-select">CURRENT TEAM</label>
+
+                        <select
+                            id="builder-saved-team-select"
+                            aria-label="Select saved team"
+                        ></select>
+                    </div>
+
+                    <div class="builder-active-team-info">
+                        <span class="builder-active-team-badge">CURRENTLY EDITING</span>
+                        <strong id="builder-active-team-name">My First Team</strong>
+                        <span id="builder-active-team-summary">0 / 5 units</span>
+                    </div>
+
+                    <div class="builder-team-manager-actions">
+                        <button id="builder-new-team" type="button">
+                            + NEW TEAM
+                        </button>
+
+                        <button id="builder-rename-team" type="button">
+                            RENAME
+                        </button>
+
+                        <button id="builder-duplicate-team" type="button">
+                            DUPLICATE
+                        </button>
+
+                        <button id="builder-delete-team" type="button">
+                            DELETE
+                        </button>
+
+                        <button id="builder-capture-team" type="button">
+                            CAPTURE TEAM
+                        </button>
+
+                        <button id="builder-share-team" type="button">
+                            SHARE TEAM
+                        </button>
+                    </div>
+
+                </div>
+
+                
+                    <div
+                        id="builder-team-action-modal"
+                        class="builder-modal"
+                        role="dialog"
+                        aria-modal="true"
+                        aria-labelledby="builder-team-action-title"
+                        hidden
+                    >
+                        <div class="builder-modal-content builder-team-action-content">
+                            <div class="builder-modal-header">
+                                <h2 id="builder-team-action-title">TEAM NAME</h2>
+                                <button
+                                    id="builder-team-action-close"
+                                    class="builder-modal-close"
+                                    type="button"
+                                    aria-label="Close dialog"
+                                >×</button>
+                            </div>
+
+                            <p id="builder-team-action-description"></p>
+
+                            <label
+                                id="builder-team-name-label"
+                                for="builder-team-name-input"
+                            >
+                                TEAM NAME
+                            </label>
+
+                            <input
+                                id="builder-team-name-input"
+                                type="text"
+                                maxlength="50"
+                                autocomplete="off"
+                                placeholder="Enter team name..."
+                            >
+
+                            <p id="builder-team-action-error" role="alert" hidden></p>
+
+                            <div class="builder-config-actions">
+                                <button
+                                    id="builder-team-action-cancel"
+                                    class="builder-config-secondary"
+                                    type="button"
+                                >
+                                    CANCEL
+                                </button>
+
+                                <button
+                                    id="builder-team-action-confirm"
+                                    class="builder-config-primary"
+                                    type="button"
+                                >
+                                    CONFIRM
+                                </button>
+                            </div>
+                            </div>
+                        </div>
+                        
+                            <div
+                                id="builder-share-modal"
+                                class="builder-modal"
+                                role="dialog"
+                                aria-modal="true"
+                                aria-labelledby="builder-share-title"
+                                hidden
+                            >
+                                <div class="builder-modal-content builder-share-content">
+
+                                    <div class="builder-modal-header">
+                                        <h2 id="builder-share-title">SHARED TEAM</h2>
+
+                                        <button
+                                            id="builder-share-close"
+                                            class="builder-modal-close"
+                                            type="button"
+                                            aria-label="Close shared team preview"
+                                        >×</button>
+                                    </div>
+
+                                    <p id="builder-share-description"></p>
+
+                                    <div id="builder-share-preview" class="builder-share-preview"></div>
+
+                                    <div class="builder-config-actions">
+                                        <button
+                                            id="builder-share-cancel"
+                                            class="builder-config-secondary"
+                                            type="button"
+                                        >
+                                            DISMISS
+                                        </button>
+
+                                        <button
+                                            id="builder-share-import"
+                                            class="builder-config-primary"
+                                            type="button"
+                                        >
+                                            IMPORT TEAM
+                                        </button>
+                                    </div>
+
+                                </div>
+                    </div>
+
+                <div class="builder-heading">
+                    <h2>YOUR TEAM</h2>
+
+                    <span id="builder-team-count">
+                        0 / 5 UNITS
+                    </span>
+                </div>
+
+                
+                <div class="builder-slots" id="builder-slots">
+
+                    <button class="builder-slot" type="button" data-slot="0">
+                        <span class="builder-slot-plus">+</span>
+                        <span class="builder-slot-label">SLOT 1</span>
+                    </button>
+
+                    <button class="builder-slot" type="button" data-slot="1">
+                        <span class="builder-slot-plus">+</span>
+                        <span class="builder-slot-label">SLOT 2</span>
+                    </button>
+
+                    <button class="builder-slot" type="button" data-slot="2">
+                        <span class="builder-slot-plus">+</span>
+                        <span class="builder-slot-label">SLOT 3</span>
+                    </button>
+
+                    <button class="builder-slot" type="button" data-slot="3">
+                        <span class="builder-slot-plus">+</span>
+                        <span class="builder-slot-label">SLOT 4</span>
+                    </button>
+
+                    <button class="builder-slot" type="button" data-slot="4">
+                        <span class="builder-slot-plus">+</span>
+                        <span class="builder-slot-label">SLOT 5</span>
+                    </button>
+
+                </div>
+
+                <div class="builder-slot-footer">
+                    <span>Select an empty slot to add a unit.</span>
+
+                    <span id="builder-slots-remaining">
+                        5 slots available
+                    </span>
+                </div>
+
+                
+                <div class="builder-stat-settings">
+                    <div class="builder-stat-settings-heading">
+                        <h3>TEAM STATISTICS</h3>
+                        <span>Choose which statistics to display</span>
+                    </div>
+
+                    <div class="builder-stat-checkboxes">
+                        <label>
+                            <input type="checkbox" data-builder-stat="dps" checked>
+                            <span>Team DPS</span>
+                        </label>
+
+                        <label>
+                            <input type="checkbox" data-builder-stat="cost" checked>
+                            <span>Total Upgrade Cost</span>
+                        </label>
+
+                        <label>
+                            <input type="checkbox" data-builder-stat="placements" checked>
+                            <span>Total Placements</span>
+                        </label>
+
+                        <label>
+                            <input type="checkbox" data-builder-stat="maxDps" checked>
+                            <span>Max Deployed DPS</span>
+                        </label>
+
+                        <label>
+                            <input type="checkbox" data-builder-stat="maxCost" checked>
+                            <span>Max Deployed Cost</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="builder-stats" id="builder-stats">
+                    <div class="builder-stat-box" data-stat-box="dps">
+                        <span class="builder-stat-label">TEAM DPS</span>
+                        <span class="builder-stat-value" id="builder-team-dps">—</span>
+                    </div>
+
+                    <div class="builder-stat-box" data-stat-box="cost">
+                        <span class="builder-stat-label">TOTAL UPGRADE COST</span>
+                        <span class="builder-stat-value" id="builder-team-cost">—</span>
+                    </div>
+
+                    <div class="builder-stat-box" data-stat-box="placements">
+                        <span class="builder-stat-label">TOTAL PLACEMENTS</span>
+                        <span class="builder-stat-value" id="builder-team-placements">0</span>
+                    </div>
+
+                    <div class="builder-stat-box" data-stat-box="maxDps">
+                        <span class="builder-stat-label">MAX DEPLOYED DPS</span>
+                        <span class="builder-stat-value" id="builder-max-dps">—</span>
+                    </div>
+
+                    <div class="builder-stat-box" data-stat-box="maxCost">
+                        <span class="builder-stat-label">MAX DEPLOYED COST</span>
+                        <span class="builder-stat-value" id="builder-max-cost">—</span>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div
+                id="builder-unit-modal"
+                class="builder-modal"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="builder-unit-modal-title"
+                hidden
+            >
+                <div class="builder-modal-content">
+
+                    <div class="builder-modal-header">
+                        <h2 id="builder-unit-modal-title">SELECT A UNIT</h2>
+
+                        <button
+                            id="builder-unit-modal-close"
+                            class="builder-modal-close"
+                            type="button"
+                            aria-label="Close unit selector"
+                        >×</button>
+                    </div>
+
+                    <input
+                        id="builder-unit-search"
+                        class="builder-unit-search"
+                        type="search"
+                        placeholder="Search units..."
+                        aria-label="Search units"
+                    >
+
+                    <div class="builder-unit-filters">
+                        <select id="builder-rarity-filter" aria-label="Filter by rarity">
+                            <option value="">ALL RARITIES</option>
+                        </select>
+
+                        <select id="builder-type-filter" aria-label="Filter by type">
+                            <option value="">ALL TYPES</option>
+                        </select>
+                    </div>
+
+                    <div id="builder-unit-results" class="builder-unit-results"></div>
+
+                </div>
+            </div>
+            
+            <div
+                id="builder-config-modal"
+                class="builder-modal"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="builder-config-title"
+                hidden
+            >
+                <div class="builder-modal-content builder-config-content">
+
+                    <div class="builder-modal-header">
+                        <h2 id="builder-config-title">CONFIGURE UNIT</h2>
+
+                        <button
+                            id="builder-config-close"
+                            class="builder-modal-close"
+                            type="button"
+                            aria-label="Close unit configuration"
+                        >×</button>
+                    </div>
+
+                    <div class="builder-config-unit">
+                        <img id="builder-config-image" src="" alt="">
+
+                        <div class="builder-config-details">
+                            <h3 id="builder-config-name"></h3>
+
+                            <div class="builder-config-tags">
+                                <span id="builder-config-rarity"></span>
+                                <span id="builder-config-type"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="builder-config-section">
+                        <h3>SELECT ENCHANTMENT</h3>
+
+                        <div
+                            id="builder-enchant-options"
+                            class="builder-enchant-options"
+                            role="group"
+                            aria-label="Unit enchantment"
+                        ></div>
+                    </div>
+
+                    <div
+                        id="builder-edit-actions"
+                        class="builder-edit-actions"
+                        hidden
+                    >
+                        <button id="builder-config-replace" type="button">
+                            REPLACE UNIT
+                        </button>
+
+                        <button id="builder-config-move" type="button">
+                            MOVE / SWAP
+                        </button>
+
+                        <button id="builder-config-remove" type="button">
+                            REMOVE UNIT
+                        </button>
+                    </div>
+
+                    <div class="builder-config-actions">
+                        <button
+                            id="builder-config-back"
+                            class="builder-config-secondary"
+                            type="button"
+                        >
+                            BACK
+                        </button>
+
+                        <button
+                            id="builder-config-add"
+                            class="builder-config-primary"
+                            type="button"
+                        >
+                            ADD TO TEAM
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+            
+            <div
+                id="builder-move-modal"
+                class="builder-modal"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="builder-move-title"
+                hidden
+            >
+                <div class="builder-modal-content builder-move-content">
+
+                    <div class="builder-modal-header">
+                        <h2 id="builder-move-title">MOVE / SWAP UNIT</h2>
+
+                        <button
+                            id="builder-move-close"
+                            class="builder-modal-close"
+                            type="button"
+                            aria-label="Close move dialog"
+                        >×</button>
+                    </div>
+
+                    <p class="builder-move-description">
+                        Select a destination slot. If it already contains a unit,
+                        the two units will swap positions.
+                    </p>
+
+                    <div id="builder-move-options" class="builder-move-options"></div>
+
+                </div>
+            </div>
+        </section>
+
+
+        
+        <section
+            id="recommended-teams-panel"
+            class="teams-tab-panel"
+            role="tabpanel"
+            aria-labelledby="recommended-teams-tab"
+            tabindex="0"
+            hidden
+        >
+            
+
+            
+            <div id="teams-container"></div>
+
+        </section>
+
+    </main>
+
+    
+    <div id="warning-tooltip" role="tooltip"></div>
+
+    <script src="js/data/units.js"></script>
+    <script src="js/data/enchantments.js"></script>
+    <script src="js/config/meta-settings.js"></script>
+<script src="js/data/teams-data.js"></script>
+    <script src="js/shared/stat-utils.js"></script>
+
+    <script src="js/shared/unit-utils.js"></script>
+    <script src="js/shared/enchant-ui.js"></script>
+
+    <script src="js/data/nights-data.js"></script>
+<script src="js/meta/ranking-engine.js"></script>
+<script src="js/meta/strategy-model.js"></script>
+<script src="js/pages/teams.js"></script>
+<script src="js/pages/team-builder/unit-picker.js"></script>
+<script src="js/pages/team-builder/slots-and-stats.js"></script>
+<script src="js/pages/team-builder/slot-actions.js"></script>
+<script src="js/pages/team-builder/saved-teams.js"></script>
+<script src="js/pages/team-builder/capture.js"></script>
+<script src="js/pages/team-builder/sharing.js"></script>
+<script src="js/pages/team-builder/accessibility.js"></script>
+
+<script src="js/shared/team-synergy.js"></script>
+<script src="js/shared/interactive-tools.js"></script>
+<script src="js/shared/meta-night-controls.js"></script>
+<script src="js/shared/meta-planner.js"></script>
+</body>
+</html>

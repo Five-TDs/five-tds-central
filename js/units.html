@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Unit Database</title>
+<link href="css/site.css" rel="stylesheet"/>
+<link href="css/pages/units.css" rel="stylesheet"/>
+
+<link href="css/ftc-roadmap-features.css" rel="stylesheet"/>
+<link href="css/arcade-theme.css" rel="stylesheet"/>
+
+</head>
+<body><script src="js/config/navigation.js"></script>
+
+<script src="js/site.js"></script>
+
+
+
+
+
+<header class="page-header">
+<h1>UNIT DATABASE</h1>
+<p>Browse all available units</p>
+</header>
+
+<div class="search-area">
+<div class="search-container">
+<input autocomplete="off" id="search-input" placeholder="Search units..." type="text"/>
+<button aria-label="Open filters" id="filter-button" type="button">
+<span>⮟</span>
+</button>
+</div>
+
+<div id="filters">
+
+<div class="filter-group">
+<div class="filter-title">
+                    RARITY
+                </div>
+<div class="filter-buttons">
+<button class="filter-option rarity-option" data-value="Common" type="button">
+                        Common
+                    </button>
+<button class="filter-option rarity-option" data-value="Uncommon" type="button">
+                        Uncommon
+                    </button>
+<button class="filter-option rarity-option" data-value="Rare" type="button">
+                        Rare
+                    </button>
+<button class="filter-option rarity-option" data-value="Epic" type="button">
+                        Epic
+                    </button>
+<button class="filter-option rarity-option" data-value="Exclusive" type="button">
+                        Exclusive
+                    </button>
+<button class="filter-option rarity-option" data-value="Legendary" type="button">
+                        Legendary
+                    </button>
+</div>
+</div>
+
+<div class="filter-group">
+<div class="filter-title">
+                    ATTACK TYPE
+                </div>
+<div class="filter-buttons">
+<button class="filter-option type-option" data-value="Single" type="button">
+                        Single
+                    </button>
+<button class="filter-option type-option" data-value="Pierce" type="button">
+                        Pierce
+                    </button>
+<button class="filter-option type-option" data-value="Splash" type="button">
+                        Splash
+                    </button>
+<button class="filter-option type-option" data-value="Cone" type="button">
+                        Cone
+                    </button>
+<button class="filter-option type-option" data-value="AOE" type="button">
+                        AOE
+                    </button>
+<button class="filter-option type-option" data-value="Toxic Pierce" type="button">
+                        Toxic Pierce
+                    </button>
+<button class="filter-option type-option" data-value="Speed Buff" type="button">
+                        Speed Buff
+                    </button>
+<button class="filter-option type-option" data-value="Damage Buff" type="button">
+                        Damage Buff
+                    </button>
+<button class="filter-option type-option" data-value="Range Buff" type="button">
+                        Range Buff
+                    </button>
+<button class="filter-option type-option" data-value="Slower" type="button">
+                        Slower
+                    </button>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="unit-tools-bar" aria-label="Unit database tools">
+    <label class="unit-sort-label" for="unit-sort">SORT BY
+        <select id="unit-sort">
+            <option value="default">Rarity (default)</option>
+            <option value="dps">DPS</option>
+            <option value="rarity">Rarity</option>
+            <option value="placement">Placement Cost</option>
+            <option value="hps">HPS</option>
+            <option value="range">Range</option>
+            <option value="name">Name</option>
+        </select>
+    </label>
+    <button id="favorites-filter" class="database-tool-button" type="button" aria-pressed="false">☆ FAVORITES</button>
+    <button id="compare-selected" class="database-tool-button" type="button" disabled>COMPARE (<span id="compare-count">0</span>)</button>
+</div>
+
+<div class="unit-results-bar">
+
+    <span id="unit-results-count" role="status" aria-live="polite">
+        Showing units...
+    </span>
+
+    <button
+        id="clear-unit-filters"
+        class="clear-unit-filters"
+        type="button"
+        hidden
+    >
+        ✕ CLEAR ALL FILTERS
+    </button>
+
+</div>
+
+
+<main id="unit-grid"></main>
+<script src="js/data/units.js"></script>
+<script src="js/data/enchantments.js"></script>
+<script src="js/shared/stat-utils.js"></script>
+<script src="js/pages/units.js"></script>
+<script src="js/shared/performance-graphs.js"></script>
+<script src="js/shared/interactive-tools.js"></script>
+</body>
+</html>

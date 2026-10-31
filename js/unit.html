@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Unit</title>
+<link href="css/site.css" rel="stylesheet"/>
+<link href="css/pages/unit.css" rel="stylesheet"/>
+<link href="css/ftc-roadmap-features.css" rel="stylesheet"/>
+<link href="css/arcade-theme.css" rel="stylesheet"/>
+
+</head>
+<body>
+
+
+
+
+<div class="top-bar">
+<button id="back-button" type="button">
+            ← BACK TO UNITS
+        </button>
+</div>
+<div class="page-warnings" id="unit-warnings"></div>
+
+<main class="unit-page">
+
+<section class="unit-info">
+
+<div class="unit-image-container">
+<img alt="Unit" id="unit-image" src=""/>
+</div>
+
+<div class="unit-details">
+<h1 id="unit-name">
+                    Unit Name
+                </h1>
+<div class="unit-last-updated" id="unit-last-updated" hidden>
+    <button
+        class="last-updated-label unit-info-tooltip-trigger"
+        type="button"
+        aria-describedby="last-updated-tooltip"
+        aria-label="Last updated information"
+        aria-expanded="false"
+    >
+        LAST UPDATED:
+        <span class="tooltip-info-icon" aria-hidden="true">ⓘ</span>
+    </button>
+        <span
+            id="last-updated-tooltip"
+            class="unit-info-tooltip"
+            role="tooltip"
+            hidden
+        >
+            The date this unit's information was last reviewed
+            on Five TD's Central.
+        </span>
+        <span id="unit-last-updated-date"></span>
+        <div class="confidence-tooltip-wrapper">
+            <button
+                id="unit-data-confidence"
+                class="unit-data-confidence"
+                type="button"
+                aria-describedby="data-confidence-tooltip"
+                aria-expanded="false"
+                hidden
+            ></button>
+
+            <span
+                id="data-confidence-tooltip"
+                class="unit-info-tooltip"
+                role="tooltip"
+                hidden
+            ></span>
+        </div>
+
+    <button
+        id="copy-unit-link"
+        class="copy-unit-link"
+        type="button"
+        aria-label="Copy link to this unit"
+        title="Copy a direct link to this unit"
+    >
+        <span aria-hidden="true">🔗</span>
+        <span id="copy-unit-link-text">COPY UNIT LINK</span>
+    </button>
+</div>
+
+<div class="unit-tabs">
+<button class="unit-tab active" data-tab="general" type="button">
+                        GENERAL
+                    </button>
+<button class="unit-tab" data-tab="obtainment" type="button">
+                        OBTAINMENT
+                    </button>
+</div>
+
+<div class="tab-content active" id="general-tab">
+<div class="info-grid">
+
+<div class="info-box rarity-box" id="rarity-box">
+<span class="info-label">
+                                RARITY
+                            </span>
+<span class="info-value" id="unit-rarity">
+                                Common
+                            </span>
+</div>
+
+<div class="info-box">
+<span class="info-label">
+                                TYPE
+                            </span>
+<span class="info-value" id="unit-type">
+                                Single
+                            </span>
+</div>
+
+<div class="info-box placement-box" id="placement-box">
+<span class="info-label">
+                                PLACEMENT
+                            </span>
+<span class="info-value" id="unit-placement">
+                                $0
+                            </span>
+</div>
+
+<div class="info-box limit-box" id="limit-box">
+<span class="info-label">
+                                MAX LIMIT
+                            </span>
+<span class="info-value" id="unit-limit">
+                                0
+                            </span>
+</div>
+</div>
+</div>
+
+<div class="tab-content" id="obtainment-tab">
+<div class="obtainment-box">
+<span class="info-label">
+                            OBTAINMENT
+                        </span>
+<p id="unit-obtainment">
+                            Not available.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="stats-section">
+<div class="stats-header">
+<button class="stats-tab active" id="stats-tab-button" type="button">
+            STATS
+        </button>
+<button class="stats-tab" id="abilities-tab-button" type="button">
+            ABILITIES
+        </button>
+</div>
+
+<div class="stats-content" id="stats-content">
+<div class="stats-container">
+<div class="table-wrapper">
+<table id="stats-table">
+<thead>
+<tr id="stats-header-row"></tr>
+</thead>
+<tbody id="stats-body">
+</tbody>
+</table>
+</div>
+<div class="total-cost">
+
+                TOTAL COST:
+
+                <span id="total-cost">
+                    $0
+                </span>
+</div>
+</div>
+</div>
+
+<div class="abilities-content" id="abilities-content" style="display: none;">
+<div class="abilities-container">
+<ul id="abilities-list">
+</ul>
+</div>
+</div>
+</section>
+</main>
+<script src="js/data/units.js"></script>
+<script src="js/shared/stat-utils.js"></script>
+<script src="js/shared/unit-utils.js"></script>
+<script src="js/shared/format-utils.js"></script>
+<script src="js/config/navigation.js"></script>
+
+<script src="js/site.js"></script>
+<script src="js/pages/unit.js"></script>
+<script src="js/shared/performance-graphs.js"></script>
+<script src="js/shared/interactive-tools.js"></script>
+</body>
+</html>

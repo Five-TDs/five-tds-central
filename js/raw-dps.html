@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Unit Stat List - FIVE TD'S CENTRAL</title>
+<link href="css/site.css" rel="stylesheet"/>
+<link href="css/pages/raw-dps.css" rel="stylesheet"/>
+<link href="css/ftc-roadmap-features.css" rel="stylesheet"/>
+<link href="css/arcade-theme.css" rel="stylesheet"/>
+
+</head>
+<body>
+
+
+
+
+
+<main class="raw-dps-page">
+
+<header class="page-header raw-dps-header">
+    <div>
+        <h1>UNIT STAT LIST</h1>
+        <p class="page-description">
+            Explore every unit and sort by any recorded statistic. Only one sort is active at a time.
+        </p>
+    </div>
+</header>
+
+<div class="notice">
+<span class="notice-icon">
+                ⚠
+            </span>
+<div>
+<strong>NOTICE:</strong>
+
+                STATISTICS ARE TAKEN FROM EACH UNIT'S HIGHEST LISTED LEVEL. SUPPORT UNITS WITH UNLISTED DAMAGE SHOW — INSTEAD OF INVENTED VALUES.
+
+            </div>
+</div>
+
+<div class="search-area">
+<div class="search-row">
+<input autocomplete="off" id="search-input" placeholder="SEARCH UNIT..." type="text"/>
+<button id="filter-button" type="button">
+
+                    FILTER
+
+                    <span id="filter-arrow">
+                        ▾
+                    </span>
+</button>
+</div>
+
+<div class="filters" id="filters">
+
+<div class="filter-group">
+<div class="filter-title">
+                        RARITY
+                    </div>
+<div class="filter-options">
+<button class="rarity-option" data-value="Legendary" type="button">
+                            LEGENDARY
+                        </button>
+<button class="rarity-option" data-value="Exclusive" type="button">
+                            EXCLUSIVE
+                        </button>
+<button class="rarity-option" data-value="Epic" type="button">
+                            EPIC
+                        </button>
+<button class="rarity-option" data-value="Rare" type="button">
+                            RARE
+                        </button>
+<button class="rarity-option" data-value="Uncommon" type="button">
+                            UNCOMMON
+                        </button>
+<button class="rarity-option" data-value="Common" type="button">
+                            COMMON
+                        </button>
+</div>
+</div>
+
+<div class="filter-group">
+<div class="filter-title">
+                        ATTACK TYPE
+                    </div>
+<div class="filter-options">
+<button class="type-option" data-value="Single" type="button">
+                            SINGLE
+                        </button>
+<button class="type-option" data-value="Pierce" type="button">
+                            PIERCE
+                        </button>
+<button class="type-option" data-value="Splash" type="button">
+                            SPLASH
+                        </button>
+<button class="type-option" data-value="Cone" type="button">
+                            CONE
+                        </button>
+<button class="type-option" data-value="AOE" type="button">
+                            AOE
+                        </button>
+<button class="type-option" data-value="Toxic Pierce" type="button">
+                            TOXIC PIERCE
+                        </button>
+<button class="type-option" data-value="Speed Buff" type="button">
+                            SPEED BUFF
+                        </button>
+<button class="type-option" data-value="Damage Buff" type="button">
+                            DAMAGE BUFF
+                        </button>
+<button class="type-option" data-value="Range Buff" type="button">
+                            RANGE BUFF
+                        </button>
+<button class="type-option" data-value="Slower" type="button">
+                            SLOWER
+                        </button>
+</div>
+</div>
+</div>
+</div>
+
+<section class="dps-table-container" aria-label="Sortable unit statistics"><div class="stat-list-toolbar"><span id="stat-list-count" aria-live="polite"></span><span>Choose a column to sort · select it again to reverse</span></div>
+<table id="dps-table">
+<thead><tr id="stat-list-head"><th scope="col" class="rank-column">#</th></tr></thead>
+<tbody id="dps-body">
+</tbody>
+</table><div class="stat-list-scroll-hint">Scroll horizontally to see every statistic on smaller screens.</div>
+</section>
+</main>
+<script src="js/data/units.js"></script>
+<script src="js/shared/stat-utils.js"></script>
+<script src="js/config/navigation.js"></script>
+
+<script src="js/site.js"></script>
+<script src="js/shared/format-utils.js"></script>
+<script src="js/pages/raw-dps.js"></script>
+<script src="js/shared/interactive-tools.js"></script>
+</body>
+</html>

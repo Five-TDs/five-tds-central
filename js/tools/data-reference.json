@@ -1,0 +1,17 @@
+{
+  "description": "Reference digests of the original evaluated data and generated rankings. Format-only edits must keep these hashes unchanged. Deliberate future game-data updates can refresh them using the documented command.",
+  "hashes": {
+    "js/data/units.js": "fc5f1ccce292510186efe5eda5910876c773a440a78f3e48b2c2e8f2f76c7c23",
+    "js/data/nights-data.js": "67b069d0a6052ba97cd07ca6ea1d5df14cc5ab3a7cf4e20cb9c670ea3d63e3c5",
+    "js/data/enchantments.js": "fae51c59cb2dcb5d3f96a50bb9f026a58ccd3e27eb03d3dd820b7fa84403ef5b",
+    "js/data/updates.js": "6c43c5d856bb762b7926d2e075dc223df25bbd2eecf2587d352fdcd7d6bc3289",
+    "js/data/version-history-data.js": "08f9cdda8ffead66acc180729fae1bbc904af3f77d6e813650ec9e5ee191fb9f",
+    "js/config/meta-settings.js": "a1e5c606d1b5f1b16eaaf0b793e42ee7d30ba36a21f926ac3fec25784ab82a37",
+    "js/config/navigation.js": "f28247d7cb0c43fbe5530bd9d433b0279f7e47293e5efb0c39e56c76f8b196ca",
+    "js/data/tierlist-data.js": "d998b69f11cb8f9c597acdce5ea4d407bf379c039f1ad1a5d306e519e144e561",
+    "js/data/teams-data.js": "f375ec7bd19ad22c146db5d202a973e0d0c09e0086f2891370b7a813745dfcac",
+    "js/data/best-towers-data.js": "2fbf77950e892c80fb09537f6d14e121c20503297f124a1a98c22f1b74a5bbfb",
+    "ranking": "a326c3a5fedd335cd4a6ab8e197aea8fd8f3d415d96702012b2f4db0c796088f",
+    "ranking-advanced": "7a37d6aab5ca9843bff98974741fdecbfcac1d66378525635acddec76acb0255"
+  }
+}

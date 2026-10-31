@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Stats Simulator - FIVE TD'S CENTRAL</title>
+<link href="css/site.css" rel="stylesheet"/>
+<link href="css/pages/stats-simulator.css" rel="stylesheet"/>
+
+<link href="css/ftc-roadmap-features.css" rel="stylesheet"/>
+<link href="css/arcade-theme.css" rel="stylesheet"/>
+
+</head>
+<body>
+
+
+
+
+
+<main class="simulator-page">
+<header class="page-header">
+<h1>STATS SIMULATOR</h1>
+<p>
+                Simulate unit upgrades and enchantments
+            </p>
+</header>
+
+<section class="simulator-controls">
+<div class="control-row">
+<div class="control">
+<label for="rarity-select">
+                        RARITY
+                    </label>
+<select id="rarity-select">
+<option value="all">
+                            ALL
+                        </option>
+<option value="Legendary">
+                            LEGENDARY
+                        </option>
+<option value="Exclusive">
+                            EXCLUSIVE
+                        </option>
+<option value="Epic">
+                            EPIC
+                        </option>
+<option value="Rare">
+                            RARE
+                        </option>
+<option value="Uncommon">
+                            UNCOMMON
+                        </option>
+<option value="Common">
+                            COMMON
+                        </option>
+</select>
+</div>
+<div class="control enchant-control">
+<div class="label-with-help">
+<label for="enchant-select">
+                            ENCHANTMENT
+                        </label>
+<button class="help-button" id="enchantment-help" title="View enchantments" type="button">
+                            ?
+                        </button>
+</div>
+<select id="enchant-select">
+<option value="none">
+                            NONE
+                        </option>
+</select>
+</div>
+</div>
+<div class="control search-control">
+<label for="unit-search">
+                    SEARCH
+                </label>
+<input autocomplete="off" id="unit-search" placeholder="UNIT NAME..." type="text"/>
+</div>
+</section>
+
+<section class="unit-selection">
+<div class="unit-grid" id="unit-grid"></div>
+</section>
+
+<section class="stats-section">
+<div class="stats-table-wrapper">
+<table class="stats-table">
+<thead>
+<tr>
+<th>LVL</th>
+<th>COST</th>
+<th>DMG</th>
+<th>HPS</th>
+<th>RNG</th>
+<th>DPS</th>
+</tr>
+</thead>
+<tbody id="stats-table-body"></tbody>
+</table>
+</div>
+</section>
+</main>
+
+<section class="max-stats">
+<div class="max-stat-box">
+<div class="max-stat-label">
+            MAX DAMAGE
+            <span id="max-damage-placements">
+                (X1 PLACEMENT)
+            </span>
+</div>
+<div class="max-stat-value" id="max-damage">
+            0
+        </div>
+</div>
+<div class="max-stat-box">
+<div class="max-stat-label">
+            MAX TOTAL DPS
+            <span id="max-dps-placements">
+                (X1 PLACEMENT)
+            </span>
+</div>
+<div class="max-stat-value dps-value" id="max-total-dps">
+            0
+        </div>
+</div>
+</section>
+
+<div class="modal" id="enchantment-modal">
+<div class="enchantment-modal-content">
+<div class="modal-header">
+<h2>ENCHANTMENTS</h2>
+<button aria-label="Close enchantments" class="modal-close" id="close-enchantment-modal" type="button">
+                    ×
+                </button>
+</div>
+<div class="enchantment-list" id="enchantment-list"></div>
+</div>
+</div>
+
+<script src="js/data/units.js"></script>
+<script src="js/data/enchantments.js"></script>
+<script src="js/shared/stat-utils.js"></script>
+<script src="js/shared/format-utils.js"></script>
+<script src="js/config/navigation.js"></script>
+
+<script src="js/site.js"></script>
+<script src="js/pages/stats-simulator.js"></script>
+<script src="js/shared/performance-graphs.js"></script>
+<script src="js/shared/interactive-tools.js"></script>
+</body>
+</html>

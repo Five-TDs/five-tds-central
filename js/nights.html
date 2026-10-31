@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nights - FIVE TD'S CENTRAL</title>
+<link href="css/site.css" rel="stylesheet"/>
+<link href="css/pages/nights.css" rel="stylesheet"/>
+<link href="css/ftc-roadmap-features.css" rel="stylesheet"/>
+<link href="css/arcade-theme.css" rel="stylesheet"/>
+
+</head>
+<body><script src="js/config/navigation.js"></script>
+
+<script src="js/site.js"></script>
+
+
+
+
+
+<main class="nights-page">
+<header class="page-header">
+<h1>
+                NIGHTS
+            </h1>
+<p>
+                Browse all available nights
+            </p>
+</header>
+
+<div class="notice">
+<span class="notice-icon">
+                ⚠
+            </span>
+<div>
+<strong>NOTICE:</strong>
+
+                CLICK THE STAR ON NIGHTS TABS TO SEE MAX REWARD VARIANTS.
+
+            </div>
+</div>
+
+<section class="filter-section">
+<button class="filter-button" id="filter-button" type="button">
+
+                FILTER
+
+                <span id="filter-arrow">
+                    ▾
+                </span>
+</button>
+<div class="filter-panel" id="filter-panel">
+<div class="filter-group">
+<div class="filter-label">
+                        CHAPTERS
+                    </div>
+<div class="filter-options" id="game-filters">
+</div>
+</div>
+</div>
+</section>
+
+<section class="nights-container" id="nights-container">
+</section>
+</main>
+
+<div class="night-modal" id="night-modal">
+<div aria-modal="true" class="night-modal-content" role="dialog">
+
+<button aria-label="Toggle MAX mode" class="max-mode-button" id="max-mode-button" type="button">
+                ★
+            </button>
+
+<button aria-label="Close" class="close-modal" id="close-modal" type="button">
+                ×
+            </button>
+<div class="night-modal-header">
+<div class="modal-mode" id="modal-mode">
+                    NORMAL
+                </div>
+<h2 id="modal-title">
+                    CHAPTER 1 - NIGHT 1
+                </h2>
+<div class="modal-alias" id="modal-alias">
+                    1A
+                </div>
+</div>
+<div>
+
+<div class="night-info-box starting-cash-box">
+<span class="night-info-label">
+        STARTING CASH
+    </span>
+<span class="night-info-value" id="modal-starting-cash">
+        $50
+    </span>
+</div>
+
+<div class="night-info-box wave-box">
+<span class="night-info-label">
+                    WAVE COUNT
+                </span>
+<span class="night-info-value" id="modal-wave-count">
+                    5
+                </span>
+</div>
+
+<div class="night-info-box coin-box">
+<span class="night-info-label">
+                    COIN REWARD
+                </span>
+<span class="night-info-value" id="modal-coin-reward">
+                    0
+                </span>
+</div>
+
+<div class="night-info-box remnant-box">
+<span class="night-info-label">
+                    REMNANT REWARD
+                </span>
+<span class="night-info-value" id="modal-remnant-reward">
+                    5
+                </span>
+</div>
+
+<div class="night-info-box boss-box">
+<span class="night-info-label">
+                    BOSS
+                </span>
+<span class="night-info-value" id="modal-boss">
+                    No Boss
+                </span>
+</div>
+</div>
+</div>
+<script src="js/data/nights-data.js"></script>
+<script src="js/pages/nights.js"></script>
+</div><script src="js/shared/interactive-tools.js"></script>
+</body>
+</html>
