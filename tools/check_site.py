@@ -74,6 +74,14 @@ def validate():
             required = ['js/data/units.js', 'js/config/meta-settings.js']
             if any(script not in parser.scripts or parser.scripts.index(script) > parser.scripts.index('js/meta/ranking-engine.js') for script in required):
                 errors.append(f'{page.name}: units and META settings must load before the ranking engine')
+        if 'js/meta/strategy-model.js' in parser.scripts:
+            required = ['js/meta/ranking-engine.js', 'js/data/enchantments.js']
+            strategy_position = parser.scripts.index('js/meta/strategy-model.js')
+            if any(script not in parser.scripts or parser.scripts.index(script) > strategy_position for script in required):
+                errors.append(f'{page.name}: base META engine and enchantments must load before the strategy model')
+            for page_script in ['js/pages/teams.js', 'js/pages/tierlist.js', 'js/pages/best-towers.js']:
+                if page_script in parser.scripts and strategy_position > parser.scripts.index(page_script):
+                    errors.append(f'{page.name}: strategy model must load before the META page renderer')
         if 'css/arcade-theme.css' not in parser.styles:
             errors.append(f'{page.name}: missing arcade theme')
         elif parser.styles[-1] != 'css/arcade-theme.css':

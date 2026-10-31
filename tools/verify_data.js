@@ -25,7 +25,8 @@ const sources = [
     ["js/data/tierlist-data.js", ["js/config/meta-settings.js", "js/data/tierlist-data.js"], "{TIER_DESCRIPTIONS,TIER_ORDER,TIER_ASSIGNMENTS}"],
     ["js/data/teams-data.js", ["js/config/meta-settings.js", "js/data/teams-data.js"], "TEAM_COMPOSITIONS"],
     ["js/data/best-towers-data.js", ["js/config/meta-settings.js", "js/data/best-towers-data.js"], "{BEST_UNIT_RANKINGS,BEST_UNIT_ENCHANTS}"],
-    ["ranking", ["js/data/units.js", "js/data/enchantments.js", "js/data/nights-data.js", "js/config/meta-settings.js", "js/data/tierlist-data.js", "js/data/best-towers-data.js", "js/data/teams-data.js", "js/meta/ranking-engine.js"], "({audit:window.FTC_META_RANKING.getAudit(),tiers:TIER_ASSIGNMENTS,best:BEST_UNIT_RANKINGS,enchants:BEST_UNIT_ENCHANTS,teams:TEAM_COMPOSITIONS,night:window.FTC_META_RANKING.context()})"]
+    ["ranking", ["js/data/units.js", "js/data/enchantments.js", "js/data/nights-data.js", "js/config/meta-settings.js", "js/data/tierlist-data.js", "js/data/best-towers-data.js", "js/data/teams-data.js", "js/meta/ranking-engine.js"], "({audit:window.FTC_META_RANKING.getAudit(),tiers:TIER_ASSIGNMENTS,best:BEST_UNIT_RANKINGS,enchants:BEST_UNIT_ENCHANTS,teams:TEAM_COMPOSITIONS,night:window.FTC_META_RANKING.context()})"],
+    ["ranking-advanced", ["js/data/units.js", "js/data/enchantments.js", "js/data/nights-data.js", "js/config/meta-settings.js", "js/data/tierlist-data.js", "js/data/best-towers-data.js", "js/data/teams-data.js", "js/meta/ranking-engine.js", "js/meta/strategy-model.js"], "({tiers:TIER_ASSIGNMENTS,best:BEST_UNIT_RANKINGS,enchants:BEST_UNIT_ENCHANTS,teams:TEAM_COMPOSITIONS,starter:window.FTC_META_RANKING.ranked('starter').map(x=>x.name),selectedMode:window.FTC_META_RANKING.getRankingPreset()})"]
 ];
 function digest(value) {
     return crypto.createHash("sha256").update(JSON.stringify(value)).digest("hex");
