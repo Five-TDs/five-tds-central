@@ -1,19 +1,34 @@
 const FTC_META_SETTINGS = Object.freeze({
-    referenceRange: 12,
-    rangeWeightMin: 0.75,
-    rangeWeightMax: 1.3,
-    groupedTargetCounts: [1, 3, 5],
-    targetCountWeights: [0.2, 0.5, 0.3],
-    estimatedHitLimits: {
+    groupedTargetCounts: [1, 3, 5, 10, 20],
+    targetCountWeights: [0.12, 0.20, 0.25, 0.25, 0.18],
+    enemySpacing: 1.3,
+    pathHitLikelihood: {
         single: 1,
-        pierce: 2.5,
-        toxic: 2.5,
-        splash: 2.2,
-        cone: 3,
-        aoe: 4,
+        pierce: 0.8,
+        toxic: 0.8,
+        splash: 0.85,
+        cone: 0.65,
+        aoe: 0.95,
         support: 0,
         control: 0
     },
+    tierScoreCutoffs: { S: 0.90, A: 0.80, B: 0.68, C: 0.56, D: 0.43 },
+    rankingBlend: { base: 0.40, enchanted: 0.60 },
+    roleSynergyAssumptions: { supportCoverage: 0.045, controlCoverage: 0.035, balancedAttacks: 0.035 },
+    enchantAvailabilityPenalty: 0.10,
+    simulatedWaveIncome: null,
+    
+    estimatedHitLimits: {
+        single: 1,
+        pierce: (range, spacing) => range / spacing,
+        toxic: (range, spacing) => range / spacing,
+        splash: 3,
+        cone: (range, spacing) => (Math.PI * range ** 2) / (6 * spacing),
+        aoe: (range, spacing) => (Math.PI * range ** 2) / spacing,
+        support: 0,
+        control: 0
+    },
+
     closePlacementGap: 500,
     phaseInvestmentBudgets: {
         early: [150, 500, 1500, 3000],
@@ -31,14 +46,14 @@ const FTC_META_SETTINGS = Object.freeze({
     levelWeights: {
         damage: 0.06,
         hps: 0.06,
-        dps: 0.14,
-        range: 0.10,
-        deployedDps: 0.13,
+        dps: 0.15,
+        range: 0.07,
+        deployedDps: 0.14,
         dpsPerUpgradeCost: 0.10,
         dpsPerTotalCost: 0.12,
-        incrementalDpsPerUpgradeCost: 0.07,
-        radiusDamage: 0.16,
-        scenarioDeployedDps: 0.06
+        incrementalDpsPerUpgradeCost: 0.10,
+        radiusDamage: 0.20,
+        scenarioDeployedDps: 0
     },
     teamRoles: [
         ["starter", "crowd", "boss", "support", "late"],

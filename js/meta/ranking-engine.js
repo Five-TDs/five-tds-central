@@ -9,6 +9,12 @@
     const clamp = (value, min = 0, max = 1) => Math.max(min, Math.min(max, value));
     const mean = values => values.length ? values.reduce((sum, value) => sum + value, 0) / values.length : 0;
     const coverageFactors = settings.estimatedHitLimits;
+    const coverageScale = Math.max(1, Math.max(...settings.groupedTargetCounts) -1);
+    const estimatedHitLimit = (role, range) => {
+        const assumption = coverageFactors[role] ?? coverageFactors.single;
+        const value = typeof assumption === "function" ? assumption(range ?? 0, settings.enemySpacing) : assumption;
+        return Number.isFinite(value) ? Math.max(0, value) : 0;
+    };
     const typeRole = type => {
         const t = low(type);
         if (/range buff|buff|support/.test(t))
@@ -52,21 +58,39 @@
             const dps = damage !== null && hps !== null ? damage * hps : null;
             const type = String(step.type || unit.type || "Unknown");
             const role = typeRole(type);
-            const coverageFactor = coverageFactors[role] ?? 1;
+            const coverageFactor = estimatedHitLimit(role, range);
             const deployedDps = dps === null ? null : dps * placements;
-            const rangeWeight = range === null ? 0 : clamp(Math.sqrt(range / settings.referenceRange), settings.rangeWeightMin, settings.rangeWeightMax);
-            const scenarios = settings.groupedTargetCounts.map(targets => ({
-                targets,
-                estimatedHits: Math.min(targets, coverageFactor),
-                deployedDps: deployedDps === null ? null : deployedDps * Math.min(targets, coverageFactor),
-                reachAdjustedDps: deployedDps === null ? null : deployedDps * Math.min(targets, coverageFactor) * rangeWeight
-            }));
-            const scenarioDeployedDps = deployedDps === null ? null : scenarios.reduce((sum, entry, index) => sum + entry.deployedDps * settings.targetCountWeights[index], 0);
-            const radiusDamage = scenarioDeployedDps === null ? null : scenarios.reduce((sum, entry, index) => sum + entry.reachAdjustedDps * settings.targetCountWeights[index], 0);
+            
+            const scenarios = settings.groupedTargetCounts.map(targets => {
+                const possibleHits = Math.min(targets, coverageFactor);
+                const likelihood = asNumber(settings.pathHitLikelihood?.[role] ?? 1);
+                const estimatedHits = possibleHits < 1 ? possibleHits : 1 + Math.max(0, possibleHits - 1) * clamp(likelihood);
+                const groupedDps = deployedDps === null
+                    ? null
+                    : deployedDps * estimatedHits;
+
+                return {
+                    targets,
+                    estimatedHits,
+                    deployedDps: groupedDps,
+                    reachAdjustedDps: groupedDps
+                };
+            });
+
+            const scenarioDeployedDps = deployedDps === null
+                ? null
+                : scenarios.reduce(
+                    (sum, entry, index) =>
+                        sum + entry.deployedDps * settings.targetCountWeights[index],
+                    0
+                );
+
+            const radiusDamage = scenarioDeployedDps;
+
             const row = {
                 level: asNumber(step.level) || index + 1, damage, hps, dps, range, type, role,
                 rangeBuff: numeric(step.rangeBuff), slow: numeric(step.slow), upgradeCost, totalInvestment: investment,
-                maxPlacements: placements, deployedDps, coverageFactor, radiusDamage, scenarios, scenarioDeployedDps, rangeWeight,
+                maxPlacements: placements, deployedDps, coverageFactor, radiusDamage, scenarios, scenarioDeployedDps,
                 dpsPerUpgradeCost: dps === null ? null : dps / Math.max(1, upgradeCost),
                 dpsPerTotalCost: dps === null ? null : dps / Math.max(1, investment),
                 incrementalDpsPerUpgradeCost: dps === null || previous?.dps === null || !index ? null : (dps - previous.dps) / Math.max(1, upgradeCost)
@@ -133,7 +157,9 @@
         const values = available.map(({ item, step }) => {
             const normalized = Object.fromEntries(metrics.map(metric => [metric, scoreOfMetric(step[metric], peaks[metric])]));
             const investmentScore = 1 - Math.log1p(step.totalInvestment) / Math.log1p(mostExpensive);
-            const area = item.roles.area ? Math.min(1, (step.coverageFactor - 1) / 3) : 0;
+            const area = item.roles.area
+                ? clamp((step.coverageFactor - 1) / coverageScale)
+                : 0;
             const utility = item.roles.support ? clamp((step.rangeBuff || 1) - 1, 0, .3) / .3 : item.roles.control ? clamp(1 - (step.slow || 1), 0, .35) / .35 : 0;
             const utilityReach = utility * normalized.range;
             const damageValue = step.dps === null ? 0 : metrics.reduce((sum, metric) => sum + normalized[metric] * levelWeights[metric], 0);
@@ -155,7 +181,11 @@
         item.waveDamageProxy = item.maxScenarioDeployedDps;
         item.waveLevelProxy = mean(item.levels.map(row => row.scenarioDeployedDps || 0));
         item.radiusDamageProxy = item.maxRadiusDamage;
-        item.roleCoverage = item.roles.area ? (item.coverageFactor - 1) / 3 : 0;
+        item.roleCoverage = item.roles.area
+            ? mean(item.levels.map(row =>
+                clamp((row.coverageFactor - 1) / coverageScale)
+            ))
+            : 0;
     }
     const comparableRole = (a, b) => a.roles.damage && b.roles.damage && (a.roles.area === b.roles.area || b.initialDps >= a.initialDps * 1.8);
     const nearCostAlternatives = item => data.filter(other => other !== item && comparableRole(item, other) && other.placement > item.placement && other.placement - item.placement <= settings.closePlacementGap)

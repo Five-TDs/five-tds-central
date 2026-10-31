@@ -4,6 +4,9 @@ function createUnitCard(unit) {
     const card = document.createElement("div");
     card.className =
         "tier-unit";
+    const confidenceUnit = window.FTC_META_RANKING?.data?.find(item => item.name === unit.name);
+    const modeledConfidence = confidenceUnit && window.FTC_META_RANKING?.confidenceFor?.(confidenceUnit);
+    if (modeledConfidence) card.title = `Modeled confidence: ${modeledConfidence.label}. ${modeledConfidence.reasons.join(" ")}`;
     card.tabIndex = unitHasWarnings(unit) ? 0 : -1;
     const image = document.createElement("img");
     image.className =
@@ -46,6 +49,14 @@ function createUnitCard(unit) {
     name.textContent =
         unit.name;
     card.appendChild(name);
+    const tierlist = window.FTC_META_TIERLIST;
+    if (tierlist) {
+        const record = tierlist.ranked().find(row => row.name === unit.name);
+        if (record) {
+            const title = `Modeled ${tierlist.modeNames[tierlist.getMode()]} score: ${(record.score * 100).toFixed(1)} / 100`;
+            card.title = card.title ? `${title}. ${card.title}` : title;
+        }
+    }
     return card;
 }
 function renderTier(tier) {
@@ -94,7 +105,7 @@ function renderTier(tier) {
         empty.className =
             "tier-empty";
         empty.textContent =
-            "No units placed yet.";
+            "No units fall in this score band.";
         unitsContainer.appendChild(empty);
     }
     /* =====================================================

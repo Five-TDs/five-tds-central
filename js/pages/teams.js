@@ -14,6 +14,9 @@ function hideTeamWarning() {
 function createTeamUnitCard(unit, isSubstitute = false, enchant = null) {
     const card = document.createElement("div");
     card.className = "team-unit-card";
+    const confidenceUnit = window.FTC_META_RANKING?.data?.find(item => item.name === unit.name);
+    const modeledConfidence = confidenceUnit && window.FTC_META_RANKING?.confidenceFor?.(confidenceUnit);
+    if (modeledConfidence) card.title = `Modeled confidence: ${modeledConfidence.label}. ${modeledConfidence.reasons.join(" ")}`;
     if (isSubstitute) {
         card.classList.add("substitute");
     }
@@ -27,7 +30,7 @@ function createTeamUnitCard(unit, isSubstitute = false, enchant = null) {
         enchantLabel.className = "team-unit-enchant enchant-frame-label";
         const enchantName = document.createElement("span");
         enchantName.className = "enchant-frame-label-text";
-        enchantName.textContent = `${enchant.toUpperCase()}`;
+        enchantName.textContent = `${enchant.toUpperCase()} ENCHANT`;
         enchantLabel.appendChild(enchantName);
         imageWrap.appendChild(enchantLabel);
         card.tabIndex = 0;

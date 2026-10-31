@@ -1,5 +1,47 @@
 const WEBSITE_VERSION_HISTORY = [
     {
+        version: "V2.9.1",
+        date: "October 31, 2026",
+        title: "Independent Tierlist Scoring and Night Views",
+        description: "Rebuilt the Tierlist scoring model without changing Best Towers or Recommended Teams, adding dedicated views for overall strength, the selected Night, wave clearing, boss damage, and budget value.",
+        changes: {
+            "TIERLIST CALCULATIONS": [
+                "Replaced the Tierlist's blended general-purpose ranking with an independent score based on modeled combat ceilings, attainable upgrades, same-level efficiency, and limited attack-path coverage.",
+                "Separated wave clearing from boss damage and adjusted how line attacks, cone attacks, and broad-area attacks are modeled for the Tierlist without altering the shared game data or other META guides.",
+                "Updated the tier thresholds to compare scores against the leading result rather than stretching all units between the highest and lowest scores.",
+                "Retained a dedicated Utility tier for buffing and slowing units whose contributions cannot be measured by damage alone."
+            ],
+            "NIGHT-AWARE CONTROLS": [
+                "Added Overall Strength, Selected Night, Wave Clearing, Boss Damage, and Budget Value views directly to the Tierlist's existing recommendation controls.",
+                "Made selected-Night rankings respond to starting cash and enchantment-adjusted placement costs using explicitly hypothetical investment budgets, without claiming to know unrecorded wave income.",
+                "Preserved the current selection between visits and added small-screen layout refinements and clearer score descriptions."
+            ]
+        }
+    },
+    {
+        version: "V2.9.0",
+        date: "October 31, 2026",
+        title: "Advanced META Modeling and Team Optimization",
+        description: "Expanded role-based META comparisons with more enemy-group scenarios, enchantment-aware performance, complete five-unit composition searches, dynamic tiers and an optional Night economy planner.",
+        changes: {
+            "META MODEL": [
+                "Expanded modeled enemy groups to one, three, five, ten and twenty targets, with shape-dependent hit-likelihood assumptions for Pierce, Toxic, Splash, Cone and AOE attacks.",
+                "Reduced overlapping range contributions in the matched-level scoring weights and kept theoretical attack coverage separate from measured in-game hits.",
+                "Added unenchanted, recommended-enchantment and maximum-potential ranking modes, including enchantment-adjusted placement costs and upgrade-budget outcomes.",
+                "Changed Tierlist assignment from fixed unit counts to differences in calculated scores while retaining a dedicated Utility tier."
+            ],
+            "RECOMMENDED TEAMS": [
+                "Evaluated all 98,280 unique five-unit combinations for Solo, Endless, Crowd Control, Boss and Speedrun recommendations.",
+                "Compared affordable starters, attack roles, selected enchantments, boss damage, wave potential and complementary support or control value.",
+                "Reworked recommended substitutes using the full lineup score and flagged when a substitute requires more opening cash."
+            ],
+            "NIGHT PLANNING": [
+                "Added an optional wave-by-wave spending planner using actual Night starting cash and wave count with player-provided income assumptions.",
+                "Added model-confidence information to distinguish recorded game data from unverified target geometry, status effects and ability interactions."
+            ]
+        }
+    },
+    {
         version: "V2.8.6",
         date: "October 29, 2026",
         title: "Animated Enchantment Gradients",
