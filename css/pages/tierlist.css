@@ -559,3 +559,15 @@
     }
 
 }
+.tierlist-page .ftc-tierlist-result-note { max-width: 720px; margin: 0 auto 16px; text-align: center; color: #b3b6c3; font-size: 12px; line-height: 1.5; }
+.tierlist-page .tier-row { min-width: 0; }
+.tierlist-page .tier-unit { min-width: 0; }
+.tierlist-page .tier-units { min-width: 0; }
+@media (max-width: 600px) {
+    .tierlist-page { width: calc(100% - 20px); padding-top: 22px; }
+    .tierlist-page .tier-row { grid-template-columns: 56px minmax(0, 1fr); min-height: 100px; }
+    .tierlist-page .tier-label { min-height: 100px; }
+    .tierlist-page .tier-label-letter { font-size: 25px; }
+    .tierlist-page .tier-label-description { font-size: 7px; }
+    .tierlist-page .tier-units { grid-template-columns: repeat(auto-fill, minmax(min(74px, 100%), 1fr)); gap: 7px; padding: 8px; }
+}
