@@ -90,7 +90,9 @@ Five-TDs-Central/
     config/                      Editable navigation and META settings
     data/                        Source game data and page definitions
     meta/
-      ranking-engine.js          Scoring, tiers, best units and templates
+      ranking-engine.js          Base level-by-level scoring and budget estimates
+      strategy-model.js          Enchantment scoring, confidence, full-team optimization, Night planning
+      tierlist-model.js          Tierlist-only scoring and Night-aware ranking modes
     pages/                       Page-specific behavior
       team-builder/              Small, separately editable builder features
     shared/                      Reusable UI, calculations, charts and tools
@@ -243,7 +245,9 @@ The unit modal, Stats Simulator and Team Builder all read these values. Changes 
 ## META rankings
 
 **Config:** [`js/config/meta-settings.js`](js/config/meta-settings.js)  
-**Engine:** [`js/meta/ranking-engine.js`](js/meta/ranking-engine.js)  
+**Base engine:** [`js/meta/ranking-engine.js`](js/meta/ranking-engine.js)  
+**Extended model:** [`js/meta/strategy-model.js`](js/meta/strategy-model.js)  
+**Night planner UI:** [`js/shared/meta-planner.js`](js/shared/meta-planner.js)  
 **Views:** [`js/pages/tierlist.js`](js/pages/tierlist.js), [`js/pages/best-towers.js`](js/pages/best-towers.js), [`js/pages/teams.js`](js/pages/teams.js)
 
 ### If you want to rebalance the guides
@@ -259,18 +263,44 @@ The unit modal, Stats Simulator and Team Builder all read these values. Changes 
 
 | Setting | What it changes |
 |---|---|
-| `referenceRange` | Reference used by the range-weighting model |
-| `rangeWeightMin`, `rangeWeightMax` | Bounds on reach contributions |
-| `groupedTargetCounts` | Assumed grouped-enemy scenarios (currently 1, 3, 5) |
-| `targetCountWeights` | Relative weighting for those scenarios; should sum to 1 |
-| `estimatedHitLimits` | Assumed upper bounds by attack role |
-| `closePlacementGap` | How close two opening costs must be for a worthwhile wait comparison |
-| `minimumBetterOpeningDps` | Opening DPS improvement threshold |
-| `minimumBetterWavePotential` | Wave-damage improvement threshold |
-| `tierWidths` | How many units fall into successive tiers |
-| `levelWeights` | Relative contributions of stats and efficiency; should sum to 1 |
-| `teamRoles` | Which functional roles the generated teams try to fill |
-| `rankingModes` | Which categories appear on Best Towers |
+| `groupedTargetCounts` | Enemy-count cases (1, 3, 5, 10 and 20) |
+| `targetCountWeights` | Relative importance of those cases (must total 1) |
+| `enemySpacing` | Assumed space between enemy positions |
+| `estimatedHitLimits` | Capacity formulas for Single, Pierce, Toxic, Splash, Cone and AOE |
+| `pathHitLikelihood` | Fraction of potential additional targets actually intersecting each attack shape (unverified estimates) |
+| `tierScoreCutoffs` | Score-distance thresholds rather than fixed tier sizes |
+| `rankingBlend` | Balance between unenchanted scores and enchant-adjusted budget scores |
+| `roleSynergyAssumptions` | Small modeled bonus for complementary attack, buff and control roles |
+| `enchantAvailabilityPenalty` | Reduces how often extremely rare enchants are presented as practical recommendations |
+| `phaseInvestmentBudgets` | Assumed money available at each part of a run |
+| `phaseBudgetWeights` | Importance of those example budgets |
+| `closePlacementGap` | Maximum extra placement money for a worthwhile wait comparison |
+| `levelWeights` | Matched-level stat factors (must sum to 1) |
+| `rankingModes` | Categories shown on Best Towers |
+
+The engine's Single attack hits one target; Splash assumes at most three; Pierce assumes `range / enemySpacing`; Cone and AOE use the configured circle/sector area assumptions. Potential hits are capped by enemies present and then discounted with `pathHitLikelihood`, since actual enemy position is unknown. These are **not measurements of real hit counts or actual damage dealt in-game**.
+
+The duplicated grouped-damage weight was set to zero, and the separate square-root range multiplier was removed. Range still contributes directly as reach and indirectly via potential group coverage, but no longer multiplies grouped DPS a second time.
+
+### Enchantment modes and team optimization
+
+The META pages let visitors compare **Unenchanted**, **Recommended Enchant**, and **Maximum Potential**. Cost-changing enchantments are considered when checking starter affordability. Enchantments are sourced from `js/data/enchantments.js`; the game data is never edited by the model.
+
+`js/meta/strategy-model.js` evaluates **all 98,280 combinations of five distinct units** for Solo, Endless, Crowd Control, Boss and Speedrun suggestions, including opening affordability, group coverage, boss damage and complementary roles. It also selects substitutes from the available units. The chosen compositions are modeled recommendations, not guaranteed optimal real-game teams.
+
+The Tierlist now places units using *score differences*, not fixed tier sizes. Support and slowing units remain in the Utility tier, because damage-only rankings cannot fairly quantify their impact.
+
+### Optional Night cash planner
+
+Recommended Teams contains a collapsed **Optional Night economy planner**. It reads actual starting cash and wave count from `js/data/nights-data.js`. Players can enter their own estimated cash earned per wave and optional enemy health. The planner then simulates affordable placements and upgrades; the income is deliberately **not filled in or guessed** by the website.
+
+### Confidence and eventual gameplay checks
+
+Every unit is assigned a model-confidence label and reasons. Support effects, status ticks, path geometry and attack uptime remain unverified; a Low label means important mechanics are unquantified, **not that the unit is bad**.
+
+You do **not** need to conduct extensive game testing to use the website. If you ever want to check assumptions, the three highest-value observations are: (1) how many enemies a Cone attack actually hits on a crowded path, (2) whether a range buff increases uptime and how it stacks, and (3) whether Toxic Pierce damage has measurable extra ticks. Even one observation for each is useful; leave the model estimated until verified.
+
+Run `node tools/check_meta_strategy.js` to check the advanced model or `node tools/inspect_meta.js` to see all unit scores and modeling warnings. The standard `node tools/check_meta.js` checks the base engine independently.
 
 `js/data/tierlist-data.js`, `best-towers-data.js` and `teams-data.js` define **category names and empty UI structures**. The engine fills them at runtime. Don't hand-edit the generated unit names into three separate lists; they'd drift out of sync.
 
@@ -286,7 +316,7 @@ To put the output into an optional local report **outside** the website folder:
 node tools/inspect_meta.js > ../meta-review.md
 ```
 
-The rankings compare matched upgrade levels, placement cost, upgrades, HPS, damage, DPS, range, max placements and known abilities. Group damage uses estimated coverage, not invented exact cone angles or poison ticks.
+The rankings compare matched upgrade levels, placement cost, upgrades, HPS, damage, DPS, range, max placements, affordable enchanted upgrades and known abilities. Group damage uses a configurable 60-degree Cone approximation and expected target intersections; the exact angle, target placement, poison ticks and buff stacking are not confirmed by game data.
 
 ## Team Builder
 
@@ -469,3 +499,26 @@ Consequently the META engine compares **recorded per-level values** and models *
 ---
 
 **Maintenance rule:** Keep one source of truth for game data; keep calculations in shared tools; keep page renderers focused; and preserve names, storage keys, and load order. This README tells you where each part lives so future updates are simpler, safer and quicker.
+
+
+## Maintaining the standalone Tierlist model
+
+The Tierlist has an independent calculation module at [`js/meta/tierlist-model.js`](js/meta/tierlist-model.js). This module runs after the shared ranking and enchantment strategy engines on `tierlist.html`. It only changes `TIER_ASSIGNMENTS` for the Tierlist; the Best Towers categories and optimized team compositions still use the existing shared engines.
+
+The top of `tierlist-model.js` contains the editable `config` object. Its enemy-group weights, attack-path alignment estimates, budget scenarios, level importance, and score-band cutoffs can be adjusted without editing game records. The assumptions are **model parameters**, not verified enemy movement data. The original range-based hit-capacity formulas remain in `js/config/meta-settings.js`.
+
+There are five Tierlist views:
+
+| View | What it emphasizes |
+|---|---|
+| Overall Strength | Max-level potential, boss and grouped-target output, affordable late-game upgrades, and per-level investment efficiency |
+| Selected Night | The selected Night's real starting cash, immediate affordability, and hypothetical spending multiples; does not assume a known income rate |
+| Wave Clearing | Expected grouped-enemy output and reach within the configured target scenarios |
+| Boss Damage | Listed single-target damage and how much can be upgraded at larger budgets |
+| Budget Value | Opening affordability, early investments, and the benefit of inexpensive upgrades |
+
+When users switch the selected Night, MAX/Normal mode, or enchantment assumption, the Tierlist is recalculated immediately. Only Selected Night and Budget Value include the Night's starting cash in their rank scores; Overall Strength, Wave Clearing, and Boss Damage deliberately compare general performance. This prevents a $50 starting bank from forcing the whole endgame ranking to reflect only starter towers.
+
+The same-level progression comparison uses wave and boss DPS per cumulative investment, additional wave DPS gained per upgrade cost, and recorded range. A tower with fewer listed upgrades is compared only at levels it actually has. Area-hit estimates are adjusted for path alignment, and support/control units remain in their own Utility tier. Actual enemy pathing, attack uptime, toxic tick damage, and buff stacking remain uncertain.
+
+For a quick self-check, run `node tools/check_tierlist_model.js` after modifying the scoring code, followed by `node tools/verify_data.js` to confirm game data is unchanged. The public page selection is persisted locally as `ftc-tierlist-focus`.
