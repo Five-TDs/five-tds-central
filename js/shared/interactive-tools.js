@@ -4,10 +4,10 @@
     const $$ = (s, root = document) => [...root.querySelectorAll(s)];
     const safe = v => String(v ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
     const money = n => Number.isFinite(Number(n)) ? "$" + Number(n).toLocaleString(undefined, { maximumFractionDigits: 2 }) : "—";
-    const num = n => Number.isFinite(Number(n)) ? Number(n).toLocaleString(undefined, { maximumFractionDigits: 2 }) : "—";
+    const num = n => n === null || n === undefined || n === "" ? "—" : Number.isFinite(Number(n)) ? Number(n).toLocaleString(undefined, { maximumFractionDigits: 2 }) : "—";
     const getUnitStats = u => (u?.stats || []).map(s => ({ ...s, level: Number(s.level) || 1 })).sort((a, b) => a.level - b.level);
     const levelCost = (u, s) => s.level === 1 ? Number(u.placement) || 0 : Number(s.cost) || 0;
-    const statDps = s => Number(s?.damage) > 0 && Number(s?.cooldown) > 0 ? Number(s.damage) * Number(s.cooldown) : 0;
+    const statDps = s => s?.damage != null && s?.cooldown != null && Number.isFinite(Number(s.damage)) && Number(s.cooldown) > 0 ? Number(s.damage) * Number(s.cooldown) : null;
     const readJson = (k, fallback) => { try {
         return JSON.parse(localStorage.getItem(k)) ?? fallback;
     }
@@ -22,16 +22,34 @@
         const wrap = document.createElement("div");
         wrap.className = "ftc-feature-overlay";
         wrap.innerHTML = `<section class="ftc-feature-panel" role="dialog" aria-modal="true" aria-label="${safe(label)}"><button class="ftc-feature-close" type="button" aria-label="Close">×</button><div class="ftc-feature-content"></div></section>`;
-        const close = () => { wrap.remove(); document.removeEventListener("keydown", esc); };
+        const returnFocus = document.activeElement;
+        const priorOverflow = document.body.style.overflow;
+        const close = () => {
+            if (!wrap.isConnected) return;
+            wrap.remove();
+            document.removeEventListener("keydown", onKeydown);
+            document.body.style.overflow = priorOverflow;
+            if (returnFocus?.isConnected && typeof returnFocus.focus === "function") returnFocus.focus({ preventScroll: true });
+        };
+        const onKeydown = event => {
+            if (event.key === "Escape") { event.preventDefault(); close(); return; }
+            if (event.key !== "Tab" || !wrap.isConnected) return;
+            const focusable = [...wrap.querySelectorAll('a[href],button:not([disabled]),select:not([disabled]),input:not([disabled]),[tabindex]:not([tabindex="-1"])')]
+                .filter(element => !element.closest('[hidden]') && element.getClientRects().length > 0);
+            if (!focusable.length) return;
+            const first = focusable[0], last = focusable[focusable.length - 1];
+            if (event.shiftKey && (document.activeElement === first || !wrap.contains(document.activeElement))) {
+                event.preventDefault(); last.focus();
+            } else if (!event.shiftKey && (document.activeElement === last || !wrap.contains(document.activeElement))) {
+                event.preventDefault(); first.focus();
+            }
+        };
         $(".ftc-feature-close", wrap).addEventListener("click", close);
-        wrap.addEventListener("click", e => { if (e.target === wrap)
-            close(); });
-        const esc = e => { if (e.key === "Escape") {
-            close();
-            document.removeEventListener("keydown", esc);
-        } };
-        document.addEventListener("keydown", esc);
+        wrap.addEventListener("click", event => { if (event.target === wrap) close(); });
+        document.addEventListener("keydown", onKeydown);
+        document.body.style.overflow = "hidden";
         document.body.appendChild(wrap);
+        requestAnimationFrame(() => $(".ftc-feature-close", wrap)?.focus({ preventScroll: true }));
         return $(".ftc-feature-content", wrap);
     };
     // Full unit information modal, opened from database cards without removing the direct unit page link.
@@ -49,7 +67,7 @@
         <div class="ftc-action-row"><a class="ftc-action" href="unit.html?unit=${encodeURIComponent(unit.name)}">OPEN FULL UNIT PAGE</a><a class="ftc-action" href="stats-simulator.html?unit=${encodeURIComponent(unit.name)}">OPEN IN SIMULATOR</a></div></div>
       </div>
       <div class="ftc-tabs" role="tablist"><button class="active" type="button" role="tab" aria-selected="true" data-ftc-tab="stats">STATS & UPGRADES</button><button type="button" role="tab" aria-selected="false" data-ftc-tab="abilities">ABILITIES</button><button type="button" role="tab" aria-selected="false" data-ftc-tab="enchant">ENCHANTMENTS</button></div>
-      <div data-ftc-panel="stats"><div class="ftc-table-wrap ftc-upgrade-table"><table><thead><tr><th>LVL</th><th>Upgrade</th><th>Total Cost</th><th>Damage</th><th>HPS</th><th>DPS*</th><th>Range</th></tr></thead><tbody>${stats.map((s, i) => `<tr><td>${s.level}</td><td>${s.level === 1 ? "Placement" : money(s.cost)}</td><td>${money(stats.slice(0, i + 1).reduce((sum, x, j) => sum + (j === 0 ? Number(unit.placement) || 0 : Number(x.cost) || 0), 0))}</td><td>${num(s.damage)}</td><td>${num(s.cooldown)}</td><td>${num(statDps(s))}</td><td>${num(s.range)}</td></tr>`).join("") || '<tr><td colspan="7">No upgrade statistics have been entered for this unit.</td></tr>'}</tbody></table></div><p class="ftc-note">*DPS = damage × HPS. Upgrade cost at level 1 is the placement cost. Special attacks may behave differently.</p></div>
+      <div data-ftc-panel="stats"><div class="ftc-table-wrap ftc-upgrade-table"><table><thead><tr><th>LVL</th><th>Upgrade</th><th>Total Cost</th><th>Damage</th><th>HPS</th><th>DPS*</th><th>Range</th></tr></thead><tbody>${stats.map((s, i) => `<tr><td>${s.level}</td><td>${s.level === 1 ? "Placement" : money(s.cost)}</td><td>${money(getTotalInvestment(unit, s.level))}</td><td>${num(s.damage)}</td><td>${num(s.cooldown)}</td><td>${num(statDps(s))}</td><td>${num(s.range)}</td></tr>`).join("") || '<tr><td colspan="7">No upgrade statistics have been entered for this unit.</td></tr>'}</tbody></table></div><p class="ftc-note">*DPS = damage × HPS. Upgrade cost at level 1 is the placement cost. Special attacks may behave differently.</p></div>
       <div data-ftc-panel="abilities" hidden><ul>${(unit.passives || []).map(x => `<li>${safe(x)}</li>`).join("") || "<li>No ability information is listed.</li>"}</ul></div>
       <div data-ftc-panel="enchant" hidden><label>Compare enchantment <select id="ftc-unit-enchant"><option value="">None</option>${typeof enchants !== "undefined" ? Object.entries(enchants).map(([k, v]) => `<option value="${safe(k)}">${safe(v.name || k)}</option>`).join("") : ""}</select></label><div id="ftc-enchant-preview"></div></div>`;
         if (window.FTC_PERFORMANCE) {
@@ -58,7 +76,39 @@
             window.FTC_PERFORMANCE.mount(graph, unit);
         }
         const tabs = $$(".ftc-tabs button", host), panels = $$("[data-ftc-panel]", host);
-        tabs.forEach(b => b.addEventListener("click", () => { tabs.forEach(t => { t.classList.toggle("active", t === b); t.setAttribute("aria-selected", String(t === b)); }); panels.forEach(p => p.hidden = p.dataset.ftcPanel !== b.dataset.ftcTab); }));
+        const modalId = `ftc-unit-${Math.random().toString(36).slice(2, 10)}`;
+        tabs.forEach((tab, index) => {
+            const panel = panels.find(item => item.dataset.ftcPanel === tab.dataset.ftcTab);
+            tab.id = `${modalId}-tab-${index}`;
+            tab.setAttribute("aria-controls", `${modalId}-panel-${index}`);
+            tab.tabIndex = index === 0 ? 0 : -1;
+            if (panel) {
+                panel.id = `${modalId}-panel-${index}`;
+                panel.setAttribute("role", "tabpanel");
+                panel.setAttribute("aria-labelledby", tab.id);
+                panel.tabIndex = 0;
+            }
+        });
+        const activate = button => {
+            tabs.forEach(tab => {
+                const active = tab === button;
+                tab.classList.toggle("active", active);
+                tab.setAttribute("aria-selected", String(active));
+                tab.tabIndex = active ? 0 : -1;
+            });
+            panels.forEach(panel => panel.hidden = panel.dataset.ftcPanel !== button.dataset.ftcTab);
+        };
+        tabs.forEach((button, index) => {
+            button.addEventListener("click", () => activate(button));
+            button.addEventListener("keydown", event => {
+                let target;
+                if (event.key === "ArrowRight") target = tabs[(index + 1) % tabs.length];
+                else if (event.key === "ArrowLeft") target = tabs[(index + tabs.length - 1) % tabs.length];
+                else if (event.key === "Home") target = tabs[0];
+                else if (event.key === "End") target = tabs[tabs.length - 1];
+                if (target) { event.preventDefault(); activate(target); target.focus(); }
+            });
+        });
         const enchantSelect = $("#ftc-unit-enchant", host), preview = $("#ftc-enchant-preview", host);
         const paintEnchant = () => {
             const s = stats[stats.length - 1];
@@ -67,12 +117,16 @@
                 return;
             }
             const key = enchantSelect.value, e = key && typeof enchants !== "undefined" ? enchants[key] : null;
-            const dmg = Number(s.damage) || 0, cooldown = Number(s.cooldown) || 0, range = Number(s.range) || 0;
-            const speedMultiplier = 1 + (Number(e?.attackSpeed) || 0) / 100;
-            const md = dmg * (1 + (Number(e?.damage) || 0) / 100), mc = speedMultiplier > 0 ? cooldown / speedMultiplier : cooldown;
-            const mr = range * (1 + (Number(e?.range) || 0) / 100);
-            const baseDps = dmg * cooldown, modifiedDps = md * mc;
+            const dmg = s.damage == null || !Number.isFinite(Number(s.damage)) ? null : Number(s.damage);
+            const cooldown = s.cooldown == null || !Number.isFinite(Number(s.cooldown)) ? null : Number(s.cooldown);
+            const range = s.range == null || !Number.isFinite(Number(s.range)) ? null : Number(s.range);
+            const md = dmg === null ? null : dmg * (1 + (Number(e?.damage) || 0) / 100);
+            const mc = cooldown === null ? null : getEnchantedHPS(cooldown, e?.attackSpeed ?? 0);
+            const mr = range === null ? null : range * (1 + (Number(e?.range) || 0) / 100);
+            const baseDps = dmg === null || cooldown === null ? null : dmg * cooldown;
+            const modifiedDps = md === null || mc === null ? null : md * mc;
             const delta = (before, after) => {
+                if (before === null || after === null) return '<small class="ftc-delta-neutral">Not listed</small>';
                 const change = after - before;
                 if (Math.abs(change) < 0.000001)
                     return '<small class="ftc-delta-neutral">No change</small>';
@@ -133,8 +187,8 @@
                 return;
             }
             const a = ss.find(x => x.level === Number(selA.value)) || ss[0], b = ss.find(x => x.level === Number(selB.value)) || ss[ss.length - 1];
-            const costA = ss.filter(x => x.level <= a.level).reduce((sum, x, i) => sum + (i === 0 ? (Number(u.placement) || 0) : (Number(x.cost) || 0)), 0);
-            const costB = ss.filter(x => x.level <= b.level).reduce((sum, x, i) => sum + (i === 0 ? (Number(u.placement) || 0) : (Number(x.cost) || 0)), 0);
+            const costA = getTotalInvestment(u, a.level) ?? 0;
+            const costB = getTotalInvestment(u, b.level) ?? 0;
             const rows = [["Damage", a.damage, b.damage], ["HPS", a.cooldown, b.cooldown], ["DPS estimate", statDps(a), statDps(b)], ["Range", a.range, b.range], ["Total investment", costA, costB]];
             diff.innerHTML = `<h3>${safe(u.name)}: Level ${a.level} → Level ${b.level}</h3><div class="ftc-table-wrap"><table><thead><tr><th>Statistic</th><th>Level ${a.level}</th><th>Level ${b.level}</th><th>Difference</th></tr></thead><tbody>${rows.map(([label, x, y]) => `<tr><th>${label}</th><td>${num(x)}</td><td>${num(y)}</td><td>${num((Number(y) || 0) - (Number(x) || 0))}</td></tr>`).join("")}</tbody></table></div><p>Additional investment from A to B: <strong>${money(costB - costA)}</strong>. DPS improvement per additional cost: <strong>${costB !== costA ? num((statDps(b) - statDps(a)) / (costB - costA)) : "—"}</strong> DPS per currency unit.</p>`;
         }

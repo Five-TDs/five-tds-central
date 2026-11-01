@@ -1,5 +1,140 @@
 const WEBSITE_VERSION_HISTORY = [
     {
+        version: "V3.0.1",
+        date: "November 1, 2026",
+        title: "Sorting, Search and META Presentation",
+        description: "Improved the usability of the existing database and ranking pages without changing unit data, META formulas or recommended teams.",
+        changes: {
+            "DATABASE AND STAT LIST": [
+                "Remembered the selected sorting category and sort direction across visits for the Unit Database and Unit Stat List.",
+                "Added an ascending/descending control to the Unit Database and preserved the existing single-column sorting in the Unit Stat List.",
+                "Improved empty search results with contextual messages and a direct way to reset search terms and filters."
+            ],
+            "META AND DATA PRESENTATION": [
+                "Added an interactive visual breakdown for Tierlist scores, with a score gauge and relative bars for wave, boss, progression, range and opening value.",
+                "Made unit data warnings more compact on guide cards and replaced long unit-page warning blocks with expandable details.",
+                "Kept all existing META rankings, scoring formulas, unit statistics and saved-team functionality unchanged."
+            ]
+        }
+    },
+    {
+        version: "V3.0.0",
+        date: "November 1, 2026",
+        title: "Website Refinement and Stability",
+        description: "Completed a focused quality pass on the existing website, improving modal usability, keyboard navigation, small-screen layouts, calculation clarity and maintainability without adding extra pages or changing game data.",
+        changes: {
+            "INTERFACE AND ACCESSIBILITY": [
+                "Improved Unit Database modals with reliable keyboard focus, restored focus after closing, background scroll locking and more consistent close behavior.",
+                "Made Stats & Upgrades, Abilities and Enchantments tabs easier to navigate using arrow, Home and End keys, with properly associated tab panels.",
+                "Refined responsive modal spacing, scrolling, tab sizing and focus indicators while keeping the existing dark arcade visual style."
+            ],
+            "STAT ACCURACY": [
+                "Clarified missing support-unit damage and HPS values in modal upgrade and enchantment previews instead of displaying invented DPS numbers.",
+                "Carried the previous update's shared upgrade-investment and HPS logic through the remaining unit detail interactions."
+            ],
+            "RELIABILITY AND MAINTENANCE": [
+                "Added extra load-order safeguards for pages that depend on shared unit calculations.",
+                "Improved maintenance documentation for editing units, enchantments, META settings and shared interface components.",
+                "Made the homepage's version-history button display the newest website version automatically instead of retaining an outdated label.",
+                "Kept the existing META calculations, Tierlist assignments, team recommendations, game data and user-facing feature set intact."
+            ]
+        }
+    },
+
+    {
+        version: "V2.9.5",
+        date: "November 1, 2026",
+        title: "META and Calculation Consistency",
+        description: "Made upgrade costs, HPS, and enchantment calculations consistent across the existing site, with clearer unit statistics and stronger safeguards for support units.",
+        changes: {
+            "CALCULATIONS": [
+                "Unified total-investment calculations so placement cost is counted once and every purchased upgrade is included.",
+                "Aligned the Unit Database, performance graphs, simulator comparisons, and Team Builder around the same upgrade-cost and HPS rules.",
+                "Prevented non-damaging support units from being assigned artificial damage-per-second values in Team Builder calculations.",
+                "Made attack-speed enchantments follow the same hits-per-second conversion in team statistics and simulator previews."
+            ],
+            "UNIT STATISTICS": [
+                "Corrected the full unit page to include placement cost in its total-investment display.",
+                "Clarified the Unit Stat List's maximum-DPS calculation and cost-efficiency relationship when a unit's peak output occurs before its last upgrade."
+            ],
+            "RELIABILITY": [
+                "Added shared safeguards for invalid upgrade costs and attack-speed modifiers without changing source game data.",
+                "Maintained existing Tierlist, Best Towers, and recommended-team rankings while improving consistency between their supporting statistics."
+            ]
+        }
+    },
+
+    {
+        version: "V2.9.4",
+        date: "November 1, 2026",
+        title: "Performance and Code Optimization",
+        description: "Made the existing website faster and more reliable without changing the game data, META formulas, rankings, or current features.",
+        changes: {
+            "PERFORMANCE": [
+                "Reduced repeated calculations during the full five-unit team search by reusing partial lineup statistics across the same combinations.",
+                "Removed repeated Tierlist ranking lookups for individual unit cards and shared unit-name searches across guide pages.",
+                "Cached Unit Database sorting statistics, reduced repeated favorites reads, and batched rarity-section rendering.",
+                "Removed redundant upgrade-graph data processing when selecting the initial graph statistic.",
+                "Lazy-loaded noncritical unit artwork and enabled asynchronous image decoding on the Unit Database, simulator, Tierlist, Best Towers and recommended-team cards."
+            ],
+            "RELIABILITY": [
+                "Fixed a misplaced keyboard handler that was attaching extra dialog listeners every time Back to Top was clicked.",
+                "Made favorite-unit preferences tolerant of unavailable browser storage or invalid saved values without affecting unit browsing.",
+                "Preserved the existing META recommendations, enchantment settings, game statistics, navigation behavior and saved-team formats."
+            ],
+            "MAINTENANCE": [
+                "Documented the optimized search, shared caches and verification workflow so future game updates remain straightforward.",
+                "Added an optional performance benchmark for tracking the META engine without enforcing hardware-specific timing requirements."
+            ]
+        }
+    },
+    {
+        version: "V2.9.3",
+        date: "November 1, 2026",
+        title: "Interface Consistency and Navigation Polish",
+        description: "Refined the existing website experience with more consistent controls, better mobile navigation and keyboard support, and small reliability improvements while keeping game data and all META results intact.",
+        changes: {
+            "NAVIGATION AND ACCESSIBILITY": [
+                "Improved mobile menu focus behavior and clarified expanded navigation sections for keyboard and assistive-technology users.",
+                "Added a keyboard-accessible Skip to Content link and made homepage navigation sections report their expanded state correctly.",
+                "Improved search and settings dialogs with controlled focus, reliable close behavior, and background scroll locking.",
+                "Made page transitions apply consistently to both existing and dynamically added internal links without affecting external links or in-page navigation."
+            ],
+            "INTERFACE AND MOBILE": [
+                "Standardized shared form controls, focus indicators, panel corners, and muted text styling across existing tools and pages.",
+                "Improved search results, smaller-screen dialog spacing, responsive control widths, and keyboard interaction without adding new website features.",
+                "Corrected an accidental nested HTML document inside the homepage footer and kept the existing artwork, links, and contents intact.",
+                "Prevented page-transition transforms from displacing fixed-position menus and dialogs when scrolling."
+            ],
+            "MAINTENANCE": [
+                "Documented the shared UI patterns and page-layout checks for easier future improvements.",
+                "Preserved game-data files, unit calculations, META weights, tier assignments, recommendations, and saved-team structures."
+            ]
+        }
+    },
+    {
+        version: "V2.9.2",
+        date: "November 1, 2026",
+        title: "Website Refinement and Performance",
+        description: "Polished the existing interface, improved loading and accessibility, removed obsolete browser handlers and optimized the META team-search implementation while preserving unit data and rankings.",
+        changes: {
+            "NAVIGATION AND RELIABILITY": [
+                "Improved desktop navigation dropdowns with click, keyboard and Escape interactions, clearer focus states and consistent close behavior.",
+                "Removed obsolete recently viewed link handling and made saved appearance settings and page-transition preferences resilient when browser storage is unavailable.",
+                "Improved focus restoration for the search and settings panels, and made global search load unit names only when needed on pages without the Unit Database loaded."
+            ],
+            "PERFORMANCE AND DESIGN": [
+                "Optimized the complete-team recommendation search to reuse shared lineup calculations without changing the generated team compositions.",
+                "Added a lightweight, responsive homepage image with the original artwork retained as a compatibility fallback.",
+                "Improved font loading, responsive input widths, navigation consistency and keyboard focus visibility across pages."
+            ],
+            "MAINTENANCE": [
+                "Improved documentation for the shared scripts, data safety, loading improvements and future website changes.",
+                "Repaired an outdated data-reference fingerprint using the unchanged unit data supplied with this release."
+            ]
+        }
+    },
+    {
         version: "V2.9.1",
         date: "October 31, 2026",
         title: "Independent Tierlist Scoring and Night Views",

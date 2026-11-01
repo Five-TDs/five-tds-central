@@ -225,28 +225,39 @@
         speedrun: { early: .48, wave: .28, boss: .07, total: .17 }
     };
 
-    function teamScore(items, format, preset) {
+    function teamAttributes(items, preset) {
+        const summary = {
+            affordable: 0, area: 0, single: 0, support: 0, control: 0,
+            status: 0, cost: 0, cheap: 0, early: 0, wave: 0,
+            boss: 0, total: 0, waveLeader: false, bossLeader: false
+        };
         const cash = preset.currentCash;
-        const weights = teamWeights[format] || teamWeights.solo;
-        let affordable = 0, area = 0, single = 0, support = 0, control = 0, status = 0, cost = 0, cheap = 0;
-        let early = 0, wave = 0, boss = 0, total = 0;
         for (const item of items) {
             const value = preset.get(item.name);
             const enchantedPlacement = value.placement;
-            affordable += enchantedPlacement <= cash ? 1 : 0;
-            area += !!item.roles.area;
-            single += !!item.roles.single;
-            support += !!item.roles.support;
-            control += !!item.roles.control;
-            status += !!item.roles.status;
-            cheap += enchantedPlacement <= Math.max(350, cash * 4) ? 1 : 0;
-            cost += enchantedPlacement;
-            early += value.early;
-            wave += value.wave;
-            boss += value.boss;
-            total += value.total;
+            summary.affordable += enchantedPlacement <= cash ? 1 : 0;
+            summary.area += !!item.roles.area;
+            summary.single += !!item.roles.single;
+            summary.support += !!item.roles.support;
+            summary.control += !!item.roles.control;
+            summary.status += !!item.roles.status;
+            summary.cheap += enchantedPlacement <= Math.max(350, cash * 4) ? 1 : 0;
+            summary.cost += enchantedPlacement;
+            summary.early += value.early;
+            summary.wave += value.wave;
+            summary.boss += value.boss;
+            summary.total += value.total;
+            if (preset.waveLeaders?.has(item.name)) summary.waveLeader = true;
+            if (preset.bossLeaders?.has(item.name)) summary.bossLeader = true;
         }
-        if (!affordable) return -1000;
+        return summary;
+    }
+
+    function teamScore(items, format, preset, summary = teamAttributes(items, preset)) {
+        if (!summary.affordable) return -1000;
+        const { area, single, support, control, status, cost, cheap, early, wave, boss, total } = summary;
+        const cash = preset.currentCash;
+        const weights = teamWeights[format] || teamWeights.solo;
         const coverage = +(area > 0) + +(single > 0) + +(support > 0) + +(control > 0);
         const synergy = settings.roleSynergyAssumptions;
         let result = (early * weights.early + wave * weights.wave + boss * weights.boss + total * weights.total) / 5;
@@ -261,8 +272,8 @@
         if (format === "crowd") result -= (area < 2 ? .28 : 0) + (!control ? .14 : 0);
         if (format === "boss") result -= (single < 2 ? .22 : 0) + (!area ? .05 : 0);
         if (format === "speedrun") result += Math.min(3, cheap) * .015;
-        if (["solo", "endless", "crowd"].includes(format) && items.some(item => preset.waveLeaders?.has(item.name))) result += format === "endless" ? .065 : .055;
-        if (["solo", "boss"].includes(format) && items.some(item => preset.bossLeaders?.has(item.name))) result += format === "boss" ? .085 : .025;
+        if (["solo", "endless", "crowd"].includes(format) && summary.waveLeader) result += format === "endless" ? .065 : .055;
+        if (["solo", "boss"].includes(format) && summary.bossLeader) result += format === "boss" ? .085 : .025;
         return result;
     }
 
@@ -274,7 +285,46 @@
         values.currentCash = meta.context().cash;
         values.waveLeaders = new Set(ranked("late").slice(0, 3).map(item => item.name));
         values.bossLeaders = new Set(ranked("boss").slice(0, 2).map(item => item.name));
+        values.rows = meta.data.map(item => {
+            const value = values.get(item.name);
+            const placement = value.placement;
+            return {
+                affordable: Number(placement <= values.currentCash),
+                area: Number(!!item.roles.area),
+                single: Number(!!item.roles.single),
+                support: Number(!!item.roles.support),
+                control: Number(!!item.roles.control),
+                status: Number(!!item.roles.status),
+                cost: placement,
+                cheap: Number(placement <= Math.max(350, values.currentCash * 4)),
+                early: value.early,
+                wave: value.wave,
+                boss: value.boss,
+                total: value.total,
+                waveLeader: values.waveLeaders.has(item.name),
+                bossLeader: values.bossLeaders.has(item.name)
+            };
+        });
         return values;
+    }
+
+    function combineAttributes(a, b) {
+        return {
+            affordable: a.affordable + b.affordable,
+            area: a.area + b.area,
+            single: a.single + b.single,
+            support: a.support + b.support,
+            control: a.control + b.control,
+            status: a.status + b.status,
+            cost: a.cost + b.cost,
+            cheap: a.cheap + b.cheap,
+            early: a.early + b.early,
+            wave: a.wave + b.wave,
+            boss: a.boss + b.boss,
+            total: a.total + b.total,
+            waveLeader: a.waveLeader || b.waveLeader,
+            bossLeader: a.bossLeader || b.bossLeader
+        };
     }
 
     function optimizeTeams() {
@@ -284,19 +334,26 @@
         if (comboCache.has(cacheKey)) return comboCache.get(cacheKey);
         const choices = meta.data;
         const preset = optimizerPreset();
+        const rows = preset.rows;
         const best = formats.map(() => ({ score: -Infinity, members: [] }));
         let inspected = 0;
         for (let a = 0; a < choices.length - 4; a++) {
             for (let b = a + 1; b < choices.length - 3; b++) {
+                const pair = combineAttributes(rows[a], rows[b]);
                 for (let c = b + 1; c < choices.length - 2; c++) {
+                    const triple = combineAttributes(pair, rows[c]);
                     for (let d = c + 1; d < choices.length - 1; d++) {
+                        const four = combineAttributes(triple, rows[d]);
                         for (let e = d + 1; e < choices.length; e++) {
-                            const members = [choices[a], choices[b], choices[c], choices[d], choices[e]];
                             inspected++;
-                            if (!members.some(item => preset.get(item.name).placement <= cash)) continue;
+                            const summary = combineAttributes(four, rows[e]);
+                            if (!summary.affordable) continue;
                             for (let i = 0; i < formats.length; i++) {
-                                const candidate = teamScore(members, formats[i], preset);
-                                if (candidate > best[i].score) best[i] = { score: candidate, members };
+                                const candidate = teamScore(null, formats[i], preset, summary);
+                                if (candidate > best[i].score) {
+                                    const members = [choices[a], choices[b], choices[c], choices[d], choices[e]];
+                                    best[i] = { score: candidate, members };
+                                }
                             }
                         }
                     }

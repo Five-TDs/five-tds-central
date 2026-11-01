@@ -62,6 +62,8 @@ function displayUnits() {
             unit.image;
         image.alt =
             unit.name;
+        image.loading = "lazy";
+        image.decoding = "async";
         image.onerror = () => {
             image.style.display = "none";
         };
@@ -197,15 +199,8 @@ function applyEnchant(stats) {
 ========================= */
     if (enchant.attackSpeed != null) {
         const speedPercent = Number(enchant.attackSpeed);
-        const intervalMultiplier = 1 + speedPercent / 100;
-        if (Number.isFinite(speedPercent) &&
-            intervalMultiplier > 0) {
-            const originalHPS = getHPS(result);
-            if (originalHPS > 0) {
-                result.cooldown =
-                    originalHPS / intervalMultiplier;
-            }
-        }
+        const newHPS = getEnchantedHPS(result.cooldown, speedPercent);
+        if (newHPS !== null) result.cooldown = newHPS;
     }
     /* =========================
        COST

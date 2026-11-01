@@ -11,6 +11,7 @@ function initializeVersionHistory() {
         !content) {
         return;
     }
+    openButton.textContent = WEBSITE_VERSION_HISTORY[0]?.version || openButton.textContent;
     let previousFocus = null;
     let selectedVersion = 0;
     function displayVersion(index) {

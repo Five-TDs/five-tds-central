@@ -1,5 +1,33 @@
 (() => {
     const NAV_ITEMS = window.SITE_NAVIGATION;
+    const readPreference = (key, fallback = null) => {
+        try {
+            return window.localStorage.getItem(key) ?? fallback;
+        } catch {
+            return fallback;
+        }
+    };
+    const savePreference = (key, value) => {
+        try {
+            window.localStorage.setItem(key, value);
+        } catch {
+            return;
+        }
+    };
+    const readSession = key => {
+        try {
+            return window.sessionStorage.getItem(key);
+        } catch {
+            return null;
+        }
+    };
+    const saveSession = (key, value) => {
+        try {
+            window.sessionStorage.setItem(key, value);
+        } catch {
+            return;
+        }
+    };
     const linkAttributes = item => `href="${item.href}" data-nav="${item.key}"${item.external ? ' target="_blank" rel="noopener noreferrer"' : ''}`;
     const desktopItem = item => item.children
         ? `<div class="nav-dropdown" data-group="${item.key}">
@@ -15,6 +43,7 @@
         : `<a class="mobile-nav-link" ${linkAttributes(item)}>${item.label}</a>`;
     const navigation = document.createElement("nav");
     navigation.className = "site-nav";
+    navigation.setAttribute("aria-label", "Primary navigation");
     navigation.innerHTML = `
         <a href="index.html" class="nav-logo">FIVE TD'S CENTRAL</a>
         <div class="nav-links">${NAV_ITEMS.map(desktopItem).join("")}</div>
@@ -25,6 +54,9 @@
     const mobile = document.createElement("div");
     mobile.id = "mobile-menu";
     mobile.className = "mobile-menu";
+    mobile.setAttribute("role", "region");
+    mobile.setAttribute("aria-label", "Mobile navigation");
+    mobile.setAttribute("aria-hidden", "true");
     mobile.innerHTML = `
         <div class="mobile-nav-header">
             <span>FIVE TD'S CENTRAL</span>
@@ -33,12 +65,74 @@
         ${NAV_ITEMS.map(mobileItem).join("")}`;
     document.body.prepend(mobile);
     document.body.prepend(navigation);
+    function addSkipLink() {
+        const mainContent = document.querySelector("main");
+        if (!mainContent) return;
+        if (!mainContent.id) mainContent.id = "main-content";
+        mainContent.setAttribute("tabindex", "-1");
+        const skipLink = document.createElement("a");
+        skipLink.className = "skip-to-content";
+        skipLink.href = `#${mainContent.id}`;
+        skipLink.textContent = "SKIP TO CONTENT";
+        document.body.prepend(skipLink);
+    }
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", addSkipLink, { once: true });
+    } else {
+        addSkipLink();
+    }
     const currentPage = location.pathname.split("/").pop().toLowerCase() || "index.html";
     const activeKey = currentPage.replace(/\.html$/, "").replace(/^index$/, "home").replace(/^unit$/, "units");
-    document.querySelectorAll(`[data-nav="${activeKey}"]`).forEach(link => link.classList.add("active"));
+    document.querySelectorAll(`[data-nav="${activeKey}"]`).forEach(link => {
+        link.classList.add("active");
+        link.setAttribute("aria-current", "page");
+    });
     const activeLink = document.querySelector(`[data-nav="${activeKey}"]`);
     activeLink?.closest(".nav-dropdown")?.classList.add("active");
+    const desktopGroups = [...navigation.querySelectorAll(".nav-dropdown")];
+    const closeDesktopGroups = (exception = null) => {
+        for (const group of desktopGroups) {
+            if (group === exception) continue;
+            group.classList.remove("is-open");
+            group.querySelector(".nav-dropdown-button").setAttribute("aria-expanded", "false");
+        }
+    };
+    desktopGroups.forEach(group => {
+        const button = group.querySelector(".nav-dropdown-button");
+        const menuId = `nav-menu-${group.dataset.group}`;
+        group.querySelector(".nav-dropdown-menu").id = menuId;
+        button.setAttribute("aria-controls", menuId);
+        button.setAttribute("aria-expanded", "false");
+        button.setAttribute("aria-haspopup", "true");
+        button.addEventListener("click", () => {
+            const shouldOpen = !group.classList.contains("is-open");
+            closeDesktopGroups(group);
+            group.classList.toggle("is-open", shouldOpen);
+            button.setAttribute("aria-expanded", String(shouldOpen));
+        });
+        group.addEventListener("keydown", event => {
+            if (event.key === "ArrowDown" && document.activeElement === button) {
+                event.preventDefault();
+                closeDesktopGroups(group);
+                group.classList.add("is-open");
+                button.setAttribute("aria-expanded", "true");
+                group.querySelector(".nav-dropdown-menu a")?.focus();
+            }
+        });
+    });
+    document.addEventListener("click", event => {
+        if (!navigation.contains(event.target)) closeDesktopGroups();
+    });
+    document.addEventListener("keydown", event => {
+        if (event.key !== "Escape") return;
+        const openGroup = desktopGroups.find(group => group.classList.contains("is-open"));
+        if (openGroup) {
+            closeDesktopGroups();
+            openGroup.querySelector(".nav-dropdown-button").focus();
+        }
+    });
     const menuButton = document.getElementById("mobile-menu-button");
+    menuButton.setAttribute("aria-controls", "mobile-menu");
     const closeButton = document.getElementById("mobile-close-button");
     const mobileSections = [...mobile.querySelectorAll(".mobile-nav-section")];
     let lockedScrollY = 0;
@@ -46,12 +140,15 @@
         if (open === mobile.classList.contains("open"))
             return;
         if (open) {
+            closeDesktopGroups();
             lockedScrollY = window.scrollY;
             document.body.style.top = `-${lockedScrollY}px`;
             document.body.classList.add("nav-locked");
             document.documentElement.classList.add("nav-locked");
         }
+        const focusWasInside = mobile.contains(document.activeElement);
         mobile.classList.toggle("open", open);
+        mobile.setAttribute("aria-hidden", String(!open));
         menuButton.setAttribute("aria-expanded", String(open));
         menuButton.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
         if (!open) {
@@ -59,16 +156,26 @@
             document.documentElement.classList.remove("nav-locked");
             document.body.style.top = "";
             window.scrollTo(0, lockedScrollY);
+            if (focusWasInside) menuButton.focus({ preventScroll: true });
+        } else {
+            closeButton.focus({ preventScroll: true });
         }
         if (document.getElementById("back-to-top"))
             updateBackToTop();
     }
     function setSection(section, open) {
         section.classList.toggle("open", open);
-        section.querySelector(".mobile-nav-section-button").setAttribute("aria-expanded", String(open));
-    }
-    mobileSections.forEach(section => {
         const button = section.querySelector(".mobile-nav-section-button");
+        const submenu = section.querySelector(".mobile-nav-submenu");
+        button.setAttribute("aria-expanded", String(open));
+        submenu.setAttribute("aria-hidden", String(!open));
+        submenu.inert = !open;
+    }
+    mobileSections.forEach((section, index) => {
+        const button = section.querySelector(".mobile-nav-section-button");
+        const submenu = section.querySelector(".mobile-nav-submenu");
+        submenu.id = `mobile-nav-submenu-${index}`;
+        button.setAttribute("aria-controls", submenu.id);
         setSection(section, false);
         button.addEventListener("click", () => {
             const shouldOpen = !section.classList.contains("open");
@@ -127,16 +234,34 @@
         </section>`;
     document.body.appendChild(settingsModal);
     const transitionToggle = settingsModal.querySelector("#site-transitions-toggle");
-    const savedTransitions = localStorage.getItem("ftc-page-transitions");
+    const savedTransitions = readPreference("ftc-page-transitions");
     transitionToggle.checked = savedTransitions !== "off";
     document.documentElement.classList.toggle("transitions-disabled", !transitionToggle.checked);
-    function closeSettings() {
+    let settingsTrigger = null;
+    function updateDialogLock() {
+        document.documentElement.classList.toggle("site-dialog-open",
+            settingsModal.classList.contains("open") || searchModal.classList.contains("open"));
+    }
+    function closeSettings(restoreFocus = true) {
+        if (!settingsModal.classList.contains("open")) return;
         settingsModal.classList.remove("open");
         settingsModal.setAttribute("aria-hidden", "true");
+        updateDialogLock();
+        if (restoreFocus) settingsTrigger?.focus({ preventScroll: true });
     }
     settingsButton.addEventListener("click", () => {
+        closeSearch(false);
+        if (mobile.classList.contains("open")) setMenu(false);
+        settingsTrigger = settingsButton;
         settingsModal.classList.add("open");
         settingsModal.setAttribute("aria-hidden", "false");
+        updateDialogLock();
+        const focusSettings = () => {
+            if (settingsModal.classList.contains("open") && !settingsModal.contains(document.activeElement))
+                settingsModal.querySelector(".site-settings-close").focus({ preventScroll: true });
+        };
+        setTimeout(focusSettings, 0);
+        setTimeout(focusSettings, 200);
     });
     settingsModal.querySelector(".site-settings-close").addEventListener("click", closeSettings);
     settingsModal.addEventListener("click", event => {
@@ -144,14 +269,14 @@
             closeSettings();
     });
     transitionToggle.addEventListener("change", () => {
-        localStorage.setItem("ftc-page-transitions", transitionToggle.checked ? "on" : "off");
+        savePreference("ftc-page-transitions", transitionToggle.checked ? "on" : "off");
         document.documentElement.classList.toggle("transitions-disabled", !transitionToggle.checked);
     });
     const compactToggle = settingsModal.querySelector("#site-compact-toggle");
-    compactToggle.checked = localStorage.getItem("ftc-compact-layout") === "on";
+    compactToggle.checked = readPreference("ftc-compact-layout") === "on";
     document.documentElement.classList.toggle("ftc-compact-layout", compactToggle.checked);
     compactToggle.addEventListener("change", () => {
-        localStorage.setItem("ftc-compact-layout", compactToggle.checked ? "on" : "off");
+        savePreference("ftc-compact-layout", compactToggle.checked ? "on" : "off");
         document.documentElement.classList.toggle("ftc-compact-layout", compactToggle.checked);
     });
     const searchModal = document.createElement("div");
@@ -165,18 +290,52 @@
     document.body.appendChild(searchModal);
     const searchInput = searchModal.querySelector("#global-search-input");
     const searchResults = searchModal.querySelector("#global-search-results");
+    searchResults.setAttribute("aria-live", "polite");
+    searchResults.setAttribute("aria-relevant", "additions text");
+    const escapeHTML = value => String(value).replace(/[&<>"']/g, char => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+    })[char]);
     const searchablePages = NAV_ITEMS.flatMap(item => item.children ? item.children : [item])
         .filter(item => !item.external)
         .map(item => ({ title: item.label, href: item.href, detail: "Website page" }));
+    let searchTrigger = null;
+    let unitSearchLoading = false;
+    function ensureSearchUnits() {
+        if (typeof units !== "undefined" || unitSearchLoading) return;
+        unitSearchLoading = true;
+        const script = document.createElement("script");
+        script.src = "js/data/units.js";
+        script.async = true;
+        script.addEventListener("load", () => {
+            unitSearchLoading = false;
+            renderSearchResults(searchInput.value);
+        }, { once: true });
+        script.addEventListener("error", () => { unitSearchLoading = false; }, { once: true });
+        document.head.appendChild(script);
+    }
     function openSearch() {
+        if (searchModal.classList.contains("open")) {
+            searchInput.focus();
+            return;
+        }
+        const fromSettings = settingsModal.classList.contains("open");
+        searchTrigger = fromSettings ? document.getElementById("global-search-trigger") : document.activeElement;
+        closeSettings(false);
+        if (mobile.classList.contains("open")) setMenu(false);
+        ensureSearchUnits();
         searchModal.classList.add("open");
         searchModal.setAttribute("aria-hidden", "false");
-        searchInput.focus();
+        searchInput.value = "";
         renderSearchResults("");
+        updateDialogLock();
+        searchInput.focus();
     }
-    function closeSearch() {
+    function closeSearch(restoreFocus = true) {
+        if (!searchModal.classList.contains("open")) return;
         searchModal.classList.remove("open");
         searchModal.setAttribute("aria-hidden", "true");
+        updateDialogLock();
+        if (restoreFocus) searchTrigger?.focus({ preventScroll: true });
     }
     function renderSearchResults(query) {
         const q = query.trim().toLowerCase();
@@ -186,7 +345,7 @@
             unitMatches = units.filter(unit => !q || unit.name.toLowerCase().includes(q)).slice(0, 12)
                 .map(unit => ({ title: unit.name, href: "unit.html?unit=" + encodeURIComponent(unit.name), detail: unit.rarity + " unit" }));
         const all = [...unitMatches, ...matches].slice(0, 16);
-        searchResults.innerHTML = all.length ? all.map(item => `<a class="global-search-result" href="${item.href}"><span>${item.title}</span><small>${item.detail || "Website page"}</small></a>`).join("") : "<p>No matching pages or loaded units. Try a shorter search.</p>";
+        searchResults.innerHTML = all.length ? all.map(item => `<a class="global-search-result" href="${escapeHTML(item.href)}"><span>${escapeHTML(item.title)}</span><small>${escapeHTML(item.detail || "Website page")}</small></a>`).join("") : "<p>No matching pages or loaded units. Try a shorter search.</p>";
     }
     document.getElementById("global-search-trigger").addEventListener("click", openSearch);
     searchModal.querySelector(".global-search-close").addEventListener("click", closeSearch);
@@ -194,44 +353,55 @@
         closeSearch(); });
     searchInput.addEventListener("input", () => renderSearchResults(searchInput.value));
     document.addEventListener("keydown", event => {
-        if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k" || event.key === "/" && !["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement.tagName)) {
+        const target = document.activeElement;
+        const canType = target?.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(target?.tagName);
+        if (((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") || (event.key === "/" && !canType && !event.altKey && !event.ctrlKey && !event.metaKey)) {
             event.preventDefault();
             openSearch();
         }
-        if (event.key === "Escape")
+        if (event.key === "Escape") {
             closeSearch();
+            closeSettings();
+        }
     });
-    document.querySelectorAll('a[href]').forEach(link => {
-        const url = new URL(link.href, location.href);
-        if (url.origin === location.origin && url.pathname !== location.pathname && !link.target && !link.hasAttribute("download")) {
-            link.addEventListener("click", () => {
-                let recent = [];
-                try {
-                    recent = JSON.parse(localStorage.getItem(recentKey) || "[]");
-                }
-                catch { }
-                const target = url.pathname.split("/").pop();
-                recent = [{ title: link.textContent.trim() || target, href: target }, ...recent.filter(item => item.href !== target)].slice(0, 6);
-                localStorage.setItem(recentKey, JSON.stringify(recent));
-            });
+    document.addEventListener("keydown", event => {
+        if (event.key !== "Tab") return;
+        const opened = searchModal.classList.contains("open") ? searchModal :
+            settingsModal.classList.contains("open") ? settingsModal : null;
+        if (!opened) return;
+        const items = [...opened.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])')]
+            .filter(item => item.getClientRects().length > 0);
+        if (!items.length) return;
+        const first = items[0];
+        const last = items[items.length - 1];
+        if (!opened.contains(document.activeElement) || (event.shiftKey && document.activeElement === first)) {
+            event.preventDefault();
+            (event.shiftKey ? last : first).focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
         }
     });
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!reducedMotion && transitionToggle.checked && !sessionStorage.getItem("ftc-transition-ready")) {
+    if (!reducedMotion && transitionToggle.checked && !readSession("ftc-transition-ready")) {
         document.documentElement.classList.add("page-transition-ready");
         requestAnimationFrame(() => document.documentElement.classList.add("page-transition-enter"));
-        sessionStorage.setItem("ftc-transition-ready", "1");
+        saveSession("ftc-transition-ready", "1");
     }
-    document.querySelectorAll('a[href]').forEach(link => {
-        const url = new URL(link.href, location.href);
-        if (url.origin !== location.origin || url.pathname === location.pathname || link.target === "_blank" || link.hasAttribute("download"))
+    document.addEventListener("click", event => {
+        if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || reducedMotion || !transitionToggle.checked)
             return;
-        link.addEventListener("click", event => {
-            if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || reducedMotion || !transitionToggle.checked)
-                return;
-            event.preventDefault();
-            document.documentElement.classList.add("page-transition-leave");
-            setTimeout(() => location.href = link.href, 140);
-        });
+        const link = event.target.closest("a[href]");
+        if (!link || link.target === "_blank" || link.hasAttribute("download")) return;
+        let url;
+        try {
+            url = new URL(link.href, location.href);
+        } catch {
+            return;
+        }
+        if (url.origin !== location.origin || (url.pathname === location.pathname && url.search === location.search)) return;
+        event.preventDefault();
+        document.documentElement.classList.add("page-transition-leave");
+        setTimeout(() => { location.href = url.href; }, 140);
     });
 })();

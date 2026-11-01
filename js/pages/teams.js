@@ -16,7 +16,6 @@ function createTeamUnitCard(unit, isSubstitute = false, enchant = null) {
     card.className = "team-unit-card";
     const confidenceUnit = window.FTC_META_RANKING?.data?.find(item => item.name === unit.name);
     const modeledConfidence = confidenceUnit && window.FTC_META_RANKING?.confidenceFor?.(confidenceUnit);
-    if (modeledConfidence) card.title = `Modeled confidence: ${modeledConfidence.label}. ${modeledConfidence.reasons.join(" ")}`;
     if (isSubstitute) {
         card.classList.add("substitute");
     }
@@ -30,7 +29,7 @@ function createTeamUnitCard(unit, isSubstitute = false, enchant = null) {
         enchantLabel.className = "team-unit-enchant enchant-frame-label";
         const enchantName = document.createElement("span");
         enchantName.className = "enchant-frame-label-text";
-        enchantName.textContent = `${enchant.toUpperCase()} ENCHANT`;
+        enchantName.textContent = `${enchant.toUpperCase()}`;
         enchantLabel.appendChild(enchantName);
         imageWrap.appendChild(enchantLabel);
         card.tabIndex = 0;
@@ -41,11 +40,13 @@ function createTeamUnitCard(unit, isSubstitute = false, enchant = null) {
     image.src = unit.image;
     image.alt = unit.name;
     image.loading = "lazy";
+    image.decoding = "async";
     imageWrap.appendChild(image);
     if (unitHasWarnings(unit)) {
-        const warning = document.createElement("div");
-        warning.className = "team-unit-warning";
-        warning.textContent = "⚠";
+        const warning = document.createElement("button");
+        warning.type = "button";
+        warning.className = "team-unit-warning ftc-compact-warning";
+        warning.textContent = "i";
         warning.tabIndex = 0;
         warning.setAttribute("aria-label", "Data warning for " + unit.name);
         warning.addEventListener("mouseenter", () => {

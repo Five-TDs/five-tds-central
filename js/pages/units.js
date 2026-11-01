@@ -16,24 +16,59 @@ let activeRarities = [];
 let activeTypes = [];
 let favoritesOnly = false;
 let selectedForCompare = [];
+const unitSortKey = "ftc-unit-sort-preference";
+const unitSortSelect = document.getElementById("unit-sort");
+const unitSortDirectionButton = document.getElementById("unit-sort-direction");
+let unitSortDirection = "desc";
+const saveUnitSort = () => {
+    try { localStorage.setItem(unitSortKey, JSON.stringify({ column: unitSortSelect.value, direction: unitSortDirection })); } catch { }
+};
+const refreshUnitSortButton = () => {
+    if (!unitSortDirectionButton) return;
+    unitSortDirectionButton.disabled = unitSortSelect.value === "default";
+    unitSortDirectionButton.textContent = unitSortDirection === "asc" ? "↑ ASCENDING" : "↓ DESCENDING";
+    unitSortDirectionButton.setAttribute("aria-label", `Sort ${unitSortDirection === "asc" ? "ascending" : "descending"}`);
+};
+if (unitSortSelect) {
+    try {
+        const saved = JSON.parse(localStorage.getItem(unitSortKey) || "null");
+        if (saved && [...unitSortSelect.options].some(option => option.value === saved.column)) {
+            unitSortSelect.value = saved.column;
+            if (["asc", "desc"].includes(saved.direction)) unitSortDirection = saved.direction;
+        }
+    } catch { }
+    refreshUnitSortButton();
+}
 const favoriteKey = "ftc-favorite-units";
 const readFavorites = () => {
     try {
-        return JSON.parse(localStorage.getItem(favoriteKey) || "[]");
+        const saved = JSON.parse(localStorage.getItem(favoriteKey) || "[]");
+        return Array.isArray(saved) ? saved : [];
     }
     catch {
         return [];
     }
 };
-const writeFavorites = values => localStorage.setItem(favoriteKey, JSON.stringify(values));
+const writeFavorites = values => {
+    try {
+        localStorage.setItem(favoriteKey, JSON.stringify(values));
+    } catch {
+        return;
+    }
+};
+const baseStatsCache = new WeakMap();
 const rarityRank = { Legendary: 6, Exclusive: 5, Epic: 4, Rare: 3, Uncommon: 2, Common: 1 };
 const baseStats = unit => {
+    const cached = baseStatsCache.get(unit);
+    if (cached) return cached;
     const stat = (unit.stats || []).find(s => s.level === 1) || (unit.stats || [])[0] || {};
     const damage = Number(stat.damage) || 0;
     const cooldown = Number(stat.cooldown) || 0;
-    return { damage, cooldown, dps: damage * cooldown,
+    const result = { damage, cooldown, dps: damage * cooldown,
         hps: cooldown, range: Number(stat.range) || 0,
         placement: Number(unit.placement) || 0 };
+    baseStatsCache.set(unit, result);
+    return result;
 };
 filterButton.addEventListener("click", () => {
     filters.classList.toggle("open");
@@ -76,8 +111,12 @@ document
 searchInput.addEventListener("input", () => {
     displayUnits();
 });
-clearFiltersButton.addEventListener("click", () => {
+const clearUnitFilters = () => {
     searchInput.value = "";
+    favoritesOnly = false;
+    const favoritesFilter = document.getElementById("favorites-filter");
+    favoritesFilter?.classList.remove("active");
+    favoritesFilter?.setAttribute("aria-pressed", "false");
     activeRarities = [];
     activeTypes = [];
     document
@@ -86,9 +125,12 @@ clearFiltersButton.addEventListener("click", () => {
         button.classList.remove("active");
     });
     displayUnits();
-});
+};
+clearFiltersButton.addEventListener("click", clearUnitFilters);
 function displayUnits() {
     grid.innerHTML = "";
+    const favorites = new Set(readFavorites());
+    const sections = document.createDocumentFragment();
     const searchText = searchInput.value
         .toLowerCase()
         .trim();
@@ -100,19 +142,20 @@ function displayUnits() {
             activeRarities.includes(unit.rarity);
         const matchesType = activeTypes.length === 0 ||
             activeTypes.includes(unit.type);
-        const matchesFavorite = !favoritesOnly || readFavorites().includes(unit.name);
+        const matchesFavorite = !favoritesOnly || favorites.has(unit.name);
         return matchesSearch && matchesRarity && matchesType && matchesFavorite;
     });
-    const sortMode = document.getElementById("unit-sort")?.value || "default";
+    const sortMode = unitSortSelect?.value || "default";
+    const sortMultiplier = unitSortDirection === "asc" ? 1 : -1;
     if (sortMode !== "default") {
         filteredUnits.sort((a, b) => {
             if (sortMode === "name")
-                return a.name.localeCompare(b.name);
+                return a.name.localeCompare(b.name) * sortMultiplier;
             if (sortMode === "rarity")
-                return (rarityRank[b.rarity] || 0) - (rarityRank[a.rarity] || 0);
+                return ((rarityRank[a.rarity] || 0) - (rarityRank[b.rarity] || 0)) * sortMultiplier;
             const av = baseStats(a)[sortMode] || 0;
             const bv = baseStats(b)[sortMode] || 0;
-            return bv - av;
+            return (av - bv) * sortMultiplier;
         });
     }
     if (resultsCount) {
@@ -126,12 +169,13 @@ function displayUnits() {
     ========================= */
     const hasActiveFilters = searchText.length > 0 ||
         activeRarities.length > 0 ||
-        activeTypes.length > 0;
+        activeTypes.length > 0 || favoritesOnly;
     clearFiltersButton.hidden = !hasActiveFilters;
     /*
         Create rarity sections.
     */
-    rarities.forEach(rarity => {
+    const orderedRarities = sortMode === "rarity" && unitSortDirection === "asc" ? [...rarities].reverse() : rarities;
+    orderedRarities.forEach(rarity => {
         /*
             Find units belonging
             to this rarity.
@@ -140,10 +184,10 @@ function displayUnits() {
         if (sortMode !== "default") {
             rarityUnits.sort((a, b) => {
                 if (sortMode === "name")
-                    return a.name.localeCompare(b.name);
+                    return a.name.localeCompare(b.name) * sortMultiplier;
                 if (sortMode === "rarity")
                     return 0;
-                return (baseStats(b)[sortMode] || 0) - (baseStats(a)[sortMode] || 0);
+                return ((baseStats(a)[sortMode] || 0) - (baseStats(b)[sortMode] || 0)) * sortMultiplier;
             });
         }
         /*
@@ -216,6 +260,8 @@ function displayUnits() {
                     `<img
                             src="${unit.image}"
                             alt="${unit.name}"
+                            loading="lazy"
+                            decoding="async"
                         >`
                 :
                     `<span>
@@ -232,7 +278,7 @@ function displayUnits() {
                 </div>
 
                 <div class="unit-card-extra-actions">
-                    <button class="unit-favorite-toggle" type="button" aria-label="Favorite ${unit.name}" title="Toggle favorite">${readFavorites().includes(unit.name) ? "★" : "☆"}</button>
+                    <button class="unit-favorite-toggle" type="button" aria-label="Favorite ${unit.name}" title="Toggle favorite">${favorites.has(unit.name) ? "★" : "☆"}</button>
                     <label class="unit-compare-toggle" title="Select for comparison"><input type="checkbox" value="${unit.name}" ${selectedForCompare.includes(unit.name) ? "checked" : ""}> Compare</label>
                 </div>
                 <button
@@ -245,6 +291,26 @@ function displayUnits() {
                 </button>
 
             `;
+            if (unitHasWarnings(unit)) {
+                const marker = document.createElement("button");
+                marker.type = "button";
+                marker.className = "ftc-compact-warning unit-data-warning";
+                marker.textContent = "i";
+                marker.setAttribute("aria-label", `Data notes for ${unit.name}`);
+                marker.setAttribute("aria-expanded", "false");
+                const note = document.createElement("div");
+                note.className = "ftc-unit-data-note";
+                note.textContent = getUnitWarningText(unit);
+                note.hidden = true;
+                marker.addEventListener("click", event => {
+                    event.stopPropagation();
+                    note.hidden = !note.hidden;
+                    marker.setAttribute("aria-expanded", String(!note.hidden));
+                });
+                note.addEventListener("click", event => event.stopPropagation());
+                card.querySelector(".unit-image").appendChild(marker);
+                card.appendChild(note);
+            }
             const favoriteButton = card.querySelector(".unit-favorite-toggle");
             favoriteButton.addEventListener("click", event => {
                 event.stopPropagation();
@@ -313,22 +379,30 @@ function displayUnits() {
         /*
             Add section to database.
         */
-        grid.appendChild(section);
+        sections.appendChild(section);
     });
+    grid.appendChild(sections);
     /*
         If nothing matched,
         show a message.
     */
     if (filteredUnits.length === 0) {
-        grid.innerHTML = `
-
-            <div class="no-results">
-
-                No units found.
-
-            </div>
-
-        `;
+        const empty = document.createElement("div");
+        empty.className = "ftc-empty-state";
+        empty.setAttribute("role", "status");
+        const title = document.createElement("strong");
+        title.textContent = favoritesOnly && !favorites.size ? "No favorites saved yet" : "No matching units";
+        const description = document.createElement("p");
+        description.textContent = favoritesOnly && !favorites.size
+            ? "Use the star on any unit to add it to your favorites."
+            : "Try a different unit name or reset the filters.";
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "ftc-empty-reset";
+        button.textContent = "CLEAR SEARCH & FILTERS";
+        button.addEventListener("click", () => { clearUnitFilters(); searchInput.focus(); });
+        empty.append(title, description, button);
+        grid.replaceChildren(empty);
     }
 }
 function updateCompareControls() {
@@ -339,7 +413,18 @@ function updateCompareControls() {
     if (button)
         button.disabled = selectedForCompare.length < 2;
 }
-document.getElementById("unit-sort")?.addEventListener("change", displayUnits);
+unitSortSelect?.addEventListener("change", () => {
+    unitSortDirection = unitSortSelect.value === "name" ? "asc" : "desc";
+    saveUnitSort();
+    refreshUnitSortButton();
+    displayUnits();
+});
+unitSortDirectionButton?.addEventListener("click", () => {
+    unitSortDirection = unitSortDirection === "desc" ? "asc" : "desc";
+    saveUnitSort();
+    refreshUnitSortButton();
+    displayUnits();
+});
 document.getElementById("favorites-filter")?.addEventListener("click", event => {
     favoritesOnly = !favoritesOnly;
     event.currentTarget.classList.toggle("active", favoritesOnly);

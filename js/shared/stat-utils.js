@@ -32,3 +32,25 @@ function formatHPS(value) {
     }
     return hps.toFixed(2).replace(/\.?0+$/, "");
 }
+
+function getTotalInvestment(unit, level = Infinity) {
+    if (!unit || !Array.isArray(unit.stats)) return null;
+    const placement = Number(unit.placement);
+    if (!Number.isFinite(placement) || placement < 0) return null;
+    let total = placement;
+    for (const step of unit.stats) {
+        const upgradeLevel = Number(step.level);
+        if (upgradeLevel <= 1 || upgradeLevel > level) continue;
+        const cost = Number(step.cost);
+        if (!Number.isFinite(cost) || cost < 0) return null;
+        total += cost;
+    }
+    return total;
+}
+function getEnchantedHPS(hps, attackSpeedModifier = 0) {
+    const base = Number(hps);
+    const modifier = Number(attackSpeedModifier);
+    const interval = 1 + modifier / 100;
+    if (!Number.isFinite(base) || base <= 0 || !Number.isFinite(modifier) || interval <= 0) return null;
+    return base / interval;
+}

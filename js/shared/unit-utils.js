@@ -1,8 +1,17 @@
+let indexedUnitSource = null;
+let unitNameLookup = null;
 function findUnitByName(name) {
-    if (!name || typeof units === "undefined") {
+    if (!name || typeof units === "undefined" || !Array.isArray(units)) {
         return null;
     }
-    return units.find(unit => unit.name === name) || null;
+    if (indexedUnitSource !== units) {
+        indexedUnitSource = units;
+        unitNameLookup = new Map();
+        for (const unit of units) {
+            if (!unitNameLookup.has(unit.name)) unitNameLookup.set(unit.name, unit);
+        }
+    }
+    return unitNameLookup.get(name) || null;
 }
 function getUnitWarnings(unit) {
     if (!unit || !unit.warn) {

@@ -281,7 +281,7 @@ function buildStats() {
     // =========================
     // TOTAL COST
     // =========================
-    const totalCost = unit.stats.reduce((total, stat) => total + Number(stat.cost || 0), 0);
+    const totalCost = getTotalInvestment(unit);
     document.getElementById("total-cost").textContent =
         formatMoney(totalCost);
 }
@@ -319,17 +319,18 @@ function displayWarnings(unit) {
     if (warnings.length === 0) {
         return;
     }
+    const details = document.createElement("details");
+    details.className = "ftc-unit-warnings-details";
+    const summary = document.createElement("summary");
+    summary.textContent = `Data notes (${warnings.length})`;
+    const list = document.createElement("ul");
     warnings.forEach(warning => {
-        if (!warning) {
-            return;
-        }
-        const warningElement = document.createElement("div");
-        warningElement.className =
-            "page-warning";
-        warningElement.textContent =
-            warning;
-        warningsContainer.appendChild(warningElement);
+        const item = document.createElement("li");
+        item.textContent = warning;
+        list.appendChild(item);
     });
+    details.append(summary, list);
+    warningsContainer.appendChild(details);
 }
 // =========================
 // BACK BUTTON

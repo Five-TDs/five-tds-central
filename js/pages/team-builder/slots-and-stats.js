@@ -13,11 +13,7 @@ function getBuilderMaxLevelStats(unit) {
 function getBuilderTotalUpgradeCost(unit) {
     if (!unit)
         return 0;
-    const placement = Number(unit.placement) || 0;
-    const upgrades = (unit.stats || []).reduce((total, stat) => {
-        return total + (Number(stat.cost) || 0);
-    }, 0);
-    return placement + upgrades;
+    return getTotalInvestment(unit) ?? 0;
 }
 /* =========================================
    V2.4.0 — TEAM SLOT RENDERING
@@ -83,17 +79,11 @@ function getBuilderEnchantedStats(unit, enchantName) {
         return null;
     const enchant = enchantName ? enchants[enchantName] : null;
     let damage = Number(maxStats.damage);
-    let hps = Number(maxStats.cooldown);
-    if (!Number.isFinite(damage) || !Number.isFinite(hps)) {
-        return null;
-    }
-    if (enchant?.damage) {
-        damage *= 1 + enchant.damage / 100;
-    }
-    if (enchant?.attackSpeed) {
-        hps /= 1 + enchant.attackSpeed / 100;
-    }
-    return { damage, hps, dps: damage * hps };
+    if (maxStats.damage === undefined || maxStats.damage === null || !Number.isFinite(damage)) return null;
+    const hps = getEnchantedHPS(maxStats.cooldown, enchant?.attackSpeed ?? 0);
+    if (hps === null) return null;
+    if (enchant?.damage != null) damage *= 1 + Number(enchant.damage) / 100;
+    return { damage, hps, dps: calculateDPS(damage, hps) };
 }
 /* =========================================
    V2.4.0 — TEAM STATISTICS

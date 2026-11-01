@@ -20,10 +20,8 @@
         return item;
     };
     const levelsOf = unit => {
-        let investment = Number(unit.placement) || 0;
         return [...(unit.stats || [])].sort((a, b) => Number(a.level) - Number(b.level)).map((step, index) => {
-            if (index)
-                investment += Number(step.cost) || 0;
+            const investment = getTotalInvestment(unit, Number(step.level));
             const damage = valid(step.damage) ? Number(step.damage) : null;
             const hps = valid(step.cooldown) ? Number(step.cooldown) : null;
             const range = valid(step.range) ? Number(step.range) : null;
@@ -39,7 +37,7 @@
         if (!container || !unit || !Array.isArray(unit.stats) || !unit.stats.length)
             return;
         const levels = levelsOf(unit);
-        let metric = opts.metric && metrics.some(item => item.key === opts.metric) ? opts.metric : levelsOf(unit).some(level => level.dps !== null) ? "dps" : levelsOf(unit).some(level => level.rangeBuff !== null) ? "rangeBuff" : levelsOf(unit).some(level => level.slow !== null) ? "slow" : "range";
+        let metric = opts.metric && metrics.some(item => item.key === opts.metric) ? opts.metric : levels.some(level => level.dps !== null) ? "dps" : levels.some(level => level.rangeBuff !== null) ? "rangeBuff" : levels.some(level => level.slow !== null) ? "slow" : "range";
         container.classList.add("ftc-performance");
         container.replaceChildren();
         const title = document.createElement("div");

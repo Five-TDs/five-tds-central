@@ -1,4 +1,5 @@
 const warningTooltip = document.getElementById("warning-tooltip");
+const confidenceLookup = new Map((window.FTC_META_RANKING?.data || []).map(item => [item.name, item]));
 function showBestWarning(event, warning) {
     if (!warningTooltip || !warning) {
         return;
@@ -36,9 +37,8 @@ function moveBestWarning(event) {
 function createBestUnitCard(unit, rank) {
     const card = document.createElement("div");
     card.className = "best-unit-card";
-    const confidenceUnit = window.FTC_META_RANKING?.data?.find(item => item.name === unit.name);
+    const confidenceUnit = confidenceLookup.get(unit.name);
     const modeledConfidence = confidenceUnit && window.FTC_META_RANKING?.confidenceFor?.(confidenceUnit);
-    if (modeledConfidence) card.title = `Modeled confidence: ${modeledConfidence.label}. ${modeledConfidence.reasons.join(" ")}`;
     if (rank === 1) {
         card.classList.add("featured");
     }
@@ -57,7 +57,7 @@ function createBestUnitCard(unit, rank) {
         enchantLabel.className = "enchant-frame-label";
         const enchantName = document.createElement("span");
         enchantName.className = "enchant-frame-label-text";
-        enchantName.textContent = `${recommendation.best.toUpperCase()} ENCHANT`;
+        enchantName.textContent = `${recommendation.best.toUpperCase()}`;
         enchantLabel.appendChild(enchantName);
         imageWrap.appendChild(enchantLabel);
         card.tabIndex = 0;
@@ -70,6 +70,7 @@ function createBestUnitCard(unit, rank) {
     image.alt = unit.name;
     image.draggable = false;
     image.loading = "lazy";
+    image.decoding = "async";
     /* Name */
     const name = document.createElement("div");
     name.className = "best-unit-name";
@@ -78,9 +79,10 @@ function createBestUnitCard(unit, rank) {
     imageWrap.appendChild(name);
     /* Warning */
     if (unitHasWarnings(unit)) {
-        const warning = document.createElement("div");
-        warning.className = "best-unit-warning";
-        warning.textContent = "⚠";
+        const warning = document.createElement("button");
+        warning.type = "button";
+        warning.className = "best-unit-warning ftc-compact-warning";
+        warning.textContent = "i";
         warning.tabIndex = 0;
         warning.setAttribute("aria-label", "Data warning for " + unit.name);
         imageWrap.appendChild(warning);
@@ -112,7 +114,6 @@ function createBestUnitCard(unit, rank) {
         const alternative = document.createElement("span");
         alternative.textContent = `ALT: ${(recommendation.alternative || "—").toUpperCase()}`;
         if (recommendation.reason) {
-            details.title = recommendation.reason;
             details.setAttribute("aria-label", `${unit.name}: best enchantment ${recommendation.best}, alternative ${recommendation.alternative}. ${recommendation.reason}`);
         }
         details.append(badge, alternative);
