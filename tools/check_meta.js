@@ -5,7 +5,7 @@ const vm = require("node:vm");
 const root = path.join(__dirname, "..", "js");
 const context = vm.createContext({ window: {}, console, document: { readyState: "loading", addEventListener() { } }, location: {} });
 const evaluate = filename => vm.runInContext(fs.readFileSync(path.join(root, filename), "utf8"), context, { filename });
-["data/units.js", "data/nights-data.js", "config/meta-settings.js", "data/tierlist-data.js", "data/best-towers-data.js", "data/teams-data.js", "meta/ranking-engine.js", "shared/performance-graphs.js", "shared/team-synergy.js"].forEach(evaluate);
+["data/units.js", "data/nights-data.js", "shared/stat-utils.js", "config/meta-settings.js", "data/tierlist-data.js", "data/best-towers-data.js", "data/teams-data.js", "meta/ranking-engine.js", "shared/performance-graphs.js", "shared/team-synergy.js"].forEach(evaluate);
 const meta = context.window.FTC_META_RANKING;
 assert.equal(meta.data.length, 28);
 assert.equal(meta.cashByNight.length, 22);

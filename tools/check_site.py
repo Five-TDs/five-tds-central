@@ -26,6 +26,11 @@ class PageParser(HTMLParser):
             self.assets.append(attrs['href'])
         if tag in ('img', 'source') and attrs.get('src'):
             self.assets.append(attrs['src'])
+        if tag in ('img', 'source') and attrs.get('srcset'):
+            for entry in attrs['srcset'].split(','):
+                asset = entry.strip().split(' ')[0]
+                if asset:
+                    self.assets.append(asset)
 
 
 def local_path(asset):
@@ -51,6 +56,19 @@ def validate():
             target = local_path(asset)
             if target is not None and not target.is_file():
                 errors.append(f'{page.name}: missing asset {asset}')
+        shared_stat_consumers = [
+            'js/pages/unit.js',
+            'js/pages/raw-dps.js',
+            'js/pages/stats-simulator.js',
+            'js/shared/performance-graphs.js',
+            'js/pages/team-builder/slots-and-stats.js'
+        ]
+        if 'js/data/units.js' in parser.scripts and 'js/shared/interactive-tools.js' in parser.scripts:
+            shared_stat_consumers.append('js/shared/interactive-tools.js')
+        for consumer in shared_stat_consumers:
+            if consumer in parser.scripts and ('js/shared/stat-utils.js' not in parser.scripts or
+                parser.scripts.index('js/shared/stat-utils.js') > parser.scripts.index(consumer)):
+                errors.append(f'{page.name}: shared stat utilities must load before {consumer}')
         if 'js/site.js' in parser.scripts:
             if 'js/config/navigation.js' not in parser.scripts:
                 errors.append(f'{page.name}: missing navigation configuration')

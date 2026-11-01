@@ -622,3 +622,9 @@
         font-size: 10px;
     }
 }
+
+.roblox-game-image picture {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
