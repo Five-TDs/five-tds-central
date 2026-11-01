@@ -6,7 +6,7 @@
 
 **Frequently used:** [Quick start](#quick-start) · [Find the right file](#find-the-right-file) · [Unit data](#unit-data) · [Nights data](#nights-data) · [META rankings](#meta-rankings) · [Team Builder](#team-builder) · [Game updates](#game-updates-and-website-versions) · [Testing](#checking-your-changes)
 
-**Everything else:** [Folders](#project-map) · [Enchantments](#enchantment-data) · [Page scripts](#page-script-reference) · [Shared scripts](#shared-scripts) · [Design and mobile](#design-navigation-and-mobile) · [Adding content](#common-editing-recipes) · [Data safety](#keeping-the-game-data-safe) · [Publishing](#publishing) · [Troubleshooting](#troubleshooting) · [Known META limits](#what-meta-scoring-can-and-cannot-predict)
+**Everything else:** [Shared UI and mobile checklist](#shared-interface-and-mobile-checklist) · [Loading and navigation](#keeping-navigation-search-and-loading-fast) · [Folders](#project-map) · [Enchantments](#enchantment-data) · [Page scripts](#page-script-reference) · [Shared scripts](#shared-scripts) · [Design and mobile](#design-navigation-and-mobile) · [Adding content](#common-editing-recipes) · [Data safety](#keeping-the-game-data-safe) · [Publishing](#publishing) · [Troubleshooting](#troubleshooting) · [Known META limits](#what-meta-scoring-can-and-cannot-predict)
 
 ---
 
@@ -21,7 +21,7 @@
    ```
 
 4. Open `http://localhost:8000/` in your browser.
-5. After a data edit, run `node tools/verify_data.js`, plus the checks in [Checking your changes](#checking-your-changes).
+5. After a data edit, run `node tools/verify_data.js`, `node tools/check_stat_consistency.js` and the checks in [Checking your changes](#checking-your-changes).
 6. Review the changed pages at desktop and phone widths; then publish.
 
 **Editing conventions:** JavaScript uses four spaces and consistent UTF-8/LF line endings, defined in [`.editorconfig`](.editorconfig). The scripts are classic browser JavaScript; the site does **not** require a bundler. Keep script loading order in the HTML, especially on the Teams and META pages. Don't replace the existing `<script>` tags with `type="module"` unless you intentionally convert their shared state.
@@ -123,6 +123,73 @@ The source enchantment percentages live in `js/data/enchantments.js`; do not dup
 `js/shared/performance-graphs.js` renders all shared upgrade performance graphs. The `metrics` array defines selectable statistics; `levelsOf()` produces plotted level values. Clicking or keyboard-activating a point shows its exact Y-coordinate in the chart and in an accessible text summary. Visual styling is shared in `css/arcade-theme.css`.
 
 **Where data stops and calculations begin:** Data files describe the game. `js/meta/ranking-engine.js` *reads* those files and generates current Tierlist, Best Towers and team recommendations. Changing a scoring assumption must not silently rewrite unit data.
+
+## Shared interface and mobile checklist
+
+The website already has its main features; most future visual changes should improve an existing page rather than add another tool. Use the same shared UI rules for navigation, dialogs, controls, and focus states across all pages.
+
+| What you want to adjust | Where to start | What to preserve |
+|---|---|---|
+| Navigation names, dropdown categories and links | `js/config/navigation.js` | Existing public page URLs |
+| Navigation behavior, shortcuts and mobile menu | `js/site.js` | Background scroll restoration and Escape handling |
+| Search and website settings dialogs | `js/site.js` and `css/site.css` | Keyboard focus trapping, close buttons, outside clicks and saved preferences |
+| Buttons, fields, panel radii and focus styling | End of `css/arcade-theme.css` | Enchantment frames, rarity colors and page-specific designs |
+| Homepage accordion cards | `js/pages/home.js`, `css/pages/home.css` | Keyboard operability and correct expanded/collapsed states |
+| A particular page's responsive layout | `css/pages/<page>.css` | Touch targets, accessible labels and existing functionality |
+
+**Navigation:** `js/site.js` builds both navigation menus from `js/config/navigation.js`. The mobile menu temporarily locks background scrolling and returns users to their original scroll position when it closes. Keep `aria-expanded`, `aria-hidden`, and focus behavior synchronized with the visual open state. Search and settings dialogs should return focus to the control that opened them and keep the keyboard inside the dialog while open.
+
+**Fixed-position menus:** Page transitions fade between pages without transforming the whole `body`. Avoid adding `transform` to the body during transitions, because that can shift fixed menus, dialogs, and corner buttons when the page is scrolled.
+
+**Shared design tokens:** The last section of `css/arcade-theme.css` defines `--ui-control-height`, `--ui-radius`, `--ui-radius-lg`, `--ui-focus-color`, and other shared UI colors. Use these before adding another nearly identical button or input style. Keep custom Haywire, Springlock, and Soul border animations untouched when changing cards.
+
+**Mobile checks:** At approximately 390px, 768px, and 1280px widths, confirm there is no page-wide horizontal scrolling, inputs don't overlap their labels, graphs and tables can be reached, and the mobile menu is scrollable without scrolling the page behind it. Test the keyboard Skip to Content link, Escape-to-close, desktop dropdowns, global search, settings, homepage sections, and saved Team Builder controls.
+
+**Script order:** The home and data pages still use classic browser scripts with shared global variables. If you add a new global UI helper, place it before its consumers. The shared navigation file must load before `js/site.js`; do not move it inside a late-loading feature script.
+
+---
+
+## Keeping navigation, search and loading fast
+
+The site remains static HTML, CSS and classic browser JavaScript. **Do not change the public page filenames** (`raw-dps.html`, `teams.html`, and so on) because old links and bookmarked URLs still use them. Keep the script order in the HTML unchanged; in particular, the META ranking engine must load before the strategy model, which must load before the relevant page renderer.
+
+- **META optimization:** `js/meta/strategy-model.js` computes one role/stat summary for each five-unit combination and reuses it across Solo, Endless, Crowd Control, Boss and Speedrun scoring. If you change the team-score formulas, update `teamAttributes()` and `teamScore()` together. Compare the generated team, tier and enchantment outputs before and after a performance refactor. `comboCache`, `levelCache` and `budgetCache` are scoped to the current page; a new page load starts with fresh data.
+- **Navigation and menus:** `js/config/navigation.js` owns the link names; `js/site.js` renders desktop and mobile navigation, keeps keyboard and mouse behavior consistent, and restores focus when search or settings closes. Do not duplicate navigation markup in every HTML page.
+- **Global search:** `js/site.js` loads `js/data/units.js` on demand *only if needed* so home and FAQ pages can show unit results without adding the entire database to every page's initial payload. Pages already loading units do not fetch it twice.
+- **Image delivery:** The homepage uses `images/fntd-game-optimized.webp` in a `<picture>`, with the original `images/fntd-game.png` retained as a fallback. To refresh the image, regenerate the WebP from the new PNG; don't overwrite the original or change unit image paths in game data.
+- **Fonts:** Google Fonts is loaded with a linked stylesheet and preconnect hints in each HTML head. `css/arcade-theme.css` defines the actual body and heading font stacks. If you change fonts, update the link on **every** page and its CSS font variables together.
+- **Preferences:** Appearance and transition preferences use browser storage when available, but menus and pages must still work in private browsing or restricted previews. Never make a setting mandatory for a page to render.
+- **Visual consistency:** Global rules belong in `css/site.css` or `css/arcade-theme.css`; page-specific rules belong in `css/pages/`. Prefer small scoped overrides to adding a new stylesheet for every small adjustment. Check at both phone and desktop widths.
+
+After changes, run the checks below and verify that the selected META mode, Night, enchantments, and saved teams still behave as expected.
+
+### META and database performance maintenance
+
+The current optimization pass keeps calculations, source data, and recommendation results unchanged. The improvements are internal and safe to keep as future game data grows.
+
+- `js/meta/strategy-model.js` prepares the five-unit combination data once and reuses partial role/stat totals across the search. **Do not change the summation order or the existing scoring weights** without checking the generated rankings and teams. The page-level combination cache continues to be keyed by starting cash and enchantment preset.
+- `js/pages/tierlist.js` looks up the calculated tier scores once per render rather than re-running the ranking lookup for each card. If you change a Night or ranking mode, call the existing Tierlist render function so the lookup is refreshed.
+- `js/shared/unit-utils.js` builds a name-to-unit lookup from the current unit array. `js/pages/units.js` caches static sorting stats and reads favorite names once per database render; its favorites still use the browser's existing storage key.
+- `js/shared/performance-graphs.js` reuses its already-calculated level statistics to choose the initial chart metric. Graph values and click/keyboard interactions remain unchanged.
+- Unit cards in the Unit Database, Stats Simulator, Tierlist, Best Towers and recommended Teams use lazy loading and asynchronous decoding for noncritical artwork. Keep critical above-the-fold graphics eager, and do not rename the image paths stored in `units.js`.
+- `js/site.js` has a single keyboard focus-trap handler for search and settings dialogs. Keep it attached once during initialization, not inside individual button click handlers.
+
+To measure the local META initialization time without changing anything, run:
+
+```bash
+node tools/benchmark_meta.js
+```
+
+This reports individual runs and a median for the current computer. Timing varies by hardware and workload, so **check that the results remain correct before optimizing for speed**. For accuracy checks, run:
+
+```bash
+node tools/verify_data.js
+node tools/check_meta_strategy.js
+node tools/check_tierlist_model.js
+python tools/check_site.py
+```
+
+When intentionally changing website version history, `verify_data.js` may flag only the version-history fingerprint; review other differences before refreshing the reference. The original unit, Night, and enchantment hashes should not change unless the game itself updates.
 
 ## Keeping the game data safe
 
@@ -522,3 +589,46 @@ When users switch the selected Night, MAX/Normal mode, or enchantment assumption
 The same-level progression comparison uses wave and boss DPS per cumulative investment, additional wave DPS gained per upgrade cost, and recorded range. A tower with fewer listed upgrades is compared only at levels it actually has. Area-hit estimates are adjusted for path alignment, and support/control units remain in their own Utility tier. Actual enemy pathing, attack uptime, toxic tick damage, and buff stacking remain uncertain.
 
 For a quick self-check, run `node tools/check_tierlist_model.js` after modifying the scoring code, followed by `node tools/verify_data.js` to confirm game data is unchanged. The public page selection is persisted locally as `ftc-tierlist-focus`.
+
+## Consistent stat calculations
+
+All pages use `js/shared/stat-utils.js` for HPS, basic DPS, total investment, and HPS changes from attack-speed enchantments. The game-data field `cooldown` means **hits per second**, not seconds per hit.
+
+- `getTotalInvestment(unit, level)` adds the unit's placement cost once, followed by all upgrades through the requested level. Omit the level to get its maximum recorded investment.
+- `getEnchantedHPS(hps, attackSpeedModifier)` applies a percentage to the attack interval. An enchantment value of `-20` means a shorter interval and 25% more HPS. Invalid attack intervals return `null`.
+- The Unit Stat List's **MAX DPS** is the highest DPS among all recorded levels; its DPS-per-$1,000 value uses the investment needed to reach that peak. Its separate **TOTAL COST** column still describes full upgrades.
+- Missing damage on support and control units remains missing: it must not be converted into a fabricated zero-DPS recommendation.
+
+Run `node tools/check_stat_consistency.js` after changing unit fields, the simulator, graphs, the stat list, or Team Builder stats. It compares source records across all recorded levels and supported enchantments.
+
+## V3 maintenance: keep the interface simple
+
+The original features are intentionally preserved. Changes to the Unit Database modal should be made in `js/shared/interactive-tools.js` and `css/ftc-roadmap-features.css` or the final shared theme (`css/arcade-theme.css`). Avoid adding another modal controller on an individual page.
+
+The unit detail dialog manages keyboard focus and locks background scrolling while open. Its Stats & Upgrades, Abilities, and Enchantments tabs have `role=tab` and matching `role=tabpanel`; arrow keys, Home and End change tabs. If editing these controls, keep those ARIA links and the Escape-to-close behavior.
+
+**Do not invent missing support stats.** `null` or omitted damage/HPS must display as an unavailable value rather than a measured zero. The same caution applies to ranking and enchantment estimates.
+
+After any change to shared JavaScript or CSS, check the Unit Database modal on mouse and keyboard, the three modal tabs, search, mobile navigation, at least one Team Builder saved lineup, the Tierlist's Night controls, and the Stats Simulator.
+
+For a focused maintenance pass, use the following commands:
+
+```bash
+python tools/check_site.py
+node tools/check_calculations.js
+node tools/check_stat_consistency.js
+node tools/check_meta_strategy.js
+node tools/check_tierlist_model.js
+node tools/verify_data.js
+```
+
+For changes to the site's **website version history**, the version-history fingerprint in `tools/data-reference.json` will intentionally change. Review the difference, then refresh the reference only once you have confirmed the original game-data fingerprints still match.
+
+
+### V3.0.1 sorting, search states and META score display
+
+- **Unit Database sorting:** `js/pages/units.js` reads/writes `ftc-unit-sort-preference` in browser storage, storing the selected column and direction. The `#unit-sort-direction` button is in `units.html`. If storage is unavailable, the defaults continue working. Changing the database sorting does not alter the game data or rankings.
+- **Unit Stat List sorting:** `js/pages/raw-dps.js` uses `ftc-stat-list-sort-preference`, also storing a single active column and ascending/descending direction. Sorting is applied only to displayed records.
+- **Empty search results:** The Unit Database and Unit Stat List now show a clear reset button when no units match; its logic lives in each page's script. Shared presentation rules are at the end of `css/arcade-theme.css`.
+- **Compact data warnings:** Unit cards use small disclosure controls and full unit pages use expandable notes. Original `warn` fields remain unchanged. Guide-card warnings still expose existing warning text on focus and hover.
+- **Tierlist visual score report:** The existing Tierlist model provides the score and normalized factors. Clicking a Tierlist card opens a visual report with a score gauge and individual factors. The interface lives in `js/pages/tierlist.js` and `css/arcade-theme.css`; calculations still live in `js/meta/tierlist-model.js` and have not been changed. The breakdown bars are relative measures, not measured real-world win rates or absolute damage contributions.
