@@ -215,8 +215,8 @@
         if (typeof TIER_ORDER !== "undefined" && !TIER_ORDER.includes("U")) TIER_ORDER.splice(3, 0, "U");
         if (typeof TIER_DESCRIPTIONS !== "undefined") {
             Object.assign(TIER_DESCRIPTIONS, {
-                S: "Exceptional modeled performance", A: "Strong in this category", B: "Reliable performance", U: "Support and control roles",
-                C: "Situational use", D: "Limited compared with alternatives", F: "Lowest modeled value"
+                S: "80+ Modeled Score - Superior", A: "68-79 Modeled Score - Excellent", B: "54-67 Modeled Score - Strong", U: "Support and control roles",
+                C: "42-53 Modeled Score - Good", D: "30-52 Modeled Score - Limited Use", F: "0-29 Modeled Score - Unnecessary"
             });
         }
         latest = [...damage, ...utility];
