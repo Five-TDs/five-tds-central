@@ -1,5 +1,21 @@
 const WEBSITE_VERSION_HISTORY = [
     {
+        version: "V3.0.2",
+        date: "November 3, 2026",
+        title: "Website Fixes and QOL",
+        description: "Fixed and refined the website's tab presentation along with some minor QOL updates.",
+        changes: {
+            "TAB PRESENTATION": [
+                "Added an image indicator to the website's browser tab along with unifying page's names 'FIVE TD'S CENTRAL | Units'.",
+                "Fixed issue where individual unit page's refused to load unified names, now display 'FIVE TD'S CENTRAL | Unit Name'."
+            ],
+            "PAGE TRANSITIONS AND CONSISTANCY": [
+                "Fixed bug where some page transitions were different time lengths.",
+                "Fixed issue where font sizes and colors varied from page to page."
+            ]
+        }
+    },
+    {
         version: "V3.0.1",
         date: "November 1, 2026",
         title: "Sorting, Search and META Presentation",
