@@ -11,7 +11,8 @@ const WEBSITE_VERSION_HISTORY = [
             ],
             "PAGE TRANSITIONS AND CONSISTANCY": [
                 "Fixed bug where some page transitions were different time lengths.",
-                "Fixed issue where font sizes and colors varied from page to page."
+                "Fixed issue where font sizes and colors varied from page to page.",
+                "Changed Tierlists descriptions to better fit categorical rankings."
             ]
         }
     },
