@@ -10,7 +10,7 @@ if (!unit) {
 }
 else {
     document.title =
-        unit.name + " - Unit Database";
+        "FIVE TD'S CENTRAL | " + unit.name;
     document.getElementById("unit-name").textContent =
         unit.name;
     document.getElementById("unit-image").src =
