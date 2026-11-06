@@ -1,3 +1,5 @@
+const GAME_LOGO = "gameimages/fivetd-main.webp";
+
 const UPDATE_BANNERS = [
     "gameimages/Bear5-poster.webp",
     "gameimages/Dave&Sport-poster.webp",
@@ -6,9 +8,6 @@ const UPDATE_BANNERS = [
     "gameimages/fivetd-main.webp"
 ];
 
-UPDATES.forEach((update, index) => {
-    update.banner = UPDATE_BANNERS[index % UPDATE_BANNERS.length];
-});
 const updateList = (title, items, marker = "★") => ({
     title,
     type: "list",
@@ -640,3 +639,7 @@ const UPDATES = [
         ], "⚙")
     ])
 ];
+
+UPDATES.forEach((update, index) => {
+    update.banner = UPDATE_BANNERS[index % UPDATE_BANNERS.length];
+});
