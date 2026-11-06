@@ -1,0 +1,866 @@
+.nights-page {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 34px 24px 50px;
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.page-header h1 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.page-header p {
+    margin: 7px 0 0;
+
+    color: #555;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.notice {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 17px 22px;
+
+    margin-bottom: 28px;
+
+    background: rgba(30, 30, 0, 0.35);
+
+    border: 1px solid #3d3b12;
+
+    border-radius: 10px;
+
+    color: #9c963d;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.2px;
+
+    line-height: 1.7;
+}
+
+
+.notice strong {
+    color: #d0c52d;
+}
+
+
+.notice-icon {
+    color: #f0c75e;
+
+    font-size: 15px;
+}
+
+.filter-section {
+    position: relative;
+
+    margin-bottom: 30px;
+}
+
+
+.filter-button {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    width: 100%;
+
+    min-height: 46px;
+
+    padding: 0 16px;
+
+    background: #0a0a0a;
+
+    border: 1px solid #242424;
+
+    border-radius: 6px;
+
+    color: #777;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.filter-button:hover {
+    color: #ffffff;
+
+    border-color: #444;
+
+    background: #0e0e0e;
+}
+
+
+#filter-arrow {
+    font-size: 10px;
+
+    transition:
+        transform 0.2s ease;
+}
+
+
+.filter-button.open #filter-arrow {
+    transform: rotate(180deg);
+}
+
+.filter-panel {
+    display: none;
+
+    padding: 18px;
+
+    background: #0a0a0a;
+
+    border: 1px solid #242424;
+
+    border-top: none;
+
+    border-radius: 0 0 6px 6px;
+}
+
+
+.filter-panel.open {
+    display: block;
+}
+
+
+.filter-group + .filter-group {
+    margin-top: 20px;
+}
+
+
+.filter-label {
+    margin-bottom: 9px;
+
+    color: #555;
+
+    font-size: 8px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+}
+
+
+.filter-options {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+}
+
+
+.filter-option {
+    padding: 9px 13px;
+
+    background: #101010;
+
+    border: 1px solid #292929;
+
+    border-radius: 5px;
+
+    color: #666;
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: 0.7px;
+
+    cursor: pointer;
+
+    transition:
+        color 0.15s ease,
+        background 0.15s ease,
+        border-color 0.15s ease;
+}
+
+
+.filter-option:hover {
+    color: #ffffff;
+
+    background: #151515;
+
+    border-color: #444;
+}
+
+
+.filter-option.active {
+    color: #ffffff;
+
+    background: #181818;
+
+    border-color: #ffffff;
+}
+
+.game-section {
+    margin-top: 35px;
+}
+
+
+.game-section:first-child {
+    margin-top: 0;
+}
+
+
+.game-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 18px;
+}
+
+
+.game-title {
+    flex-shrink: 0;
+
+    color: #ffffff;
+
+    font-size: 11px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+}
+
+
+.game-line {
+    width: 100%;
+
+    height: 1px;
+
+    background: #202020;
+}
+
+.game-number {
+    color: #9AFFB0;
+}
+
+
+.night-number {
+    color: #8FCBFF;
+}
+
+.night-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 14px;
+}
+
+.night-card {
+    aspect-ratio: 1 / 1;
+
+    min-width: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #0b0b0b;
+
+    border: 1px solid #ffffff;
+
+    border-radius: 10px;
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    position: relative;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.night-card:hover {
+    transform: translateY(-4px);
+
+    background: #111111;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+
+.night-card-number {
+    font-size: clamp(22px, 3vw, 38px);
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+}
+
+.night-modal {
+    position: fixed;
+
+    inset: 0;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(0, 0, 0, 0.78);
+
+    backdrop-filter: blur(4px);
+
+    z-index: 20000;
+}
+
+
+.night-modal.open {
+    display: flex;
+}
+
+.night-modal-content {
+    width: min(520px, 100%);
+
+    max-height: calc(100vh - 40px);
+
+    overflow-y: auto;
+
+    padding: 34px 24px 24px;
+
+    background: #090909;
+
+    border: 1px solid #292929;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.7);
+
+    position: relative;
+}
+
+.max-mode-button,
+.close-modal {
+    position: absolute;
+
+    top: 14px;
+
+    width: 34px;
+
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #101010;
+
+    border: 1px solid #292929;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.max-mode-button {
+    left: 14px;
+
+    color: #777;
+
+    font-size: 17px;
+}
+
+
+.max-mode-button:hover {
+    color: #ffffff;
+
+    background: #171717;
+
+    border-color: #555;
+
+    transform: translateY(-1px);
+}
+
+
+.max-mode-button.active {
+    color: #ffd619;
+
+    border-color: #ffd619;
+
+    background: #171717;
+}
+
+
+.close-modal {
+    right: 14px;
+
+    color: #777;
+
+    font-size: 22px;
+
+    line-height: 1;
+}
+
+
+.close-modal:hover {
+    color: #ffffff;
+
+    background: #171717;
+
+    border-color: #555;
+
+    transform: translateY(-1px);
+}
+
+.night-modal-header {
+    text-align: center;
+
+    margin-bottom: 20px;
+}
+
+
+.modal-mode {
+    margin-bottom: 5px;
+
+    color: #666;
+
+    font-size: 8px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+}
+
+
+.night-modal-content.max-mode .modal-mode {
+    color: #ffd619;
+}
+
+
+.night-modal-header h2 {
+    margin: 0;
+
+    font-size: clamp(20px, 5vw, 28px);
+
+    font-weight: 900;
+
+    letter-spacing: 0.5px;
+}
+
+
+.modal-alias {
+    margin-top: 6px;
+
+    color: #555;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+}
+
+.night-info-box {
+    min-height: 70px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    gap: 6px;
+
+    margin-top: 8px;
+
+    padding: 13px 16px;
+
+    background: #101010;
+
+    border: 1px solid #202020;
+
+    border-radius: 6px;
+}
+
+
+.night-info-label {
+    color: #666;
+
+    font-size: 8px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+}
+
+
+.night-info-value {
+    color: #ffffff;
+
+    font-size: 13px;
+
+    font-weight: 900;
+
+    overflow-wrap: anywhere;
+}
+
+.wave-box {
+    border-left: 3px solid #60a5fa;
+}
+
+
+.coin-box {
+    border-left: 3px solid #ffd619;
+}
+
+
+.remnant-box {
+    border-left: 3px solid #c801ff;
+}
+
+
+.starting-cash-box {
+    border-left: 4px solid #4ade80;
+}
+
+
+.boss-box {
+    border-left: 3px solid #ef4444;
+}
+
+@media (max-width: 850px) {
+
+    .night-grid {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+    }
+
+}
+
+@media (max-width: 700px) {
+
+    .nights-page {
+        padding:
+            25px 14px 40px;
+    }
+
+
+    .page-header h1 {
+        font-size: 27px;
+    }
+
+
+    .night-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 10px;
+    }
+
+
+    .night-card-number {
+        font-size:
+            clamp(20px, 8vw, 30px);
+    }
+
+
+    .night-modal-content {
+        padding:
+            34px 15px 18px;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .nights-page {
+        padding-left: 10px;
+
+        padding-right: 10px;
+    }
+
+
+    .filter-button {
+        min-height: 44px;
+    }
+
+
+    .filter-panel {
+        padding: 13px;
+    }
+
+
+    .filter-option {
+        padding: 8px 11px;
+    }
+
+
+    .game-section {
+        margin-top: 27px;
+    }
+
+
+    .game-header {
+        gap: 9px;
+    }
+
+
+    .game-title {
+        font-size: 9px;
+
+        letter-spacing: 1px;
+    }
+
+
+    .night-modal {
+        padding: 10px;
+    }
+
+
+    .night-modal-content {
+        max-height: calc(100vh - 20px);
+
+        padding:
+            34px 12px 14px;
+    }
+
+
+    .night-info-box {
+        padding:
+            12px 13px;
+    }
+
+}
+
+@media (max-width: 380px) {
+
+    .night-grid {
+        gap: 8px;
+    }
+
+
+    .night-card {
+        border-radius: 7px;
+    }
+
+
+    .night-card-number {
+        font-size: 19px;
+    }
+
+
+    .night-modal-header h2 {
+        font-size: 19px;
+    }
+
+}
+
+@media (max-width: 700px) {
+
+    .page-header {
+        margin-bottom: 22px;
+    }
+
+    .page-header h1 {
+        font-size: clamp(23px, 6vw, 27px);
+        overflow-wrap: anywhere;
+    }
+
+    .page-header p {
+        font-size: 11px;
+        line-height: 1.6;
+    }
+
+    .notice {
+        gap: 12px;
+        padding: 15px;
+        margin-bottom: 24px;
+
+        font-size: 10px;
+        letter-spacing: 0.6px;
+        line-height: 1.7;
+    }
+
+    .notice-icon {
+        flex-shrink: 0;
+    }
+
+    .filter-button {
+        min-height: 48px;
+        padding: 0 14px;
+    }
+
+    .filter-panel.open {
+        max-height: 65dvh;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+    }
+
+    .filter-options {
+        gap: 8px;
+    }
+
+    .filter-option {
+        min-height: 44px;
+        padding: 10px 13px;
+
+        font-size: 10px;
+        line-height: 1.3;
+    }
+
+    .night-grid {
+        gap: 12px;
+    }
+
+    .night-card {
+        min-width: 0;
+        border-radius: 9px;
+    }
+
+    .night-card-number {
+        font-size: clamp(21px, 7vw, 30px);
+    }
+
+    .night-modal {
+        padding: 12px;
+    }
+
+    .night-modal-content {
+        width: 100%;
+        max-height: calc(100dvh - 24px);
+
+        overflow-x: hidden;
+        overflow-y: auto;
+
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+
+        padding: 58px 16px 20px;
+    }
+
+    .max-mode-button,
+    .close-modal {
+        top: 12px;
+
+        width: 44px;
+        height: 44px;
+    }
+
+    .max-mode-button {
+        left: 12px;
+    }
+
+    .close-modal {
+        right: 12px;
+    }
+
+    .night-modal-header h2 {
+        overflow-wrap: anywhere;
+        line-height: 1.25;
+    }
+
+    .modal-alias {
+        overflow-wrap: anywhere;
+        line-height: 1.5;
+    }
+
+    .night-info-box {
+        min-width: 0;
+        padding: 13px 14px;
+    }
+
+    .night-info-value {
+        line-height: 1.5;
+        overflow-wrap: anywhere;
+    }
+
+}
+
+@media (max-width: 380px) {
+
+    .notice {
+        padding: 12px;
+        gap: 9px;
+    }
+
+    .game-title {
+        overflow-wrap: anywhere;
+        line-height: 1.5;
+    }
+
+    .night-grid {
+        gap: 9px;
+    }
+
+    .night-modal {
+        padding: 8px;
+    }
+
+    .night-modal-content {
+        max-height: calc(100dvh - 16px);
+        padding: 58px 12px 16px;
+    }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .night-card,
+    .filter-button,
+    .filter-option,
+    #filter-arrow,
+    .max-mode-button,
+    .close-modal {
+        transition: none !important;
+    }
+
+}

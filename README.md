@@ -1,4 +1,5 @@
 # Five TD's Central — Website Editing Handbook
+### WEBSITE LINK: https://five-tds.github.io/five-tds-central
 
 > **Start here.** This is the single guide for maintaining the website. You can edit the HTML, CSS and JavaScript directly; no build process or account is required. The game data has been reorganized for readability, **not changed**.
 
